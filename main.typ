@@ -10,6 +10,8 @@
 #include "Allgemein/abstract-de.typ"
 #include "Allgemein/abstract-en.typ"
 
+
+
 #include "Verzeichnisse/inhaltsverzeichnis.typ"
 
 #show: page_layout.with(
@@ -46,7 +48,9 @@
 
 //#include "Alle/begleitprotokolle.typ"
 #include "Verzeichnisse/abkuerzungsverzeichnis.typ"
+
 #include "Verzeichnisse/glossar.typ"
+
 #include "Verzeichnisse/abbildungsverzeichnis.typ"
 #include "Verzeichnisse/literaturverzeichnis.typ"
 
