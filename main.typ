@@ -37,6 +37,8 @@
 #pagebreak()
 #aktueller_autor.update(author2) // Moritz
 
+#include "Auto/main-auto.typ"
+
 // Controller
 #pagebreak()
 #aktueller_autor.update(author3) // Magdalena
