@@ -19,7 +19,7 @@
   schuljahr: schuljahr,
   schule: schule
 )
-fghjhgf
+
 // Alle
 #aktueller_autor.update(author1 + ", " + author2 + ",\n" + author3 + ", " + klasse)
 
