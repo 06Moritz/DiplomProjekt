@@ -6,7 +6,7 @@
 #let author3 = "Magdalena Reitsamer"
 #let projekt = "CorsaNuova"
 #let klasse = "5AHEL"
-#let schuljahr = "2024/2025"
+#let schuljahr = "2025/2026"
 #let schule = "HTBLuVA - Elektronik"
 
 #let apply_styles(body) = {
@@ -17,7 +17,7 @@
   )
   set par(
     justify: true,
-    leading: 0.50em
+    leading: 0.75em
   )
   set page(
     margin: (

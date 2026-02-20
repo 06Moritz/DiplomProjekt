@@ -10,8 +10,6 @@
 #include "Allgemein/abstract-de.typ"
 #include "Allgemein/abstract-en.typ"
 
-#pagebreak()
-
 #include "Verzeichnisse/inhaltsverzeichnis.typ"
 
 #show: page_layout.with(
