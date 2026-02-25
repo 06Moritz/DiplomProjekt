@@ -41,3 +41,39 @@
   }
   body
 }
+
+#let t = metadata("tab")
+
+#let tabed(c) = {
+  let cs = c.children.split(metadata("tab"))
+  context grid(
+    columns: (2cm,) * 8,
+    row-gutter: par.leading,
+    ..cs.fold((0, ()), ((col, arr), c) => {
+      let s = c.sum()
+      let w = int(calc.div-euclid(measure(s).width.pt(), 2cm.pt())) + 1
+      if col + w > 8 {
+        let (b, t) = s.children.map(t => if t.has("text") {t.text.split(" ")} else {t}).flatten().fold(([],()), ((tmp, res), word) => {
+          if res == () {
+            let new = if tmp == [] {
+              if word == [ ] { tmp } else { word }
+            } else if word == [ ] {
+              tmp + sym.space
+            } else {
+              tmp + sym.space + word
+            }
+            if measure(new).width > (8 - col) * 2cm {
+              (word, tmp)
+            } else {
+              (new, ())
+            }
+          } else {(tmp + sym.space + word, res)}
+        })
+        (calc.rem(col + w, 8), arr + (grid.cell(colspan: 8-col, t), grid.cell(colspan:  w - 8 + col, b)))
+      } else {
+        (calc.rem(col + w, 8), arr + (grid.cell(colspan: w, s),))
+      }
+    }).at(1)
+  )
+}
+

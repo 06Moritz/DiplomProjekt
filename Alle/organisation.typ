@@ -3,6 +3,12 @@
 = Organisation
 
 == Projektteam
+#figure(
+image("../Bilder/team.png", width: 50%),
+caption: [
+Teamfoto
+],
+)
 // Gruppenfoto
 
 == Individuelle Aufgabenstellung
