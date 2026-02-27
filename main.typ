@@ -43,6 +43,8 @@
 #pagebreak()
 #aktueller_autor.update(author3) // Magdalena
 
+#include "Controller/main-controller.typ"
+
 
 // Alle
 #pagebreak()
