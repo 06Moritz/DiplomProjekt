@@ -18,7 +18,9 @@
   set par(
     justify: true,
     leading: 0.75em
+
   )
+  set text(hyphenate: true)
   set page(
     margin: (
       top: 2.5cm,
