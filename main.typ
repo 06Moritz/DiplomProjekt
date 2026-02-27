@@ -1,4 +1,7 @@
 #import "config.typ": *
+#import "@preview/glossy:0.9.0": init-glossary
+
+#show: init-glossary.with(eintraege)
 
 #show: apply_styles
 #show: start_layout
@@ -49,9 +52,8 @@
 #aktueller_autor.update(author1 + ", " + author2 + ",\n" + author3 + ", " + klasse)
 
 //#include "Alle/begleitprotokolle.typ"
-#include "Verzeichnisse/abkuerzungsverzeichnis.typ"
 
-#include "Verzeichnisse/glossar.typ"
+#include "Verzeichnisse/abkuerzungsverzeichnis.typ"
 
 #include "Verzeichnisse/abbildungsverzeichnis.typ"
 #include "Verzeichnisse/literaturverzeichnis.typ"

@@ -4,7 +4,7 @@
 
 == Projektteam
 #figure(
-image("../Bilder/team.png", width: 50%),
+image("../Bilder/Team.png", width: 50%),
 caption: [
 Teamfoto
 ],

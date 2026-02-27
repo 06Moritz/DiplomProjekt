@@ -1,5 +1,8 @@
 #import "Templates/seitenlayout.typ": page_layout, aktueller_autor
 #import "Templates/startlayout.typ": start_layout
+#import "@preview/glossy:0.9.0": init-glossary, glossary
+#import "Verzeichnisse/abkuerzungsverzeichnis.typ": eintraege
+
 
 #let author1 = "Melanie Koch"
 #let author2 = "Moritz Prodinger"
@@ -29,6 +32,7 @@
       bottom: 2.5cm,
     ),
   )
+
   show heading: it => {
     it
     if it.level == 1 { 
@@ -41,6 +45,8 @@
       v(0.5cm, weak: true) 
     }
   }
+
+  
   body
 }
 

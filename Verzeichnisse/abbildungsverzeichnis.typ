@@ -1,6 +1,9 @@
 #import "../config.typ": *
 = Abbildungsverzeichnis
-#tabed[
-Abbildung 1: Teamfoto#t #t #t #t #t 4
-]
+
+#outline(
+  title: none,
+  target: figure.where(kind: image)
+)
+
 #pagebreak()
