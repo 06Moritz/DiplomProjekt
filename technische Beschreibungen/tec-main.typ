@@ -3,4 +3,5 @@
 
 #include "buck.typ"
 #include "ble.typ"
+#include "nfc.typ"
 
