@@ -3,7 +3,7 @@
 // Beispiele mit @... im Text verwenden
 #let eintraege = (
   ki: (short: "KI", long: "Künstliche Intelligenz", description: "Teilgebiet der Informatik..."),
-  
+  pcb: (short: "PCB", long: "Printed Circuit Board", description: "Leiterplatte, auf der elektronische Bauteile montiert werden"),
   ldo: (short: "LDO", long: "Low Dropout Regulator", description: "Spannungsregler, der auch bei geringer Eingangsspannung stabil arbeitet"),
   nfc: (short: "NFC", long: "Near Field Communication", description: "Technologie für die drahtlose Kommunikation über kurze Distanzen"),
 
