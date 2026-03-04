@@ -20,10 +20,10 @@
   )
   set par(
     justify: true,
-    leading: 0.75em
+    leading: 1em
 
   )
-  set text(hyphenate: true)
+  set text(hyphenate: false)
   set page(
     margin: (
       top: 2.5cm,
@@ -34,7 +34,18 @@
   )
 
   show heading: it => {
+    if it.level == 1 { 
+      v(1.5cm, weak: true)
+    } 
+    else if it.level == 2 { 
+      v(1cm, weak: true) 
+    }
+    else { 
+      v(0.75cm, weak: true) 
+    }
+    
     it
+
     if it.level == 1 { 
       v(1cm, weak: true) 
     }
