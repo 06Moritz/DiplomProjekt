@@ -1,4 +1,7 @@
 #import "config.typ": *
+#import "@preview/glossy:0.9.0": init-glossary
+
+#show: init-glossary.with(eintraege)
 
 #show: apply_styles
 #show: start_layout
@@ -26,6 +29,9 @@
 #include "Alle/einleitung.typ"
 #include "Alle/organisation.typ"
 
+#pagebreak()
+#include "technische Beschreibungen/tec-main.typ"
+
 // Bahn - Auto - Controller
 #pagebreak()
 #aktueller_autor.update(author1) // Melanie
@@ -51,9 +57,8 @@
 #aktueller_autor.update(author1 + ", " + author2 + ",\n" + author3 + ", " + klasse)
 
 //#include "Alle/begleitprotokolle.typ"
-#include "Verzeichnisse/abkuerzungsverzeichnis.typ"
 
-#include "Verzeichnisse/glossar.typ"
+#include "Verzeichnisse/abkuerzungsverzeichnis.typ"
 
 #include "Verzeichnisse/abbildungsverzeichnis.typ"
 #include "Verzeichnisse/literaturverzeichnis.typ"

@@ -1,5 +1,5 @@
 = Vorwort
 
-_unser Vorwort_
+Modellautorennbahnen sind sind ein beliebtes Hobby in allen Altersklassen. 
 
 #pagebreak()

@@ -2,6 +2,7 @@
 
 #counter(page).update(1)
 
+// Seitenlayout für das Inhaltsverzeichnis
 #set page(
   numbering: "I",
   margin: (top: 2.5cm),
@@ -34,8 +35,19 @@
     }
 )
 
-// 3. Das eigentliche Verzeichnis
+// Styling für das Inhaltsverzeichnis
+#show outline.entry: it => {
+  if it.level == 1 {
+    v(1.5em, weak: true) // Deutlicher Block-Abstand
+    strong(it)           // Alles in Ebene 1 fett
+  } else {
+    it
+  }
+}
+
+// Inhaltsverzeichnis
 #outline(title: "Inhaltsverzeichnis", indent: 1em)
 
+#metadata("end-iv")
 <ende_iv>
 #pagebreak()
