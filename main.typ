@@ -29,6 +29,9 @@
 #include "Alle/einleitung.typ"
 #include "Alle/organisation.typ"
 
+#pagebreak()
+#include "technische Beschreibungen/tec-main.typ"
+
 // Bahn - Auto - Controller
 #pagebreak()
 #aktueller_autor.update(author1) // Melanie
