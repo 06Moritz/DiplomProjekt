@@ -24,7 +24,7 @@ Der Motor wurde aufgrund folgender Kriterien ausgewählt: \
 - Hohe Spannung (12V) für ausreichend Leistung
 - Drehzahl wurde wurde gewählt um eine Geschwindigkeit von ca. 8m/s zu erreichen bei 15mm Raddurchmesser. 
 $ U = 0.015 upright("m") *pi=0.0045m $ 
-$ (8m/s)/(0.0045m) *60s= 9600U/m $
+$ (8m/s)/(0.0045m) *60s= 9600U/min $
 
 Der Motor soll belastet eine Drehzahl von mindestens 9600 U/min erreichen, um die gewünschte Geschwindigkeit zu erreichen.
 
