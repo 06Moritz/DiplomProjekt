@@ -2,6 +2,7 @@
 #import "Templates/startlayout.typ": start_layout
 #import "@preview/glossy:0.9.0": init-glossary, glossary
 #import "Verzeichnisse/abkuerzungsverzeichnis.typ": eintraege
+#import "@preview/muchpdf:0.1.2": muchpdf
 
 
 #let author1 = "Melanie Koch"
@@ -11,6 +12,8 @@
 #let klasse = "5AHEL"
 #let schuljahr = "2025/2026"
 #let schule = "HTBLuVA - Elektronik"
+
+
 
 #let apply_styles(body) = {
   set text(

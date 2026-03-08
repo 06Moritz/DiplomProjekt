@@ -46,10 +46,36 @@ H-Brückenschaltung
 
 == Hauptcontroller – WCH CH585
 *!* https://www.wch-ic.com/products/CH585.html \
-Der Hauptcontroller ist ein Risc-V Microcontroller von WCH. Er hat native Periferals für Bluetooth Low Energy (BLE) und Near Field Communication (NFC). 
-== Antennendesign – BLE @antennaSource
-*!* @ble hat eine Frequenz von 2.4GHz, dafür eignet sich am besten eine Inverteted-F Antenne 
+Der Hauptcontroller ist ein Risc-V Microcontroller von WCH. Er hat native Periferals für Bluetooth Low Energy (BLE) und Near Field Communication (NFC).
 
+== Antennendesign – BLE 
+*!* @ble hat eine Frequenz von 2.4GHz, dafür eignet sich am besten eine "Inverteted-F" Antenne. Beim entwickeln der Antenne sind einige Punkte zu beachten:
+- 50 \u{03A9} Wellenwiderstand der Leitung von der Antenne zum Anpassungsnetzwerk
+- Antennen GND mit vielen Durchkontaktierungen mit GND verbinden
+- keine GND Fläche unter der Antenne 
+- hinter der Antenne GND mit vielen Vias setzen @antennaSource
+Für die Berechnung des Wellenwiderstandes wurde PCB-tookit verwendet, dabei wurden folgende Parameter verwendet: \
+
+- parameter
+
+$w=((5.98*h)/(e^(((sqrt(e_r+ 1.41)*Z_0)/87)))-t)*1/0.8$ @Wellenwiderstand
+
+t=0.035mm (Kupferdicke)\
+h=1.5mm (Dicke des Dielektrikums)\
+e_r=4.5 (Dielektrizitätskonstante)\
+Z_0=50 \u{03A9} (Wellenwiderstand)
+
+$w=((5.98*1.5)/(e^(((sqrt(4.5+ 1.41)*50)/87)))-0.035)*1/0.8 = 2.73"mm" => 106"mil"$
+
+#figure(
+image("../Bilder/antenna.png", width: 50%),
+caption: [
+BLE Antennendesign
+],
+)
+
+== Derhzahlsensor 
+! Die Drehzahl wird optisch mit einem VCNT2020 gemessen. Der Sensor besteht aus einer Infrarot LED und einem Fototransistor. Auf der Antriebswelle ist das Zahnrad zu Hälfte schwarz bemalt, wenn sich die Welle dreht ändert sich die Lichtintensität, die der Sensor empfängt, dadurch kann die Drehzahl berechnet werden. Das Ausgangssignal des Sensors wird mit einem Komperator aufbereitet, damit es vom Controller verarbeitet werden kann. 
 
 
 
