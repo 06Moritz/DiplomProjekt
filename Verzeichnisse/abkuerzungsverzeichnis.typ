@@ -8,6 +8,13 @@
   pwm: (short: "PWM", long: "Pulsweitenmodulation", description: "Verfahren zur Steuerung der Leistung von elektrischen Geräten"),
   ldo: (short: "LDO", long: "Low Dropout Regulator", description: "Spannungsregler, der auch bei geringer Eingangsspannung stabil arbeitet"),
   nfc: (short: "NFC", long: "Near Field Communication", description: "Technologie für die drahtlose Kommunikation über kurze Distanzen"),
+  
+  adc: (short: "ADC", long: "Analog-Digital-Wandler", description: "Bauteil zur Umwandlung von analogen Signalen in digitale Werte"),
+  uart: (short: "UART", long: "Universal Asynchronous Receiver Transmitter", description: "Kommunikationsschnittstelle für asynchrone Datenübertragung"),
+  spi: (short: "SPI", long: "Serial Peripheral Interface", description: "Kommunikationsprotokoll für die serielle Datenübertragung zwischen Mikrocontrollern und Peripheriegeräten"),
+  i2c: (short: "I2C", long: "Inter-Integrated Circuit", description: "Kommunikationsprotokoll für die serielle Datenübertragung zwischen Mikrocontrollern und Peripheriegeräten"),
+  usb: (short: "USB", long: "Universal Serial Bus", description: "Standard für die Verbindung von Computern und Peripheriegeräten"),
+  riscv: (short: "RISC-V", long: "Reduced Instruction Set Computer V", description: "Offene Befehlssatzarchitektur für Mikroprozessoren"),
 
 )
 

@@ -41,8 +41,23 @@ Der LDO Spannungsregler (U4) sorgt dafür, dass die Ausgangsspannung konstant be
 
 \ \ Berücksichtigt:\
 In der Entwicklung des Laderegler- und Spannungsversorgungssystems wurden folgende Aspekte berücksichtigt:
-Der widerstand am Laderegler (R) wurde so gewählt, dass der Ladestrom auf 500mA begrenzt ist, um die Lebensdauer des Akkus zu maximieren und eine sichere Ladung zu gewährleisten. Der LDO Spannungsregler wurde aufgrund seiner hohen Effizienz und geringen Wärmeentwicklung ausgewählt, was besonders wichtig ist, da der Controller Akku betrieben ist. Zudem wurde ein Schutz-IC integriert, um den Akku vor Überladung und Tiefentladung zu schützen, was die Sicherheit und Zuverlässigkeit des Systems erhöht.
+Der widerstand am Laderegler (R) wurde so gewählt, dass der Ladestrom auf 500mA begrenzt ist, um die Lebensdauer des Akkus zu maximieren und eine sichere Ladung zu gewährleisten. Der LDO Spannungsregler wurde aufgrund seiner hohen Effizienz und geringen Wärmeentwicklung ausgewählt, was besonders wichtig ist, da der Controller Akku betrieben ist. Zudem wurde ein Schutz-IC integriert, um den Akku vor Überladung und Tiefentladung zu schützen, was die Sicherheit und Zuverlässigkeit des Systems erhöht.\ \
 
+== Hauptcontroller
+
+Der Mikrocontroller U5 übernimmt die zentrale Steuerungsfunktion des Controllersystems. Er verarbeitet eingehende Signale vom Fahrzeug sowie von angeschlossenen Sensoren und führt auf Basis dieser Daten die Steuerung der Aktoren aus. Zusätzlich koordiniert er die Kommunikation zwischen den einzelnen Systemkomponenten.\ \
+
+Beim eingesetzten Mikrocontroller handelt es sich um den CH572D. Dieser ist ein leistungsfähiger Mikrocontroller mit einer Vielzahl von Peripherie- und Kommunikationsschnittstellen, die für die Anforderungen des Projekts geeignet sind.
+- 32-Bit RISC-V Architektur
+- Taktfrequenz: bis zu 120 MHz
+- Kommunikationsschnittstellen: UART, SPI, I2C, USB 
+Diese Schnittstellen ermöglichen den Datenaustausch mit externen Modulen, Sensoren sowie weiteren Mikrocontrollern innerhalb des Systems.
+
+Für die Verarbeitung analoger Sensorsignale ist ein Analog-Digital-Wandler (ADC) erforderlich. Da der CH572D keine integrierten ADC-Eingänge bereitstellt, wurde ein zusätzlicher Mikrocontroller zur Erfassung analoger Messwerte in das System integriert. Hierfür wird der CH32V003DSO (U6) eingesetzt.
+
+Der Mikrocontroller U6 übernimmt die Digitalisierung der analogen Sensorsignale über seine integrierten ADC-Kanäle. Die erfassten Messwerte werden anschließend digital verarbeitet und über eine Kommunikationsschnittstelle an den Hauptmikrocontroller U5 übertragen. Der CH572D nutzt diese Daten zur weiteren Signalverarbeitung und zur Steuerung des Systems.
+
+Durch diese Aufteilung der Funktionen wird die Verarbeitung analoger und digitaler Signale getrennt realisiert, wobei der Hauptmikrocontroller die zentrale Steuerung des Systems übernimmt und der zusätzliche Mikrocontroller die Datenerfassung der analogen Sensoren durchführt.
 
 
 
