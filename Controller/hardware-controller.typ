@@ -11,7 +11,7 @@ caption: [Blockschaltbild des Systems],
 
 
 == Spannungsversorgung
-Der Controller wird mit einem Lipo Akku betrieben, der eine Spannung von 3,7V liefert. Der Laderegler sorgt dafür, dass der Akku sicher geladen wird und schützt vor Überladung und Tiefentladung.  @sec-charger
+Der Controller wird mit einem Lipo Akku betrieben, der eine Spannung von 3,7V liefert. Der Laderegler sorgt dafür, dass der Akku sicher geladen wird und schützt vor Überladung und Tiefentladung. @sec-charger
 
 == Laderegler <sec-charger>
 
