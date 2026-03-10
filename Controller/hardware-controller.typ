@@ -116,7 +116,7 @@ Das Display XX verfügt über einen Kapazitiven Touchscreen, welcher einfache Ei
   ]
 )
 
-Um eine Verbindung zwischen der App und dem Hauptmodul Display herzustellen, wird das TCP Protokoll verwendet. Dieses ermöglicht eine Bidirektionale Kommunikation zwischen den beiden Geräten. Das dient dazu, dass Änderungen, wie das Einstellen der Modi oder Spielernamen, auf das Display übertragen werden können.
+Um eine Verbindung zwischen der App und dem Hauptmodul Display herzustellen, wird das Protokoll verwendet. Dieses ermöglicht eine Bidirektionale Kommunikation zwischen den beiden Geräten. Das dient dazu, dass Änderungen, wie das Einstellen der Modi oder Spielernamen, auf das Display übertragen werden können.
 
 
 
