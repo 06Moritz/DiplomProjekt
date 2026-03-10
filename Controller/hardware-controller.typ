@@ -60,6 +60,13 @@ Der CH32V003 ist ebenfalls ein 32-Bit-Mikrocontroller, der auf der RISC-V-Archit
 
 == ADC
 signal von poti an chips und umgekehrtig.
+Die analogen Signale vom Potentiometer und vom Button werden über die ADC Pins von dem CH32V003 verarbeitet. Der Chip wandelt die analogen Signale in digitale Werte um, die dann com Ch572D verarbeitet werden. Die Daten werden über die SPI Schnittstelle zwischen den Chips und dem Auto übertragen.
+
+- Potentiometer: Für die Drehzahlsteuerung wird ein Potentiometer verwendet, welches die analogen Signale an den CH32V003/ADC sendet. Die Werte werden dann zu digitale Signale umgewandelt, vom CH572D verarbeitet und an den Auto Chip gesendet.
+
+- Button: Der Button dient als spezial Effekt. Wird dieser gedrückt, sendet er ein Signal über den ADC und dem Ch572D an das Auto, welches dann den Buzzer aktiviert und die Hupe auslöst.
+
+- Vibrationsmotor: Der Vibrationsmotor wird für haptisches Feedback verwendet. Er wird über den CH572D gesteuert und aktiviert, wenn bestimmte Ereignisse im Spiel auftreten, wie z.B. Kollisionen oder das Erreichen einer bestimmten Geschwindigkeit.
 
 
 == Steuerung
