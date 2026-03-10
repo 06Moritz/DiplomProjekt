@@ -112,7 +112,7 @@ Das Display XX verfügt über einen Kapazitiven Touchscreen, welcher einfache Ei
   image("../Bilder/TCPApp.png", width: 100%),
 
   caption: [
-    TCP Deklaration in App
+    TCP Deklaration in 
   ]
 )
 
