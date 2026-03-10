@@ -51,35 +51,38 @@ Nach dem Aufladen des Akkus wird der Controller über dessen Spannung versorgt. 
 
 
 == Mikrocontroller
-Die steuerung des Systems erfolgt über den CH572D. Der Mikrocontroller ist für die Verarbeitung der Sensordaten und die Steuerung des Potis verantwortlich.
+Die steuerung des Systems erfolgt über den CH572D. Der Mikrocontroller ist für die Verarbeitung der Sensordaten und die Steuerung des Potis verantwortlich.\ 
 - Ch572D
 Der CH572D ist ein 32-Bit-Mikrocontroller, der auf der RISC-V-Architektur basiert. Er verfügt über eine hohe Rechenleistung und einen großen Speicher, was ihn ideal für die Verarbeitung von Sensordaten und die Steuerung von Aktoren macht. Der CH572D ist für die Hauptsteuerung des Systems verantwortlich und verarbeitung der Daten.
-Aufgrund fehlender ADC Pins auf dem CH572D, wird der CH32V003 als externer ADC verwendet. \ \
-- CH32V003
-Der CH32V003 ist ebenfalls ein 32-Bit-Mikrocontroller, der auf der RISC-V-Architektur basiert. Er verfügt über integrierte ADCs, die es möglich machen, die analogen Signale der Sensoren zu verarbeiten. Da er günsiger als ein externer ADC ist, wurde er als  kosteneffiziente Lösung ausgewählt.
+Aufgrund fehlender ADC Pins auf dem CH572D, wird der CH32V003 als externer ADC verwendet. \ 
+ 
 
+- CH32V003
+Der CH32V003 ist ebenfalls ein 32-Bit-Mikrocontroller, der auf der RISC-V-Architektur basiert. Er verfügt über integrierte ADCs, die es möglich machen, die analogen Signale der Sensoren zu verarbeiten. Da er günsiger als ein externer ADC ist, wurde er als  kosteneffiziente Lösung ausgewählt. \ \
+Bei der Entwicklung der Controller Platine wurde darauf geachtet, dass ein Quarz für eine stabile Taktfrequenz vorhanden ist. 
+\ \
 == ADC
 signal von poti an chips und umgekehrtig.
 Die analogen Signale vom Potentiometer und vom Button werden über die ADC Pins von dem CH32V003 verarbeitet. Der Chip wandelt die analogen Signale in digitale Werte um, die dann com Ch572D verarbeitet werden. Die Daten werden über die SPI Schnittstelle zwischen den Chips und dem Auto übertragen.
+Bauteile die zum auslesen ADC brauchen: 
+- Potentiometer
+- Button
+- Vibrationsmotor
+\
+== Steuerung
+Potentiometer: geschwindigkeit steuerung
+Joaystick: hupe auslösen
+Vibrationsmotor: für hatisches feedback
 
 - Potentiometer: Für die Drehzahlsteuerung wird ein Potentiometer verwendet, welches die analogen Signale an den CH32V003/ADC sendet. Die Werte werden dann zu digitale Signale umgewandelt, vom CH572D verarbeitet und an den Auto Chip gesendet.
 
 - Button: Der Button dient als spezial Effekt. Wird dieser gedrückt, sendet er ein Signal über den ADC und dem Ch572D an das Auto, welches dann den Buzzer aktiviert und die Hupe auslöst.
 
-- Vibrationsmotor: Der Vibrationsmotor wird für haptisches Feedback verwendet. Er wird über den CH572D gesteuert und aktiviert, wenn bestimmte Ereignisse im Spiel auftreten, wie z.B. Kollisionen oder das Erreichen einer bestimmten Geschwindigkeit.
-
-
-== Steuerung
-Potentiometer: geschwindigkeit steuerung
-Vibrationsmotor: für hatisches feedback
-Display: geschwindigkeit, name, auto,... anzeige
-Joaystick: hupe auslösen
-
-
-
+- Vibrationsmotor: Der Vibrationsmotor wird für haptisches Feedback verwendet. Er wird über den CH572D gesteuert und aktiviert, wenn bestimmte Ereignisse im Spiel auftreten, wie z.B. bei Kollisionen oder das Erreichen einer bestimmten Geschwindigkeit.
+\
 == Antenne
-auf 50Ohm angepasst, platine extra dünn um leiterbahn zum CH572D dünner halten zu können.
 
+Die Antenne ist auf 50 Ohm angepasst, um eine optionale Verbindung über BLE zwischen dem Controller und dem Auto zu ermöglichen. Die Platine des Controllers ist extra dünn gestaltet, um die Leiterbahn zum CH572D so dünn wie möglich zu halten. Dies ist wichtig um die Signalqualität zu verbessern und Störungen zu minimieren, besonders bei der Kommunikation über BLE. 
 
 \
 
