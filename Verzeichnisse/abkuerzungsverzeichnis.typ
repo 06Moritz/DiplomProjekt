@@ -8,6 +8,11 @@
   pwm: (short: "PWM", long: "Pulsweitenmodulation", description: "Verfahren zur Steuerung der Leistung von elektrischen Geräten"),
   ldo: (short: "LDO", long: "Low Dropout Regulator", description: "Spannungsregler, der auch bei geringer Eingangsspannung stabil arbeitet"),
   nfc: (short: "NFC", long: "Near Field Communication", description: "Technologie für die drahtlose Kommunikation über kurze Distanzen"),
+
+  adc: (short: "ADC", long: "Analog-Digital-Wandler", description: "Bauteil, das analoge Signale in digitale Werte umwandelt"),
+
+  tcp: (short: "TCP", long: "Transmission Control Protocol", description: "Protokoll für die zuverlässige Übertragung von Daten über Netzwerke"),
+  
   
 
 
