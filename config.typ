@@ -1,4 +1,4 @@
-#import "Templates/seitenlayout.typ": page_layout, aktueller_autor
+﻿#import "Templates/seitenlayout.typ": page_layout, aktueller_autor
 #import "Templates/startlayout.typ": start_layout
 #import "@preview/glossy:0.9.0": init-glossary, glossary
 #import "Verzeichnisse/abkuerzungsverzeichnis.typ": eintraege
@@ -76,7 +76,7 @@
       let s = c.sum()
       let w = int(calc.div-euclid(measure(s).width.pt(), 2cm.pt())) + 1
       if col + w > 8 {
-        let (b, t) = s.children.map(t => if t.has("text") {t.text.split(" ")} else {t}).flatten().fold(([],()), ((tmp, res), word) => {
+        let (b, top) = s.children.map(t => if t.has("text") {t.text.split(" ")} else {t}).flatten().fold(([],()), ((tmp, res), word) => {
           if res == () {
             let new = if tmp == [] {
               if word == [ ] { tmp } else { word }
@@ -92,11 +92,12 @@
             }
           } else {(tmp + sym.space + word, res)}
         })
-        (calc.rem(col + w, 8), arr + (grid.cell(colspan: 8-col, t), grid.cell(colspan:  w - 8 + col, b)))
+        (calc.rem(col + w, 8), arr + (grid.cell(colspan: 8-col, top), grid.cell(colspan:  w - 8 + col, b)))
       } else {
         (calc.rem(col + w, 8), arr + (grid.cell(colspan: w, s),))
       }
     }).at(1)
   )
 }
+
 

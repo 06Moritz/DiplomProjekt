@@ -3,3 +3,4 @@
 
 #include "hardware-auto.typ"
 #include "software-auto.typ"
+#include "mec-auto.typ"
