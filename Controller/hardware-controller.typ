@@ -2,7 +2,7 @@
 
 = Hardware //blockdiagramm einfügen 
 
-? Der Controller ist Bateriebetrieben und besteht aus einem Mikrocontroller, einem Laderegler, einem @adc und einer Spannungsversorgung.
+? Der Controller ist Bateriebetrieben und besteht aus einem Mikrocontroller, einem Laderegler, einem ADC und einer Spannungsversorgung.
 
 #figure(
 image("../Bilder/DA BlockschaltbildCont.png", width: 100%),
@@ -106,7 +106,7 @@ Das Display XX verfügt über einen Kapazitiven Touchscreen, welcher einfache Ei
 - Leaderboard
 - 
 
-== @tcp Protokoll
+== TCP Protokoll
 
 #figure(
   image("../Bilder/TCPApp.png", width: 100%),
