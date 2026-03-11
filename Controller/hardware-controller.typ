@@ -2,7 +2,17 @@
 
 = Hardware //blockdiagramm einfügen 
 
-? Der Controller ist Bateriebetrieben und besteht aus einem Mikrocontroller, einem Laderegler, einem ADC und einer Spannungsversorgung.
+
+
+Der Controller ist für die Steuerung des Autos verantwortlich. Er empfängt die Signale von den Sensoren, verarbeitet sie und sendet die entsprechenden Befehle an das Auto. Die Energieversorgung des Controllers erfolgt über einen Lithium-Polymer-Akku, welcher über eine Ladestation aufgeladen wird. 
+Der Controller besteht aus folgenden Komponenten:
+- Mikrocontroller
+- Laderegler
+- Akku
+- ADC
+- Potentiometer
+- Vibrationsmotor
+- Button
 
 #figure(
 image("../Bilder/DA BlockschaltbildCont.png", width: 100%),
@@ -94,82 +104,18 @@ Da Mikrocontroller kurzzeitig erhöhte Ströme aufnehmen können, entstehen Stro
   caption: [
     ohne Kondensator
   ]
-)
-In dieser 
-
+)\
+In dieser Abbildung sieht man den Strom- und Spannungsverlauf eines Mikrocontrollers ohne Stützkondensator. Es ist deutlich zu erkennen, dass die Spannung während der Stromspitzen kurzzeitig abfällt.
+\ \
 #figure(
   image("../Bilder/ChipStromC.png", width: 100%),
   caption: [
     mit Kondensator
   ]
-)
+)\
+In dieser Abbildung sieht man den Strom- und Spannungsverlauf eines Mikrocontrollers mit einem Stützkondensator. Es ist deutlich zu erkennen, dass die Spannung stabil bleibt, auch während der Stromspitzen.
 
 \
 
-= Software
 
-== App
-#figure(
-image("../Bilder/Appscreen.png", width: 50%),
-caption: [
-Startbildschirm
-],)
-Die App dient zum Einstellen vieler Parameter. Sie ermöglicht es die Sprache, den Modus, die Rundenzahl und Spielernamen einzustellen so wie die Verbindung zum Hauptmodul Display herzustellen. \
-Es gibt verschiedene Modi, die unterschiedliche Schwierigkeitsgrade bieten. Je nach Modus variiert die Anzahl der Runden und die Schwierigkeit der Steuerung. Unter Schwierigkeit der Steuerung versteht man mit welcher Motorleistung die Autosfahren.
-- Modis:
-  #figure(
-    image("../Bilder/Modis.png", width: 100%),
-
-    caption: [
-      Modi Definition
-    ]
-  )
-  - DefaultLaps: Hier werden die Rundenanzahl standardisiert.
-  - speedFactor: Hier wird die Motorleistung eingestellt. Zum Beispiel: 0.5f bedeutet, dass die Autos mit halber Leistung fahren.
-
-\
-Nach dem start des Rennens zeigt die App die dauer (mit einer Timer Methode) und den Runden fortschritt der Spieler. Nach dem beenden des Rennes werden die Spieler des aktuellen Rennens nach der Bestzeit sortiert und angezeigt. Danach hat man die wahl wieder zum Hauptmenü zu gelangen oder sich das gesamte Ranking aller Rennen anzusehen. Diese werden nach der Bestzeit am Tag, Woche Monat, Gesamt und nach schnellste Runde sortiert.\ \
-
-
-== Hauptmodul Display
-Das Display XX verfügt über einen Kapazitiven Touchscreen, welcher einfache Einstellungen über das Display ermöglicht.
-- Modi (einstellbar)
-- Spieler anzahl
-- Start/Stop
-- Leaderboard
-- 
-\ \
-== TCP Protokoll
-
-#figure(
-  image("../Bilder/TCPApp.png", width: 100%),
-
-  caption: [
-    TCP Deklaration in 
-  ]
-)
-
-Um eine Verbindung zwischen der App und dem Hauptmodul Display herzustellen, wird das Protokoll verwendet. Dieses ermöglicht eine Bidirektionale Kommunikation zwischen den beiden Geräten. Das dient dazu, dass Änderungen, wie das Einstellen der Modi oder Spielernamen, auf das Display übertragen werden können.
-
-
-\ 
-== Controler Display
-Das Controller Display XY zeigt folgende funktionen an:
-- aktuelle Motorleistung (PWM)
-- Timer
-- Durchschnittsgeschwindigkeit
-- beste Rundendauer
-- abweichung zur besten
-- Spielername
-- Zugewiesenes Auto
-- Runden anzahl z.B.: 2/5 Runden // in dem fall leichter modus
-
-Das Display dient dazu, wichtige Informationen während des Rennens anzuzeigen. Es zeigt die aktuelle Motorleistung an, die über die PWM gesteuert wird, sowie einen Timer, der die Dauer des Rennens anzeigt. In der mitte des Displays wird die Durchschnittsgescchwindigkeit angezeigt, welche mithilfe der Drehzahl des Motors berechnet wird. Darunter wird die schnellste Runde angezeigt, sowie die Abweichung. 
-\
-$ v = (n*π*d)/60 $
-
-- v: Geschwindigkeit in m/s
-- n: Drehzahl in U/min
-- d: Durchmesser des Rades in m \ \
-Der Spielername und das zugewiesene Auto werden ebenfalls auf dem Display angeziegt, um verwechslungen zu vermeiden. Zudem wird die aktuelle Rundenanzahl angezeigt, um den Spieler zu informieren, in welcher Runde er sich befindet.
 

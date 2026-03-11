@@ -51,6 +51,18 @@
 
 #include "Controller/main-controller.typ"
 
+//Ladestation
+#pagebreak()
+#aktueller_autor.update(author3)
+
+#include "Ladestation/hardware-ladestation.typ"
+
+//App
+#pagebreak()
+#aktueller_autor.update(author3)
+
+#include "App/main-app.typ"
+
 
 // Alle
 #pagebreak()
