@@ -75,7 +75,16 @@ BLE Antennendesign
 )
 
 == Derhzahlsensor 
-! Die Drehzahl wird optisch mit einem VCNT2020 gemessen. Der Sensor besteht aus einer Infrarot LED und einem Fototransistor. Auf der Antriebswelle ist das Zahnrad zu Hälfte schwarz bemalt, wenn sich die Welle dreht ändert sich die Lichtintensität, die der Sensor empfängt, dadurch kann die Drehzahl berechnet werden. Das Ausgangssignal des Sensors wird mit einem Komperator aufbereitet, damit es vom Controller verarbeitet werden kann. 
+! Die Drehzahl wird optisch mit einem VCNT2020 gemessen. Der Sensor besteht aus einer Infrarot LED und einem Fototransistor. Auf der Antriebswelle ist das Zahnrad zu Hälfte schwarz bemalt, wenn sich die Welle dreht ändert sich die Lichtintensität, die der Sensor empfängt, dadurch kann die Drehzahl berechnet werden. Das Ausgangssignal des Sensors wird mit einem Komperator aufbereitet, damit es vom Controller verarbeitet werden kann. Vref muss so eingestellt werden, dass die Schaltschwelle zwischen dem Spannungswert bei heller und dunkler Seite liegt. 
+
+#figure(
+
+image("../Bilder/comp.png", width: 50%),
+caption: [
+Komperator zur Aufbereitung des Signals vom Drehzahlsensor
+],
+)
+
 
 
 
