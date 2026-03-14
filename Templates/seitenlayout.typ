@@ -36,7 +36,7 @@
       set text(size: 9pt, weight: "light")
       line(length: 100%, stroke: 0.5pt)
       //v(0.5em)
-      let name = aktueller_autor.at(here())
+      let name = aktueller_autor.at(here())      
       let seite = counter(page).at(here()).first()
       let gesamt = counter(page).at(<ende_arbeit>).first()
       grid(
