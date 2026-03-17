@@ -33,7 +33,7 @@ Für den sicheren Betrieb des Akkus wurde ein Laderegler implementiert, welcher 
 == Laderegler <sec-charger>
 
 #figure(
-image("../Bilder/laderegler.png", width: 100%),
+image("../Bilder/Laderegler.png", width: 100%),
 caption: [Laderegler],
 ) \
 - TP4056 Laderegler\ Die Laderegelung erfolgt über den TP4056. Der TP4056 (U1) verfügt über eine Schaltung, die zur idealen Spannungsreduzierung von 5 V auf die Betriebsspannung des Akkus führt.
@@ -47,11 +47,13 @@ Ladevorgang
 ],
 ) \ \
 
-- DW01 Schutzschaltung\ Um das Tiefentladen und Überladen des Akkus zuz verhindern, wird der DW01 (U2) verwendet. Dieser Schutzschaltkreis überwacht den Stromfluss des Akkus und schaltet diesen ab, wenn die Spannung über einen speziellen Schwellenwert steigt beziehungsweise fällt. Das ist notwendig um den Akku langlebig zu halten und Schäden zu verhindern. \ \
+- DW01 Schutzschaltung\ Um das Tiefentladen und Überladen des Akkus zu verhindern, wird der DW01 (U2) verwendet. Dieser Schutzschaltkreis überwacht den Stromfluss des Akkus und schaltet diesen ab, wenn die Spannung über einen speziellen Schwellenwert steigt beziehungsweise fällt. Das ist notwendig um den Akku langlebig zu halten und Schäden zu verhindern. \ \
 
 - FS8205A MOSFETs\ Die genaue Stromflusssteuerung wird durch den DW01 in serie mit zwei FS8205A MOSFETs (Q1 und Q2) erreicht. Diese MOSFETs dienen als Schalter, die den Stromfluss zum Akku steuern. Wenn der DW01 eineÜberladung oder Tiefentladung erkennt, schaltet der FS8205A den Stromfluss ab, um den Akku zu schützen. \ \
 
-- LDO Spannungsregler\ Nach dem Aufladen des Akkus wird der Controller über dessen Spannung versorgt. Um eine konstante Betriebsspannung von 3,3 V für die Komponenten zu gewährleisten, wird ein LDO Spannungsregler verwendet. Dieser reduziert die Spannung des Akkus auf die benötigten 3,3 V und sorgt für eine stabile Spannungsversorgung. \ \
+- LDO Spannungsregler\ Nach dem Aufladen des Akkus wird der Controller über dessen Spannung versorgt. Um eine konstante Betriebsspannung von 3,3 V für die Komponenten zu gewährleisten, wird ein LDO Spannungsregler verwendet. Dieser reduziert die Spannung des Akkus auf die benötigten 3,3 V und sorgt für eine stabile Spannungsversorgung. \
+Der Schaltplan des Ladereglers musste überarbeitet werden, da ein Verbindungsfehler zwischen dem Akku und dem FS8205A an dem Pin G2 vorlag. Dieser Fehler führte dazu, dass die Schutzschaltung für den Akku, den Akku nicht schützt. Der Fehler ist behoben worden, indem die Leiterbahn zwischen Akku und den Mosfets vom GND getrennt und im Schaltplan geändert wurde.  
+\ \
 
 
 == Mikrocontroller

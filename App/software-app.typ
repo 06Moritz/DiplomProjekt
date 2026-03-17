@@ -1,5 +1,6 @@
 #import "../config.typ": *
 
+Die App dient zum Einstellen. Sie ermöglicht es die Sprache, den Modus, die Rundenzahl und Spielernamen einzustellen so wie die Verbindung zum Hauptmodul Display herzustellen.\ 
 = Software
 
 == App
@@ -8,7 +9,8 @@ image("../Bilder/Appscreen.png", width: 50%),
 caption: [
 Startbildschirm
 ],)
-Die App dient zum Einstellen vieler Parameter. Sie ermöglicht es die Sprache, den Modus, die Rundenzahl und Spielernamen einzustellen so wie die Verbindung zum Hauptmodul Display herzustellen. \
+\ \ \
+
 Es gibt verschiedene Modi, die unterschiedliche Schwierigkeitsgrade bieten. Je nach Modus variiert die Anzahl der Runden und die Schwierigkeit der Steuerung. Unter Schwierigkeit der Steuerung versteht man mit welcher Motorleistung die Autosfahren.
 - Modis:
   #figure(
@@ -31,11 +33,13 @@ Das Display XX verfügt über einen Kapazitiven Touchscreen, welcher einfache Ei
 - Spieler anzahl
 - Start/Stop
 - Podium
-Um einen sauberen Übergang beim drücken der Buttons zu simulieren, wurde eine Button Klasse erstellt, welche die Logik für das Drücken der Buttons enthält. Es wird überprüft, ob der Button gedrückt wurde, trifft das zu, wird die entsprechende Funktion ausgeführt. 
-Ohne der Klasse würde bei jedem klick auf einen Butten das ganze Display aktualisiert werden, was zu einem unsauberen Übergang führt. Mit der Klasse wird nur der Bereich aktualisiert, wo sich was ändert.
+Um einen sauberen Übergang beim drücken der Buttons zu simulieren, wurde eine Button Klasse erstellt, welche die Logik für das Drücken der Buttons enthält. Es wird überprüft, ob der Button gedrückt wurde, trifft das zu, wird die entsprechende Funktion ausgeführt. \
+Ohne der Klasse würde bei jedem klick auf einen Butten das ganze Display aktualisiert werden, was zu einem unsauberen Übergang führt. Mit der Klasse wird nur der Bereich aktualisiert, wo sich was ändert.\ \
+Die Softwareseitige Umsetzung dieser selektiven Aktualisierung basiert auf der Kapselung von Positionsdaten und Zustandsvariablen innerhalb der Objektinstanzen. Die softwareseitige Umsetzung dieser selektiven Aktualisierung basiert auf der Kapselung von Positionsdaten und Zustandsvariablen innerhalb der Objektinstanzen. \ Bei einem registrierten Touch-Event werden die XY-Koordinaten des Sensors mit den Grenzwerten der Bounding-Box des jeweiligen Buttons verglichen. Eine Ausführung der verknüpften Logik erfolgt nur bei einer positiven Kollisionsabfrage. Durch diese Reduzierung der zu übertragenden Datenmenge über den Kommunikationsbus (z. B. SPI oder $I^2C$) wird die Prozessorlast gesenkt und das bei Vollbild-Refreshes übliche Screen-Flickering unterbunden. Zusätzlich wird durch eine softwareseitige Entprellung (Debouncing) sichergestellt, dass singuläre Berührungen nicht als fehlerhafte Mehrfach-Eingaben interpretiert werden. Diese Methode ermöglicht es, die Benutzeroberfläche effizient zu aktualisieren und gleichzeitig eine reaktionsschnelle und flüssige Kommunikation zu erhalten.
+
 
 \ \
-== TCP Protokoll
+== TCP Programmierung
 
 #figure(
   image("../Bilder/TCPApp.png", width: 100%),
@@ -54,6 +58,7 @@ In dieser Konfiguration zählt der ESP32S3 als TCP-Server, der auf einem definie
 - Echtzeitverhalten\ Bei der Softwareimplementierung wurde besonders auf ein nicht-blockierendes Design geachtet. Da das Hauptmodul gleichzeitig den Touchscreen abfragen und das Display aktualisieren muss, darf der Netzwerkcode den Prozessor nicht aufhalten.\ Die Abfrage von eingehenden Daten erfolgt daher in jedem Programmdurchlauf, ohne den restlichen Ablauf zu verzögern.
 \
 Sollte die Verbindung zwischenzeitlich unterbrochen werden, verfügt die App über eine automatische Reconnect-Logik.\ Diese erkennt die unterbrochene Verbindung durch einen Timeout und versucht eigenständig, den Socket neu zu initialisieren, um die Verbindung wiederherzustellen. Während der Reconnect-Phase zeigt die App eine entsprechende Meldung an. Sobald die Verbindung wiederhergestellt ist, werden alle zuvor gesendeten Befehle erneut übertragen, um sicherzustellen, dass das Display den aktuellen Status korrekt anzeigt.
+
 
 \ 
 == Controler Display
@@ -76,3 +81,14 @@ $ v = (n*π*d)/60 $
 - d: Durchmesser des Rades in m 
 Damit man auf dem Display die Geschwindigkeit in Meter pro Sekunde angezeigt bekommt, wird die Drehzahl durch 60 dividiert, um auf Umdrehung pro Sekunde zu kommen. \ \
 Der Spielername und das zugewiesene Auto werden ebenfalls auf dem Display angeziegt, um verwechslungen zu vermeiden. Zudem wird die aktuelle Rundenanzahl angezeigt, um den Spieler zu informieren, in welcher Runde er sich befindet.
+
+- Das Display wird über die SPI Schnittstelle mit dem Esp32S3 verbunden, welcher die Daten empfängt und verarbeitet. Die Informationen werden in Echzeit übertragen.
+- Auf dem Display werden Spiel Informationen
+ - Spielername
+ - Autoname
+ - Rundenanzahl
+ über die SPI Schnittstelle vom ESP32S3 übertragen.
+
+ Die aktuellen Auto Informationen
+  - Motorleistung (PWM)
+ werden über BLE übertragen, da diese Informationen sehr schnell aktualisiert werden müssen und eine stabile Verbindung erfordern. 
