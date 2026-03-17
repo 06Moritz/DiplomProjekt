@@ -5,18 +5,13 @@
 == App
 #figure(
 image("../Bilder/Appscreen.png", width: 50%),
-caption: [
-Startbildschirm
-],)
+caption: [Startbildschirm],)
 Die App dient zum Einstellen vieler Parameter. Sie ermöglicht es die Sprache, den Modus, die Rundenzahl und Spielernamen einzustellen so wie die Verbindung zum Hauptmodul Display herzustellen. \
 Es gibt verschiedene Modi, die unterschiedliche Schwierigkeitsgrade bieten. Je nach Modus variiert die Anzahl der Runden und die Schwierigkeit der Steuerung. Unter Schwierigkeit der Steuerung versteht man mit welcher Motorleistung die Autosfahren.
 - Modis:
   #figure(
     image("../Bilder/Modis.png", width: 100%),
-
-    caption: [
-      Modi Definition
-    ]
+    caption: [Modi Definition]
   )
   - DefaultLaps: Hier werden die Rundenanzahl standardisiert.
   - speedFactor: Hier wird die Motorleistung eingestellt. Zum Beispiel: 0.5f bedeutet, dass die Autos mit halber Leistung fahren.
@@ -39,10 +34,7 @@ Ohne der Klasse würde bei jedem klick auf einen Butten das ganze Display aktual
 
 #figure(
   image("../Bilder/TCPApp.png", width: 100%),
-
-  caption: [
-    TCP Deklaration in 
-  ]
+  caption: [TCP Deklaration]
 )
 
 Um eine Verbindung zwischen der App und dem Hauptmodul Display herzustellen, wird das TCP Protokoll verwendet. Dieses ermöglicht eine Bidirektionale Kommunikation zwischen den beiden Geräten. Das dient dazu, dass Änderungen, wie das Einstellen der Modi oder Spielernamen, auf das Display übertragen werden können.\ 

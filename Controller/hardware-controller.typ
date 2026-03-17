@@ -15,8 +15,8 @@ Der Controller besteht aus folgenden Komponenten:
 - Button
 
 #figure(
-image("../Bilder/DA BlockschaltbildCont.png", width: 100%),
-caption: [Blockschaltbild des Systems],
+image("../Bilder/Blockschaltbild-HW-Controller.svg", width: 100%),
+caption: [Blockschaltbild Hardware Controller],
 )
 
 
@@ -42,9 +42,7 @@ Die dauer des ladevorgangs hängt zum Teil von dem an den Pin2 angeschlossenen W
 
 #figure(
 image("../Bilder/Ladevorgang.png", width: 100%),
-caption: [
-Ladevorgang
-],
+caption: [Ladevorgang],
 ) \ \
 
 - DW01 Schutzschaltung\ Um das Tiefentladen und Überladen des Akkus zuz verhindern, wird der DW01 (U2) verwendet. Dieser Schutzschaltkreis überwacht den Stromfluss des Akkus und schaltet diesen ab, wenn die Spannung über einen speziellen Schwellenwert steigt beziehungsweise fällt. Das ist notwendig um den Akku langlebig zu halten und Schäden zu verhindern. \ \
@@ -90,9 +88,7 @@ Für eine möglichst geringe Störanfälligkeit wird die Leiterbahn zwischen Ant
 
 #figure(
 image("../Bilder/Cantenne.png", width: 50%),
-caption: [
-BLE Antennendesign
-],
+caption: [BLE Antennendesign],
 )
 
 Um Störungen durch andere Signale auf der Platine zu vermeiden, sind keine unnötigen Bauteile in der Nähe der Antennen Leiterbahn platziert. Dadurch wird verhindert, dass hochfrequente Signale in benachbarte Leiterbahnen einkoppeln und die BLE-Kommunikation beeinflussen.\ \
@@ -101,17 +97,13 @@ Da Mikrocontroller kurzzeitig erhöhte Ströme aufnehmen können, entstehen Stro
 
 #figure(
   image("../Bilder/ChipStrom.png", width: 100%),
-  caption: [
-    ohne Kondensator
-  ]
+  caption: [ohne Kondensator]
 )\
 In dieser Abbildung sieht man den Strom- und Spannungsverlauf eines Mikrocontrollers ohne Stützkondensator. Es ist deutlich zu erkennen, dass die Spannung während der Stromspitzen kurzzeitig abfällt.
 \ \
 #figure(
   image("../Bilder/ChipStromC.png", width: 100%),
-  caption: [
-    mit Kondensator
-  ]
+  caption: [mit Kondensator]
 )\
 In dieser Abbildung sieht man den Strom- und Spannungsverlauf eines Mikrocontrollers mit einem Stützkondensator. Es ist deutlich zu erkennen, dass die Spannung stabil bleibt, auch während der Stromspitzen.
 

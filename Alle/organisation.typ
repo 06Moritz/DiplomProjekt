@@ -5,9 +5,7 @@
 == Projektteam
 #figure(
 image("../Bilder/team.JPG", width: 100%),
-caption: [
-Teamfoto
-],
+caption: [Teamfoto],
 )
 
 == Individuelle Aufgabenstellung
