@@ -2,19 +2,23 @@
 
 // Beispiele mit @... im Text verwenden
 #let eintraege = (
-  ki: (short: "KI", long: "Künstliche Intelligenz", description: "Teilgebiet der Informatik..."),
   pcb: (short: "PCB", long: "Printed Circuit Board", description: "Leiterplatte, auf der elektronische Bauteile montiert werden"),
+
   ble: (short: "BLE", long: "Bluetooth Low Energy", description: "Energiesparende Funktechnologie für die drahtlose Kommunikation"),
+
   pwm: (short: "PWM", long: "Pulsweitenmodulation", description: "Verfahren zur Steuerung der Leistung von elektrischen Geräten"),
+
   ldo: (short: "LDO", long: "Low Dropout Regulator", description: "Spannungsregler, der auch bei geringer Eingangsspannung stabil arbeitet"),
+
   nfc: (short: "NFC", long: "Near Field Communication", description: "Technologie für die drahtlose Kommunikation über kurze Distanzen"),
 
   adc: (short: "ADC", long: "Analog-Digital-Wandler", description: "Bauteil, das analoge Signale in digitale Werte umwandelt"),
 
   tcp: (short: "TCP", long: "Transmission Control Protocol", description: "Protokoll für die zuverlässige Übertragung von Daten über Netzwerke"),
   
-  
+  pd: (short: "PD", long: "Power Delivery", description: "Standard für die Stromversorgung über USB, ermöglicht höhere Leistungen und flexible Spannungsversorgung"),
 
+  ic: (short: "IC", long: "Integrated Circuit", description: "Integrierter Schaltkreis, ein elektronisches Bauteil, das viele Funktionen auf einem kleinen Chip vereint"),
 
 )
 
@@ -52,6 +56,6 @@
   }
 )
 
-#glossary(title: "Abkürzungsverzeichnis", theme: my-theme, sort: true, show-all: true)
+#glossary(title: "Abkürzungsverzeichnis", theme: my-theme, sort: true, show-all: false)
 
 #pagebreak()

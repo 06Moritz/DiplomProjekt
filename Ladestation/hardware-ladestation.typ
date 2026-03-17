@@ -8,8 +8,7 @@ Versorgt wird die Ladestation mit einem USB-C Kabel über das Hauptmodul.
 \ \
 #figure(
 image("../Bilder/Ladestation.png", width: 50%),
-caption: [
-Schaltplan Ladestation],
+caption: [Schaltplan Ladestation],
 )
 \
 Für die Versorgung wurde ein einfacher USB-C Anschluss verwendet, da keine Datenübertragung notwendig ist. Die Versorgung der ladestation erfolgt über das Hauptmodul, welches 5V liefert. Es wurde kein Laderegler benötigt, da dieser bereits in dem Controller verbaut ist. 

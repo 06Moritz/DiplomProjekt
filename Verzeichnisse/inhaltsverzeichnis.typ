@@ -46,7 +46,9 @@
 }
 
 // Inhaltsverzeichnis
-#outline(title: "Inhaltsverzeichnis", indent: 1em)
+#outline(title: "Inhaltsverzeichnis", indent: 1em,
+target: heading.where(outlined: true).before(<anhang_start>)
+)
 
 #metadata("end-iv")
 <ende_iv>

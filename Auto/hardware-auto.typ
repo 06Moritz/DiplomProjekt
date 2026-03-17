@@ -6,10 +6,8 @@
 
 == Blockschaltbild
 #figure(
-image("../Bilder/BlockschaltbildAuto.png", width: 100%),
-caption: [
-Blockschaltbild des Systems
-],
+image("../Bilder/Blockschaltbild-HW-Auto.svg", width: 85%),
+caption: [Blockschaltbild Hardware Auto],
 )
 
 == Spannungsversorgung
@@ -37,9 +35,7 @@ Für größeres Drehmoment ist ein Getriebe verbaut siehe /*@sec-getriebe*/
 
 #figure(
 image("../Bilder/HBrueke.png", width: 50%),
-caption: [
-H-Brückenschaltung
-],
+caption: [H-Brückenschaltung],
 )
 
 *!* Eine H-Brücke ist eine Schaltung mit der man Motoren ansteuern kann. Die Drehrichtung kann durch die Ansteuerung der Transistoren geändert werden. Mit der Brücke kann man mit Signalspannung Motoren mit viel höherer Spannung steuren. @hbrueke
@@ -69,9 +65,7 @@ $ w=((5.98*1.5)/(e^(((sqrt(4.5+ 1.41)*50)/87)))-0.035)*1/0.8 = 2.73"mm" => 106"m
 
 #figure(
 image("../Bilder/antenna.png", width: 50%),
-caption: [
-BLE Antennendesign
-],
+caption: [BLE Antennendesign],
 )
 
 == Derhzahlsensor 
@@ -80,9 +74,7 @@ BLE Antennendesign
 #figure(
 
 image("../Bilder/comp.png", width: 50%),
-caption: [
-Komperator zur Aufbereitung des Signals vom Drehzahlsensor
-],
+caption: [Komperator zur Aufbereitung des Signals vom Drehzahlsensor],
 )
 
 
@@ -91,9 +83,7 @@ Komperator zur Aufbereitung des Signals vom Drehzahlsensor
 == NFC Antenne 
 #figure(
 image("../Bilder/NFC.png", width: 50%),
-caption: [
-NFC Antenne
-],
+caption: [NFC Antenne],
 )
 
 *!* Die NFC Antenne ist eine Spule direkt auf dem Print. Die Schaltung besteht aus 3 Teilen, EMV-Filer, Anpassungsnetzwerk und der Spule. 
@@ -104,9 +94,7 @@ NFC Antenne
 
 #figure(
 image("../Bilder/SpuleErsatzschaltbild.png", width: 50%),
-caption: [
-Ersatzschaltbild der NFC-Antenne
-],
+caption: [Ersatzschaltbild der NFC-Antenne],
 )
 
 Die Spule kann mit der Schaltung (Abbildung 7) dargestellt werden. Optimal ist ein Gütefaktor von 35, damit die Antenne effizient arbeitet. Zu hohe Güten werden mit einem Dämpfungswiderstand R_Q ausgeglichen. Die Antenne Werte wurden durch Messung mit einer RCL-Messbrücke ermittelt. Die Spule hat folgende Werte: \
@@ -123,9 +111,7 @@ $ R_"pa" = (\u{03C9} * L_a)^2/(R_a+2*R_Q) $
 
 #figure(
 image("../Bilder/NFCZTR.png", width: 50%),
-caption: [
-EMV-Filter der NFC-Antenne
-],
+caption: [EMV-Filter der NFC-Antenne],
 )
 
 Der EMV-Filer hat zwei Funktionen, Filtern des Signals und Impedanzanpassung.
