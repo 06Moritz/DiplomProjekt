@@ -22,7 +22,10 @@
 
 // 2 Arten zum Einfügen von PDFs:
 = Fahrzeug Schaltplan
-#image("../PDF/auto/SCH.pdf", width: 100%) // Vektorgrafik
+#v(4.5cm)
+#figure(
+rotate(90deg,muchpdf(read("../PDF/auto/SCH.pdf", encoding: none),width: 140%)) )
+ // Vektorgrafik
 = Fahrzeug Layout TOP
 #muchpdf(read("../PDF/auto/lay_top.pdf", encoding: none),
 width: 100%) // Rastergrafik
