@@ -6,10 +6,8 @@
 
 == Blockschaltbild
 #figure(
-image("../Bilder/BlockschaltbildAuto.png", width: 100%),
-caption: [
-Blockschaltbild des Systems
-],
+image("../Bilder/Blockschaltbild-HW-Auto.svg", width: 85%),
+caption: [Blockschaltbild Hardware Auto],
 )
 
 == Spannungsversorgung
