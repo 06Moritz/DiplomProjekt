@@ -15,8 +15,8 @@ Der Controller besteht aus folgenden Komponenten:
 - Button
 
 #figure(
-image("../Bilder/DA BlockschaltbildCont.png", width: 100%),
-caption: [Blockschaltbild des Systems],
+image("../Bilder/Blockschaltbild-HW-Controller.svg", width: 100%),
+caption: [Blockschaltbild Hardware Controller],
 )
 
 
@@ -33,7 +33,7 @@ Für den sicheren Betrieb des Akkus wurde ein Laderegler implementiert, welcher 
 == Laderegler <sec-charger>
 
 #figure(
-image("../Bilder/laderegler.png", width: 100%),
+image("../Bilder/Laderegler.png", width: 100%),
 caption: [Laderegler],
 ) \
 - TP4056 Laderegler\ Die Laderegelung erfolgt über den TP4056. Der TP4056 (U1) verfügt über eine Schaltung, die zur idealen Spannungsreduzierung von 5 V auf die Betriebsspannung des Akkus führt.
@@ -42,16 +42,16 @@ Die dauer des ladevorgangs hängt zum Teil von dem an den Pin2 angeschlossenen W
 
 #figure(
 image("../Bilder/Ladevorgang.png", width: 100%),
-caption: [
-Ladevorgang
-],
+caption: [Ladevorgang],
 ) \ \
 
-- DW01 Schutzschaltung\ Um das Tiefentladen und Überladen des Akkus zuz verhindern, wird der DW01 (U2) verwendet. Dieser Schutzschaltkreis überwacht den Stromfluss des Akkus und schaltet diesen ab, wenn die Spannung über einen speziellen Schwellenwert steigt beziehungsweise fällt. Das ist notwendig um den Akku langlebig zu halten und Schäden zu verhindern. \ \
+- DW01 Schutzschaltung\ Um das Tiefentladen und Überladen des Akkus zu verhindern, wird der DW01 (U2) verwendet. Dieser Schutzschaltkreis überwacht den Stromfluss des Akkus und schaltet diesen ab, wenn die Spannung über einen speziellen Schwellenwert steigt beziehungsweise fällt. Das ist notwendig um den Akku langlebig zu halten und Schäden zu verhindern. \ \
 
 - FS8205A MOSFETs\ Die genaue Stromflusssteuerung wird durch den DW01 in serie mit zwei FS8205A MOSFETs (Q1 und Q2) erreicht. Diese MOSFETs dienen als Schalter, die den Stromfluss zum Akku steuern. Wenn der DW01 eineÜberladung oder Tiefentladung erkennt, schaltet der FS8205A den Stromfluss ab, um den Akku zu schützen. \ \
 
-- LDO Spannungsregler\ Nach dem Aufladen des Akkus wird der Controller über dessen Spannung versorgt. Um eine konstante Betriebsspannung von 3,3 V für die Komponenten zu gewährleisten, wird ein LDO Spannungsregler verwendet. Dieser reduziert die Spannung des Akkus auf die benötigten 3,3 V und sorgt für eine stabile Spannungsversorgung. \ \
+- LDO Spannungsregler\ Nach dem Aufladen des Akkus wird der Controller über dessen Spannung versorgt. Um eine konstante Betriebsspannung von 3,3 V für die Komponenten zu gewährleisten, wird ein LDO Spannungsregler verwendet. Dieser reduziert die Spannung des Akkus auf die benötigten 3,3 V und sorgt für eine stabile Spannungsversorgung. \
+Der Schaltplan des Ladereglers musste überarbeitet werden, da ein Verbindungsfehler zwischen dem Akku und dem FS8205A an dem Pin G2 vorlag. Dieser Fehler führte dazu, dass die Schutzschaltung für den Akku, den Akku nicht schützt. Der Fehler ist behoben worden, indem die Leiterbahn zwischen Akku und den Mosfets vom GND getrennt und im Schaltplan geändert wurde.  
+\ \
 
 
 == Mikrocontroller
@@ -90,9 +90,7 @@ Für eine möglichst geringe Störanfälligkeit wird die Leiterbahn zwischen Ant
 
 #figure(
 image("../Bilder/Cantenne.png", width: 50%),
-caption: [
-BLE Antennendesign
-],
+caption: [BLE Antennendesign],
 )
 
 Um Störungen durch andere Signale auf der Platine zu vermeiden, sind keine unnötigen Bauteile in der Nähe der Antennen Leiterbahn platziert. Dadurch wird verhindert, dass hochfrequente Signale in benachbarte Leiterbahnen einkoppeln und die BLE-Kommunikation beeinflussen.\ \
@@ -101,17 +99,13 @@ Da Mikrocontroller kurzzeitig erhöhte Ströme aufnehmen können, entstehen Stro
 
 #figure(
   image("../Bilder/ChipStrom.png", width: 100%),
-  caption: [
-    ohne Kondensator
-  ]
+  caption: [ohne Kondensator]
 )\
 In dieser Abbildung sieht man den Strom- und Spannungsverlauf eines Mikrocontrollers ohne Stützkondensator. Es ist deutlich zu erkennen, dass die Spannung während der Stromspitzen kurzzeitig abfällt.
 \ \
 #figure(
   image("../Bilder/ChipStromC.png", width: 100%),
-  caption: [
-    mit Kondensator
-  ]
+  caption: [mit Kondensator]
 )\
 In dieser Abbildung sieht man den Strom- und Spannungsverlauf eines Mikrocontrollers mit einem Stützkondensator. Es ist deutlich zu erkennen, dass die Spannung stabil bleibt, auch während der Stromspitzen.
 
