@@ -11,7 +11,7 @@ Der Motor wird 5:4 untersetzt, um aus der hohen Drehzahl des Motors ein höheres
 Die Wellen werden in Messingblöcken gelagert. Die Blöcke sind 
 
 == Achsaufhängung 
-Die Achsen werden aus ABS 3D gedruckten Halterungen gehalten. 
+Die Achsen werden aus ABS 3D gedruckten Halterungen geführt. 
 
 == Schleifkontakte
-Die Spannungsversorgung des Autos erfolgt über Scleifkontakte unter dem Auto. Diese werden mit Schrauben mit dem Auto verschaubt. Die Bürsten sind aus Kupfer. 
+Die Spannungsversorgung des Autos erfolgt über Schleifkontakte unter dem Auto. Diese werden mit Schrauben mit dem Auto verbunden. Die Bürsten sind aus Kupfer. 
