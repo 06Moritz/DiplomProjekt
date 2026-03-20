@@ -4,5 +4,9 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"inlineChat.affordance": "off",
+		"inlineChat.enableV2": false,
+		"chat.disableAIFeatures": false
+	}
 }

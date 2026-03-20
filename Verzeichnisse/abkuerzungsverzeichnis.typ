@@ -1,6 +1,6 @@
 #import "@preview/glossy:0.9.0": glossary
+// https://typst.app/universe/package/glossy/
 
-// Beispiele mit @... im Text verwenden
 #let eintraege = (
   pcb: (short: "PCB", long: "Printed Circuit Board", description: "Leiterplatte, auf der elektronische Bauteile montiert werden"),
 
@@ -19,6 +19,61 @@
   pd: (short: "PD", long: "Power Delivery", description: "Standard für die Stromversorgung über USB, ermöglicht höhere Leistungen und flexible Spannungsversorgung"),
 
   ic: (short: "IC", long: "Integrated Circuit", description: "Integrierter Schaltkreis, ein elektronisches Bauteil, das viele Funktionen auf einem kleinen Chip vereint"),
+
+  mosfet: (short: "MOSFET", long: "Metal-Oxide-Semiconductor Field-Effect Transistor", description: "Transistor, der als elektronischer Schalter oder Verstärker in Schaltungen verwendet wird"),
+
+  buck: (short: "Buck-Converter", long: "Abwärtswandler", description: "Schaltregler, der eine höhere Eingangsspannung in eine niedrigere Ausgangsspannung umwandelt"),
+
+  fb: (short: "FB", long: "Feedback", description: "Rückkopplung, ein Signal, das zur Regelung von Systemen verwendet wird, um die gewünschte Leistung zu erreichen"),
+
+  spi: (short: "SPI", long: "Serial Peripheral Interface", description: "Schnittstelle für die serielle Kommunikation zwischen Mikrocontrollern und Peripheriegeräten"),
+
+  poti: (short: "Poti", long: "Potentiometer", description: "Drehbarer Widerstand, der zur Einstellung von Spannung oder Strom in einem Stromkreis verwendet wird"),
+
+  via: (short: "Via", long: "Durchkontaktierung", description: "Leiterbahnverbindung zwischen verschiedenen Lagen einer Leiterplatte"),
+  
+  ti: (short: "TI", long: "Texas Instruments", description: "Amerikanisches Unternehmen, das Halbleiter und integrierte Schaltkreise herstellt"),
+
+  usb: (short: "USB", long: "Universal Serial Bus", description: "Standard für die Verbindung von Peripheriegeräten mit Computern und anderen Geräten"),
+
+  ripple: (short: "Ripple", long: "Spannungswelligkeit", description: "Unerwünschte Schwankungen in der Ausgangsspannung von Netzteilen oder Spannungsreglern"),
+  
+  rf: (short: "RF", long: "Radio Frequency", description: "Funkfrequenz, ein Bereich elektromagnetischer Wellen, der für die drahtlose Kommunikation verwendet wird"),
+
+  rfid: (short: "RFID", long: "Radio Frequency Identification", description: "Technologie zur drahtlosen Identifikation von Objekten mittels elektromagnetischer Felder"),
+
+  wifi: (short: "Wi-Fi", long: "Wireless Fidelity", description: "Technologie für die drahtlose Vernetzung von Geräten über Funkwellen"),
+
+  i2c: (short: "I²C", long: "Inter-Integrated Circuit", description: "Schnittstelle für die serielle Kommunikation zwischen Mikrocontrollern und Peripheriegeräten, die nur zwei Leitungen verwendet"),
+
+  uart: (short: "UART", long: "Universal Asynchronous Receiver-Transmitter", description: "Schnittstelle für die serielle Kommunikation, die asynchron arbeitet und häufig für die Kommunikation zwischen Mikrocontrollern und Computern verwendet wird"),
+
+  rx: (short: "RX", long: "Receive", description: "Empfangsleitung für die serielle Kommunikation"),
+
+  tx: (short: "TX", long: "Transmit", description: "Sendeleitung für die serielle Kommunikation"),
+
+  gnd: (short: "GND", long: "Ground", description: "Masse, Bezugspotential für elektrische Schaltungen"),
+
+  en: (short: "EN", long: "Enable", description: "Aktivierungssignal, das verwendet wird, um ein Gerät oder eine Funktion zu aktivieren oder zu deaktivieren"),
+
+  io0: (short: "IO0", long: "Input/Output Pin 0", description: "Allzweck-Ein-/Ausgangspin, der für verschiedene Funktionen konfiguriert werden kann, z.B. als Boot-Pin oder zur Steuerung von Peripheriegeräten"),
+
+  sda: (short: "SDA", long: "Serial Data Line", description: "Datenleitung für die I²C-Kommunikation, über die Daten zwischen Geräten übertragen werden"),
+
+  scl: (short: "SCL", long: "Serial Clock Line", description: "Taktleitung für die I²C-Kommunikation, die den Takt für die Datenübertragung vorgibt"),
+
+  esp32: (short: "ESP32", long: "Espressif Systems 32-bit Microcontroller", description: "Mikrocontroller mit integrierter Wi-Fi- und Bluetooth-Funktionalität, der in vielen IoT-Projekten verwendet wird"),
+
+  ram: (short: "RAM", long: "Random Access Memory", description: "Arbeitsspeicher, der es ermöglicht, Daten schnell zu lesen und zu schreiben, während ein Gerät in Betrieb ist"),
+  psram: (short: "PSRAM", long: "Pseudo Static RAM", description: "Arbeitsspeicher, der die Vorteile von statischem und dynamischem RAM kombiniert, um eine kostengünstige und energieeffiziente Lösung zu bieten"),
+
+  id: (short: "ID", long: "Identifier", description: "Eindeutige Kennung, die verwendet wird, um ein Objekt oder eine Entität zu identifizieren, z.B. eine NFC-Karte oder ein Gerät in einem Netzwerk"),
+
+  gpio: (short: "GPIO", long: "General Purpose Input/Output", description: "Allzweck-Ein-/Ausgang, der von Mikrocontrollern zur Steuerung von Peripheriegeräten verwendet wird"),
+
+  firmware: (short: "Firmware", long: "Firmware", description: "Software, die in Hardware eingebettet ist und grundlegende Funktionen steuert, z.B. die Steuerungslogik eines Mikrocontrollers"),
+
+  bootloader: (short: "Bootloader", long: "Bootloader", description: "Spezielle Software, die beim Starten eines Geräts ausgeführt wird und dafür verantwortlich ist, die Hauptfirmware zu laden und auszuführen"),
 
 )
 
@@ -56,6 +111,6 @@
   }
 )
 
-#glossary(title: "Abkürzungsverzeichnis", theme: my-theme, sort: true, show-all: false)
+#glossary(title: "Glossar", theme: my-theme, sort: true, show-all: true)
 
 #pagebreak()
