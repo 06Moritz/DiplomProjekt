@@ -44,7 +44,7 @@
       v(1cm, weak: true) 
     }
     else { 
-      v(0.75cm, weak: true) 
+      v(1cm, weak: true) 
     }
     
     it
@@ -60,8 +60,26 @@
     }
   }
 
+  /*
+  show figure: it => {
+    it
+    v(1em, weak: true)
+  }
+  */
+  show figure.caption: set text(fill: gray.darken(50%), size: 10pt)
   
   body
+}
+
+
+// framed-image:
+#let fimage(path, ..args) = {
+  rect(
+    stroke: 0.5pt + gray.darken(0%),
+    inset: 5pt,
+    radius: 0pt,
+    image(path, ..args)
+  )
 }
 
 #let t = metadata("tab")
