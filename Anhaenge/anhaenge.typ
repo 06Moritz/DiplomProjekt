@@ -25,7 +25,15 @@
 #v(4.5cm)
 #figure(
 rotate(90deg,muchpdf(read("../PDF/auto/SCH.pdf", encoding: none),width: 140%)) )
- // Vektorgrafik
+
 = Fahrzeug Layout TOP
 #muchpdf(read("../PDF/auto/lay_top.pdf", encoding: none),
-width: 100%) // Rastergrafik
+width: 100%)
+
+//#pagebreak()
+// derzeit nur Testbilder drinnen - erst richtig exportieren - bzw. schön anordnen
+#include "bahn-schaltplan.typ"
+#include "bahn-layout-top.typ"
+#include "bahn-layout-bottom.typ"
+
+//#include "auto-layout-top.typ"

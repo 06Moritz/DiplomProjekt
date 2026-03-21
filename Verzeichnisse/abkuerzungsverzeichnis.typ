@@ -30,17 +30,25 @@
 
   poti: (short: "Poti", long: "Potentiometer", description: "Drehbarer Widerstand, der zur Einstellung von Spannung oder Strom in einem Stromkreis verwendet wird"),
 
+  levelshifter: (short: "Level Shifter", long: "Pegelwandler", description: "Schaltung, die Signale von einem Spannungspegel auf einen anderen übersetzt, um die Kompatibilität zwischen verschiedenen Komponenten zu gewährleisten"),
+
+  cc: (short: "CC", long: "Configuration Channel", description: "Kanal für die Konfiguration von USB Power Delivery, über den die Stromversorgung und andere Parameter ausgehandelt werden"),
+
   via: (short: "Via", long: "Durchkontaktierung", description: "Leiterbahnverbindung zwischen verschiedenen Lagen einer Leiterplatte"),
   
   ti: (short: "TI", long: "Texas Instruments", description: "Amerikanisches Unternehmen, das Halbleiter und integrierte Schaltkreise herstellt"),
 
   usb: (short: "USB", long: "Universal Serial Bus", description: "Standard für die Verbindung von Peripheriegeräten mit Computern und anderen Geräten"),
 
+  usbc: (short: "USB-C", long: "USB Type-C", description: "Reversible USB-Steckverbindung, die höhere Datenübertragungsraten und Stromversorgung ermöglicht"),
+
   ripple: (short: "Ripple", long: "Spannungswelligkeit", description: "Unerwünschte Schwankungen in der Ausgangsspannung von Netzteilen oder Spannungsreglern"),
   
   rf: (short: "RF", long: "Radio Frequency", description: "Funkfrequenz, ein Bereich elektromagnetischer Wellen, der für die drahtlose Kommunikation verwendet wird"),
 
   rfid: (short: "RFID", long: "Radio Frequency Identification", description: "Technologie zur drahtlosen Identifikation von Objekten mittels elektromagnetischer Felder"),
+
+  easyeda: (short: "EasyEDA", long: "Easy Electronic Design Automation", description: "Software für die Erstellung von Schaltplänen und Leiterplattenlayouts"),
 
   wifi: (short: "Wi-Fi", long: "Wireless Fidelity", description: "Technologie für die drahtlose Vernetzung von Geräten über Funkwellen"),
 
@@ -74,6 +82,25 @@
   firmware: (short: "Firmware", long: "Firmware", description: "Software, die in Hardware eingebettet ist und grundlegende Funktionen steuert, z.B. die Steuerungslogik eines Mikrocontrollers"),
 
   bootloader: (short: "Bootloader", long: "Bootloader", description: "Spezielle Software, die beim Starten eines Geräts ausgeführt wird und dafür verantwortlich ist, die Hauptfirmware zu laden und auszuführen"),
+
+  mosi: (short: "MOSI", long: "Master Out Slave In", description: "Datenleitung für die SPI-Kommunikation, über die der Master Daten an den Slave sendet"),
+
+  miso: (short: "MISO", long: "Master In Slave Out", description: "Datenleitung für die SPI-Kommunikation, über die der Slave Daten an den Master sendet"),
+
+  sck: (short: "SCK", long: "Serial Clock", description: "Taktleitung für die SPI-Kommunikation, die den Takt für die Datenübertragung vorgibt"),
+
+  cs: (short: "CS", long: "Chip Select", description: "Steuerleitung für die SPI-Kommunikation, die verwendet wird, um ein bestimmtes Slave-Gerät auszuwählen und zu aktivieren"),
+
+  tft: (short: "TFT", long: "Thin-Film Transistor", description: "Technologie für die Herstellung von Displays, die eine hohe Bildqualität und schnelle Reaktionszeiten bietet"),
+
+  sd: (short: "SD", long: "Secure Digital", description: "Standard für Speicherkarten, die in vielen elektronischen Geräten verwendet werden, um Daten zu speichern"),
+
+  lcd: (short: "LCD", long: "Liquid Crystal Display", description: "Flüssigkristallbildschirm, eine Art von Display, das Flüssigkristalle verwendet, um Bilder anzuzeigen"),
+
+  hvga: (short: "HVGA", long: "Half Video Graphics Array", description: "Displayauflösung von 320 x 480 Pixeln, die häufig in kleinen Displays verwendet wird"),
+
+  dir: (short: "DIR", long: "Direction", description: "Richtungssignal, das bei bidirektionalen Level Shiftern verwendet wird, um die Richtung der Signalübertragung festzulegen")
+
 
 )
 

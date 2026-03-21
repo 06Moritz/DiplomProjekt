@@ -1,9 +1,9 @@
 #import "../config.typ": *
 #aktueller_autor.update(author1) // Melanie
 
-= @buck:short <sec_buck>
+= @buck:both <sec_buck>
 
-*!* Ein @buck:short (@buck:long) ist ein Gleichspannungswandler, der eine Eingangsspannung in eine niedrigere Ausgangsspannung transformiert. Im Gegensatz zu Linearreglern wird die Spannungsdifferenz nicht in Wärme umgewandelt, sondern durch ein getaktetes Prinzip übertragen. Dies ermöglicht: 
+*!* Ein @buck:long ist ein Gleichspannungswandler, der eine Eingangsspannung in eine niedrigere Ausgangsspannung transformiert. Im Gegensatz zu Linearreglern wird die Spannungsdifferenz nicht in Wärme umgewandelt, sondern durch ein getaktetes Prinzip übertragen. Dies ermöglicht: 
 
 - hohe Wirkungsgrade (oft > 90%) durch minimale Verlustleistung an den Schaltelementen
 - geringe Wärmeentwicklung
@@ -11,7 +11,7 @@
 - stabile Ausgangsspannung trotz schwankender Eingangsspannung
 
 // blablabla funktion erklären muss i erst ...
-Der Abwärtswandler nutzt eine Induktivität zur zeitgesteuerten Energiespeicherung. Ein @mosfet:short zerlegt die Eingangsspannung durch hochfrequentes Schalten in Pulse, wobei das Tastverhältnis der @pwm das Spannungsniveau am Ausgang definiert. Ein nachgeschalteter LC-Filter glättet diese Pulse schließlich zu einer stabilen Gleichspannung für den Lastkreis. @buckSource
+Der @buck nutzt eine Induktivität zur zeitgesteuerten Energiespeicherung. Ein @mosfet:short zerlegt die Eingangsspannung durch hochfrequentes Schalten in Pulse, wobei das Tastverhältnis der @pwm das Spannungsniveau am Ausgang definiert. Ein nachgeschalteter LC-Filter glättet diese Pulse schließlich zu einer stabilen Gleichspannung für den Lastkreis. @buckSource
 
 //Das Funktionsprinzip basiert auf der Wechselwirkung zwischen einem elektronischen Schalter (MOSFET) und einer Speicherinduktivität. Wird der MOSFET geschlossen, steigt der Strom in der Induktivität rampenförmig an ($U = L dot (d i)/(d t)$), wodurch magnetische Energie gespeichert wird.
 //Nach dem Öffnen des Schalters verhindert eine Freilaufdiode den abrupten Abriss des Stromflusses. Die Induktivität kehrt ihre Spannung um und fungiert nun als Energielieferant, der den Stromfluss durch die Last aufrechterhält, während sich das Magnetfeld langsam abbaut. Ein Kondensator glättet diese getaktete Energie zu einer konstanten Ausgangsspannung.
