@@ -31,9 +31,7 @@ Der Motor soll belastet eine Drehzahl von mindestens 10200 U/min erreichen, um d
 
 #figure(
 image("../Bilder/HBrueke.png", width: 50%),
-caption: [
-H-Brückenschaltung
-],
+caption: [H-Brückenschaltung],
 )
 
 *!* Eine H-Brücke ist eine Schaltung mit der Motoren angesteuert werden. Die Drehrichtung kann durch die Ansteuerung der Transistoren geändert werden. Die Schaltung ermöglicht es, Motoren mit höherer Spannung mit niedrigem Signalpegel zu steuern. @hbrueke
@@ -61,9 +59,7 @@ $ w=((5.98*1.5)/(e^(((sqrt(4.5+ 1.41)*50)/87)))-0.035)*1/0.8 = 2.73"mm" => 106"m
 
 #figure(
 image("../Bilder/antenna.png", width: 50%),
-caption: [
-BLE Antennendesign
-],
+caption: [BLE Antennendesign],
 )
 
 == Drehzahlsensor 
@@ -72,10 +68,7 @@ BLE Antennendesign
 #figure(
 
 image("../Bilder/comp.png", width: 50%),
-caption: [
-Komparator zur Aufbereitung des Signals vom Drehzahlsensor
-],
-
+caption: [Komperator zur Aufbereitung des Signals vom Drehzahlsensor],
 )
 
 
@@ -84,9 +77,7 @@ Komparator zur Aufbereitung des Signals vom Drehzahlsensor
 == NFC Antenne 
 #figure(
 image("../Bilder/NFC.png", width: 50%),
-caption: [
-NFC Antenne
-],
+caption: [NFC Antenne],
 )
 
 *!* Die NFC Antenne ist eine Spule direkt auf der Leiterplatte. Die Schaltung besteht aus 3 Teilen, EMV-Filter, Anpassungsnetzwerk und der Spule. 
@@ -97,10 +88,9 @@ NFC Antenne
 
 #figure(
 image("../Bilder/SpuleErsatzschaltbild.png", width: 50%),
-caption: [
-Ersatzschaltbild der NFC-Antenne
-],
-)<fig-antenna>
+caption: [Ersatzschaltbild der NFC-Antenne],
+)
+<fig-antenna>
 
 Die Spule kann mit der Schaltung (@fig-antenna) dargestellt werden. Optimal ist ein Gütefaktor von 35, damit die Antenne effizient arbeitet. Zu hohe Güten werden mit einem Dämpfungswiderstand R_Q ausgeglichen. Die Antenne Werte wurden durch Messung mit einer RCL-Messbrücke ermittelt. Die Spule hat folgende Werte: \
 - Induktivität L#sub[a] = 555nH
@@ -116,9 +106,7 @@ $ R_"pa" = (\u{03C9} * L_a)^2/(R_a+2*R_Q) $
 
 #figure(
 image("../Bilder/NFCZTR.png", width: 50%),
-caption: [
-EMV-Filter der NFC-Antenne
-],
+caption: [EMV-Filter der NFC-Antenne],
 )
 
 Der EMV-Filer hat zwei Funktionen, Filtern des Signals und Impedanzanpassung.
