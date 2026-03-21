@@ -20,9 +20,49 @@
 #set heading(numbering: none)
 #set page(margin: 0cm, header: none, footer: none)
 
-// 2 Arten zum Einfügen von PDFs:
-= Fahrzeug Schaltplan
-#image("../PDF/auto/SCH.pdf", width: 100%) // Vektorgrafik
-= Fahrzeug Layout TOP
-#muchpdf(read("../PDF/auto/lay_top.pdf", encoding: none),
+= Hauptmodul Schaltplan
+#v(4.5cm)
+#figure(
+rotate(90deg,muchpdf(read("../PDF/auto/SCH.pdf", encoding: none),width: 140%)) )
+ // Vektorgrafik
+= Hauptmodul Layout TOP
+#muchpdf(read("../PDF/Haupt/kocmTop.pdf", encoding: none),
 width: 100%) // Rastergrafik
+= Fahrzeug Layout BOT
+#muchpdf(read("../PDF/Haupt/kocmBot.pdf", encoding: none),
+width: 100%) // Rastergrafik
+
+// 2 Arten zum Einfügen von PDFs:
+= Hauptmodul Schaltplan
+#v(4.5cm)
+#figure(
+rotate(90deg,muchpdf(read("../PDF/auto/SCH.pdf", encoding: none),width: 140%)) )
+
+= Fahrzeug Layout TOP
+#muchpdf(read("../PDF/auto/PromTop.pdf", encoding: none),
+width: 100%) // Rastergrafik
+= Fahrzeug Layout BOT
+#muchpdf(read("../PDF/auto/PromBot.pdf", encoding: none),
+width: 100%) // Rastergrafik
+
+// 2 Arten zum Einfügen von PDFs:
+= Controller Schaltplan
+#v(4.5cm)
+#figure(
+rotate(90deg,muchpdf(read("../PDF/auto/SCH.pdf", encoding: none),width: 140%)) )
+ // Vektorgrafik
+= Controller Layout TOP
+#muchpdf(read("../PDF/Controller/ReimTop.pdf", encoding: none),
+width: 100%) // Rastergrafik
+= Controller Layout BOT
+#muchpdf(read("../PDF/Controller/ReimBot.pdf", encoding: none),
+width: 100%) // Rastergrafik
+
+#muchpdf(read("../PDF/auto/lay_top.pdf", encoding: none),
+width: 100%)
+
+
+// derzeit nur Testbilder drinnen - erst richtig exportieren - bzw. schön anordnen
+#include "bahn-schaltplan.typ"
+#include "bahn-layout-top.typ"
+#include "bahn-layout-bottom.typ"
