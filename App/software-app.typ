@@ -72,22 +72,19 @@ Terminal:
   >>> Spieler: Spieler4
 
 ```
-
-
-
-
-
-
+\
 Als nächsten schritt wurde der ESP32 als Sender und die App als Empfänger konfiguriert, um die Datenübertragung zu testen.
-Ins Terminal schribt man zum Beispiel Spieler: Spieler1 oder Modus: Leicht. In der App wird dann die entsprechende Variable aktualisiert.
-
-Terminal:
+Ins Terminal schreibt man zum Beispiel Spieler: Spieler1 oder Modus: Leicht. In der App wird dann die entsprechende Variable aktualisiert.
+\ \
+In das Terminal wurden folgende Parameter eingegeben:
 ```c
   Spieler: Spieler1
   Modus: Leicht
   Rundenzahl: 3
 
 ```
+In der App wurden die eingegebenen Parameter aktualisiert. Spieler1 wurde als Spielername angezeigt, der Modus wurde auf leicht gestellt und die Rundenzahl auf drei.
+\ \
 #figure(
 image("../Bilder/TestCode.png", width: 50%),
 caption: [
@@ -95,11 +92,10 @@ Test Code
 ],)
 
 \ \
-Zum Schluss wurde die Kommunikation in beide Richtungen getestet. 
+Anschließend wurden die App und der ESP32 als Sender und Empfänger initialisiert. 
  \ \
 @tcp Codeteil aus der App:
   ```c
-  
     suspend fun connect(): BufferedReader? {
         return withContext(Dispatchers.IO) {
             try {
@@ -121,6 +117,15 @@ Zum Schluss wurde die Kommunikation in beide Richtungen getestet.
         }
     }
    ```
+- `suspend fun connect()`: Asynchrone Funktion zum Aufbau der Netzwerkverbindung
+- `withContext(Dispatchers.IO)`: Ausführung im Hintergrundthread für Netzwerkzugriffe
+- `if (socket == null || ...)`: Überprüfung, ob bereits eine Verbindung besteht
+- `Socket(ESP_IP, ESP_PORT)`: Aufbau der TCP-Verbindung zum Mikrocontroller
+- `tcpNoDelay = true`: Schnellere Datenübertragung ohne Verzögerung
+- `soTimeout = 5000`: Begrenzung der Wartezeit auf eine Serverantwort
+- `PrintWriter(...)`: Senden von Daten an den Mikrocontroller
+- `BufferedReader(...)`: Empfangen von Daten vom Mikrocontroller
+- `catch (Exception)`: Fehlerbehandlung zur Vermeidung von Abstürzen
 
 \
 In dem Code der App wird ein Client Socket erstellt, der sich mit der IP-Adresse des ESP32 und dem Port 8080 verbindet und eine Verbindungsanfrage an den ESP32 sendet. 

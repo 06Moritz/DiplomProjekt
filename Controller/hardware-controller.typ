@@ -15,7 +15,7 @@ Der Controller besteht aus folgenden Komponenten:
 - Button
 
 #figure(
-image("../Bilder/Blockschaltbild-HW-Controller.svg", width: 100%),
+image("../Bilder/Blockschaltbild-HW-Controller.svg", width: 70%),
 caption: [Blockschaltbild Hardware Controller],
 )
 
