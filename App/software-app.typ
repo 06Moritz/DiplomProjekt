@@ -9,13 +9,24 @@ image("../Bilder/Appscreen.png", width: 50%),
 caption: [
 Startbildschirm
 ],)
+\
 Die App dient zum Einstellen vieler Parameter. Sie ermöglicht es die Sprache, den Modus, die Rundenzahl und Spielernamen einzustellen so wie die Verbindung zum Hauptmodul Display herzustellen. \
 Es gibt verschiedene Modi, die unterschiedliche Schwierigkeitsgrade bieten. Je nach Modus variiert die Anzahl der Runden und die Schwierigkeit der Steuerung. Unter Schwierigkeit der Steuerung versteht man mit welcher Motorleistung die Autosfahren.
 - Modis:
-  #figure(
-    image("../Bilder/Modis.png", width: 100%),
-    caption: [Modi Definition]
-  )
+
+```c
+  // Spielmodi Definition
+enum class GameMode(
+  val label: String, 
+  val defaultLaps: Int, 
+  val speedFactor: Float) 
+  {
+    EASY("Leicht", 5, 0.5f),
+    MEDIUM("Mittel", 10, 0.75f),
+    HARD("Schwer", 15, 1.0f)
+}
+```
+\
   - DefaultLaps: Hier werden die Rundenanzahl standardisiert.
   - speedFactor: Hier wird die Motorleistung eingestellt. Zum Beispiel: 0.5f bedeutet, dass die Autos mit halber Leistung fahren.
 
@@ -30,43 +41,136 @@ Das Display XX verfügt über einen Kapazitiven Touchscreen, welcher einfache Ei
 - Start/Stop
 - Podium
 Um einen sauberen Übergang beim drücken der Buttons zu simulieren, wurde eine Button Klasse erstellt, welche die Logik für das Drücken der Buttons enthält. Es wird überprüft, ob der Button gedrückt wurde, trifft das zu, wird die entsprechende Funktion ausgeführt. \
-Ohne der Klasse würde bei jedem klick auf einen Butten das ganze Display aktualisiert werden, was zu einem unsauberen Übergang führt. Mit der Klasse wird nur der Bereich aktualisiert, wo sich was ändert.\ \
+Ohne der Klasse würde bei jedem klick auf einen Butten das ganze Display aktualisiert werden. Mit der Klasse wird nur der Bereich aktualisiert, wo sich was ändern soll. Das ermöglicht es, die Benutzeroberfläche effizient zu aktualisieren und gleichzeitig eine reaktionsschnelle und flüssige Kommunikation zu erhalten.
+
+\ \
 Die Softwareseitige Umsetzung dieser selektiven Aktualisierung basiert auf der Kapselung von Positionsdaten und Zustandsvariablen innerhalb der Objektinstanzen. Die softwareseitige Umsetzung dieser selektiven Aktualisierung basiert auf der Kapselung von Positionsdaten und Zustandsvariablen innerhalb der Objektinstanzen. \ Bei einem registrierten Touch-Event werden die XY-Koordinaten des Sensors mit den Grenzwerten der Bounding-Box des jeweiligen Buttons verglichen. Eine Ausführung der verknüpften Logik erfolgt nur bei einer positiven Kollisionsabfrage. Durch diese Reduzierung der zu übertragenden Datenmenge über den Kommunikationsbus (z. B. SPI oder $I^2C$) wird die Prozessorlast gesenkt und das bei Vollbild-Refreshes übliche Screen-Flickering unterbunden. Zusätzlich wird durch eine softwareseitige Entprellung (Debouncing) sichergestellt, dass singuläre Berührungen nicht als fehlerhafte Mehrfach-Eingaben interpretiert werden. Diese Methode ermöglicht es, die Benutzeroberfläche effizient zu aktualisieren und gleichzeitig eine reaktionsschnelle und flüssige Kommunikation zu erhalten. 
 
+Kapselung von Positionsdaten bedeutet, dass die Koordinaten und Dimensionen eines Buttons innerhalb der Button-Klasse gespeichert werden. Dadurch kann die Klasse selbstständig überprüfen, ob ein Touch-Event innerhalb ihrer Grenzen liegt.
 
 \ \
-== TCP Programmierung
-Um eine Verbindung zwischen der App und dem Hauptmodul Display herzustellen, wird das TCP Protokoll verwendet. Dieses ermöglicht eine Bidirektionale Kommunikation zwischen den beiden Geräten. Das dient dazu, dass Änderungen, wie das Einstellen der Modi oder Spielernamen, auf das Display übertragen werden können.\ 
+== @tcp:both Programmierung
+\
+Um eine Verbindung zwischen der App und dem Hauptmodul Display herzustellen, wird das @tcp Protokoll verwendet. Dieses ermöglicht eine Bidirektionale Kommunikation zwischen den beiden Geräten. Das dient dazu, dass Änderungen, wie das Einstellen der Modi oder Spielernamen, auf das Display übertragen werden können.\ 
 
-In dieser Konfiguration zählt der ESP32S3 als TCP-Server, der auf einem definierten Port (8080) auf eingehende Verbindungsanfragen der App wartet.\ \
+In dieser Konfiguration zählt der ESP32S3 als @tcp -Server, der auf einem definierten Port (8080) auf eingehende Verbindungsanfragen der App wartet.\ \
 
 Bevor die App mit dem Display verbunden wurde, wurde ein Test Code geschrieben. Um das Signal auszuschreiben, das von der App an den ESP32 gesendet wird und im Terminal ausgeschrieben werden.
+
+Terminal:
+
+```c
+  >>> Modus gesetzt: LEICHT (1)
+  >>> Rundenzahl: 5
+  >>> Modus gesetzt: MITTEL (2)
+  >>> Rundenzahl: 10
+  >>> Modus gesetzt: SCHWER (3)
+  >>> Rundenzahl: 15
+  >>> Spieler: Spieler1
+  >>> Spieler: Spieler2
+  >>> Spieler: Spieler3
+  >>> Spieler: Spieler4
+
+```
+
+
+
+
+
+
 Als nächsten schritt wurde der ESP32 als Sender und die App als Empfänger konfiguriert, um die Datenübertragung zu testen.
-Zum Schluss wurde die Kommunikation in beide Richtungen getestet. \ \
+Ins Terminal schribt man zum Beispiel Spieler: Spieler1 oder Modus: Leicht. In der App wird dann die entsprechende Variable aktualisiert.
+
+Terminal:
+```c
+  Spieler: Spieler1
+  Modus: Leicht
+  Rundenzahl: 3
+
+```
 #figure(
-  image("../Bilder/TCPApp.png", width: 100%),
-  caption: [TCP Programmierung-App]
-)
-In dem Code der App wird ein Client Socket erstellt, der sich mit der IP-Adresse des ESP32 und dem Port 8080 verbindet und eine Verbindungsanfrage an den ESP32 sendet. 
+image("../Bilder/TestCode.png", width: 50%),
+caption: [
+Test Code
+],)
+
 \ \
-#figure(
-  image("../Bilder/TCPApp.png", width: 100%),
-  caption: [TCP Programmierung-ESP32]
-)
+Zum Schluss wurde die Kommunikation in beide Richtungen getestet. 
+ \ \
+@tcp Codeteil aus der App:
+  ```c
+  
+    suspend fun connect(): BufferedReader? {
+        return withContext(Dispatchers.IO) {
+            try {
+                if (socket == null || socket!!.isClosed || !socket!!.isConnected)
+                {
+                    socket = Socket(ESP_IP, ESP_PORT)
+                    socket!!.tcpNoDelay = true
+                    socket!!.soTimeout = 5000
+                    writer = PrintWriter(socket!!.getOutputStream(), true)
+                    reader = BufferedReader
+                    (InputStreamReader(socket!!.getInputStream()))
+                }
+                reader
+            } 
+            catch (e: Exception) {
+                e.printStackTrace()
+                null
+            }
+        }
+    }
+   ```
+
+\
+In dem Code der App wird ein Client Socket erstellt, der sich mit der IP-Adresse des ESP32 und dem Port 8080 verbindet und eine Verbindungsanfrage an den ESP32 sendet. 
+\ \ \ \ \
+
+@tcp Codeteil aus dem ESP32:
+```c
+- Verbindung aufbauen
+  WiFiServer server(8080);
+  WiFiClient client;
+
+- Verbindungsanfrage akzeptieren
+  void loop() {
+    if (!client || !client.connected()) {
+        client = server.available();
+    } 
+
+-Daten empfangen
+    else if (client.available()) {
+        String line = client.readStringUntil('\n');
+        parseCommand(line);
+    }
+
+- Daten senden
+  if(client.connected()) 
+  {
+      client.println("Modus:" + currentMode);
+  }
+
+- Kommunikation beenden
+  if(client.connected()) 
+  {
+     client.println("Stop"); 
+  }
+
+```
 In dem Code des ESP32 wird ein Server Socket erstellt, der auf Port 8080 lauscht und Verbindungsanfragen der App akteptiert. Ist eine Verbindung hergestellt, können Daten in beide Richtungen gesendet und empfangen werden.
 \ \
 
-=== Synchronisation und Datenübertragung\ 
-Um sicherzustellen, dass beide Geräte immer den gleichen Systemstatus anzeigen, wurde ein zeilenbasiertes Protokoll entwickelt.\ Jede Nachricht wird mit einem Newline-Zeichen (\n) abgeschlossen, damit der Empfänger das Ende eines Befehls eindeutig erkennt. Dies ist notwendig, da TCP die Daten als kontinuierlichen Strom versendet.\ Sobald in der App ein Parameter wie der Spielmodus oder die Rundenzahl geändert wird, sendet die App sofort ein entsprechendes Datenpaket an das Display. Ein Befehl wie MODUS: Schwer bewirkt am Display eine sofortige Aktualisierung der Variable und einen Redraw der Benutzeroberfläche. Dieser Prozess funktioniert auch in die umgekehrte Richtung: Wird am Display der "Start"- oder "Modus"-Button gedrückt, erhält die App das Signal zum Starten des Renn-Timers beziehungsweise das ändern des Moduses.
-\
+
+
+
+=== Synchronisation \ 
+Um sicherzustellen, dass beide Geräte immer den gleichen Systemstatus anzeigen, wurde ein zeilenbasiertes Protokoll entwickelt.\ Jede Nachricht wird mit einem Newline-Zeichen (\n) abgeschlossen, damit der Empfänger das Ende eines Befehls eindeutig erkennt. Dies ist notwendig, da @tcp die Daten als kontinuierlichen Strom versendet.\ Sobald in der App ein Parameter wie der Spielmodus oder die Rundenzahl geändert wird, sendet die App sofort ein entsprechendes Datenpaket an das Display. Ein Befehl wie MODUS: Schwer bewirkt am Display eine sofortige Aktualisierung der Variable und einen Redraw der Benutzeroberfläche. Dieser Prozess funktioniert auch in die umgekehrte Richtung: Wird am Display der "Start"- oder "Modus"-Button gedrückt, erhält die App das Signal zum Starten des Renn-Timers beziehungsweise das ändern des Moduses.
+\ \
 === Echtzeitverhalten\ 
 Bei der Softwareimplementierung wurde besonders auf ein nicht-blockierendes Design geachtet. Da das Hauptmodul gleichzeitig den Touchscreen abfragen und das Display aktualisieren muss, darf der Netzwerkcode den Prozessor nicht aufhalten.\ Die Abfrage von eingehenden Daten erfolgt daher in jedem Programmdurchlauf, ohne den restlichen Ablauf zu verzögern.
 \
-Sollte die Verbindung zwischenzeitlich unterbrochen werden, verfügt die App über eine automatische Reconnect-Logik.\ Diese erkennt die unterbrochene Verbindung durch einen Timeout und versucht eigenständig, den Socket neu zu initialisieren, um die Verbindung wiederherzustellen. Während der Reconnect-Phase zeigt die App eine entsprechende Meldung an. Sobald die Verbindung wiederhergestellt ist, werden alle zuvor gesendeten Befehle erneut übertragen, um sicherzustellen, dass das Display den aktuellen Status korrekt anzeigt. \
-
-
-
-\ 
+Sollte die Verbindung zwischenzeitlich unterbrochen werden, verfügt die App über eine automatische Reconnect-Logik.\ Diese erkennt die unterbrochene Verbindung durch einen Timeout und versucht eigenständig, den Socket neu zu initialisieren, um die Verbindung wiederherzustellen. Während der Reconnect-Phase zeigt die App eine entsprechende Meldung an. Sobald die Verbindung wiederhergestellt ist, werden alle zuvor gesendeten Befehle erneut übertragen, um sicherzustellen, dass das Display den aktuellen Status korrekt anzeigt. 
+\ \ 
 == Controler Display
 Das Controller Display XY zeigt folgende funktionen an:
 - aktuelle Motorleistung (PWM)
