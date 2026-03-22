@@ -1,7 +1,15 @@
 #import "../config.typ": *
 
-Die App dient zum Einstellen. Sie ermöglicht es die Sprache, den Modus, die Rundenzahl und Spielernamen einzustellen so wie die Verbindung zum Hauptmodul Display herzustellen.\ 
+Die App dient zum Einstellen. Sie ermöglicht es die Sprache, den Modus, die Rundenzahl und Spielernamen einzustellen, sowie die Verbindung zum Hauptmodul Display herzustellen.\ 
 = Software
+Die Software besteht aus drei Modulen:
+- App
+- Hauptmodul Display
+- Controller Display
+\
+Die Software wurde in Kotlin für die App und in PlatformIO für die Displays programmiert.\
+Die Kommunikation zwischen der App und dem Hauptmodul Display erfolgt über das @tcp Protokoll, während die Kommunikation zwischen dem Hauptmodul Display und dem Controller Display über BLE erfolgt.
+
 
 == App
 #figure(
@@ -10,8 +18,9 @@ caption: [
 Startbildschirm
 ],)
 \
-Die App dient zum Einstellen vieler Parameter. Sie ermöglicht es die Sprache, den Modus, die Rundenzahl und Spielernamen einzustellen so wie die Verbindung zum Hauptmodul Display herzustellen. \
+
 Es gibt verschiedene Modi, die unterschiedliche Schwierigkeitsgrade bieten. Je nach Modus variiert die Anzahl der Runden und die Schwierigkeit der Steuerung. Unter Schwierigkeit der Steuerung versteht man mit welcher Motorleistung die Autosfahren.
+\ \
 - Modis:
 
 ```c
@@ -48,7 +57,7 @@ Die Softwareseitige Umsetzung dieser selektiven Aktualisierung basiert auf der K
 
 Kapselung von Positionsdaten bedeutet, dass die Koordinaten und Dimensionen eines Buttons innerhalb der Button-Klasse gespeichert werden. Dadurch kann die Klasse selbstständig überprüfen, ob ein Touch-Event innerhalb ihrer Grenzen liegt.
 
-\ \
+#pagebreak()
 == @tcp:both Programmierung
 \
 Um eine Verbindung zwischen der App und dem Hauptmodul Display herzustellen, wird das @tcp Protokoll verwendet. Dieses ermöglicht eine Bidirektionale Kommunikation zwischen den beiden Geräten. Das dient dazu, dass Änderungen, wie das Einstellen der Modi oder Spielernamen, auf das Display übertragen werden können.\ 
@@ -83,15 +92,14 @@ In das Terminal wurden folgende Parameter eingegeben:
   Rundenzahl: 3
 
 ```
-In der App wurden die eingegebenen Parameter aktualisiert. Spieler1 wurde als Spielername angezeigt, der Modus wurde auf leicht gestellt und die Rundenzahl auf drei.
+In der App wurden die eingegebenen Parameter aktualisiert. Spieler1 wurde als Spielername angezeigt, der Modus auf leicht gestellt und die Rundenzahl auf drei.
 \ \
 #figure(
 image("../Bilder/TestCode.png", width: 50%),
 caption: [
 Test Code
 ],)
-
-\ \
+\ 
 Anschließend wurden die App und der ESP32 als Sender und Empfänger initialisiert. 
  \ \
 @tcp Codeteil aus der App:
@@ -126,10 +134,9 @@ Anschließend wurden die App und der ESP32 als Sender und Empfänger initialisie
 - `PrintWriter(...)`: Senden von Daten an den Mikrocontroller
 - `BufferedReader(...)`: Empfangen von Daten vom Mikrocontroller
 - `catch (Exception)`: Fehlerbehandlung zur Vermeidung von Abstürzen
-
 \
 In dem Code der App wird ein Client Socket erstellt, der sich mit der IP-Adresse des ESP32 und dem Port 8080 verbindet und eine Verbindungsanfrage an den ESP32 sendet. 
-\ \ \ \ \
+\ \ \
 
 @tcp Codeteil aus dem ESP32:
 ```c

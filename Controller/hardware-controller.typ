@@ -20,9 +20,9 @@ caption: [Blockschaltbild Hardware Controller],
 )
 
 
-
+#pagebreak()
 == Spannungsversorgung
-Die Energieversorgung des Controllers erfolgt über einen Lithium-Polymer-Akku (LiPo), dessen Betriebsspannung zwischen 3,7 V und 4,2 V liegt. Der Akku wird über Federkontakter an einer Ladestation aufgeladen, welche die erforderliche Spannung und Stromstärke liefert.  
+Die Versorgung des Controllers erfolgt über einen @lipo, dessen Betriebsspannung zwischen 3,2 V und 4,2 V liegt. Der Akku wird über Federkontakter an einer Ladestation aufgeladen, welche die erforderliche Spannung und Stromstärke liefert.  
 
 Für den sicheren Betrieb des Akkus wurde ein Laderegler implementiert, welcher folgende Funktionalitäten übernimmt:
 

@@ -99,7 +99,9 @@
 
   hvga: (short: "HVGA", long: "Half Video Graphics Array", description: "Displayauflösung von 320 x 480 Pixeln, die häufig in kleinen Displays verwendet wird"),
 
-  dir: (short: "DIR", long: "Direction", description: "Richtungssignal, das bei bidirektionalen Level Shiftern verwendet wird, um die Richtung der Signalübertragung festzulegen")
+  dir: (short: "DIR", long: "Direction", description: "Richtungssignal, das bei bidirektionalen Level Shiftern verwendet wird, um die Richtung der Signalübertragung festzulegen"),
+
+  lipo: (short: "LiPo", long: "Lithium-Polymer-Akku", description: "Wiederaufladbarer Akku, der eine hohe Energiedichte und flexible Formfaktoren bietet, häufig in tragbaren elektronischen Geräten verwendet wird")
 
 
 )
