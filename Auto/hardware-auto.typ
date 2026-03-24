@@ -10,7 +10,7 @@ image("../Bilder/Blockschaltbild-HW-Auto.svg", width: 85%),
 caption: [Blockschaltbild Hardware Auto],
 )
 
-== Spannungsversorgung
+== Spannungsversorgung <sec_auto-spgversorgung>
 Die Schleifkontakte, an der Unterseite des Fahrzeugs, greifen 12V von der Schiene ab. Die Eingangspannung wird mit einem Buck-Converter auf 5V geregelt. Mit einem Linearregler wird auf 3.3V geregelt. Die stufenweise Regelung sorgt für eine geringe Restwelligkeit, da Mikrocontroller eine stabile Versorgungspannung benötigen.
 
 #figure(

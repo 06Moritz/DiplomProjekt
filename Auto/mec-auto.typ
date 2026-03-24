@@ -1,3 +1,7 @@
+#import "../config.typ": *
+#pagebreak()
+#aktueller_autor.update(author2) // Moritz
+
 = Mechanik
 
 Das mechanische Komponente des Autos ist möglichst einfach gehalten. Die Leiterplatte wird als Bodenplatte des Fahrzeugs verwendet. Die Räder werden mit einem einfachen Getriebe angetrieben.

@@ -1,4 +1,7 @@
 #import "../config.typ": *
+#pagebreak()
+#aktueller_autor.update(author2) // Moritz
+
 = Software
 == BLE
 *!* Das Auto ist als @ble Master(Central-Device) konfiguriert. Es sucht aktiv nach Geräten zum Verbinden und und empfängt Geschwindigkeitswerte.
