@@ -36,6 +36,12 @@
     ),
   )
 
+  set table(
+  stroke: 0.5pt + gray,
+  inset: 10pt // Optional: Erhöht den Abstand vom Text zum Rand
+)
+
+
   show heading: it => {
     if it.level == 1 { 
       v(1.5cm, weak: true)
@@ -70,6 +76,7 @@
   
   body
 }
+
 
 
 // framed-image:

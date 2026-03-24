@@ -2,7 +2,7 @@
 #aktueller_autor.update(author2) // Moritz
 
 = Hardware
-*!*Die Hardware des Fahrzeugs besteht aus der Spannungsversorgung, dem Hauptcontroller, der Motoransteuerung sowie Sensor- und Funkmodulen. Die einzelnen Komponenten übernehmen die Energieversorgung, Steuerung, Kommunikation und Messung der Fahrzeugparameter. 
+*!*Die Hardware des Fahrzeugs \ \ 
 
 == Blockschaltbild
 #figure(
@@ -11,20 +11,22 @@ caption: [Blockschaltbild Hardware Auto],
 )
 
 == Spannungsversorgung <sec_auto-spgversorgung>
-*!* An den Schienen liegt eine Spannung von 12V an, die Schleifkontakte greifen die Spannung ab. Die Eingangspannung wird mit einem Buck-Converter auf 5V geregelt, dann auf 3,3V mit einem Linear-Regler. Die stufenweise Regelung sorgt für eine geringe Restwelligkeit.
+Die Schleifkontakte, an der Unterseite des Fahrzeugs, greifen 12V von der Schiene ab. Die Eingangspannung wird mit einem Buck-Converter auf 5V geregelt. Mit einem Linearregler wird auf 3.3V geregelt. Die stufenweise Regelung sorgt für eine geringe Restwelligkeit, da Mikrocontroller eine stabile Versorgungspannung benötigen.
+
 == Motor 
-*!* Als Motor wird ein 12V Gleichstrommotor verwendet, der über eine H-Brücke gesteuert wird. Die H-Brücke ermöglicht es, die Drehrichtung des Motors zu ändern und die Geschwindigkeit zu steuern. siehe @sec-hbridge \ Die Motorleistung wird über @pwm gesteuert. \ Der Motor hat folgende technische Daten: \
+ Als Motor wird ein 12V Gleichstrommotor verwendet, der über eine H-Brücke gesteuert wird. Die H-Brücke ermöglicht es, die Drehrichtung des Motors zu ändern und die Geschwindigkeit zu steuern. siehe @sec-hbridge \ !Die Motorleistung wird über @pwm gesteuert. \ \
+Der Motor hat folgende technische Daten: \
 - Nennspannung: 12V
 - Leerlaufstrom: 0.14A
 - Leerlaufdrehzahl: 16500 U/min
 
 Der Motor wurde aufgrund folgender Kriterien ausgewählt: \
 - Hohe Spannung (12V) für ausreichend Leistung
-- Drehzahl wurde gewählt um eine Geschwindigkeit von ca. 8m/s zu erreichen bei 15mm Raddurchmesser. 
+- Drehzahl gewählt um eine Geschwindigkeit von ca. 8m/s erreichen bei einem Raddurchmesser von 15mm . 
 $ U = 0.015 upright("m") *pi=0.0471m $ 
 $ (8m/s)/(0.0471m) *60s= 10191U/min $
 
-Der Motor soll belastet eine Drehzahl von mindestens 10200 U/min erreichen, um die gewünschte Geschwindigkeit zu erreichen.
+Der Motor muss unter Belastung eine Mindestdrehzahl von 10200 $U/min$ haben um 8$m/s$ zu erreichen.
 
 
 == H-Brückenschaltung<sec-hbridge>
@@ -34,21 +36,20 @@ image("../Bilder/HBrueke.png", width: 50%),
 caption: [H-Brückenschaltung],
 )
 
-*!* Eine H-Brücke ist eine Schaltung mit der Motoren angesteuert werden. Die Drehrichtung kann durch die Ansteuerung der Transistoren geändert werden. Die Schaltung ermöglicht es, Motoren mit höherer Spannung mit niedrigem Signalpegel zu steuern. @hbrueke
+ Eine H-Brücke ist eine Schaltung mit der Motoren angesteuert werden. Die Drehrichtung kann durch die Ansteuerung der Transistoren geändert werden. Die Schaltung ermöglicht es, Motoren mit niedrigem Signalpegel zu steuern. @hbrueke
 
-== Hauptcontroller – WCH CH585
-*!* Der Hauptcontroller ist ein Risc-V Microcontroller von WCH. Er hat native Peripherals für Bluetooth Low Energy (BLE) und Near Field Communication (NFC).
+== WCH CH585
+*!* Der CH585 ist ein Risc-V Microcontroller von WCH. Er hat native Peripherals für Bluetooth Low Energy (BLE) und Near Field Communication (NFC). Pwm pins...
 
 == Antennendesign – BLE 
-*!* @ble hat eine Frequenz von 2.4GHz, dafür eignet sich am besten eine "Inverted-F-Antenne". Beim entwickeln der Antenne sind einige Punkte zu beachten:
+@ble hat eine Frequenz von 2.4GHz, dafür eignet sich am besten eine "Inverted-F-Antenne". Sie ist einfach zu Designen und hat eine gute Leitungsfähigkeit für ihre kleine Bauform. \ Beim entwickeln der Antenne sind einige Punkte zu beachten:
 - 50\u{03A9} Wellenwiderstand der Leitung von der Antenne zum Anpassungsnetzwerk
-- Antennen GND mit vielen Durchkontaktierungen mit GND verbinden
+- Antennen-GND mit vielen Durchkontaktierungen mit Haupt-GND verbinden
 - keine GND Fläche unter der Antenne 
-- hinter der Antenne GND mit vielen Vias setzen @antennaSource
+- hinter der Antenne GND mit vielen Vias setzen @antennaSource \ \
+Berechung der Leiterbahndicke für 50\u{03A9}  Wellenwiderstand: @Wellenwiderstand
 
-
-
-$ w=((5.98*h)/(e^(((sqrt(e_r+ 1.41)*Z_0)/87)))-t)*1/0.8 $ @Wellenwiderstand
+$ w=((5.98*h)/(e^(((sqrt(e_r+ 1.41)*Z_0)/87)))-t)*1/0.8 $ 
 
 t=0.035mm (Kupferdicke)\
 h=1.5mm (Dicke des Dielektrikums)\
@@ -62,8 +63,14 @@ image("../Bilder/antenna.png", width: 50%),
 caption: [BLE Antennendesign],
 )
 
+#pagebreak()
+
 == Drehzahlsensor 
-! Die Drehzahl wird optisch mit einem VCNT2020 gemessen. Der Sensor besteht aus einer Infrarot LED und einem Fototransistor. Auf der Antriebswelle ist das Zahnrad zur Hälfte schwarz bemalt, wenn sich die Welle dreht ändert sich die Lichtintensität, die der Sensor empfängt, dadurch kann die Drehzahl berechnet werden. Das Ausgangssignal des Sensors wird mit einem Komparator aufbereitet, damit es vom Controller verarbeitet werden kann. Vref muss so eingestellt werden, dass die Schaltschwelle zwischen dem Spannungswert bei heller und dunkler Seite liegt. 
+Die Drehzahl wird optisch mit einem VCNT2020 gemessen. Der Sensor besteht aus einer Infrarot LED und einem Fototransistor. Auf der Antriebswelle ist das Zahnrad zur Hälfte schwarz bemalt, wenn sich die Welle dreht ändert sich die Lichtintensität, die der Sensor empfängt, dadurch kann die Drehzahl berechnet werden. Das Ausgangssignal des Sensors wird mit einem Komparator aufbereitet, damit es vom Controller verarbeitet werden kann. Refernzspannung (Vref) muss so eingestellt werden, dass die Schaltschwelle zwischen dem Spannungswert bei heller und dunkler Seite liegt. 
+
+! Messwerte:
+- helle Seite: 2.24V
+- dunkle Seite: 0.64V
 
 #figure(
 
@@ -116,7 +123,7 @@ Die Impedanzanpassung wird aus folgenden Gründen gemacht:
 
 Für die Dimensionierung wird die Schaltung in zwei Teile geteilt, der IC  wird durch den equivalenten Widerstand R_match ersetzt. Dafür wird 80\u{03A9} angenommen. 
 - Spule wird mit 1uH Dimensioniert
-- Die Filterresonanzfrequenz muss annähernd der oberen Seitenbandfrequenz liegen, ca.14.3MHz. 
+- Die Filterresonanzfrequenz muss annähernd der oberen Seitenbandfrequenz entsprechen, ca.14.3MHz. 
 
 $ C_0 = 1/((2 *pi * f_"r0")^2*L_0) $
 
