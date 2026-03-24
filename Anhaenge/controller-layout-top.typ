@@ -15,4 +15,4 @@
 )
 
 = Controller Layout TOP
-#image("/Bilder/controller-layout-top.png", width: 80%)
+#image("/Bilder/anhang/controller-layout-top.png", width: 80%)

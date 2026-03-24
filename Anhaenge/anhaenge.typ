@@ -20,6 +20,8 @@
 #set heading(numbering: none)
 #set page(margin: 0cm, header: none, footer: none)
 
+
+/* 
 = Hauptmodul Schaltplan
 #v(4.5cm)
 #figure(
@@ -59,9 +61,11 @@ width: 100%) // Rastergrafik
 
 // #muchpdf(read("../PDF/auto/lay_top.pdf", encoding: none),
 // width: 100%)
+ */
 
 
-// derzeit nur Testbilder drinnen - erst richtig exportieren - bzw. schön anordnen
+// -> noch richtige Bilder verwenden
+
 // Beilage 1: Bahn
 #include "bahn-schaltplan.typ"
 #include "bahn-layout-top.typ"
@@ -77,3 +81,12 @@ width: 100%) // Rastergrafik
 #include "controller-layout-top.typ"
 #include "controller-layout-bottom.typ"
   
+// Beilage 4: Ladestation
+#include "ladestation-schaltplan.typ"
+#include "ladestation-layout-top.typ"
+#include "ladestation-layout-bottom.typ"
+
+// Beilage 5: Joystick-Halterung
+#include "joystick-schaltplan.typ"
+#include "joystick-layout-top.typ"
+#include "joystick-layout-bottom.typ"

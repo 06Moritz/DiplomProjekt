@@ -15,4 +15,4 @@
 )
 
 = Fahrzeug Layout BOTTOM
-//#image("/Bilder/fahrzeug-layout-bottom.png", width: 80%)
+//#image("/Bilder/anhang/fahrzeug-layout-bottom.png", width: 80%)

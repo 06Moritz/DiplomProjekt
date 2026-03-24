@@ -1,12 +1,12 @@
 #import "../Templates/rahmen.typ": *
 
 #show: rahmen-hoch.with(
-  dateiname: "Beilage 3",
+  dateiname: "Beilage 4",
   name: "Magdalena Reitsamer",
   gez: "ReiM",
   geprueft: "ProM",
   dokumentart: "Layout BOTTOM",
-  projekt: "Controller",
+  projekt: "Joystick",
   //beschreibung: "",
   status: "Prototyp",
   datum: "20.03.2026",
@@ -14,5 +14,5 @@
   blaetter: "3"
 )
 
-= Controller Layout TOP
-#image("/Bilder/anhang/controller-layout-bot.png", width: 80%)
+= Ladestation Layout TOP
+//#image("/Bilder/anhang/ladestation-layout-bottom.png", width: 80%)

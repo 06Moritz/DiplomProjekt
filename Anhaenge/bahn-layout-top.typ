@@ -15,4 +15,4 @@
 )
 
 = Bahn Layout TOP
-#image("/Bilder/pcb-bahn-top.png", width: 80%)
+#image("/Bilder/anhang/bahn-layout-top.png", width: 80%)
