@@ -32,7 +32,6 @@ width: 100%) // Rastergrafik
 #muchpdf(read("../PDF/Haupt/kocmBot.pdf", encoding: none),
 width: 100%) // Rastergrafik
 
-// 2 Arten zum Einfügen von PDFs:
 = Hauptmodul Schaltplan
 #v(4.5cm)
 #figure(

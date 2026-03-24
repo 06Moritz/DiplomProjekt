@@ -14,9 +14,7 @@ Die Kommunikation zwischen der App und dem Hauptmodul Display erfolgt über das 
 == App
 #figure(
 image("../Bilder/Appscreen.png", width: 50%),
-caption: [
-Startbildschirm
-],)
+caption: [Startbildschirm],)
 \
 
 Es gibt verschiedene Modi, die unterschiedliche Schwierigkeitsgrade bieten. Je nach Modus variiert die Anzahl der Runden und die Schwierigkeit der Steuerung. Unter Schwierigkeit der Steuerung versteht man mit welcher Motorleistung die Autosfahren.
@@ -96,9 +94,7 @@ In der App wurden die eingegebenen Parameter aktualisiert. Spieler1 wurde als Sp
 \ \
 #figure(
 image("../Bilder/TestCode.png", width: 50%),
-caption: [
-Test Code
-],)
+caption: [Test Code],)
 \ 
 Anschließend wurden die App und der ESP32 als Sender und Empfänger initialisiert. 
  \ \
@@ -175,10 +171,10 @@ In dem Code des ESP32 wird ein Server Socket erstellt, der auf Port 8080 lauscht
 
 
 
-=== Synchronisation \ 
+=== Synchronisation
 Um sicherzustellen, dass beide Geräte immer den gleichen Systemstatus anzeigen, wurde ein zeilenbasiertes Protokoll entwickelt.\ Jede Nachricht wird mit einem Newline-Zeichen (\n) abgeschlossen, damit der Empfänger das Ende eines Befehls eindeutig erkennt. Dies ist notwendig, da @tcp die Daten als kontinuierlichen Strom versendet.\ Sobald in der App ein Parameter wie der Spielmodus oder die Rundenzahl geändert wird, sendet die App sofort ein entsprechendes Datenpaket an das Display. Ein Befehl wie MODUS: Schwer bewirkt am Display eine sofortige Aktualisierung der Variable und einen Redraw der Benutzeroberfläche. Dieser Prozess funktioniert auch in die umgekehrte Richtung: Wird am Display der "Start"- oder "Modus"-Button gedrückt, erhält die App das Signal zum Starten des Renn-Timers beziehungsweise das ändern des Moduses.
 \ \
-=== Echtzeitverhalten\ 
+=== Echtzeitverhalten
 Bei der Softwareimplementierung wurde besonders auf ein nicht-blockierendes Design geachtet. Da das Hauptmodul gleichzeitig den Touchscreen abfragen und das Display aktualisieren muss, darf der Netzwerkcode den Prozessor nicht aufhalten.\ Die Abfrage von eingehenden Daten erfolgt daher in jedem Programmdurchlauf, ohne den restlichen Ablauf zu verzögern.
 \
 Sollte die Verbindung zwischenzeitlich unterbrochen werden, verfügt die App über eine automatische Reconnect-Logik.\ Diese erkennt die unterbrochene Verbindung durch einen Timeout und versucht eigenständig, den Socket neu zu initialisieren, um die Verbindung wiederherzustellen. Während der Reconnect-Phase zeigt die App eine entsprechende Meldung an. Sobald die Verbindung wiederhergestellt ist, werden alle zuvor gesendeten Befehle erneut übertragen, um sicherzustellen, dass das Display den aktuellen Status korrekt anzeigt. 

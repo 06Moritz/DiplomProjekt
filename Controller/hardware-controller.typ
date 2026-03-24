@@ -1,4 +1,5 @@
 #import "../config.typ": *
+#aktueller_autor.update(author3)
 
 = Hardware //blockdiagramm einfügen 
 
@@ -113,8 +114,6 @@ In dieser Abbildung sieht man den Strom- und Spannungsverlauf eines Mikrocontrol
   caption: [mit Kondensator]
 )\
 In dieser Abbildung sieht man den Strom- und Spannungsverlauf eines Mikrocontrollers mit einem Stützkondensator. Es ist deutlich zu erkennen, dass die Spannung stabil bleibt, auch während der Stromspitzen.
-
-\ \ \ \ \ \ \ \ \ \ \ \ \ \ \
 
 
 

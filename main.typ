@@ -32,35 +32,19 @@
 #pagebreak()
 #include "technische Beschreibungen/tec-main.typ"
 
-// Bahn - Auto - Controller
+// Bahn - Auto - Controller - Ladestation
 #pagebreak()
-#aktueller_autor.update(author1) // Melanie
-
-// Bahn
 #include "Bahn/main-bahn.typ"
-
-// Auto
 #pagebreak()
-#aktueller_autor.update(author2) // Moritz
-
 #include "Auto/main-auto.typ"
-
-// Controller
 #pagebreak()
-#aktueller_autor.update(author3) // Magdalena
-
 #include "Controller/main-controller.typ"
-
-//Ladestation
 #pagebreak()
-#aktueller_autor.update(author3)
-
-#include "Ladestation/hardware-ladestation.typ"
+#include "Ladestation/main-ladestation.typ"
 
 //App
 #pagebreak()
 #aktueller_autor.update(author3)
-
 #include "App/main-app.typ"
 
 

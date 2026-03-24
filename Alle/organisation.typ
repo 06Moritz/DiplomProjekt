@@ -37,11 +37,25 @@ Fr. Magdalena Reitsamer
 === #author3
 *!* Entwicklung Controller, Ladestation und App
 
-== Projektplanung
-// Gantt Diagramme
-=== #author1
-=== #author2
-=== #author3
-
 
 #pagebreak()
+== Projektplanung
+
+=== #author1
+#v(-2em)
+#align(center)[
+  #rotate(-90deg, reflow: true, image("/Bilder/gantt-kocm_cr.png", width: 94.4%))
+]
+
+// Gantt-Diagramm von Moritz ist nicht vollständig
+=== #author2
+#v(-2em)
+#align(center)[
+  #rotate(-90deg, reflow: true, image("/Bilder/gantt-prom_cr.png", width: 94.4%))
+]
+
+=== #author3
+#v(-2em)
+#align(center)[
+  #rotate(-90deg, reflow: true, image("/Bilder/gantt-reim_cr.png", width: 94.4%))
+]

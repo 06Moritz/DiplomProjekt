@@ -1,3 +1,7 @@
+#import "../config.typ": *
+#pagebreak()
+#aktueller_autor.update(author2) // Moritz
+
 = Software
 == BLE
 *!* Das Auto ist als @ble Client konfiguriert.
