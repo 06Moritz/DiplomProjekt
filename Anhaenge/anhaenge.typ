@@ -1,6 +1,6 @@
 #import "../config.typ": *
 
-= Anlagen 
+= Anhang
 
 #show outline.entry: it => link(
   it.element.location(),
@@ -62,6 +62,16 @@ width: 100%) // Rastergrafik
 
 
 // derzeit nur Testbilder drinnen - erst richtig exportieren - bzw. schön anordnen
+// Beilage 1: Bahn
 #include "bahn-schaltplan.typ"
 #include "bahn-layout-top.typ"
 #include "bahn-layout-bottom.typ"
+
+// Beilage 2: Fahrzeug
+
+
+// Beilage 3: Controller
+#include "controller-schaltplan.typ"
+#include "controller-layout-top.typ"
+#include "controller-layout-bottom.typ"
+  

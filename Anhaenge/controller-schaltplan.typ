@@ -1,12 +1,12 @@
 #import "../Templates/rahmen.typ": *
 
 #show: rahmen-quer.with(
-  dateiname: "Beilage 1",
-  name: "Melanie Koch",
-  gez: "KocM",
+  dateiname: "Beilage 3",
+  name: "Magdalena Reitsamer",
+  gez: "ReiM",
   geprueft: "ProM",
   dokumentart: "Schaltplan",
-  projekt: "Bahn",
+  projekt: "Controller",
   //beschreibung: "",
   status: "Prototyp",
   datum: "20.03.2026",
@@ -14,5 +14,5 @@
   blaetter: "3"
 )
 
-= Bahn Schaltplan
+= Controller Schaltplan
 #image("/PDF/bahn-sch-test.pdf", width: 100%, height: 100%, fit: "contain")

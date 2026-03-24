@@ -65,7 +65,7 @@ $ w=((5.98*1.5)/(e^(((sqrt(4.5+ 1.41)*50)/87)))-0.035)*1/0.8 = underline(underli
 \
 
 #figure(
-image("../Bilder/antenna.png", width: 70%),
+fimage("/Bilder/antenna.png", width: 70%),
 caption: [BLE Antennendesign],
 )<fig-bleantenna>
 
