@@ -1,7 +1,7 @@
 #import "../config.typ": *
 = Software
 == BLE
-*!* Das Auto ist als @ble Client konfiguriert.
+*!* Das Auto ist als @ble Master(Central-Device) konfiguriert. Es sucht aktiv nach Geräten zum Verbinden und und empfängt Geschwindigkeitswerte.
 
 == Motorregelung 
 Die Drehzahl wird über den Drehzahlsensor eingelesen. Der Sensor geht einmal in der Umdrehung auf low. Auf den Input-pin ist ein Interrupt gesetzt, die Zeit zwischen den Interrupts wird gemessen. 

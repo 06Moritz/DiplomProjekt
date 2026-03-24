@@ -58,8 +58,8 @@ width: 100%) // Rastergrafik
 #muchpdf(read("../PDF/Controller/ReimBot.pdf", encoding: none),
 width: 100%) // Rastergrafik
 
-#muchpdf(read("../PDF/auto/lay_top.pdf", encoding: none),
-width: 100%)
+// #muchpdf(read("../PDF/auto/lay_top.pdf", encoding: none),
+// width: 100%)
 
 
 // derzeit nur Testbilder drinnen - erst richtig exportieren - bzw. schön anordnen
