@@ -68,7 +68,9 @@ width: 100%) // Rastergrafik
 #include "bahn-layout-bottom.typ"
 
 // Beilage 2: Fahrzeug
-
+#include "auto-schaltplan.typ"
+#include "auto-layout-top.typ"
+#include "auto-layout-bottom.typ"
 
 // Beilage 3: Controller
 #include "controller-schaltplan.typ"

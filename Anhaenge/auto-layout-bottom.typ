@@ -5,14 +5,14 @@
   name: "Moritz Prodinger",
   gez: "ProM",
   geprueft: "ProM",
-  dokumentart: "Layout TOP",
+  dokumentart: "Layout BOTTOM",
   projekt: "Fahrzeug",
   //beschreibung: "",
   status: "Prototyp",
   datum: "08.03.2026",
-  blatt: "2",
+  blatt: "3",
   blaetter: "3"
 )
 
-= Fahrzeug Layout TOP
-//#image("/Bilder/fahrzeug-layout-top.png", width: 80%)
+= Fahrzeug Layout BOTTOM
+//#image("/Bilder/fahrzeug-layout-bottom.png", width: 80%)
