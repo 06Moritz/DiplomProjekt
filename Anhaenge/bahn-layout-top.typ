@@ -1,16 +1,18 @@
 #import "../Templates/rahmen.typ": *
 
 #show: rahmen-hoch.with(
-  //dateiname: "Beilage X",
+  dateiname: "Beilage 1",
   name: "Melanie Koch",
   gez: "KocM",
-  geprueft: "KocM",
+  geprueft: "ProM",
   dokumentart: "Layout TOP",
   projekt: "Bahn",
   //beschreibung: "",
   status: "Prototyp",
-  datum: "20.03.2026"
+  datum: "20.03.2026",
+  blatt: "2",
+  blaetter: "3"
 )
 
 = Bahn Layout TOP
-#image("/Bilder/pcb-bahn-top.png", width: 80%)
+#image("/Bilder/anhang/bahn-layout-top.png", width: 80%)

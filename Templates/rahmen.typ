@@ -6,7 +6,7 @@
     id_nr:          "5AHEL",
     gez:            "",
     geprueft:       "",
-    betreuer:       "",
+    betreuer:       "LinR",
     dokumentart:    "",
     freigabe:       "",
     projekt:        "",
@@ -78,7 +78,7 @@
                             #stack(
                                 dir: ttb,
                                 spacing: 15pt,
-                                text(size: 16pt, weight: "regular")[#projekt],
+                                text(size: 20pt, weight: "regular")[#projekt],
                                 text(size: 12pt)[#beschreibung]
                             )
                         ]
