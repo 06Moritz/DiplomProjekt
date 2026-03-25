@@ -49,7 +49,6 @@ Die Ladestation wird über einen kurzen @usbc zu @usbc Adapter mit dem Ladeausga
 
 
 == 3D-Druck
-Alle Teile sind in Autodesk Fusion 360 modelliert und aus schwarzem @abs:long  gedruckt. Die Wandstärken sind so dimensioniert, dass die Press-fit Verbindung zwischen Grundplatte und Deckel zusammenhält. //stabil hält
 
 Der 3D Druck wird aus @abs gedruckt, da dieses Material eine hohe Festigkeit, Schlagzähigkeit und Hitzebeständigkeit bietet, was für die Funktionalität und Langlebigkeit der Ladestation beiträgt. 
 
