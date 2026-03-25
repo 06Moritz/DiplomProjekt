@@ -1,4 +1,5 @@
 #import "../config.typ": *
+#aktueller_autor.update([#author3, #klasse])
 
 Die App dient zum Einstellen. Sie ermöglicht es die Sprache, den Modus, die Rundenzahl und Spielernamen einzustellen, sowie die Verbindung zum Hauptmodul Display herzustellen.\ 
 = Software

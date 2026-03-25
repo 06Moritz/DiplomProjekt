@@ -1,5 +1,5 @@
 #import "../config.typ": *
-#aktueller_autor.update(author1) // Melanie
+#aktueller_autor.update([#author1, #klasse])
 
 = @buck:both <sec_buck>
 

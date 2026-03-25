@@ -1,6 +1,8 @@
 #import "../config.typ": *
 
-#aktueller_autor.update(author2) // Moritz
+#aktueller_autor.update([#author2, #klasse])
+
+// NOCH FERTIG SCHREIBEN
 
 = @ble:both <sec_ble>
 *!* @ble:long ist ein drahtloses Kommunikationsprotokoll, das speziell für die Verbindung von Geräten über kurze Entfernungen entwickelt wurde. @ble ist für Übertragung von kleinen Datenmengen optimiert und zeichnet sich durch folgende Eigenschaften aus:

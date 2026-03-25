@@ -10,6 +10,7 @@ caption: [Teamfoto],
 
 == Individuelle Aufgabenstellung
 // von DA Antrag
+/* 
 Fr. Melanie Koch
 - Leiterplatte Hauptmodul
 - Gehäuse Hauptmodul
@@ -27,9 +28,9 @@ Fr. Magdalena Reitsamer
 - Leiterplatte Controller-Ladestation
 - App für die statische Auswertung
 - Gehäuse Auto
-
+ */
 === #author1
-*!* Entwicklung Hauptmodul/Bahn und Gehäusedesign
+*!* Entwicklung Hauptmodul und Gehäusedesign
 
 === #author2
 *!* Entwicklung Autos und Steuerungssoftware
