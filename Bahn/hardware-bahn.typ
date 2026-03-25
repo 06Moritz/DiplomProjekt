@@ -15,7 +15,8 @@ Die Versorgung der Hardware erfolgt über einen @usbc Eingang mit @pd, der eine 
 
 @usbc @pd:long wird aus folgenden Gründen verwendet:
 - Standardisierung: @usbc @pd ist weit verbreitet und ermöglicht die Nutzung von handelsüblichen Netzteilen ohne eigene Steckerlösung.
-- Leistung: @pd unterstützt bis zu 240W, was für die Anforderungen der Bahn mehr als ausreichend ist. @sourcePDhama
+- Leistung: Der USB-C PD Standart unterstützt bis zu 240W Leistung, was weitaus größer als die Leistungsaufnahme der bahn mit etwa 70W ist.
+//- Leistung: @pd unterstützt bis zu 240W, was für die Anforderungen der Bahn mehr als ausreichend ist. @sourcePDhama
 - Bauweise: @usbc ist kompakt, robust und ermöglicht reversibles Einstecken.
 - Spannungsaushandlung: Über den @pd\-Handshake wird die benötigte Spannung von 12V aktiv zwischen Netzteil und Hardware vereinbart, wodurch nur kompatible Netzteile die erhöhte Spannung liefern.
 
