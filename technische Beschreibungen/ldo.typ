@@ -10,4 +10,4 @@ Eigenschaften eines @ldo's:
 - keine elektromagnetischen Störungen durch Schaltfrequenzen
 - geringer Wirkungsgrad bei großer Spannungsdifferenz
 
-Durch das geringe Rauschen eignet sich der @ldo besonders als nachgeschaltete Stufe eines @buck:short\s, um dessen hochfrequente Schaltstörungen zu unterdrücken. So wird eine saubere Versorgungsspannung für empfindliche Bauteile wie Mikrocontroller oder Displays bereitgestellt. //@ldoSource
+Durch das geringe Rauschen eignet sich der @ldo besonders als nachgeschaltete Stufe eines @buck:short\s, um dessen hochfrequente Schaltstörungen zu unterdrücken. So wird eine saubere Versorgungsspannung für empfindliche Bauteile wie Mikrocontroller oder Displays bereitgestellt. @sourceLDO
