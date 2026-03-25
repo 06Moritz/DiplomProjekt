@@ -82,9 +82,9 @@
 // framed-image:
 #let fimage(path, ..args) = {
   rect(
-    stroke: 0.5pt + gray.darken(0%),
+    stroke: 0.56pt + gray.darken(0%),
     inset: 5pt,
-    radius: 0pt,
+    radius: 2pt,
     image(path, ..args)
   )
 }

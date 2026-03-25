@@ -14,7 +14,7 @@ caption: [Blockschaltbild Hardware Auto],
 Die Schleifkontakte, an der Unterseite des Fahrzeugs, greifen 12V von der Schiene ab. Die Eingangspannung wird mit einem Buck-Converter auf 5V geregelt. Mit einem Linearregler wird auf 3.3V geregelt. Die stufenweise Regelung sorgt für eine geringe Restwelligkeit, da Mikrocontroller eine stabile Versorgungspannung benötigen.
 
 #figure(
-image("../Bilder/buckLay.png", width: 85%),
+fimage("/Bilder/buckLay.png", width: 85%),
 caption: [Layout des Abwertswandlers],
 )
 
@@ -95,7 +95,7 @@ caption: [NFC Antenne],
 
 *!* Die NFC Antenne ist eine Spule direkt auf der Leiterplatte. Die Schaltung besteht aus 3 Teilen, EMV-Filter, Anpassungsnetzwerk und der Antenne. 
 #figure(
-image("../Bilder/NFCcoil.png", width: 50%),
+fimage("/Bilder/nfcCoil.png", width: 50%),
 caption: [NFC Antenne auf der Leiterplatte],
 )
 
@@ -104,7 +104,7 @@ caption: [NFC Antenne auf der Leiterplatte],
 === Ersatzschaltung
 
 #figure(
-image("../Bilder/SpuleErsatzschaltbild.png", width: 85%),
+image("../Bilder/SpuleErsatzschaltbild.png", width: 100%),
 caption: [Ersatzschaltbild der NFC-Antenne],
 )
 <fig-nfcantenna>
