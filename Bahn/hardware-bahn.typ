@@ -1,5 +1,5 @@
 #import "../config.typ": *
-#aktueller_autor.update(author1) // Melanie
+#aktueller_autor.update([#author1, #klasse])
 
 = Hardware <sec_bahn-hardware>
 Die Hardware der Rennbahn übernimmt die Zeitmessung beider Fahrspuren über @nfc, stellt Renninformationen auf einem Touchdisplay dar und kommuniziert drahtlos mit der App. Zusätzlich versorgt sie die Controller-Ladestation. Das Blockschaltbild

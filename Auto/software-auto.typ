@@ -1,6 +1,6 @@
 #import "../config.typ": *
 #pagebreak()
-#aktueller_autor.update(author2) // Moritz
+#aktueller_autor.update([#author2, #klasse])
 
 = Software
 == BLE

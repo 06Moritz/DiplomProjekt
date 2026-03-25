@@ -1,6 +1,6 @@
 #import "../config.typ": *
 #pagebreak()
-#aktueller_autor.update(author1) // Melanie
+#aktueller_autor.update([#author1, #klasse]) // Melanie
 
 = 3D <sec_bahn-3d>
 *!* Das Hauptmodul nimmt die Leiterplatte, das Display sowie die Schienen auf. Ein kompaktes Design hält alle Komponenten sicher zusammen und ermöglicht eine einfache Montage.

@@ -1,5 +1,5 @@
 #import "../config.typ": *
-#aktueller_autor.update(author2) // Moritz
+#aktueller_autor.update([#author2, #klasse])
 
 = Hardware
 *!*Die Hardware des Fahrzeugs \ \ 

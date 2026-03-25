@@ -1,5 +1,5 @@
 #import "../config.typ": *
-#aktueller_autor.update(author3)
+#aktueller_autor.update([#author3, #klasse])
 
 Die Ladestation dient zum aufladen des Akkus vom Controller. Sie ist mit dem Hauptmodul Display verbunden und ermöglicht es die Controller aufzuladen, während sie nicht in Benutzung sind. Die Ladestation ist so konzipiert, dass sie einfach zu bedienen ist und eine sichere stromversorgung für die Controller bietet.
 
