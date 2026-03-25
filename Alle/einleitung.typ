@@ -25,5 +25,6 @@
 - Jugendlich sowie Erwachsene mit technischem Interesse
 
 == Umsetzung
+// Gesamtblockschaltbild?
 
 #pagebreak()
