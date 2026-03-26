@@ -151,7 +151,7 @@ In dieser Abbildung sieht man den Strom- und Spannungsverlauf eines Mikrocontrol
 == Leiterplatte
 
 #figure(
-fimage("/Bilder/controlleruberbl.svg", width: 100%),
+fimage("/Bilder/controllerUberblick.svg", width: 100%),
 caption: [Leiterplatte des Controllers],
 )
 
