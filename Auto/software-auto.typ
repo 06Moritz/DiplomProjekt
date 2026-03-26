@@ -4,9 +4,26 @@
 
 = Software
 == @ble:both
-Das Auto ist als @ble Master(Central-Device) konfiguriert. Es sucht aktiv nach Geräten zum Verbinden und und empfängt Geschwindigkeitswerte.
+Die Basis der Implementierung bildet der @ble Beispielcode von WCH. Dieser Framework stellt die notwendigen Low-Level-Funktionen für den Bluetooth-Stack und das TMOS (Task Management Operating System) zur Verfügung.
+Das Auto ist als @ble BLE-Master (Central-Device) konfiguriert. Es sucht aktiv nach Geräten zum Verbinden und und empfängt Geschwindigkeitswerte. 
+- *Überschrift?* Es wird er der interne niederfrequente 32kHz Quarz verwendet, der im setup Kalibriert werden muss. Für @ble ist eine genaue Frequenz erforderlich.
 
--Es wird er der interne niederfrequente 32kHz Quarz verwendet, der im setup Kalibriert werden muss. Für @ble ist eine genaue Frequenz erforderlich.
+#figure(
+  table(
+    columns: (1fr),
+    rows: (auto),
+    [
+```c
+    HSECFG_Capacitance(HSECap_18p); //Kondensatoren für Quarz einstellen
+    SetSysClock(SYSCLK_FREQ); //Systemfrequenz einstellen
+    SysTick->CTLR |= 0x05; //SysTick Timer auf Clock Frequenz einstellen
+    Calibration_LSI(Level_64); //Clock kalibrieren
+
+    ```
+    ],
+  ),
+  caption: [CLK-init]
+  )
 
 - Es wird aktiv nach der eingestellen MAC-Adresse des Controllers gesucht; diese kann über NFC eingestellt werden. (siehe @sec-pairing).
 
@@ -72,8 +89,8 @@ if(p > 255) p = 255; //Wertbegrenzung auf 0-255
   )
 
 
-== NFC
-
+== @nfc:both
+Die @nfc 
 
 
 == Pairing mode <sec-pairing>
