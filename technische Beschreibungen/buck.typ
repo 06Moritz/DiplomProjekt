@@ -14,7 +14,7 @@
 Der @buck nutzt eine Induktivität zur zeitgesteuerten Energiespeicherung. Ein @mosfet:short zerlegt die Eingangsspannung durch hochfrequentes Schalten in Pulse, wobei das Tastverhältnis der @pwm das Spannungsniveau am Ausgang definiert. Ein nachgeschalteter LC-Filter glättet diese Pulse schließlich zu einer stabilen Gleichspannung für den Lastkreis. @buckSource
 
 #figure(
-  fimage("/Bilder/buckconverter.png", width: 100%),
+  image("/Bilder/buckconverter.png", width: 100%),
   caption: [@buck Schaltungprinzip],
 )
 
