@@ -4,40 +4,20 @@
 
 == Projektteam
 #figure(
-image("../Bilder/team.JPG", width: 100%),
-caption: [Teamfoto],
+  image("/Bilder/team.JPG", width: 100%),
+  caption: [Teamfoto (v.l.n.r: Prodinger, Reitsamer, Koch, Lindner)],
 )
 
 == Individuelle Aufgabenstellung
-// von DA Antrag
-/* 
-Fr. Melanie Koch
-- Leiterplatte Hauptmodul
-- Gehäuse Hauptmodul
-- Controller-Gehäuse
-- Schienendesign
-\
-Hr. Moritz Prodinger
-- Leiterplatte Auto
-- Software Hauptmodul
-- Software-Autosteuerung
-- Gehäuse für Ladestation
-\
-Fr. Magdalena Reitsamer
-- Leiterplatte Controller
-- Leiterplatte Controller-Ladestation
-- App für die statische Auswertung
-- Gehäuse Auto
- */
+
 === #author1
-*!* Entwicklung Hauptmodul und Gehäusedesign
+Der Aufgabenbereich umfasst die Entwicklung der Leiterplatte und des Gehäuses für das Hauptmodul sowie die Entwicklung des Controller-Gehäuses.
 
 === #author2
-*!* Entwicklung Autos und Steuerungssoftware
+Der Aufgabenbereich umfasst die Entwicklung des Autos inklusive Leiterplatte und Mechanik sowie die Software für Controller und Fahrzeugsteuerung.
 
 === #author3
-*!* Entwicklung Controller, Ladestation und App
-
+Der Aufgabenbereich umfasst die Entwicklung der Leiterplatte für den Controller und Ladestation sowie die Entwicklung der Software für Hauptmodul und Appverbindung.
 
 #pagebreak()
 == Projektplanung
