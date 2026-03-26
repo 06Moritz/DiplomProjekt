@@ -3,8 +3,33 @@
 #aktueller_autor.update([#author2, #klasse])
 
 = Software
-== BLE
-*!* Das Auto ist als @ble Master(Central-Device) konfiguriert. Es sucht aktiv nach Geräten zum Verbinden und und empfängt Geschwindigkeitswerte.
+== @ble:both
+Die Basis der Implementierung bildet der @ble Beispielcode von WCH. Dieser Framework stellt die notwendigen Low-Level-Funktionen für den Bluetooth-Stack und das TMOS (Task Management Operating System) zur Verfügung.
+Das Auto ist als @ble BLE-Master (Central-Device) konfiguriert. Es sucht aktiv nach Geräten zum Verbinden und und empfängt Geschwindigkeitswerte. 
+- *Überschrift?* Es wird er der interne niederfrequente 32kHz Quarz verwendet, der im setup Kalibriert werden muss. Für @ble ist eine genaue Frequenz erforderlich.
+
+#figure(
+  table(
+    columns: (1fr),
+    rows: (auto),
+    [
+```c
+    HSECFG_Capacitance(HSECap_18p); //Kondensatoren für Quarz einstellen
+    SetSysClock(SYSCLK_FREQ); //Systemfrequenz einstellen
+    SysTick->CTLR |= 0x05; //SysTick Timer auf Clock Frequenz einstellen
+    Calibration_LSI(Level_64); //Clock kalibrieren
+
+    ```
+    ],
+  ),
+  caption: [CLK-init]
+  )
+
+- Es wird aktiv nach der eingestellen MAC-Adresse des Controllers gesucht; diese kann über NFC eingestellt werden. (siehe @sec-pairing).
+
+- Das Auto ist als Client konfiguriert, das bedeutet er empfängt Daten die vom Controller gesendet werden. Die Daten werden als notifications gesendet (siehe /*@sec-BLE*/) 
+
+- Die empfangen Motorleistungsdaten werden direkt gespeichert und von der Motorregelung verarbeitet. 
 
 == Motorregelung 
 Die Drehzahl wird über den Drehzahlsensor eingelesen. Der Sensor geht einmal in der Umdrehung auf low. Auf den Input-pin ist ein Interrupt gesetzt, die Zeit zwischen den Interrupts wird gemessen. 
@@ -25,9 +50,10 @@ void GPIOA_IRQHandler(void) {
         last_tick = current_tick;
         flag = 1;
         GPIOA_ClearITFlagBit(GPIO_Pin_4);
-        ```
+
     }
-}
+} 
+```
     ],
   ),
   caption: [Interrupt-Service-Routine]
@@ -63,8 +89,8 @@ if(p > 255) p = 255; //Wertbegrenzung auf 0-255
   )
 
 
-== NFC
+== @nfc:both
+Die @nfc 
 
 
-
-== Pairing mode
+== Pairing mode <sec-pairing>

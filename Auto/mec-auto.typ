@@ -7,7 +7,7 @@
 Die mechanische Komponente des Autos ist möglichst einfach gehalten. Die Leiterplatte wird als Bodenplatte des Fahrzeugs verwendet. Die Räder werden mit einem einfachen Getriebe angetrieben.
 
 #figure(
-image("../Bilder/3d-car.png", width: 85%),
+fimage("/Bilder/3d-car.png", width: 85%),
 caption: [3D Modell des Autos],
 )
 == Getriebe

@@ -6,7 +6,7 @@
 
 == Blockschaltbild
 #figure(
-image("../Bilder/Blockschaltbild-HW-Auto.svg", width: 85%),
+fimage("/Bilder/Blockschaltbild-HW-Auto.svg", width: 85%),
 caption: [Blockschaltbild Hardware Auto],
 )
 
@@ -37,7 +37,7 @@ Der Motor muss unter Belastung eine Mindestdrehzahl von 10200 $U/min$ haben um 8
 == H-Brückenschaltung<sec-hbridge>
 
 #figure(
-image("../Bilder/HBrueke.png", width: 50%),
+fimage("/Bilder/HBrueke.png", width: 50%),
 caption: [H-Brückenschaltung],
 )
 
@@ -68,6 +68,21 @@ $ w=((5.98*1.5)/(e^(((sqrt(4.5+ 1.41)*50)/87)))-0.035)*1/0.8 = underline(underli
 fimage("/Bilder/antenna.png", width: 70%),
 caption: [BLE Antennendesign],
 )<fig-bleantenna>
+
+
+#figure(
+fimage("/Bilder/stromverteilungAuto.png", width: 70%),
+caption: [Stromverteilung auf der Antenne],
+)
+
+
+#figure(
+fimage("/Bilder/Autocart.png", width: 70%),
+caption: [Stromverteilung auf der Antenne],
+)
+
+
+
 
 #pagebreak()
 
@@ -152,3 +167,10 @@ $ C_2 approx 1/(\u{03C9}^2*L_"pa"/2)-1/(\u{03C9}*sqrt((R_"tr"*R_"pa")/4))-2*C_"p
 
 
 == Leiterplatte
+
+
+
+#figure(
+fimage("/Bilder/autoueberblick.svg", width: 100%),
+caption: [Ersatzschaltbild der NFC-Antenne],
+)
