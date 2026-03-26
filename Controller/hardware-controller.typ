@@ -87,6 +87,23 @@ Die Steuerung des Systems erfolgt über den CH572. Der Mikrocontroller verarbeit
 - CH32V003\ Er verfügt über integrierten @adc, die es möglich machen, die analogen Signale der Sensoren zu verarbeiten. Da er günsiger als ein externer @adc ist, wurde er als  kosteneffiziente Lösung ausgewählt. \ \
 
 Bei der Entwicklung der Controller Platine wurde darauf geachtet, dass ein Quarz für eine stabile Taktfrequenz, die für @ble notwenig ist, vorhanden ist. Da der interne RC-Oszillator des CH572 nicht ausreicht, ist ein externer Quarz mit einer Frequenz von 32 MHz an die Pins XO und XI angeschlossen.  
+
+=== Stützkondensator
+Da Mikrocontroller kurzzeitig erhöhte Ströme aufnehmen können, entstehen Stromspitzen auf der Versorgungsspannung. Diese können zu kurzzeitigen Spannungsausfall führen. Aus diesem Grund wurde ein Stützkondensator in der Nähe des Mikrocontrollers platziert. Dieser fängt die Stromspitzen ab und sorgt für eine stabile Versorgung während der @ble -Kommunikation bei.\ \
+
+#figure(
+  fimage("/Bilder/ChipStrom.png", width: 100%),
+  caption: [ohne Kondensator]
+)\
+In dieser Abbildung sieht man den Strom- und Spannungsverlauf eines Mikrocontrollers ohne Stützkondensator. Es ist deutlich zu erkennen, dass die Spannung während der Stromspitzen kurzzeitig abfällt.
+\ \
+#figure(
+  fimage("/Bilder/ChipStromC.png", width: 100%),
+  caption: [mit Kondensator]
+)\
+In dieser Abbildung sieht man den Strom- und Spannungsverlauf eines Mikrocontrollers mit einem Stützkondensator. Es ist deutlich zu erkennen, dass die Spannung stabil bleibt, auch während der Stromspitzen.
+
+
 \ \
 == @adc:both
 Die analogen Signale vom Potentiometer und vom Schieberegler werden über den @adc von dem CH32V003 eingelesen. Der Chip wandelt die analogen Signale in digitale Werte um, sie werden über UART an den Ch572 gesendet. 
@@ -127,6 +144,8 @@ In dem angegebenen Bodediagramm ist der Reflexionsfaktor S11 aufgetragen. Zu erk
 fimage("/Bilder/AntStrom.png", width: 100%),
 caption: [Stromverteilung der Antenne],
 )
+\
+In der Abbildung ist die Stromverteilung entlang der Antennenleiterbahn dargestellt. Die Stromdichte variiert entlang der Leiterbahn, mit einem Maximum in der Nähe des Speisepunkts.
 //In diesem Diagramm ist die Stromverteilung auf der Antenne dargestellt. Es ist zu erkennen, dass die Stromdichte entlang der Leiterbahn variiert, mit einem Maximum in der Nähe des Speisepunkts. Dies ist typisch für eine Antenne und zeigt, dass die Energie effizient in den Raum abgestrahlt wird.
 
 
@@ -134,19 +153,12 @@ caption: [Stromverteilung der Antenne],
 Um Störungen durch andere Signale auf der Platine zu vermeiden, sind keine Bauteile in der Nähe der Antenne und Leiterbahn platziert. 
 Dadurch wird verhindert, dass hochfrequente Signale in benachbarte Leiterbahnen einkoppeln und die @ble -Kommunikation beeinflussen.@antennaSource\ \ 
 
-Da Mikrocontroller kurzzeitig erhöhte Ströme aufnehmen können, entstehen Stromspitzen auf der Versorgungsspannung. Diese können zu kurzzeitigen Spannungsausfall führen. Aus diesem Grund wurde ein Stützkondensator in der Nähe des Mikrocontrollers platziert. Dieser fängt die Stromspitzen ab und sorgt für eine stabile Versorgung während der @ble -Kommunikation bei.\ \
+== Leiterplatte
 
 #figure(
-  fimage("/Bilder/ChipStrom.png", width: 100%),
-  caption: [ohne Kondensator]
-)\
-In dieser Abbildung sieht man den Strom- und Spannungsverlauf eines Mikrocontrollers ohne Stützkondensator. Es ist deutlich zu erkennen, dass die Spannung während der Stromspitzen kurzzeitig abfällt.
-\ \
-#figure(
-  fimage("/Bilder/ChipStromC.png", width: 100%),
-  caption: [mit Kondensator]
-)\
-In dieser Abbildung sieht man den Strom- und Spannungsverlauf eines Mikrocontrollers mit einem Stützkondensator. Es ist deutlich zu erkennen, dass die Spannung stabil bleibt, auch während der Stromspitzen.
+fimage("/Bilder/controllerUberblick.svg", width: 100%),
+caption: [Leiterplatte des Controllers],
+)
 
 #pagebreak()
 

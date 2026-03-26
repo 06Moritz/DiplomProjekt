@@ -8,6 +8,8 @@
 
   pwm: (short: "PWM", long: "Pulsweitenmodulation", description: "Verfahren zur Steuerung der Leistung von elektrischen Geräten"),
 
+  uuid: (short: "UUID", long: "Universally Unique Identifier", description: "Eindeutige Kennung, die zur Identifikation von Objekten oder Entitäten verwendet wird"),
+
   ldo: (short: "LDO", long: "Low Dropout Regulator", description: "Spannungsregler, der auch bei geringer Eingangsspannung stabil arbeitet"),
 
   nfc: (short: "NFC", long: "Near Field Communication", description: "Technologie für die drahtlose Kommunikation über kurze Distanzen"),
@@ -34,6 +36,8 @@
 
   cc: (short: "CC", long: "Configuration Channel", description: "Kanal für die Konfiguration von USB Power Delivery, über den die Stromversorgung und andere Parameter ausgehandelt werden"),
 
+  ask: (short: "ASK", long: "Amplitude Shift Keying", description: "Modulationsverfahren, bei dem die Amplitude eines Trägersignals zur Übertragung von Daten variiert wird"),
+
   via: (short: "Via", long: "Durchkontaktierung", description: "Leiterbahnverbindung zwischen verschiedenen Lagen einer Leiterplatte"),
   
   ti: (short: "TI", long: "Texas Instruments", description: "Amerikanisches Unternehmen, das Halbleiter und integrierte Schaltkreise herstellt"),
@@ -50,7 +54,7 @@
 
   easyeda: (short: "EasyEDA", long: "Easy Electronic Design Automation", description: "Software für die Erstellung von Schaltplänen und Leiterplattenlayouts"),
 
-  wifi: (short: "Wi-Fi", long: "Wireless Fidelity", description: "Technologie für die drahtlose Vernetzung von Geräten über Funkwellen"),
+  wifi: (short: "WiFi", long: "Wireless Fidelity", description: "Technologie für die drahtlose Vernetzung von Geräten über Funkwellen"),
 
   i2c: (short: "I²C", long: "Inter-Integrated Circuit", description: "Schnittstelle für die serielle Kommunikation zwischen Mikrocontrollern und Peripheriegeräten, die nur zwei Leitungen verwendet"),
 
@@ -94,6 +98,10 @@
   tft: (short: "TFT", long: "Thin-Film Transistor", description: "Technologie für die Herstellung von Displays, die eine hohe Bildqualität und schnelle Reaktionszeiten bietet"),
 
   sd: (short: "SD", long: "Secure Digital", description: "Standard für Speicherkarten, die in vielen elektronischen Geräten verwendet werden, um Daten zu speichern"),
+
+  pla: (short: "PLA", long: "Polylactic Acid", description: "Biologisch abbaubarer Kunststoff, der häufig im 3D-Druck verwendet wird, da er einfach zu verarbeiten ist und eine gute Oberflächenqualität bietet"),
+
+  fusion360: (short: "Fusion 360", long: "Autodesk Fusion 360", description: "CAD-Software für die 3D-Modellierung, Simulation und Fertigung von Produkten"),
 
   lcd: (short: "LCD", long: "Liquid Crystal Display", description: "Flüssigkristallbildschirm, eine Art von Display, das Flüssigkristalle verwendet, um Bilder anzuzeigen"),
 
@@ -142,6 +150,6 @@
   }
 )
 
-#glossary(title: "Glossar", theme: my-theme, sort: true, show-all: true)
+#glossary(title: "Glossar", theme: my-theme, sort: true, show-all: false)
 
 #pagebreak()

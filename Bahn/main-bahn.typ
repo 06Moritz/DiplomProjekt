@@ -1,4 +1,4 @@
-= Bahn
+= Hauptmodul
 #set heading(offset: 1)
 
 #include "hardware-bahn.typ"

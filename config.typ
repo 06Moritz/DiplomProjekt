@@ -1,6 +1,6 @@
-﻿#import "Templates/seitenlayout.typ": page_layout, aktueller_autor
+﻿#import "Templates/seitenlayout.typ": aktueller_autor, page_layout
 #import "Templates/startlayout.typ": start_layout
-#import "@preview/glossy:0.9.0": init-glossary, glossary
+#import "@preview/glossy:0.9.0": glossary, init-glossary
 #import "Verzeichnisse/abkuerzungsverzeichnis.typ": eintraege
 #import "@preview/muchpdf:0.1.2": muchpdf
 
@@ -19,12 +19,11 @@
   set text(
     font: "Lucida Sans",
     size: 12pt,
-    lang: "de"
+    lang: "de",
   )
   set par(
     justify: true,
-    leading: 1em
-
+    leading: 1em,
   )
   set text(hyphenate: false)
   set page(
@@ -37,32 +36,28 @@
   )
 
   set table(
-  stroke: 0.5pt + gray,
-  inset: 10pt // Optional: Erhöht den Abstand vom Text zum Rand
-)
+    stroke: 0.5pt + gray,
+    inset: 10pt, // Optional: Erhöht den Abstand vom Text zum Rand
+  )
 
 
   show heading: it => {
-    if it.level == 1 { 
+    if it.level == 1 {
       v(1.5cm, weak: true)
-    } 
-    else if it.level == 2 { 
-      v(1cm, weak: true) 
+    } else if it.level == 2 {
+      v(1cm, weak: true)
+    } else {
+      v(1cm, weak: true)
     }
-    else { 
-      v(1cm, weak: true) 
-    }
-    
+
     it
 
-    if it.level == 1 { 
-      v(1cm, weak: true) 
-    }
-    else if it.level == 2 { 
-      v(0.75cm, weak: true) 
-    }
-    else { 
-      v(0.5cm, weak: true) 
+    if it.level == 1 {
+      v(1cm, weak: true)
+    } else if it.level == 2 {
+      v(0.75cm, weak: true)
+    } else {
+      v(0.5cm, weak: true)
     }
   }
 
@@ -73,19 +68,35 @@
   }
   */
   show figure.caption: set text(fill: gray.darken(50%), size: 10pt)
-  
+
+  show raw.where(block: true): set text(1em / 0.9)
+  show raw.where(block: true): block.with(
+    fill: luma(100%),
+    stroke: 0.5pt + gray.darken(0%),
+    //fill: luma(240), // oder z.B. 95%
+    //stroke: 0.5pt + luma(200), // oder z.B. 70%
+    inset: 10pt,
+    radius: 2pt,
+    width: 100%,
+  )
+  show raw.where(block: false): box.with(
+    fill: luma(240),
+    inset: (x: 3pt, y: 0pt),
+    outset: (y: 3pt),
+    radius: 2pt,
+  )
+
   body
+
 }
-
-
 
 // framed-image:
 #let fimage(path, ..args) = {
   rect(
-    stroke: 0.56pt + gray.darken(0%),
+    stroke: 0.5pt + gray.darken(0%),
     inset: 5pt,
     radius: 2pt,
-    image(path, ..args)
+    image(path, ..args),
   )
 }
 
@@ -98,31 +109,37 @@
   context grid(
     columns: (2cm,) * 8,
     row-gutter: par.leading,
-    ..cs.fold((0, ()), ((col, arr), c) => {
-      let s = c.sum()
-      let w = int(calc.div-euclid(measure(s).width.pt(), 2cm.pt())) + 1
-      if col + w > 8 {
-        let (b, top) = s.children.map(t => if t.has("text") {t.text.split(" ")} else {t}).flatten().fold(([],()), ((tmp, res), word) => {
-          if res == () {
-            let new = if tmp == [] {
-              if word == [ ] { tmp } else { word }
-            } else if word == [ ] {
-              tmp + sym.space
-            } else {
-              tmp + sym.space + word
-            }
-            if measure(new).width > (8 - col) * 2cm {
-              (word, tmp)
-            } else {
-              (new, ())
-            }
-          } else {(tmp + sym.space + word, res)}
-        })
-        (calc.rem(col + w, 8), arr + (grid.cell(colspan: 8-col, top), grid.cell(colspan:  w - 8 + col, b)))
-      } else {
-        (calc.rem(col + w, 8), arr + (grid.cell(colspan: w, s),))
-      }
-    }).at(1)
+    ..cs
+      .fold((0, ()), ((col, arr), c) => {
+        let s = c.sum()
+        let w = int(calc.div-euclid(measure(s).width.pt(), 2cm.pt())) + 1
+        if col + w > 8 {
+          let (b, top) = s
+            .children
+            .map(t => if t.has("text") { t.text.split(" ") } else { t })
+            .flatten()
+            .fold(([], ()), ((tmp, res), word) => {
+              if res == () {
+                let new = if tmp == [] {
+                  if word == [ ] { tmp } else { word }
+                } else if word == [ ] {
+                  tmp + sym.space
+                } else {
+                  tmp + sym.space + word
+                }
+                if measure(new).width > (8 - col) * 2cm {
+                  (word, tmp)
+                } else {
+                  (new, ())
+                }
+              } else { (tmp + sym.space + word, res) }
+            })
+          (calc.rem(col + w, 8), arr + (grid.cell(colspan: 8 - col, top), grid.cell(colspan: w - 8 + col, b)))
+        } else {
+          (calc.rem(col + w, 8), arr + (grid.cell(colspan: w, s),))
+        }
+      })
+      .at(1)
   )
 }
 

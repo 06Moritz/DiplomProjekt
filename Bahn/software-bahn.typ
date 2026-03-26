@@ -4,10 +4,13 @@
 
 = Software <sec_bahn-software>
 
-? Die Software des Hauptmoduls dient zum Rundenzeit messen mittels NFC, erkennen von Autos, sowie zum Anzeigen von Informationen auf einem Display. ? Die Software ist in C++ geschrieben und läuft auf einen ESP32S3.
+Die Software des Hauptmoduls dient zum Rundenzeit messen mittels NFC, erkennen von Autos, sowie zum Anzeigen von Informationen auf einem Display. 
+
+
 
 == @nfc:long
 Die Rundenzeit wird über NFC gemessen. Jedes Auto hat eine eingebaute NFC Spule. Sobald ein Auto über den NFC-Tag fährt, wird ein Signal an den ESP geschickt, welcher die Werte auswertet und die Rundenzeit über BLE an die App, den Hauptmodul Display und den Controller sendet. 
+I2C, zeitmessung genauer, 
 \
 ```c
 code:
