@@ -103,7 +103,7 @@ tft library, I2C,
 #figure(
   image("/Bilder/display.png", width: 80%),
   caption: [Display des Hauptmoduls]
-)\
+)
 
 
 
