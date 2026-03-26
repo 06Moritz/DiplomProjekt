@@ -69,6 +69,21 @@ fimage("/Bilder/antenna.png", width: 70%),
 caption: [BLE Antennendesign],
 )<fig-bleantenna>
 
+
+#figure(
+fimage("/Bilder/stromverteilungAuto.png", width: 70%),
+caption: [Stromverteilung auf der Antenne],
+)
+
+
+#figure(
+fimage("/Bilder/Autocart.png", width: 70%),
+caption: [Stromverteilung auf der Antenne],
+)
+
+
+
+
 #pagebreak()
 
 == Drehzahlsensor 
@@ -80,7 +95,7 @@ Messwerte:
 
 #figure(
 
-image("../Bilder/speedsensor.png", width: 85%),
+fimage("/Bilder/speedsensor.png", width: 85%),
 caption: [VCNT2020 und Komperator Schaltung],
 )
 
@@ -89,7 +104,7 @@ caption: [VCNT2020 und Komperator Schaltung],
 
 == NFC Antenne 
 #figure(
-image("../Bilder/NFC.png", width: 85%),
+fimage("/Bilder/NFC.png", width: 85%),
 caption: [NFC Antenne],
 )
 
@@ -104,7 +119,7 @@ caption: [NFC Antenne auf der Leiterplatte],
 === Ersatzschaltung
 
 #figure(
-image("../Bilder/SpuleErsatzschaltbild.png", width: 100%),
+fimage("/Bilder/SpuleErsatzschaltbild.png", width: 100%),
 caption: [Ersatzschaltbild der NFC-Antenne],
 )
 <fig-nfcantenna>
@@ -123,7 +138,7 @@ $ R_"pa" = (\u{03C9} * L_a)^2/(R_a+2*R_Q) = underline(underline(1.68k\u{03A9})) 
 === EMV-Filter
 
 #figure(
-image("../Bilder/NFCZTR.png", width: 85%),
+fimage("/Bilder/NFCZTR.png", width: 85%),
 caption: [EMV-Filter der NFC-Antenne],
 )
 
