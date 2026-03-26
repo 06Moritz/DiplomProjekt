@@ -95,6 +95,10 @@
 
   sd: (short: "SD", long: "Secure Digital", description: "Standard für Speicherkarten, die in vielen elektronischen Geräten verwendet werden, um Daten zu speichern"),
 
+  pla: (short: "PLA", long: "Polylactic Acid", description: "Biologisch abbaubarer Kunststoff, der häufig im 3D-Druck verwendet wird, da er einfach zu verarbeiten ist und eine gute Oberflächenqualität bietet"),
+
+  fusion360: (short: "Fusion 360", long: "Autodesk Fusion 360", description: "CAD-Software für die 3D-Modellierung, Simulation und Fertigung von Produkten"),
+
   lcd: (short: "LCD", long: "Liquid Crystal Display", description: "Flüssigkristallbildschirm, eine Art von Display, das Flüssigkristalle verwendet, um Bilder anzuzeigen"),
 
   hvga: (short: "HVGA", long: "Half Video Graphics Array", description: "Displayauflösung von 320 x 480 Pixeln, die häufig in kleinen Displays verwendet wird"),
@@ -142,6 +146,6 @@
   }
 )
 
-#glossary(title: "Glossar", theme: my-theme, sort: true, show-all: true)
+#glossary(title: "Glossar", theme: my-theme, sort: true, show-all: false)
 
 #pagebreak()

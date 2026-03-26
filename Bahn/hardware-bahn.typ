@@ -2,7 +2,7 @@
 #aktueller_autor.update([#author1, #klasse])
 
 = Hardware <sec_bahn-hardware>
-Die Hardware der Rennbahn übernimmt die Zeitmessung beider Fahrspuren über @nfc, stellt Renninformationen auf einem Touchdisplay dar und kommuniziert drahtlos mit der App. Zusätzlich versorgt sie die Controller-Ladestation. Das Blockschaltbild
+Die Hardware des Hauptmoduls übernimmt die Zeitmessung beider Fahrspuren über @nfc, stellt Renninformationen auf einem Touchdisplay dar und kommuniziert drahtlos mit der App. Zusätzlich versorgt sie die Controller-Ladestation. Das Blockschaltbild
 gibt einen Überblick über die Komponenten und deren Zusammenspiel.
 
 #figure(
@@ -26,7 +26,7 @@ Von den 12V werden intern zwei geregelte Spannungsebenen erzeugt:
 Die stufenweise Regelung dient dazu, eine sauberere Ausgangsspannung mit geringem @ripple:short zu erhalten, da der @ldo als Linearregler hochfrequente Störungen des @buck:short\s zusätzlich unterdrückt.
 
 == Spannungsregler - Buck <sec_bahn-buck>
-Als @buck wird der TPS56628RQFR von @ti eingesetzt, der die Eingangsspannung von 12V auf 5V bei einem maximalen Ausgangsstrom von 6A wandelt. @tps56628 Zur Funktionsweise eines @buck:short\s siehe @sec_buck. 
+Als @buck wird der TPS56628RQFR von @ti eingesetzt, der die Eingangsspannung von 12V auf 5V bei einem maximalen Ausgangsstrom von 6A umwandelt. @tps56628 Zur Funktionsweise eines @buck:short\s siehe @sec_buck. 
 
 Der @ic:short wurde aufgrund folgender Eigenschaften gewählt:
 - Ausgangsstrom: Mit bis zu 6A liefert der @ic:short ausreichend 
@@ -43,8 +43,8 @@ Dabei wurden folgende Widerstände verwendet:
 Am Eingang und Ausgang befinden sind Stützkondensatoren, um die Ausgangsspannung zu stabilisieren und Spannungseinbrüche bei Lastsprüngen zu minimieren.
 
 #figure(
-  fimage("/Bilder/sch-bahn-buck.png", width: 100%),
-  caption: [Schaltung @buck Bahn],
+  fimage("/Bilder/bahn-layout-buck.png", width: 85%),
+  caption: [Layout @buck Bahn],
 )
 
 == Spannungsregler - LDO <sec_bahn-ldo>

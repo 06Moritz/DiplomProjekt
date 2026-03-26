@@ -43,7 +43,7 @@ Das Gehäuse besteht aus drei separat gedruckten Teilen, die ohne zusätzlichem 
 
 == Bahn
 // ! RICHTIGES REFERENZIEREN !
-Die Bahn ist 30cm lang und 11,4cm breit. Die Steckverbindungen und Maße sind so gewählt, dass das Schienenteil mit handelsüblichen Carrera-GO!-Schienen kompatibel ist. Die Metallschienen werden in die gedruckten Führungen eingesteckt und sind dadurch leicht austauschbar. Die Schienen sind so ausgeführt, dass Fahrzeuge über Schleifkontakte die anliegende Spannung von 12V abgreifen können (siehe @sec_auto-spgversorgung).
+Das Hauptmodul ist 30cm lang und 11,4cm breit. Die Steckverbindungen und Maße sind so gewählt, dass das Schienenteil mit handelsüblichen Carrera-GO!-Schienen kompatibel ist. Die Metallschienen werden in die gedruckten Führungen eingesteckt und sind dadurch leicht austauschbar. Die Schienen sind so ausgeführt, dass Fahrzeuge über Schleifkontakte die anliegende Spannung von 12V abgreifen können (siehe @sec_auto-spgversorgung).
 
 Unter jeder Fahrspur befindet sich eine Aussparung für je ein @nfc\-Modul (siehe @sec_bahn-nfc). Durch die Kabelverbindung zur Leiterplatte können die Module unabhängig vom Gehäuse exakt unter den Schienen positioniert werden.
 

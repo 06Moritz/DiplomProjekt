@@ -4,7 +4,7 @@
 // NOCH TECHNISCHER MACHEN
 
 = @nfc:both <sec_nfc>
-*!* @nfc:long ist ein internationaler Übertragungsstandard zum kontaktlosen Austausch von Daten über kurze Distanzen (bis ca. 10 cm). @nfc basiert auf der @rfid:short\-Technologie, arbeitet bei einer festen Frequenz von 13,56 MHz und bietet folgende Merkmale:
+*!* @nfc:long ist ein internationaler Übertragungsstandard zum kontaktlosen Austausch von Daten über kurze Distanzen (bis ca. 10 cm). @nfc basiert auf der @rfid:short\-Technologie, arbeitet bei einer festen Schaltfrequenz von 13,56 MHz und bietet folgende Merkmale:
 
 - extrem schneller Verbindungsaufbau ("Touch-and-Go") ohne Pairing-Prozess
 - hohe Sicherheit durch die geringe Reichweite (Eavesdropping erschwert)

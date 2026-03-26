@@ -6,6 +6,7 @@
   schule: "",
   body
 ) = {
+  counter(page).update(1)
   set heading(numbering: "1.1", outlined: true)
   set page(
     margin: (top: 2.5cm, bottom: 2.5cm, left: 2.5cm, right: 2.5cm),
