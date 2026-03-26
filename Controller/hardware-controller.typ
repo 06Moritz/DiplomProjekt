@@ -148,6 +148,13 @@ In dieser Abbildung sieht man den Strom- und Spannungsverlauf eines Mikrocontrol
 )\
 In dieser Abbildung sieht man den Strom- und Spannungsverlauf eines Mikrocontrollers mit einem Stützkondensator. Es ist deutlich zu erkennen, dass die Spannung stabil bleibt, auch während der Stromspitzen.
 
+== Leiterplatte
+
+#figure(
+fimage("/Bilder/controlleruberbl.svg", width: 100%),
+caption: [Leiterplatte des Controllers],
+)
+
 #pagebreak()
 
 
