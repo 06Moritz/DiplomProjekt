@@ -10,7 +10,7 @@
   #set text(size: 20pt, fill: rgb("#565656"))
   #projekt \
   #v(1cm)
-  #image("../Bilder/CorsaNuova_Logo.png", width: 60%)
+  #image("../Bilder/logofinal.svg", width: 70%)
 ]
  
 #v(3cm)
