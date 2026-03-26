@@ -69,6 +69,21 @@ fimage("/Bilder/antenna.png", width: 70%),
 caption: [BLE Antennendesign],
 )<fig-bleantenna>
 
+
+#figure(
+fimage("/Bilder/stromverteilungAuto.png", width: 70%),
+caption: [Stromverteilung auf der Antenne],
+)
+
+
+#figure(
+fimage("/Bilder/Autocart.png", width: 70%),
+caption: [Stromverteilung auf der Antenne],
+)
+
+
+
+
 #pagebreak()
 
 == Drehzahlsensor 
