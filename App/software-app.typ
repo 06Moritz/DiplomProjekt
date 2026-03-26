@@ -13,19 +13,20 @@ Die Kommunikation zwischen der App und dem Hauptmodul Display erfolgt über das 
 
 
 == App Programmierung
+
+
 #figure(
-image("/Bilder/Appscreen.png", width: 50%),
-caption: [Startbildschirm],)
-\
+     figure(
+      image("/Bilder/App/Appscreen.png", width: 50%),
+    ),
+    caption: [Startbildschirm der App],
+)
+
+
 
 Es gibt verschiedene Modi, die unterschiedliche Schwierigkeitsgrade bieten. Je nach Modus variiert die Anzahl der Runden und die Schwierigkeit der Steuerung. Unter Schwierigkeit der Steuerung versteht man mit welcher Motorleistung die Autos fahren.
 \ \
-- Modi:
-#figure(
-  table(
-    columns: (1fr),
-    rows: (auto),
-    [
+Modi Initialisierung:
 ```c
   // Spielmodi Definition
 enum class GameMode(
@@ -38,17 +39,43 @@ enum class GameMode(
     HARD("Schwer", 15, 1.0f)
 }
 ```
-    ],
-  ),
-  caption: [Spielmodi]
-  )
-\
+
   - DefaultLaps: Hier werden die Rundenanzahl standardisiert.
   - speedFactor: Hier wird die Motorleistung eingestellt. Zum Beispiel: 0.5f bedeutet, dass die Autos mit halber Leistung fahren.
 
 \
-Nach dem Start des Rennens zeigt die App die Dauer (mit einer Timer Methode) und den Runden fortschritt der Spieler. Nach dem beenden des Rennes werden die Spieler des aktuellen Rennens nach der Bestzeit sortiert und angezeigt. Danach hat man die Wahl wieder zum Hauptmenü zu gelangen oder sich das gesamte Ranking aller Rennen anzusehen. Diese werden nach der Bestzeit am Tag, Woche Monat, Gesamt und nach schnellste Runde sortiert.\ \  //knödeliste machen
+Nach dem Start des Rennens zeigt die App die Dauer (mit einer Timer Methode) und den Runden fortschritt der Spieler. Nach dem beenden des Rennes werden die Spieler des aktuellen Rennens nach der Bestzeit sortiert und angezeigt. Danach hat man die Wahl wieder zum Hauptmenü zu gelangen oder sich das gesamte Ranking aller Rennen anzusehen. Diese werden nach folgenden Kriterien Sortiert: 
+- Tag
+- Woche 
+- Monat
+- Gesamt
+#figure(
+  grid(
+    columns: (1fr, 1fr),
+    gutter: -10em,
+    align: bottom + center,
+     figure(
+      image("/Bilder/App/rennen.png", width: 40%),
+    ),
+     figure(
+      image("/Bilder/App/podium.png", width: 40%),
+    ),
+    
+  ),
+  caption: [Rennen und schnelleste Runde],
+  gap: 1em,
+)
 
+#figure(
+  grid(
+    columns: (1fr),
+    gutter: -10em,
+    align: bottom + center,
+      image("/Bilder/App/leaderboard.png", width: 25%),
+    ),
+  caption: [Leaderboard],
+  gap: 1em,
+)
  
 == Hauptmodul Display
 Das Display XX verfügt über einen Kapazitiven Touchscreen, welcher einfache Einstellungen über das Display ermöglicht.
@@ -56,13 +83,40 @@ Das Display XX verfügt über einen Kapazitiven Touchscreen, welcher einfache Ei
 - Spieler anzahl
 - Start/Stop
 - Podium
-Um einen sauberen Übergang beim drücken der Buttons zu , wurde eine Button Klasse erstellt, welche die Logik für das Drücken der Buttons enthält. Es wird überprüft, ob der Button gedrückt wurde, trifft das zu, wird die entsprechende Funktion ausgeführt. \
+Um einen sauberen Übergang beim drücken der Buttons zu , wurde eine Button Klasse erstellt, welche die Logik für das Drücken der Buttons enthält. Es wird überprüft, ob der Button gedrückt wurde, trifft das zu, wird die entsprechende Funktion ausgeführt. \ \
 Ohne der Klasse würde bei jedem klick auf einen Butten das ganze Display aktualisiert werden. Mit der Klasse wird nur der Bereich aktualisiert, wo sich was ändern soll. Das ermöglicht es, die Benutzeroberfläche effizient zu aktualisieren und gleichzeitig eine reaktionsschnelle und flüssige Kommunikation zu erhalten. // technischer beschreiben
 
 \ \
 Die Softwareseitige Umsetzung dieser selektiven Aktualisierung basiert auf der Kapselung von Positionsdaten und Zustandsvariablen innerhalb der Objektinstanzen. Die softwareseitige Umsetzung dieser selektiven Aktualisierung basiert auf der Kapselung von Positionsdaten und Zustandsvariablen innerhalb der Objektinstanzen. \ Bei einem registrierten Touch-Event werden die XY-Koordinaten des Sensors mit den Grenzwerten der Bounding-Box des jeweiligen Buttons verglichen. Eine Ausführung der verknüpften Logik erfolgt nur bei einer positiven Kollisionsabfrage. Durch diese Reduzierung der zu übertragenden Datenmenge über den Kommunikationsbus (z. B. SPI oder $I^2C$) wird die Prozessorlast gesenkt und das bei Vollbild-Refreshes übliche Screen-Flickering unterbunden. Zusätzlich wird durch eine softwareseitige Entprellung (Debouncing) sichergestellt, dass singuläre Berührungen nicht als fehlerhafte Mehrfach-Eingaben interpretiert werden. Diese Methode ermöglicht es, die Benutzeroberfläche effizient zu aktualisieren und gleichzeitig eine reaktionsschnelle und flüssige Kommunikation zu erhalten. //codeblock raussuchen und ersetzten
 
 Kapselung von Positionsdaten bedeutet, dass die Koordinaten und Dimensionen eines Buttons innerhalb der Button-Klasse gespeichert werden. Dadurch kann die Klasse selbstständig überprüfen, ob ein Touch-Event innerhalb ihrer Grenzen liegt.
+
+```c
+unsigned long now = millis();
+    bool startIsPressed = (btnStart && btnStart->isPressed());
+    bool modusIsPressed = (btnModus && btnModus->isPressed());
+
+    if (startIsPressed && !startWasPressed && 
+              (now - lastClick > debounceTime)) {
+        lastClick = now;
+        if (gameState == MENU) {
+            gameState = RACE;
+            drawRace();
+        } else if (gameState == RACE) {
+            finalTime = millis() - startTime;
+            gameState = PODIUM;
+            gameManager.endRace();
+            drawPodium();
+        } else if (gameState == PODIUM) {
+            gameState = MENU;
+            drawMenu();
+        }
+    }
+    startWasPressed = startIsPressed;
+
+```
+Zustand wird abgefragt, Buttons werden Entprellt, bei Button klick werden Zustände geändert.
+...
 
 #pagebreak()
 == @tcp:both Programmierung
@@ -71,15 +125,9 @@ Um eine Verbindung zwischen der App und dem Hauptmodul Display herzustellen, wir
 
 In dieser Konfiguration zählt der ESP32S3 als @tcp -Server, der auf einem definierten Port (8080) auf eingehende Verbindungsanfragen der App wartet.\ \
 === Prototyp TCP Verbindung
-Bevor die App mit dem Display verbunden wurde, wurde ein Test Code geschrieben. Um das Signal auszuschreiben, das von der App an den ESP32 gesendet wird und im Terminal ausgeschrieben werden.
-
-Terminal:
- Modi:
-#figure(
-  table(
-    columns: (1fr),
-    rows: (auto),
-    [
+Bevor die App mit dem Display verbunden wurde, wurde ein Test Code geschrieben. Um das Signal auszuschreiben, das von der App an den ESP32 gesendet wird und im Terminal ausgeschrieben werden. \ \
+Terminal Ausgabe:
+ 
 ```c
   >>> Modus gesetzt: LEICHT (1)
   >>> Rundenzahl: 5
@@ -93,46 +141,31 @@ Terminal:
   >>> Spieler: Spieler4
 
 ```
-    ],
-  ),
-  caption: [Terminal Ausgabe],)
 \
 Als nächsten schritt wurde der ESP32 als Sender und die App als Empfänger konfiguriert, um die Datenübertragung zu testen.
 Im Serial Terminal werden Befehler eingegeben. In der App wird dann die entsprechende Variable aktualisiert.
 \ \
-In das Terminal wurden folgende Parameter eingegeben:
- Modi:
-#figure(
-  table(
-    columns: (1fr),
-    rows: (auto),
-    [
+In das Terminal wurden folgende Parameter eingegeben:\
+
 ```c
   Spieler: Spieler1
   Modus: Leicht
   Rundenzahl: 3
 
 ```
-    ],
-  ),
-  caption: [Terminal Eingabe],) 
 
 /*
 In der App wurden die eingegebenen Parameter aktualisiert. Spieler1 wurde als Spielername angezeigt, der Modus auf leicht gestellt und die Rundenzahl auf drei.*/
+
 \ \
 #figure(
-image("../Bilder/TestCode.png", width: 50%),
+image("../Bilder/App/testTCP.png", width: 50%),
 caption: [App Menü],)
-\ 
+\ \
 Die App und der ESP32 als Sender und Empfänger initialisiert. 
- \ \
+ \
 @tcp Kotlin:
- Modi:
-#figure(
-  table(
-    columns: (1fr),
-    rows: (auto),
-    [
+
   ```c
     suspend fun connect(): BufferedReader? {
         return withContext(Dispatchers.IO) {
@@ -155,10 +188,6 @@ Die App und der ESP32 als Sender und Empfänger initialisiert.
         }
     }
    ```
-    ],
-  ),
-  caption: [TCP Verbindungsaufbau in Kotlin],)
-
 
 - `suspend fun connect()`: Asynchrone Funktion zum Aufbau der Netzwerkverbindung
 - `withContext(Dispatchers.IO)`: Ausführung im Hintergrundthread für Netzwerkzugriffe
@@ -174,12 +203,7 @@ In dem Code der App wird ein Client Socket erstellt, der sich mit der IP-Adresse
 \ \ \
 
 @tcp ESP32:
- Modi:
-#figure(
-  table(
-    columns: (1fr),
-    rows: (auto),
-    [
+
 ```c
 - Verbindung aufbauen
   WiFiServer server(8080);
@@ -210,15 +234,8 @@ In dem Code der App wird ein Client Socket erstellt, der sich mit der IP-Adresse
   }
 
 ```
-    ],
-  ),
-  caption: [TCP Code auf dem ESP32],)
-
-
 In dem Code des ESP32 wird ein Server Socket erstellt, der auf Port 8080 lauscht und Verbindungsanfragen der App akteptiert. Ist eine Verbindung hergestellt, können Daten in beide Richtungen gesendet und empfangen werden.
 \ \
-
-
 
 
 === Synchronisation

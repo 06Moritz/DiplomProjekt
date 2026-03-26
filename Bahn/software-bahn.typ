@@ -93,12 +93,20 @@ Mit der @tcp programmierung wird sichergestellt, dass Signale von der APP und de
         }
 
 ```
-tcp blaa bla
-
+Der Codeausschnitt beschreibt die Verarbeitung von @tcp Befehlen auf dem Hauptmodul Display. Es wird überprüft, ob die App  verbunden ist. Je nach Befehl wird der Modus geändert oder das Rennen gestartet.
 
 == Display
-bla bla
-tft library, I2C,
+Das Display des hauptmoduls ist ein TFT-Display, verfügt über I2C-Touch und hat eine Auflösung von 320*480 Pixeln. Es werden Spieler, Modis und Bestenliste angezeigt. 
+
+- TFT_eSPI Library: Es wird die TFT_eSPI Library verwendet, um die grafische Benutzeroberfläche auf dem Display zu erstellen. Diese Bibliothek bietet Funktionen zum Zeichnen von Text, Formen und Bildern.
+
+- I2C_Touch: Das Display verfügt über I2C. Dadurch können Touch Events erkannt und verarbeitet werden. Auf dem Display können der Modus geändert, Spieler hinzugefügt und Rennen gestartet/gestoppt werden.
+
+```c
+bool startIsPressed = (btnStart && btnStart->isPressed());
+bool modusIsPressed = (btnModus && btnModus->isPressed());
+```
+Hier wird überprüft, ob der Start- oder Modus-Button gedrückt wurde.
 
 #figure(
   image("/Bilder/display.png", width: 80%),
