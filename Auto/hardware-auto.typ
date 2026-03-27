@@ -14,7 +14,7 @@ Die Hardware des Hauptmoduls übernimmt die Zeitmessung beider Fahrspuren über 
 
 // noch neues blockschaltbild
 #figure(
-  fimage("/Bilder/Blockschaltbild-HW-Auto.svg", width: 85%),
+  image("/Bilder/Blockschaltbild-HW-Auto.svg", width: 85%),
   caption: [Blockschaltbild Hardware Auto],
 )
 

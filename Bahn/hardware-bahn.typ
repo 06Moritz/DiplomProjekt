@@ -13,11 +13,11 @@ gibt einen Überblick über die Komponenten und deren Zusammenspiel.
 )
 
 == Spannungsversorgung <sec_bahn-spannungsversorgung>
-Die Versorgung der Hardware erfolgt über einen @usbc Eingang mit @pd, der eine Eingangsspannung von 12V liefert. Dabei wird ein bestehendes @pd:short\-Modul verwendet, das direkt auf dem @pcb integriert ist. Die Schienen werden mit 12V versorgt und die Fahrzeuge greifen diese ab.
+Die Versorgung der Hardware erfolgt über einen @usbc Eingang mit @pd, der eine Eingangsspannung von 12V liefert. Dabei wird ein bestehendes @pd:short\-Modul verwendet, das direkt auf der Leiterplatte integriert ist. Die Schienen werden mit 12V versorgt und die Fahrzeuge greifen diese ab.
 
 @usbc @pd:long wird aus folgenden Gründen verwendet:
 - Standardisierung: @usbc @pd ist weit verbreitet und ermöglicht die Nutzung von handelsüblichen Netzteilen ohne eigene Steckerlösung.
-- Leistung: Der USB-C PD Standart unterstützt bis zu 240W Leistung, was weitaus größer als die Leistungsaufnahme der bahn mit etwa 70W ist.
+- Leistung: Der USB-C PD Standard unterstützt bis zu 240W Leistung, was weitaus größer als die Leistungsaufnahme der bahn mit etwa 70W ist.
 //- Leistung: @pd unterstützt bis zu 240W, was für die Anforderungen der Bahn mehr als ausreichend ist. @sourcePDhama
 - Bauweise: @usbc ist kompakt, robust und ermöglicht reversibles Einstecken.
 - Spannungsaushandlung: Über den @pd\-Handshake wird die benötigte Spannung von 12V aktiv zwischen Netzteil und Hardware vereinbart, wodurch nur kompatible Netzteile die erhöhte Spannung liefern.
@@ -33,7 +33,7 @@ Als @buck wird der TPS56628RQFR von @ti eingesetzt, der die Eingangsspannung von
 Der @ic:short wurde aufgrund folgender Eigenschaften gewählt:
 - Ausgangsstrom: Mit bis zu 6A liefert der @ic:short ausreichend
   Strom für alle angeschlossenen Komponenten.
-- Effizienz: Der TPS56628 erreicht einen Wirkungsgrad von über 90%, was die Wärmeentwicklung auf dem @pcb gering hält. // oder @pcb:short
+- Effizienz: Der TPS56628 erreicht einen Wirkungsgrad von über 90%, was die Wärmeentwicklung auf der Leiterplatte gering hält.
 
 Die Dimensionierung der Schaltung erfolgte mit dem @ti WEBENCH Power Designer @webench. Die Ausgangsspannung wird über einen resistiven Spannungsteiler am @fb:short\-Pin des ICs eingestellt.
 
@@ -150,7 +150,7 @@ Der ESP32 wertet diesen Spannungsabfall aus und gibt die 5V-Versorgung über den
 
 #pagebreak()
 == Leiterplatte <sec_bahn-pcb>
-Die Leiterplatte wurde mit @easyeda:short entworfen und als zweiseitige @pcb gefertigt. Der vollständige Schaltplan sowie das @pcb\-Layout (Top/Bottom) sind im Anhang zu finden. // (siehe @anhang_bahn-sch, @anhang_bahn-pcb).
+Die Leiterplatte wurde mit @easyeda:short entworfen und als zweiseitige Leiterplatte gefertigt. Der vollständige Schaltplan sowie das Layout (Top/Bottom) sind im Anhang zu finden. // (siehe @anhang_bahn-sch, @anhang_bahn-pcb).
 
 #figure(
   fimage("/Bilder/pcb-bahn.svg", width: 100%),
@@ -159,5 +159,5 @@ Die Leiterplatte wurde mit @easyeda:short entworfen und als zweiseitige @pcb gef
 
 Relevante Designentscheidungen:
 - Leiterbahnbreite: \ 12V, 5V und 3,3V Pfade sind entsprechend der jeweiligen Strombelastung breiter geführt als die Signalleitungen.
-- Abmessungen: \ Das @pcb orientiert sich in der Breite an den Maßen des Displays, da beide im Gehäuse übereinander verbaut sind (siehe @sec_bahn-3d).
+- Abmessungen: \ Die Leiterplatte orientiert sich in der Breite an den Maßen des Displays, da beide im Gehäuse übereinander verbaut sind (siehe @sec_bahn-3d).
 - Steckerplatzierung: \ @usbc Eingang und Ausgang befinden sich bewusst auf gegenüberliegenden Seiten, um eine einfache Zugänglichkeit zu ermöglichen.

@@ -52,25 +52,20 @@ Die Ladestation hat eine Gesamtlänge von 234,4mm und eine Breite von 49mm. Im Q
   grid(
     columns: (1fr, 4fr),
     gutter: 0.5em,
-    figure(
-      image("/Bilder/3d/lade-schnitt-breite.png", fit: "contain"),
-    ),
-    figure(
-      image("/Bilder/3d/lade-schnitt-laenge.png", fit: "contain"),
-    ),
+    image("/Bilder/3d/lade-schnitt-breite.png", fit: "contain"),
+    image("/Bilder/3d/lade-schnitt-laenge.png", fit: "contain"),
   ),
   caption: [Quer- und Längsschnitt der Ladestation],
 )
 
 == Federkontakte
-Die Federkontakte sind zwischen Grundplatte und Deckel in den Einsatz eingesetzt und stehen nach oben hin durch die Ausnehmungen im Deckel. Beim Einlegen eines Controllers drücken die Federkontakte gegen die Ladekontakte an der Unterseite des Controllers und stellen so die elektrische Verbindung zur Leiterplatte her. // (siehe @sec_ladestation-hw).
+Die Federkontakte sind zwischen Grundplatte und Deckel in den Einsatz eingesetzt und stehen nach oben hin durch die Ausnehmungen im Deckel. Beim Einlegen eines Controllers drücken die Federkontakte gegen die Ladekontakte an der Unterseite des Controllers und stellen so die elektrische Verbindung zur Leiterplatte her (siehe @sec_ladestation-hw).
 
 == Controller-Aufnahmen
-Der Deckel hat vier Vertiefungen, in die die Controller hineingestellt werden. In jeder Vertiefung sind Magnete verbaut, die den Controller in die richtige Position ausrichten und so einen zuverlässigen Kontakt zu den Federkontaktensicherstellen. Eine Verpolung ist durch die Anordnung der Magnete und der Form der Senken am Deckel nicht möglich (siehe @sec_ladestation-hw).
+Der Deckel hat vier Vertiefungen, in die die Controller hineingestellt werden. In jeder Vertiefung sind Magnete verbaut, die den Controller in die richtige Position ausrichten und so einen zuverlässigen Kontakt zu den Federkontakten sicherstellen. Eine Verpolung ist durch die Anordnung der Magnete und der Form der Senken am Deckel nicht möglich. // (siehe @sec_ladestation-hw).
 
-// muss nicht sein ... wenn dann mit so Controller drinnen vllt
 #figure(
-  image("/Bilder/3d/lade-gesamt.png", width: 70%),
+  image("/Bilder/3d/ladestation+controller.png", width: 100%),
   caption: [3D Modell Ladestation],
 )
 
@@ -82,4 +77,4 @@ Alle Teile sind aus schwarzem @abs gedruckt. Da @abs ein Kunststoff ist, der Che
 
 Für ein zuverlässiges Zusammenfügen von Grundplatte und Deckel sind die Press-fit Verbindungen um 2° abgeschrägt. 
 
-Toleranzen für die Pogo-Pin-Aussparungen, die Controller-Vertiefungen und die Einkerbung für die Leiterplatte sind im Design beachtet und durch Testdrucke angepasst.
+Toleranzen für die Federkontakt-Aussparungen, die Controller-Vertiefungen und die Einkerbung für die Leiterplatte sind im Design beachtet und durch Testdrucke angepasst.
