@@ -14,5 +14,4 @@
   blaetter: "3"
 )
 
-= Ladestation Schaltplan
 //#image("/Bilder/anhang/ladestation-schaltplan", width: 80%)

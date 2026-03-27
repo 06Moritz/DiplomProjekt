@@ -6,13 +6,12 @@
   gez: "KocM",
   geprueft: "ProM",
   dokumentart: "Layout BOTTOM",
-  projekt: "Bahn",
+  projekt: "Hauptmodul",
   //beschreibung: "",
   status: "Prototyp",
   datum: "20.03.2026",
-  blatt: "3",
-  blaetter: "3"
+  blatt: "4",
+  blaetter: "4"
 )
 
-= Bahn Layout BOTTOM
 #image("/Bilder/anhang/bahn-layout-bot.png", width: 80%)

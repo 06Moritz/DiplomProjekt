@@ -14,5 +14,4 @@
   blaetter: "3"
 )
 
-= Joystick Layout TOP
 #image("/Bilder/anhang/joystick-layout-top.png", width: 80%)
