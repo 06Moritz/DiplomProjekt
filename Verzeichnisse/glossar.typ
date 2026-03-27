@@ -16,10 +16,11 @@
 
   deepsleep:(short: "deep-sleep", long:"deepsleep", description: "Tiefschlafmodus von Mikrocontrollern in dem sie wenig Strom verbrauchen"),
   
-  mac:(short: "MAC", long:"Media-Access-Control", description:"!!!"),
+  mac:(short: "MAC", long:"Media-Access-Control", description: "Eindeutige Kennung, die einem Netzwerkgerät zugewiesen wird, um es in einem Netzwerk zu identifizieren"),
 
-  picc:(short: "PICC", long:"Proximity Integrated Circuit Card", description: "NFC modus in dem der IC einen passiven NFC-Transpoder emuliert"),
-  pcd:(short: "PCD", long:"Proximity Coupling Device", description:"!!!!"),
+  picc:(short: "PICC", long:"Proximity Integrated Circuit Card", description: "NFC modus in dem der IC als passiver Transponder fungiert und von einem aktiven NFC-Lesegerät ausgelesen wird"),
+
+  pcd:(short: "PCD", long:"Proximity Coupling Device", description:"NFC modus in dem der IC als aktiver Sender fungiert und mit einem passiven NFC-Transponder kommuniziert"),
 
   uuid: (short: "UUID", long: "Universally Unique Identifier", description: "Eindeutige Kennung, die zur Identifikation von Objekten oder Entitäten verwendet wird"),
 
@@ -96,6 +97,7 @@
   esp32: (short: "ESP32", long: "Espressif Systems 32-bit Microcontroller", description: "Mikrocontroller mit integrierter Wi-Fi- und Bluetooth-Funktionalität, der in vielen IoT-Projekten verwendet wird"),
 
   ram: (short: "RAM", long: "Random Access Memory", description: "Arbeitsspeicher, der es ermöglicht, Daten schnell zu lesen und zu schreiben, während ein Gerät in Betrieb ist"),
+
   psram: (short: "PSRAM", long: "Pseudo Static RAM", description: "Arbeitsspeicher, der die Vorteile von statischem und dynamischem RAM kombiniert, um eine kostengünstige und energieeffiziente Lösung zu bieten"),
 
   id: (short: "ID", long: "Identifier", description: "Eindeutige Kennung, die verwendet wird, um ein Objekt oder eine Entität zu identifizieren, z.B. eine NFC-Karte oder ein Gerät in einem Netzwerk"),
@@ -149,26 +151,30 @@
       heading(level: 2, name)
     }
     body
-  },
+  },entry: (entry, index, total) => {
+  let pages = entry.pages.join(", ")
+  
+  block(width: 100%, below: 1.5em, {
+    grid(
+      columns: (auto, auto),
+      column-gutter: 1em,
+      align: (left + bottom, right + bottom),
+      {
+        strong(entry.short)
+        if entry.long != none [
+          #h(0.2em)#text(fill: luma(0))[– #entry.long]
+        ]
+      },
+      text(size: 0.75em, fill: luma(50), "[" + pages + "]")
 
-  entry: (entry, index, total) => {
-    let output = [*#entry.short*#entry.label]
-    if entry.long != none {
-      output = [#output -- #entry.long]
-    }
-    if entry.description != none {
-      output = [#output: #emph(entry.description)]
-    }
-    block(
-      grid(
-        columns: (auto, 1fr, auto),
-        gutter: 0.5em,
-        output,
-        repeat([#h(0.05em).#h(0.05em)]),
-        entry.pages.join(", "),
-      )
     )
-  }
+    if entry.description != none {
+      pad(top: 0.05em,
+        text(size: 0.9em, fill: luma(90), entry.description)
+      )
+    }
+  })
+}
 )
 
 #glossary(title: "Glossar", theme: my-theme, sort: true, show-all: false)
