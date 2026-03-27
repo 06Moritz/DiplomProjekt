@@ -176,7 +176,7 @@ In das Terminal wurden folgende Parameter eingegeben:\
 
 /*
 In der App wurden die eingegebenen Parameter aktualisiert. Spieler1 wurde als Spielername angezeigt, der Modus auf leicht gestellt und die Rundenzahl auf drei.*/
-
+Senden der Daten vom @esp32:short:
 ```c 
  if (Serial.available()) {
     String input = Serial.readStringUntil('\n');
@@ -189,6 +189,35 @@ In der App wurden die eingegebenen Parameter aktualisiert. Spieler1 wurde als Sp
 ```
 - `Serial.available()`: Überprüft, ob Daten im Serial Buffer verfügbar sind.
 - `client.println(input)`: Sendet die eingelesenen Daten über die TCP-Verbindung an die App.
+\ \
+Empfangen der Daten in der App:
+```kotlin
+fun handleMessage(msg: String) {
+
+    when {
+        msg.startsWith("Modus:") -> {
+            val value = msg.substringAfter("Modus:").trim()
+            modeText.text = "Modus: $value"
+        }
+
+        msg.startsWith("Spieler:") -> {
+            val value = msg.substringAfter("Spieler:").trim()
+            playerText.text = "Spieler: $value"
+        }
+
+        msg.startsWith("Rundenzahl:") -> {
+            val value = msg.substringAfter("Rundenzahl:").trim()
+            lapsText.text = "Runden: $value"
+        }
+    }
+}
+```
+- `msg.startsWith("Modus:")`: Überprüft, ob die empfangene Nachricht mit "Modus:" beginnt.
+- `substringAfter("Modus:")`: Extrahiert den Wert nach "Modus:" und aktualisiert die entsprechende TextView in der App.
+- `msg.startsWith("Spieler:")`: Überprüft, ob die empfangene Nachricht mit "Spieler:" beginnt.
+- `substringAfter("Spieler:")`: Extrahiert den Wert nach "Spieler:" und aktualisiert die entsprechende TextView in der App.
+- `msg.startsWith("Rundenzahl:")`: Überprüft, ob die empfangene Nachricht mit "Rundenzahl:" beginnt.
+- `substringAfter("Rundenzahl:")`: Extrahiert den Wert nach "Rundenzahl:" und aktualisiert die entsprechende TextView in der App.
 
 \ \
 #figure(
