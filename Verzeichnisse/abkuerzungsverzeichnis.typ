@@ -14,6 +14,13 @@
 
   pwm: (short: "PWM", long: "Pulsweitenmodulation", description: "Verfahren zur Steuerung der Leistung von elektrischen Geräten"),
 
+  deepsleep:(short: "deep-sleep", long:"deepsleep", description: "Tiefschlafmodus von Mikrocontrollern in dem sie wenig Strom verbrauchen"),
+  
+  mac:(short: "MAC", long:"Media-Access-Control", description:"!!!"),
+
+  picc:(short: "PICC", long:"Proximity Integrated Circuit Card", description: "NFC modus in dem der IC einen passiven NFC-Transpoder emuliert"),
+  pcd:(short: "PCD", long:"Proximity Coupling Device", description:"!!!!"),
+
   uuid: (short: "UUID", long: "Universally Unique Identifier", description: "Eindeutige Kennung, die zur Identifikation von Objekten oder Entitäten verwendet wird"),
 
   ldo: (short: "LDO", long: "Low Dropout Regulator", description: "Spannungsregler, der auch bei geringer Eingangsspannung stabil arbeitet"),
