@@ -8,7 +8,7 @@ Das @ui:long  besteht aus drei Modulen:
 - Controller Display
 \
 Die Software ist in Kotlin für die App und in PlatformIO für die Displays programmiert.\
-Die Kommunikation zwischen der App und dem Hauptmodul Display erfolgt über das @tcp Protokoll, während die Kommunikation zwischen dem Hauptmodul Display und dem Controller Display über BLE erfolgt.
+Die Kommunikation zwischen der App und dem Hauptmodul Display erfolgt über das @tcp Protokoll, während die Kommunikation zwischen dem Hauptmodul Display und dem Controller Display über @ble erfolgt. 
 
 = App
 == App Programmierung
@@ -79,14 +79,21 @@ Das Display MSP4030 verfügt über einen Kapazitiven Touchscreen, welcher einfac
 - Spieler anzahl
 - Start/Stop
 - Podium
-Um das @ui Design zu erleichtern, wurde eine Button Klasse erstellt, welche die Logik für das Drücken der Buttons enthält. Es wird überprüft, ob der Button gedrückt wurde, trifft das zu, wird die entsprechende Funktion ausgeführt. \ \
+Um das @ui Design zu erleichtern, wurde eine Button Klasse erstellt, welche die Logik für das Drücken der Buttons enthält. Es wird überprüft, ob der Button gedrückt wurde, trifft das zu, wird die entsprechende Funktion ausgeführt.
+
 Durch Polymorphismus muss nicht jeder Button einzeln erstellt werden. Das ermöglicht es, die Benutzeroberfläche effizient zu aktualisieren und gleichzeitig eine reaktionsschnelle und flüssige Kommunikation zu erhalten.
 
-\ \
-Wenn das Display gedrückt sendet es über I2C die XY-Koordinaten des Touch-Events and den Mikrocontroller. Es werden die Koordinaten mit den Positionen der Buttons verglichen. Wenn die Koordinaten innerhalb der Grenzen eines Buttons liegen, wird die Funktion des Buttons ausgeführt.
+\ 
+Wenn das Display gedrückt sendet es über @i2c die XY-Koordinaten des Touch-Events and den Mikrocontroller. Es werden die Koordinaten mit den Positionen der Buttons verglichen. Wenn die Koordinaten innerhalb der Grenzen eines Buttons liegen, wird die Funktion des Buttons ausgeführt.
+\
+#figure(
+  image("/Bilder/display.png", width: 80%),
+  caption: [Display des Hauptmoduls]
+)
+
 
 \
-Das Display des Hauptmoduls ist ein @tft:short\-Display, verfügt über I2C-Touch und hat eine Auflösung von 320*480 Pixeln. Es werden Spieler, Modis und Bestenliste angezeigt. 
+Das Display des Hauptmoduls ist ein @tft:short\-Display, verfügt über @i2c\-Touch und hat eine Auflösung von 320*480 Pixeln. Es werden Spieler, Modis und Bestenliste angezeigt. 
 
 - TFT_eSPI Library: Es wird die TFT_eSPI Library verwendet, um die grafische Benutzeroberfläche auf dem Display zu erstellen. Diese Bibliothek bietet Funktionen zum Zeichnen von Text, Formen und Bildern.
 
@@ -97,14 +104,8 @@ bool startIsPressed = (btnStart && btnStart->isPressed());
 bool modusIsPressed = (btnModus && btnModus->isPressed());
 ```
 Hier wird überprüft, ob der Start- oder Modus-Button gedrückt wurde.
-\ \
-#figure(
-  image("/Bilder/display.png", width: 80%),
-  caption: [Display des Hauptmoduls]
-)
 
-
-
+#pagebreak()
 ```c
 unsigned long now = millis();
     bool startIsPressed = (btnStart && btnStart->isPressed());
@@ -135,15 +136,15 @@ Es gibt drei Zustände:
 - Menü 
 - Rennen
 - Podium
-Je nachdem welcher Button gedrückt wird, wird der Zustand geändert.
+Je nachdem welcher Button gedrückt wird, ändert sich der Zustand.
 
-
+#pagebreak()
 == Transmission Control Protocol (TCP) Programmierung
 Um eine Verbindung zwischen der App und dem Hauptmodul Display herzustellen, wird das @tcp Protokoll verwendet. Dieses ermöglicht eine Bidirektionale Kommunikation zwischen den beiden Geräten. Das dient dazu, dass Änderungen, wie das Einstellen der Modi oder Spielernamen, auf das Display übertragen werden können.\
 
 In dieser Konfiguration zählt der @esp32:short\-S3 als @tcp -Server, der auf einem definierten Port (8080) auf eingehende Verbindungsanfragen der App wartet.\ \
 
-=== Prototyp TCP Verbindung
+=== Prototyp TCP Verbindung @sourceTCP
 Vor der Verbindung der App mit dem Display wurde ein Test-Code geschrieben, um das Signal auszuschreiben, das von der App an den @esp32:short gesendet und im Terminal ausgeschrieben wird. \ \
 Terminal Ausgabe:
 
@@ -163,7 +164,7 @@ Terminal Ausgabe:
 \
 Als nächsten schritt wurde der @esp32:short als Sender und die App als Empfänger konfiguriert, um die Datenübertragung zu testen.
 Im Serial Terminal werden Befehle eingegeben. In der App wird dann die entsprechende Variable aktualisiert.
-\ \
+#pagebreak()
 In das Terminal wurden folgende Parameter eingegeben:\
 
 ```c
@@ -175,6 +176,7 @@ In das Terminal wurden folgende Parameter eingegeben:\
 
 /*
 In der App wurden die eingegebenen Parameter aktualisiert. Spieler1 wurde als Spielername angezeigt, der Modus auf leicht gestellt und die Rundenzahl auf drei.*/
+
 Senden der Daten vom @esp32:short:
 ```c 
  if (Serial.available()) {
@@ -223,10 +225,10 @@ fun handleMessage(msg: String) {
   image("../Bilder/App/testTCP.png", width: 50%),
   caption: [App Menü],
 )
-\ \
+
 Die App und der @esp32:short als Sender und Empfänger initialisiert.
 \
-@tcp Kotlin:
+@tcp Kotlin: @sourceTCPApp
 
 ```kotlin
  suspend fun connect(): BufferedReader? {
@@ -264,9 +266,9 @@ Die App und der @esp32:short als Sender und Empfänger initialisiert.
 - `catch (Exception)`: Fehlerbehandlung zur Vermeidung von Abstürzen
 \
 In dem Code der App wird ein Client Socket erstellt, der sich mit der IP-Adresse des @esp32:short und dem Port 8080 verbindet und eine Verbindungsanfrage an den @esp32:short sendet.
-\ \ \
+\ \
 
-@tcp @esp32:short:
+@tcp @esp32:short: @sourceTCPESP
 
 ```c
 - Verbindung aufbauen
@@ -308,13 +310,13 @@ Um sicherzustellen, dass beide Geräte immer den gleichen Systemstatus anzeigen,
 == Echtzeitverhalten
 Bei der Softwareimplementierung wurde besonders auf ein nicht-blockierendes Design geachtet. Da das Hauptmodul gleichzeitig den Touchscreen abfragen und das Display aktualisieren muss, darf der Netzwerkcode den Prozessor nicht aufhalten.\ Die Abfrage von eingehenden Daten erfolgt daher in jedem Programmdurchlauf, ohne den restlichen Ablauf zu verzögern.
 \
-Sollte die Verbindung zwischenzeitlich unterbrochen werden, verfügt die App über eine automatische Reconnect-Logik.\ Diese erkennt die unterbrochene Verbindung durch einen Timeout und versucht eigenständig, den Socket neu zu initialisieren, um die Verbindung wiederherzustellen. Während der Reconnect-Phase zeigt die App eine entsprechende Meldung an. Sobald die Verbindung wiederhergestellt ist, werden alle zuvor gesendeten Befehle erneut übertragen, um sicherzustellen, dass das Display den aktuellen Status korrekt anzeigt. 
+Sollte die Verbindung zwischenzeitlich unterbrochen werden, verfügt die App über eine automatische Reconnect-Logik. Diese erkennt die unterbrochene Verbindung durch einen Timeout und versucht eigenständig, den Socket neu zu initialisieren, um die Verbindung wiederherzustellen. Während der Reconnect-Phase zeigt die App eine entsprechende Meldung an. Sobald die Verbindung wiederhergestellt ist, werden alle zuvor gesendeten Befehle erneut übertragen, um sicherzustellen, dass das Display den aktuellen Status korrekt anzeigt. 
 \ \ 
 
 
 == Controler Display
-Das Controller Display XY zeigt folgende funktionen an:
-- aktuelle Motorleistung (PWM)
+Das Controller Display GC9A01 zeigt folgende funktionen an:
+- aktuelle Motorleistung 
 - Timer
 - Durchschnittsgeschwindigkeit
 - beste Rundendauer
@@ -323,7 +325,7 @@ Das Controller Display XY zeigt folgende funktionen an:
 - Zugewiesenes Auto
 - Runden anzahl z.B.: 2/5 Runden // in dem fall leichter modus
 
-Das Display dient dazu, wichtige Informationen während des Rennens anzuzeigen. Es zeigt die aktuelle Motorleistung an, die über die PWM gesteuert wird, sowie einen Timer, der die Dauer des Rennens anzeigt. In der mitte des Displays wird die Durchschnittsgescchwindigkeit angezeigt, welche mithilfe der Drehzahl des Motors berechnet wird. Darunter wird die schnellste Runde angezeigt, sowie die Abweichung. 
+Das Display dient dazu, wichtige Informationen während des Rennens anzuzeigen. Es zeigt die aktuelle Motorleistung an, die über die @pwm gesteuert wird, sowie einen Timer, der die Dauer des Rennens anzeigt. In der mitte des Displays wird die Durchschnittsgescchwindigkeit angezeigt, welche mithilfe der Drehzahl des Motors berechnet wird. Darunter wird die schnellste Runde angezeigt, sowie die Abweichung. 
 \
 $ v = (n*π*d)/60 $
 
@@ -347,5 +349,7 @@ Der Spielername und das zugewiesene Auto werden ebenfalls auf dem Display angezi
  über die SPI Schnittstelle vom CH572 übertragen.
 
  Die aktuellen Auto Informationen
-  - Motorleistung (PWM)
+  - Motorleistung 
  werden über @ble übertragen, da diese Informationen sehr schnell aktualisiert werden müssen und eine stabile Verbindung erfordern. 
+
+
