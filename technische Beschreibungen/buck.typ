@@ -15,9 +15,5 @@ Der @buck nutzt eine Induktivität zur zeitgesteuerten Energiespeicherung. Ein @
 
 #figure(
   fimage("/Bilder/buckconverter.png", width: 100%),
-  caption: [@buck Schaltungprinzip],
+  caption: [@buck Schaltungsprinzip],
 )
-
-//Das Funktionsprinzip basiert auf der Wechselwirkung zwischen einem elektronischen Schalter (MOSFET) und einer Speicherinduktivität. Wird der MOSFET geschlossen, steigt der Strom in der Induktivität rampenförmig an ($U = L dot (d i)/(d t)$), wodurch magnetische Energie gespeichert wird.
-//Nach dem Öffnen des Schalters verhindert eine Freilaufdiode den abrupten Abriss des Stromflusses. Die Induktivität kehrt ihre Spannung um und fungiert nun als Energielieferant, der den Stromfluss durch die Last aufrechterhält, während sich das Magnetfeld langsam abbaut. Ein Kondensator glättet diese getaktete Energie zu einer konstanten Ausgangsspannung.
-

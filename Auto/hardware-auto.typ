@@ -16,6 +16,7 @@ Die Hardware des Hauptmoduls übernimmt die Zeitmessung beider Fahrspuren über 
 #figure(
   image("/Bilder/Blockschaltbild-HW-Auto.svg", width: 85%),
   caption: [Blockschaltbild Hardware Auto],
+  gap: 1em
 )
 
 == Spannungsversorgung <sec_auto-spgversorgung>
@@ -184,6 +185,6 @@ $ C_2 approx 1/(\u{03C9}^2*L_"pa"/2)-1/(\u{03C9}*sqrt((R_"tr"*R_"pa")/4))-2*C_"p
 == Leiterplatte
 
 #figure(
-  fimage("/Bilder/auto-pcb.svg", width: 100%),
+  fimage("/Bilder/autopcb.svg", width: 100%),
   caption: [Ersatzschaltbild der NFC-Antenne],
 )

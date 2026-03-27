@@ -11,3 +11,8 @@ Eigenschaften eines @ldo's:
 - geringer Wirkungsgrad bei großer Spannungsdifferenz
 
 Durch das geringe Rauschen eignet sich der @ldo besonders als nachgeschaltete Stufe eines @buck:short\s, um dessen hochfrequente Schaltstörungen zu unterdrücken. So wird eine saubere Versorgungsspannung für empfindliche Bauteile wie Mikrocontroller oder Displays bereitgestellt. @sourceLDO
+
+#figure(
+  fimage("/Bilder/ldo-block-prinzip.png", width: 75%),
+  caption: [@ldo Schaltungsprinzip],
+)

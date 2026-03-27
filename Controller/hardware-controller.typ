@@ -11,6 +11,7 @@ Der Controller besteht aus folgenden Komponenten:
 #figure(
 image("/Bilder/Blockschaltbild-HW-Controller.svg", width: 75%),
 caption: [Blockschaltbild Hardware Controller],
+gap: 1em
 )
 
 
