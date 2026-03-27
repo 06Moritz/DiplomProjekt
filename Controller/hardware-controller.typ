@@ -160,6 +160,8 @@ fimage("/Bilder/controllerUberblick.svg", width: 100%),
 caption: [Leiterplatte des Controllers],
 )
 
+Zum Programmieren der Mikrocontrollers ist auf der Bottomseite der Leiterplatte ein Überlötjumper platziert (CH572-Data-CH32). Durch das Umlöten der Pads, wird Platz auf der Topseite eingespart.
+
 #pagebreak()
 
 
