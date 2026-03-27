@@ -45,7 +45,7 @@
 //App
 #pagebreak()
 #aktueller_autor.update(author3)
-#include "App/main-app.typ"
+#include "UI/main-ui.typ"
 
 
 // Alle
