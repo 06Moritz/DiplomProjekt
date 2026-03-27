@@ -17,7 +17,7 @@ Der Aufgabenbereich umfasst die Entwicklung der Leiterplatte und des Gehäuses f
 Der Aufgabenbereich umfasst die Entwicklung des Autos inklusive Leiterplatte und Mechanik sowie die Software für Controller und Fahrzeugsteuerung.
 
 === #author3
-Der Aufgabenbereich umfasst die Entwicklung der Leiterplatte für den Controller und Ladestation sowie die Entwicklung der Software für Hauptmodul und Appverbindung.
+Der Aufgabenbereich umfasst die Entwicklung der Leiterplatte für den Controller und die Ladestation sowie die Entwicklung der Software für Hauptmodul und Appverbindung.
 
 #pagebreak()
 == Projektplanung
