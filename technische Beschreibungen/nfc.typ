@@ -14,4 +14,4 @@ Je nach Anwendungsfall unterscheidet man bei @nfc drei wesentliche Betriebsarten
 - Card-Emulation-Modus: Das aktive Gerät verhält sich wie eine kontaktlose Chipkarte (z. B. beim kontaktlosen Bezahlen oder als Zutrittskarte).
 - Peer-to-Peer-Modus: Zwei aktive Geräte tauschen direkt Daten miteinander aus (z. B. zum Austausch von Kontaktdaten).
 
-Die Datenübertragung erfolgt mittels induktiver Kopplung zweier Antennenspulen. Das Magnetfeld des aktiven Teils induziert im Gegenpart eine Spannung, wobei der Datentransfer über Lastmodulation realisiert wird. Hierbei beeinflusst der Transponder das Feld des Lesegeräts durch gezielte Laständerungen, um Signale zurückzusenden. @nfcSource
+Die Datenübertragung erfolgt mittels induktiver Kopplung zweier Antennenspulen. Das Magnetfeld des aktiven Teils induziert im Gegenpart eine Spannung, wobei der Datentransfer über Lastmodulation realisiert wird. Hierbei beeinflusst der Transponder das Feld des Lesegeräts durch gezielte Laständerungen, um Signale zurückzusenden. @NfcSource2
