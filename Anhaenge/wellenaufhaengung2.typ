@@ -14,4 +14,4 @@
   blaetter: "2"
 )
 
-#image("/Bilder/anhang/welle_auf-2.png", width: 100%, height: 90%, fit: "contain")
+#image("/Bilder/anhang/welle_auf-1.png", width: 100%, height: 90%, fit: "contain")
