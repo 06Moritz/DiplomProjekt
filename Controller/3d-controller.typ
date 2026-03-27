@@ -44,14 +44,10 @@ Der Controller ist als Einhand-Controller konzipiert und als Pistolengriff ausge
 #figure(
   grid(
     columns: (1fr, 1fr),
-    gutter: -5em,
+    gutter: 0em,
     align: bottom + center,
-    figure(
-      image("/Bilder/3d/con-sicht1.png", height: 250pt),
-    ),
-    figure(
-      image("/Bilder/3d/con-sicht2.png", height: 250pt),
-    ),
+    image("/Bilder/3d/con-sicht1.png", height: 300pt), 
+    image("/Bilder/3d/con-sicht2.png", height: 300pt),
   ),
   caption: [3D Modell Controller],
   gap: 1em,
@@ -65,11 +61,11 @@ Das Display wird oben am Gehäuse verbaut und liegt auf zwei Balken auf, die ein
 #grid(
   columns: (1fr, 1fr),
   figure(
-    image("/Bilder/3d/con-display.png", height: 150pt),
+    image("/Bilder/3d/con-display.png", height: 155pt),
     caption: [Displayposition],
   ),
   figure(
-    image("/Bilder/3d/con-schnitt-display_cr.png", height: 150pt),
+    image("/Bilder/3d/con-schnitt-display_cr.png", height: 155pt),
     caption: [Schnittanalyse Display],
   ),
 )
@@ -80,11 +76,11 @@ Die Geschwindigkeitsregelung erfolgt über einen keilförmigen Drehregler, der d
 #grid(
   columns: (1fr, 1fr),
   figure(
-    image("/Bilder/3d/controller-regler.png", height: 150pt),
+    image("/Bilder/3d/controller-regler.png", height: 155pt),
     caption: [Geschwindigkeitsregler],
   ),
   figure(
-    image("/Bilder/3d/con-schnitt-regler_cr.png", height: 150pt),
+    image("/Bilder/3d/con-schnitt-regler_cr.png", height: 155pt),
     caption: [Schnittanalyse Regler],
   ),
 )
@@ -95,11 +91,11 @@ Der Joystick ist durch eine Aussparung im oberen Bereich des Gehäuses zugängli
 #grid(
   columns: (1fr, 1fr),
   figure(
-    image("/Bilder/3d/con-schnitt-joystick.png", height: 150pt),
-    caption: [Schnittanalyse Joystick Seite],
+    image("/Bilder/3d/con-schnitt-joystick.png", height: 170pt),
+    caption: [Schnittanalyse Joystick],
   ),
   figure(
-    image("/Bilder/3d/con-schnitt-joystick2.png", height: 150pt),
+    image("/Bilder/3d/con-schnitt-joystick2.png", height: 170pt),
     caption: [Schnitt Joystickhalterung],
   ),
 )
@@ -110,12 +106,12 @@ Die Platine wird über eine Klemmverbindung eingesteckt und über Stifte auf ein
 #grid(
   columns: (1fr, 1fr),
   figure(
-    image("/Bilder/3d/con-schnitt-akku.png", height: 150pt),
+    image("/Bilder/3d/con-schnitt-akku.png", height: 190pt),
     caption: [Schnittanalyse Akku],
   ),
   figure(
-    image("/Bilder/3d/con-schnitt-vib.png", height: 150pt),
-    caption: [Schnittanalyse @pcb\-Stütze \ und Vibrationsmotor],
+    image("/Bilder/3d/con-schnitt-vib.png", height: 190pt),
+    caption: [Schnittanalyse Leiterplatte und Vibrationsmotor],
   ),
 )
 

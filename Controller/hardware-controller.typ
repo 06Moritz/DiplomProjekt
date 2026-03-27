@@ -9,13 +9,13 @@ Der Controller ist für die Steuerung des Autos verantwortlich. Er empfängt die
 Der Controller besteht aus folgenden Komponenten:
 
 #figure(
-image("/Bilder/Blockschaltbild-HW-Controller.svg", width: 70%),
+image("/Bilder/Blockschaltbild-HW-Controller.svg", width: 75%),
 caption: [Blockschaltbild Hardware Controller],
 )
 
 
 //#pagebreak()
-\
+
 == Spannungsversorgung
 Die Versorgung des Controllers erfolgt über einen @lipo, dessen Betriebsspannung zwischen 3.2 V und 4.2 V liegt. Der Akku wird über Federkontakte an einer Ladestation aufgeladen. (siehe @sec_ladestation-hw)
 \ \

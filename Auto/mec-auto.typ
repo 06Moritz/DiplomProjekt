@@ -25,7 +25,7 @@ Der Motor wird 5:4 untersetzt, um aus der hohen Drehzahl des Motors ein höheres
 )
 
 == Wellenaufhängung
-Die gefrästen Messingblöcke positionieren und lagern die Wellen. Sie sind mit dem @pcb durch @m2:short\-Schrauben befestigt.
+Die gefrästen Messingblöcke positionieren und lagern die Wellen. Sie sind mit der Leiterplatte durch @m2:short\-Schrauben befestigt.
 
 == Achsaufhängung
 Die Achsen werden von Achshalterungen hinten und vorne gelagert. Sie sind aus @abs 3D-gedruckt wegen der Temperaturbeständigkeit des Materials. Die Halterungen werden auf die Bodenplatte gesteckt und verschraubt.
