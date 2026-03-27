@@ -14,5 +14,4 @@
   blaetter: "3"
 )
 
-= Fahrzeug Schaltplan
 #image("/PDF/bahn-sch-test.pdf", width: 100%, height: 100%, fit: "contain")

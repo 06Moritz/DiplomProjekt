@@ -6,13 +6,12 @@
   gez: "KocM",
   geprueft: "ProM",
   dokumentart: "Schaltplan",
-  projekt: "Bahn",
+  projekt: "Hauptmodul",
   //beschreibung: "",
   status: "Prototyp",
   datum: "20.03.2026",
-  blatt: "1",
-  blaetter: "3"
+  blatt: "2",
+  blaetter: "4"
 )
 
-= Bahn Schaltplan
-#image("/PDF/bahn-sch-test.pdf", width: 100%, height: 100%, fit: "contain")
+#image("/Bilder/anhang/bahn-sch-p2.png", width: 100%, height: 100%, fit: "contain")

@@ -14,5 +14,4 @@
   blaetter: "3"
 )
 
-= Controller Layout TOP
 #image("/Bilder/anhang/controller-layout-top.png", width: 80%)

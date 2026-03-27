@@ -14,5 +14,4 @@
   blaetter: "3"
 )
 
-= Fahrzeug Layout TOP
 //#image("/Bilder/anhang/fahrzeug-layout-top.png", width: 80%)

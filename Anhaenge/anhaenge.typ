@@ -20,73 +20,28 @@
 #set heading(numbering: none)
 #set page(margin: 0cm, header: none, footer: none)
 
-
-/* 
-= Hauptmodul Schaltplan
-#v(4.5cm)
-#figure(
-rotate(90deg,muchpdf(read("../PDF/auto/SCH.pdf", encoding: none),width: 140%)) )
- // Vektorgrafik
-= Hauptmodul Layout TOP
-#muchpdf(read("../PDF/Haupt/kocmTop.pdf", encoding: none),
-width: 100%) // Rastergrafik
-= Fahrzeug Layout BOT
-#muchpdf(read("../PDF/Haupt/kocmBot.pdf", encoding: none),
-width: 100%) // Rastergrafik
-
-= Hauptmodul Schaltplan
-#v(4.5cm)
-#figure(
-rotate(90deg,muchpdf(read("../PDF/auto/SCH.pdf", encoding: none),width: 140%)) )
-
-= Fahrzeug Layout TOP
-#muchpdf(read("../PDF/auto/PromTop.pdf", encoding: none),
-width: 100%) // Rastergrafik
-= Fahrzeug Layout BOT
-#muchpdf(read("../PDF/auto/PromBot.pdf", encoding: none),
-width: 100%) // Rastergrafik
-
-// 2 Arten zum Einfügen von PDFs:
-= Controller Schaltplan
-#v(4.5cm)
-#figure(
-rotate(90deg,muchpdf(read("../PDF/auto/SCH.pdf", encoding: none),width: 140%)) )
- // Vektorgrafik
-= Controller Layout TOP
-#muchpdf(read("../PDF/Controller/ReimTop.pdf", encoding: none),
-width: 100%) // Rastergrafik
-= Controller Layout BOT
-#muchpdf(read("../PDF/Controller/ReimBot.pdf", encoding: none),
-width: 100%) // Rastergrafik
-
-// #muchpdf(read("../PDF/auto/lay_top.pdf", encoding: none),
-// width: 100%)
- */
-
-
-// -> noch richtige Bilder verwenden
-
-// Beilage 1: Bahn
-#include "bahn-schaltplan.typ"
+= Hauptmodul // Beilage 1
+#include "bahn-schaltplan-p1.typ"
+#include "bahn-schaltplan-p2.typ"
 #include "bahn-layout-top.typ"
 #include "bahn-layout-bottom.typ"
 
-// Beilage 2: Fahrzeug
+= Fahrzeug // Beilage 2
 #include "auto-schaltplan.typ"
 #include "auto-layout-top.typ"
 #include "auto-layout-bottom.typ"
 
-// Beilage 3: Controller
+= Controller // Beilage 3
 #include "controller-schaltplan.typ"
 #include "controller-layout-top.typ"
 #include "controller-layout-bottom.typ"
   
-// Beilage 4: Ladestation
+= Ladestation // Beilage 4
 #include "ladestation-schaltplan.typ"
 #include "ladestation-layout-top.typ"
 #include "ladestation-layout-bottom.typ"
 
-// Beilage 5: Joystick-Halterung
+= Joystick // Beilage 5
 #include "joystick-schaltplan.typ"
 #include "joystick-layout-top.typ"
 #include "joystick-layout-bottom.typ"

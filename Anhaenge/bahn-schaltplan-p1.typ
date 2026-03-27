@@ -1,17 +1,17 @@
 #import "../Templates/rahmen.typ": *
 
 #show: rahmen-quer.with(
-  dateiname: "Beilage 3",
-  name: "Magdalena Reitsamer",
-  gez: "ReiM",
+  dateiname: "Beilage 1",
+  name: "Melanie Koch",
+  gez: "KocM",
   geprueft: "ProM",
   dokumentart: "Schaltplan",
-  projekt: "Controller",
+  projekt: "Hauptmodul",
   //beschreibung: "",
   status: "Prototyp",
   datum: "20.03.2026",
   blatt: "1",
-  blaetter: "3"
+  blaetter: "4"
 )
 
-#image("/Bilder/anhang/ControllSch.png", width: 100%, height: 100%, fit: "contain")
+#image("/Bilder/anhang/bahn-sch-p1.png", width: 100%, height: 100%, fit: "contain")
