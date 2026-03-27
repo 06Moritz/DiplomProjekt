@@ -27,7 +27,7 @@ success = nfc.readPassiveTargetID(
           unsigned long lapTime = currentTime - lastLapTimes[i];
           lastLapTimes[i] = currentTime;
 
-          // Rundenzeit über BLE senden
+          // Rundenzeit über TCP senden
           sendLapTime(i, lapTime);
           }
         }
@@ -67,16 +67,16 @@ std::string strData = "";
   // Start Advertising
   pAdvertising->start();
 ```
-Die Daten werden in einen String umgewandelt und gesendet.
+Es werden Auto spezifische Werte wie Rundenzeit oder Startnummer übertragen. Die Daten werden in einen String umgewandelt und gesendet.
 \ \
 
 
 == Transmission Control Protocol
 @tcp ist ein Netzwerk Protokoll, das benutzt wird, um Daten vom Hauptmodul an die App zu senden. Dafür ist eine @wifi verbindung notwendig.
-Wenn keine WLAN Verbindung besteht, verbindet sich die App über Bluetooth und der Nutzer kann die Zugangsdaten über die App eingeben.
-Sobald sich der ESP über @wifi verbunden hat,
+Wenn keine Netzwerk Verbindung besteht, verbindet sich die App über Bluetooth und der Nutzer kann die Zugangsdaten über die App eingeben.
+Sobald sich der ESP über @wifi verbunden hat, nimmt er verbindung mit der App übber @tcp auf.
 
-Mit der @tcp programmierung wird sichergestellt, dass Signale von der APP und dem Display in beide Richtungen übertragen werden können.
+Mit dem @tcp\-Protokoll wird sichergestellt, dass Signale von der App und dem Display in beide Richtungen übertragen werden können.
 \
 ```c
     if (!client.connected()) {

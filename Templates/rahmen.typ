@@ -78,7 +78,7 @@
                             #stack(
                                 dir: ttb,
                                 spacing: 15pt,
-                                text(size: 20pt, weight: "regular")[#projekt],
+                                text(size: 18pt, weight: "regular")[#projekt],
                                 text(size: 12pt)[#beschreibung]
                             )
                         ]
