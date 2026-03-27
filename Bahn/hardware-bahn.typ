@@ -9,7 +9,7 @@ gibt einen Überblick über die Komponenten und deren Zusammenspiel.
 
 #figure(
   image("/Bilder/Blockschaltbild-HW-Bahn.svg", width: 100%),
-  caption: [Blockschaltbild Hardware Bahn],
+  caption: [Blockschaltbild Hardware Hauptmodul],
   gap: 1em
 )
 
@@ -41,7 +41,7 @@ Am Eingang und Ausgang befinden sind Stützkondensatoren, um die Ausgangsspannun
 
 #figure(
   fimage("/Bilder/bahn-layout-buck.png", width: 80%),
-  caption: [Layout @buck Bahn],
+  caption: [Layout @buck Hauptmodul],
 )
 
 == Spannungsregler - LDO <sec_bahn-ldo>
@@ -148,7 +148,7 @@ Die Leiterplatte wurde mit @easyeda:short entworfen und als zweiseitige Leiterpl
 
 #figure(
   fimage("/Bilder/bahn-pcb.svg", width: 100%),
-  caption: [3D Modell Leiterplatte Bahn],
+  caption: [Leiterplatte Hauptmodul],
 )
 
 Relevante Designentscheidungen:
