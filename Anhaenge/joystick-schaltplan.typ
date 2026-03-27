@@ -14,4 +14,4 @@
   blaetter: "3"
 )
 
-//#image("/Bilder/anhang/joystick-layout-top.png", width: 80%)
+#image("/Bilder/anhang/sch_joy.png", width: 100%)

@@ -14,4 +14,4 @@
   blaetter: "3"
 )
 
-#image("/PDF/bahn-sch-test.pdf", width: 100%, height: 100%, fit: "contain")
+#image("/Bilder/Anhang/sch_auto.png", width: 100%, height: 100%, fit: "contain")

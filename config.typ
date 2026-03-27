@@ -41,6 +41,8 @@
   )
 
 
+   show heading.where(level: 4): set heading(numbering: none, outlined: false)
+   
   show heading: it => {
     if it.level == 1 {
       v(1.5cm, weak: true)
@@ -60,6 +62,7 @@
       v(0.5cm, weak: true)
     }
   }
+
 
   /*
   show figure: it => {
@@ -86,8 +89,19 @@
     radius: 2pt,
   )
 
-  body
+  // Optional: Stil für Unterüberschriften (Ebene 3 und tiefer)
+  show heading: it => {
+    if it.level > 3 {
+      set text(weight: "semibold", size: 11pt) // Optional: Stil anpassen
+      v(0.5em) // Kleiner Abstand davor
+      it.body
+      v(0.2em) // Kleiner Abstand danach
+    } else {
+      it
+    }
+  }
 
+  body
 }
 
 // framed-image:

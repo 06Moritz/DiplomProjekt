@@ -1,21 +1,16 @@
 #import "../config.typ": *
 #aktueller_autor.update([#author2, #klasse])
-
+Das Fahrzeug ist ein Modellauto das auf der Bahn fährt. Es wird über den Controller gesteuert, über @nfc sendet es eine eindeutige Fahrzeugkennung and die Bahn.
 = Hardware
-*!*Die Hardware des Fahrzeugs übernimmt die Zeitmessung beider Fahrspuren über @nfc, stellt Renninformationen auf einem Touchdisplay dar und kommuniziert drahtlos mit der App. Zusätzlich gibt es einen @usbc:short\-Ausgang für die Controller-Ladestation.*!*
-
-motorregler nfc ble buzzer
-
-
-
-/* // controller:
-Die Hardware des Hauptmoduls übernimmt die Zeitmessung beider Fahrspuren über @nfc, stellt Renninformationen auf einem Touchdisplay dar und kommuniziert drahtlos mit der App. Zusätzlich gibt es einen @usbc:short\-Ausgang für die Controller-Ladestation. */
+Das Fahrzeug hat eine 2.4GHz Antenne, eine NFC-Spule auf der Leiterplatte. Motortreiber und Drehzahlsensor für Drehzahlmessung. Für die Spannungsregelung hat es einen @buck. Für akustische Signale ist ein buzzer verbaut.\
+\
 
 
 // noch neues blockschaltbild
 #figure(
   image("/Bilder/Blockschaltbild-HW-Auto.svg", width: 85%),
-  caption: [Blockschaltbild Hardware Auto],
+  caption: [Blockschaltbild Hardware Fahrzeug],
+  gap: 1em
 )
 
 == Spannungsversorgung <sec_auto-spgversorgung>
@@ -23,7 +18,7 @@ Die Schleifkontakte, an der Unterseite des Fahrzeugs, greifen 12V von der Schien
 
 #figure(
   fimage("/Bilder/buckLay.png", width: 85%),
-  caption: [Layout des @buck],
+  caption: [Layout @buck Fahrzeug],
 )
 
 == Motor
@@ -180,10 +175,12 @@ $
 $ C_1 approx 1/(\u{03C9}* (sqrt((R_"tr"*R_"pa")/4)+X_"tr"/2)) = underline(underline(32"pF")) $
 $ C_2 approx 1/(\u{03C9}^2*L_"pa"/2)-1/(\u{03C9}*sqrt((R_"tr"*R_"pa")/4))-2*C_"pa" = underline(underline(390"pF")) $
 
+== Temporäre Spannungsversorgung
+In das 3.3V Netz ist ein 10F Superkondensator eingebaut der durch Knopfdruck eingeschaltet werden kann um das Auto kurzfristig mit 3.3V zu versorgen. Dadurch kann das Auto durch NFC mit dem Controller Daten wie die MAC-Adresse austauschen.
 
 == Leiterplatte
 
 #figure(
   fimage("/Bilder/auto-pcb.svg", width: 100%),
-  caption: [Ersatzschaltbild der NFC-Antenne],
+  caption: [Leiterplatte Fahrzeug],
 )

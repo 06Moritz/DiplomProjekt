@@ -9,18 +9,18 @@ gibt einen Überblick über die Komponenten und deren Zusammenspiel.
 
 #figure(
   image("/Bilder/Blockschaltbild-HW-Bahn.svg", width: 100%),
-  caption: [Blockschaltbild Hardware Bahn],
+  caption: [Blockschaltbild Hardware Hauptmodul],
+  gap: 1em
 )
 
 == Spannungsversorgung <sec_bahn-spannungsversorgung>
 Die Versorgung der Hardware erfolgt über einen @usbc Eingang mit @pd, der eine Eingangsspannung von 12V liefert. Dabei wird ein bestehendes @pd:short\-Modul verwendet, das direkt auf der Leiterplatte integriert ist. Die Schienen werden mit 12V versorgt und die Fahrzeuge greifen diese ab.
 
 @usbc @pd:long wird aus folgenden Gründen verwendet:
-- Standardisierung: @usbc @pd ist weit verbreitet und ermöglicht die Nutzung von handelsüblichen Netzteilen ohne eigene Steckerlösung.
-- Leistung: Der USB-C PD Standard unterstützt bis zu 240W Leistung, was weitaus größer als die Leistungsaufnahme der bahn mit etwa 70W ist.
-//- Leistung: @pd unterstützt bis zu 240W, was für die Anforderungen der Bahn mehr als ausreichend ist. @sourcePDhama
-- Bauweise: @usbc ist kompakt, robust und ermöglicht reversibles Einstecken.
-- Spannungsaushandlung: Über den @pd\-Handshake wird die benötigte Spannung von 12V aktiv zwischen Netzteil und Hardware vereinbart, wodurch nur kompatible Netzteile die erhöhte Spannung liefern.
+- Standardisierung: \ @usbc @pd ist weit verbreitet und ermöglicht die Nutzung von handelsüblichen Netzteilen ohne eigene Steckerlösung.
+- Leistung: \ Der USB-C PD Standard unterstützt bis zu 240W Leistung, was weitaus größer als die Leistungsaufnahme der bahn mit etwa 70W ist.
+- Bauweise: \ @usbc ist kompakt, robust und ermöglicht reversibles Einstecken.
+- Spannungsaushandlung: \ Über den @pd\-Handshake wird die benötigte Spannung von 12V aktiv zwischen Netzteil und Hardware vereinbart, wodurch nur kompatible Netzteile die erhöhte Spannung liefern.
 
 Von den 12V werden zwei geregelte Spannungsebenen erzeugt:
 - 5V über einen @buck (siehe @sec_bahn-buck)
@@ -31,23 +31,17 @@ Die stufenweise Regelung dient dazu, eine sauberere Ausgangsspannung mit geringe
 Als @buck wird der TPS56628RQFR von @ti eingesetzt, der die Eingangsspannung von 12V auf 5V bei einem maximalen Ausgangsstrom von 6A umwandelt. (siehe @sec_buck) @tps56628
 
 Der @ic:short wurde aufgrund folgender Eigenschaften gewählt:
-- Ausgangsstrom: Mit bis zu 6A liefert der @ic:short ausreichend
+- Ausgangsstrom: \ Mit bis zu 6A liefert der @ic:short ausreichend
   Strom für alle angeschlossenen Komponenten.
-- Effizienz: Der TPS56628 erreicht einen Wirkungsgrad von über 90%, was die Wärmeentwicklung auf der Leiterplatte gering hält.
+- Effizienz: \ Der TPS56628 erreicht einen Wirkungsgrad von über 90%, was die Wärmeentwicklung auf der Leiterplatte gering hält.
 
 Die Dimensionierung der Schaltung erfolgte mit dem @ti WEBENCH Power Designer @webench. Die Ausgangsspannung wird über einen resistiven Spannungsteiler am @fb:short\-Pin des ICs eingestellt.
-
-/* Dabei wurden folgende Widerstände verwendet:
-- $R_(f b t) = 220 upright("kΩ")$
-- $R_(f b b) = 30 upright("kΩ")$
-// Schaltung gegebenfalls
-*/
 
 Am Eingang und Ausgang befinden sind Stützkondensatoren, um die Ausgangsspannung zu stabilisieren und Spannungseinbrüche bei Lastsprüngen zu minimieren.
 
 #figure(
-  image("/Bilder/bahn-layout-buck.png", width: 85%),
-  caption: [Layout @buck Bahn],
+  fimage("/Bilder/bahn-layout-buck.png", width: 80%),
+  caption: [Layout @buck Hauptmodul],
 )
 
 == Spannungsregler - LDO <sec_bahn-ldo>
@@ -95,7 +89,7 @@ Zwei separate Module sind notwendig, da jede Fahrspur ein eigens Lesemodul benö
 )
 */
 #figure(
-  image("/Bilder/pn532-esp.svg", width: 40%),
+  image("/Bilder/pn532-esp.svg", width: 50%),
   caption: [NFC-Modul PN532],
 )
 
@@ -106,7 +100,7 @@ Beide PN532-Module haben dieselbe fest eingestellte @i2c:short\-Adresse und kön
 - @i2c Bus 1: @sda:short 1 / @scl:short 1 → @nfc:short\-Modul 1 (Fahrspur 1)
 - @i2c Bus 2: @sda:short 2 / @scl:short 2 → @nfc:short\-Modul 2 (Fahrspur 2)
 
-An den jeweiligen Übertragungsleitungen sind 10 kΩ Pullup-Widerstände auf 3.3V verbaut, da @i2c im Open-Drain-Betrieb ohne Pullup-Widerstände keinen definierten High Pegel sicherstellen kann. Jedes Modul wird über Drähte angeschlossen (@sda:short, @scl:short, @gnd:short und 3.3V). Das ermöglicht die flexible Positionierung der @nfc:short\-Antennen unter den Schienen der Bahn.
+An den jeweiligen Übertragungsleitungen sind 10kΩ Pull-up-Widerstände auf 3.3V verbaut, da @i2c im Open-Drain-Betrieb ohne Pull-up-Widerstände keinen definierten High Pegel sicherstellen kann. Jedes Modul wird über Drähte angeschlossen (@sda:short, @scl:short, @gnd:short und 3.3V). Das ermöglicht die flexible Positionierung der @nfc:short\-Antennen unter den Schienen der Bahn.
 
 == Display <sec_bahn-display>
 Als Anzeige für Renneinstellungen wird das MSP4031 Display-Modul verwendet, das über ein Flachbandkabel an der Platine angeschlossen ist.
@@ -134,16 +128,16 @@ Der @usbc Ladeausgang versorgt die Ladestation der Controller mit 5V. Die Spannu
 
 #figure(
   fimage("/Bilder/sch-bahn-ausgang.png", width: 100%),
-  caption: [Schaltung Ladeausgang Bahn],
+  caption: [Schaltung Ladeausgang Hauptmodul],
 ) <img_sch-bahn-ausgang>
 
 Die Ladefunktion ist über einen CJ2305 P-Kanal @mosfet:short schaltbar, der vom ESP32 über den @levelshifter angesteuert wird (siehe @sec_bahn-levelshifter).
 
 Ein P-Kanal @mosfet:short wird verwendet, da High-Seite geschaltet wird. Das Gate des @mosfet:short wird auf 5V gezogen, um den Stromfluss zu blockieren und auf 0V, um ihn zu ermöglichen.
 
-An den @cc:short\-Leitungen des Steckverbinders sind je ein 5.1 kΩ Pull-up Widerstand gegen 3.3V verbaut. Wird ein Gerät angesteckt, bildet dessen interner Pull-down Widerstand $R_d$ (5.1 kΩ gemäß @usbc\-Spezifikation /*@usbc-spez*/) mit $R_6$ bzw. $R_7$ einen Spannungsteiler. Der Pegel $U_(A D C)$ an ADC1 bzw. ADC2 fällt dadurch von 3.3V auf ca. 1.65V.
+An den @cc:short\-Leitungen des Steckverbinders sind je ein 5.1kΩ Pull-up Widerstand gegen 3.3V verbaut. Wird ein Gerät angesteckt, bildet dessen interner Pull-down Widerstand $R_d$ (5.1kΩ gemäß @usbc\-Spezifikation /*@usbc-spez*/) mit $R_1$ bzw. $R_2$ einen Spannungsteiler. Der Pegel $U_(A D C)$ an ADC1 bzw. ADC2 fällt dadurch von 3.3V auf ca. 1.65V.
 $
-  U_(A D C) = 3.3 upright("V") dot R_d / (R_d + R_6) = 3.3 upright("V") dot (5.1 upright("k")Omega) / (5.1 upright("k")Omega + 5.1 upright("k")Omega) = 1.65 upright("V")
+  U_(A D C) = 3.3 upright("V") dot R_d / (R_d + R_1) = 3.3 upright("V") dot (5.1 upright("k")Omega) / (5.1 upright("k")Omega + 5.1 upright("k")Omega) = 1.65 upright("V")
 $
 Der ESP32 wertet diesen Spannungsabfall aus und gibt die 5V-Versorgung über den @mosfet:short softwareseitig frei (siehe @sec_bahn-software).
 //@usb-source
@@ -153,8 +147,8 @@ Der ESP32 wertet diesen Spannungsabfall aus und gibt die 5V-Versorgung über den
 Die Leiterplatte wurde mit @easyeda:short entworfen und als zweiseitige Leiterplatte gefertigt. Der vollständige Schaltplan sowie das Layout (Top/Bottom) sind im Anhang zu finden. // (siehe @anhang_bahn-sch, @anhang_bahn-pcb).
 
 #figure(
-  fimage("/Bilder/pcb-bahn.svg", width: 100%),
-  caption: [3D Modell Leiterplatte Bahn],
+  fimage("/Bilder/bahn-pcb.svg", width: 100%),
+  caption: [Leiterplatte Hauptmodul],
 )
 
 Relevante Designentscheidungen:

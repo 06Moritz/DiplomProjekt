@@ -17,12 +17,23 @@ SysTick->CTLR |= 0x05; //SysTick Timer auf Clock Frequenz einstellen
 Calibration_LSI(Level_64); //Clock kalibrieren
 
 ```
-
+=== Verbindung
 - Es wird aktiv nach der eingestellen MAC-Adresse des Controllers gesucht, diese kann über @nfc eingestellt werden (siehe @sec-pairing).
 
+=== Empfang der Daten
 - Das Auto ist als Client konfiguriert, das bedeutet er empfängt Daten die vom Controller gesendet werden. Die Daten werden als _notifications_ gesendet (siehe @sec_ble).
 
+=== Verarbeitung der Daten
 - Die empfangen Motorleistungsdaten werden direkt gespeichert und von der Motorregelung verarbeitet.
+```c
+    else if(pMsg->method == ATT_HANDLE_VALUE_NOTI)
+    {
+        //Byte auslesen (0-255)
+        uint8_t num = pMsg->msg.handleValueNoti.pValue[0];
+        // Sollwert updaten
+        soll = num;
+    }
+```
 
 == Motorregelung
 Die Drehzahl wird über den Drehzahlsensor eingelesen. Der Sensor gibt einmal in der Umdrehung ein Low-Signal. Auf dem Input-Pin ist ein Interrupt gesetzt. Die Zeit zwischen den Interrupts wird gemessen, um die Drehzahl festzustellen. Die Berechnung der Motorleistung erfolgt über einen @pi:short\-Regler, der die Abweichung von der gewünschten Drehzahl berechnet und entsprechend die Leistung anpasst.
@@ -59,7 +70,37 @@ if(p > 255) p = 255; //Wertbegrenzung auf 0-255
 ```
 
 == @nfc:both
-Die @nfc ...
+Der CH585 wird im @picc Modus konfiguriert. Für eine einfache und schnelle Identifikation liest der @nfc\-Reader in der Bahn und die @uuid. Da kein Datenspeicher ausgelesen wird ist die Initialisierung des @nfc Teils einfach gestaltet.
+
+Als Grundlage dient das @picc Codebeispiel von WCH. 
+```c
+// Definition der 7-Byte Hardware-Identität (UID)
+uint8_t uuid[7] = {0x00, 0xAE, 0x38, 0xE2, 0xB5, 0x4C, 0x80};
+
+// Zuweisung der Identität an den NFC-Treiber
+nfca_picc_t2t_enable(uuid));
+
+// Aktivierung der passiven Funk-Schnittstelle
+nfca_picc_start();
+
+```
 
 
 == Pairing mode <sec-pairing>
+Der _pairing-mode_ wird genutzt um das Auto mit einem Controller zu verbinden. Um zu ermitteln ob der IC über die Bahn oder mit dem Superkondensator versorgt wird wird die Eingangsspannung über den @adc gemessen. Die Spannung vom Kondensator niedriger ist als die vom @ldo. Wenn das erkannt wird wechselt der @nfc Modus zu @pcd um als Reader zu agieren. Es wird die @mac Adresse des Controllers von einem @nfc\-Tag gelesen und gespeichert. 
+
+```c
+    readADC();
+    if(readADC()>210 || PAIR == 0)
+    {  //init main mode
+        nfcPiccInit();
+        nfca_picc_start();
+
+        Main_Circulation();
+    }
+
+    else {
+        //init PCD mode
+        nfcPCDInit();
+    }
+```
