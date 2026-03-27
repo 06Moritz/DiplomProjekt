@@ -100,7 +100,7 @@ Das Display des hauptmoduls ist ein TFT-Display, verfügt über I2C-Touch und ha
 
 - TFT_eSPI Library: Es wird die TFT_eSPI Library verwendet, um die grafische Benutzeroberfläche auf dem Display zu erstellen. Diese Bibliothek bietet Funktionen zum Zeichnen von Text, Formen und Bildern.
 
-- I2C_Touch: Das Display verfügt über I2C. Dadurch können Touch Events erkannt und verarbeitet werden. Auf dem Display können der Modus geändert, Spieler hinzugefügt und Rennen gestartet/gestoppt werden.
+- @i2c: Das Display verfügt über @i2c. Durch die @i2c\-Schnittstelle werden XY Koordinaten übertragen, wodurch Touch Events erkannt und verarbeitet werden können. Durch Toucheingaben können der Modus geändert, Spieler hinzugefügt und das Rennen gestartet/gestoppt werden. @sourcei2c
 
 ```c
 bool startIsPressed = (btnStart && btnStart->isPressed());
