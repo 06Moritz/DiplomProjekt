@@ -99,7 +99,7 @@ Der _pairing-mode_ wird genutzt um das Auto mit einem Controller zu verbinden. U
         Main_Circulation();
     }
 
-    else {89
+    else {
         //init PCD mode
         nfcPCDInit();
     }

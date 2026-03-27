@@ -14,4 +14,4 @@
   blaetter: "3"
 )
 
-//#image("/Bilder/anhang/fahrzeug-layout-top.png", width: 80%)
+#image("/Bilder/anhang/lay_top_auto.png", width: 80%)

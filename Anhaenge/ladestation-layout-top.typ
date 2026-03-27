@@ -6,7 +6,7 @@
   gez: "ReiM",
   geprueft: "ProM",
   dokumentart: "Layout TOP",
-  projekt: "Joystick",
+  projekt: "Ladestation",
   //beschreibung: "",
   status: "Prototyp",
   datum: "20.03.2026",
@@ -14,4 +14,4 @@
   blaetter: "3"
 )
 
-//#image("/Bilder/anhang/ladestation-layout-top.png", width: 80%)
+#image("/Bilder/anhang/lad_top.png", width: 80%)
