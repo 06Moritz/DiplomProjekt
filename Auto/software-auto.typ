@@ -3,11 +3,11 @@
 #aktueller_autor.update([#author2, #klasse])
 
 = Software
-== @ble:both
+== Bluetooth Low Energy
 Die Basis der Implementierung bildet der @ble Beispielcode von WCH. Dieser Code stellt die notwendigen Low-Level-Funktionen für den Bluetooth-Stack und das @tmos zur Verfügung.
 Das Auto ist als @ble\-Master (Central-Device) konfiguriert. Es sucht aktiv nach Geräten zum Verbinden und empfängt Geschwindigkeitswerte.
 
-=== @clk:long\-Initialisierung
+=== Clock-Initialisierung
 Es wird der interne niederfrequente 32kHz Quarz verwendet, der im _setup_ Kalibriert werden muss. Für @ble ist eine genaue Frequenz erforderlich.
 
 ```c
@@ -69,7 +69,7 @@ if(p < 0) p = 0;
 if(p > 255) p = 255; //Wertbegrenzung auf 0-255
 ```
 
-== @nfc:both
+== Near Field Communication (NFC)
 Der CH585 wird im @picc Modus konfiguriert. Für eine einfache und schnelle Identifikation liest der @nfc\-Reader in der Bahn und die @uuid. Da kein Datenspeicher ausgelesen wird ist die Initialisierung des @nfc Teils einfach gestaltet.
 
 Als Grundlage dient das @picc Codebeispiel von WCH. 

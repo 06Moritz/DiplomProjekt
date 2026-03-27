@@ -2,9 +2,7 @@
 
 #aktueller_autor.update([#author2, #klasse])
 
-// NOCH FERTIG SCHREIBEN
-
-= @ble:both <sec_ble>
+= Bluetooth Low Energy (BLE) <sec_ble>
 @ble:long ist ein drahtloses Kommunikationsprotokoll, das speziell für die Verbindung von Geräten über kurze Entfernungen entwickelt wurde. @ble ist für Übertragung von kleinen Datenmengen optimiert und zeichnet sich durch folgende Eigenschaften aus:
 - energiesparend durch geringen Datendurchsatz
 - Sender und Empfänger im @deepsleep:short\-Modus wenn keine Daten gesendet werden 

@@ -86,7 +86,7 @@ Durch Polymorphismus muss nicht jeder Button einzeln erstellt werden. Das ermög
 Wenn das Display gedrückt sendet es über I2C die XY-Koordinaten des Touch-Events and den Mikrocontroller. Es werden die Koordinaten mit den Positionen der Buttons verglichen. Wenn die Koordinaten innerhalb der Grenzen eines Buttons liegen, wird die Funktion des Buttons ausgeführt.
 
 \
-Das Display des hauptmoduls ist ein TFT-Display, verfügt über I2C-Touch und hat eine Auflösung von 320*480 Pixeln. Es werden Spieler, Modis und Bestenliste angezeigt. 
+Das Display des Hauptmoduls ist ein @tft:short\-Display, verfügt über I2C-Touch und hat eine Auflösung von 320*480 Pixeln. Es werden Spieler, Modis und Bestenliste angezeigt. 
 
 - TFT_eSPI Library: Es wird die TFT_eSPI Library verwendet, um die grafische Benutzeroberfläche auf dem Display zu erstellen. Diese Bibliothek bietet Funktionen zum Zeichnen von Text, Formen und Bildern.
 
@@ -138,8 +138,7 @@ Es gibt drei Zustände:
 Je nachdem welcher Button gedrückt wird, wird der Zustand geändert.
 
 
-== @tcp:both Programmierung
-
+== Transmission Control Protocol (TCP) Programmierung
 Um eine Verbindung zwischen der App und dem Hauptmodul Display herzustellen, wird das @tcp Protokoll verwendet. Dieses ermöglicht eine Bidirektionale Kommunikation zwischen den beiden Geräten. Das dient dazu, dass Änderungen, wie das Einstellen der Modi oder Spielernamen, auf das Display übertragen werden können.\
 
 In dieser Konfiguration zählt der @esp32:short\-S3 als @tcp -Server, der auf einem definierten Port (8080) auf eingehende Verbindungsanfragen der App wartet.\ \
@@ -305,8 +304,6 @@ An dem @esp32:short wird ein Server Socket erstellt, der auf Port 8080 auf verbi
 
 === Synchronisation
 Um sicherzustellen, dass beide Geräte immer den gleichen Systemstatus anzeigen, wurde ein zeilenbasiertes Protokoll entwickelt.\ Jede Nachricht wird mit einem Newline-Zeichen (\n) abgeschlossen, damit der Empfänger das Ende eines Befehls eindeutig erkennt. Dies ist notwendig, da @tcp die Daten als kontinuierlichen Strom versendet.\ Sobald in der App ein Parameter wie der Spielmodus oder die Rundenzahl geändert wird, sendet die App sofort ein entsprechendes Datenpaket an das Display. Ein Befehl wie MODUS: Schwer bewirkt am Display eine sofortige Aktualisierung der Variable und einen Redraw der Benutzeroberfläche. Dieser Prozess funktioniert auch in die umgekehrte Richtung: Wird am Display der "Start"- oder "Modus"-Button gedrückt, erhält die App das Signal zum Starten des Renn-Timers beziehungsweise das ändern des Moduses.
-\ \
-
 
 == Echtzeitverhalten
 Bei der Softwareimplementierung wurde besonders auf ein nicht-blockierendes Design geachtet. Da das Hauptmodul gleichzeitig den Touchscreen abfragen und das Display aktualisieren muss, darf der Netzwerkcode den Prozessor nicht aufhalten.\ Die Abfrage von eingehenden Daten erfolgt daher in jedem Programmdurchlauf, ohne den restlichen Ablauf zu verzögern.

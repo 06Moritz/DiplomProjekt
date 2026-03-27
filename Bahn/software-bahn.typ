@@ -8,7 +8,7 @@ Die Software des Hauptmoduls dient zum Rundenzeit messen mittels NFC, erkennen v
 
 
 
-== @nfc:long
+== Near Field Communication
 Die Rundenzeit wird über NFC gemessen. Jedes Auto hat eine eingebaute NFC Spule. Sobald ein Auto über den NFC-Tag fährt, wird ein Signal an den ESP geschickt, welcher die Werte auswertet und die Rundenzeit über BLE an die App, den Hauptmodul Display und den Controller sendet.
 \ I2C, zeitmessung genauer, @uuid, library, -> technischer
 \
@@ -41,7 +41,7 @@ vergleicht array und sucht spieler raus
 
 zwei prozesse aufteilt
 
-== @ble:long
+== Bluetooth Low Energy
 Die @wifi Zugangsdaten werden über @ble durch die App eingestellt.
 Es werden kleine Datenpakete vom Hauptmodul an die Controler mit @ble Advertising gesendet.
 \
@@ -71,7 +71,7 @@ Die Daten werden in einen String umgewandelt und gesendet.
 \ \
 
 
-== @tcp:long
+== Transmission Control Protocol
 @tcp ist ein Netzwerk Protokoll, das benutzt wird, um Daten vom Hauptmodul an die App zu senden. Dafür ist eine @wifi verbindung notwendig.
 Wenn keine WLAN Verbindung besteht, verbindet sich die App über Bluetooth und der Nutzer kann die Zugangsdaten über die App eingeben.
 Sobald sich der ESP über @wifi verbunden hat,

@@ -94,14 +94,12 @@ In dieser Abbildung sieht man den Strom- und Spannungsverlauf eines Mikrocontrol
 )\
 In dieser Abbildung sieht man den Strom- und Spannungsverlauf eines Mikrocontrollers mit einem Stützkondensator. Es ist deutlich zu erkennen, dass die Spannung stabil bleibt, auch während der Stromspitzen.
 
-
-== @adc:both
+== Analog-Digital-Wandler (ADC)
 Die analogen Signale vom Potentiometer und vom Schieberegler werden über den @adc von dem CH32V003 eingelesen. Der Chip wandelt die analogen Signale in digitale Werte um, sie werden über UART an den CH572 gesendet. 
 Bauteile die zum auslesen einen @adc brauchen: 
 - Potentiometer
 - Schieberegler
 
-\
 == Steuerung
 Die genannten Bauteile werden für die Steuerung des Autos verwendet. Sie ermöglichen es dem Spieler, die Geschwindigkeit zu steuern, die Hupe zu betätigen und ein haptisches Feedback zu erhalten. 
 
@@ -110,7 +108,7 @@ Die genannten Bauteile werden für die Steuerung des Autos verwendet. Sie ermög
 - Schieberegler: Der Schieberegler wird vom @adc eingelesen, wenn dieser einen bestimmten Schwellenwert überschreitet, wird ein Signal an das Auto gesendet, um die Hupe zu betätigen.
 
 - Vibrationsmotor: Der Vibrationsmotor wird für haptisches Feedback verwendet. Er wird über den CH572 gesteuert. Bei bestimmten Ereignissen im Spiel, wie z.B. beim Erreichen der maximalen Geschwindigkeit, wird der Vibrationsmotor aktiviert, um dem Spieler ein haptisches Feedback zu geben.
-\
+
 == Antenne
 
 Die Zuleitung ist auf 50 Ω angepasst, damit die Antenne optimal abstrahlt und eine optionale Verbindung über @ble zwischen dem Controller und dem Auto ermöglicht. Damit die Anpassung erhalten bleibt, wurde die Leiterbahn zwischen Antenne und dem CH572 entsprechend dimensioniert. Die Platine des Controllers ist 0.6mm dünn, wodurch die benötigte Leiterbahnbreite für den 50 Ohm Wellenwiderstand 0.8mm beträgt. \ 

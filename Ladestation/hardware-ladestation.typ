@@ -8,7 +8,7 @@ Versorgt wird die Ladestation mit einem @usbc Anschluss. An dem Hauptmodul ist e
 Mit einem kurzen USB-C zu  USB-C Stecker wird die Platine angeschlossen. Die Ladestation ist für vier Controller designt. Die Controller werden über Federkontakte mit der Ladestation verbunden und aufgeladen. Da die Federkontakte über Magnete verbunden sind, ist es möglich, die Controller einfach auf die Ladestation zu stellen und eine Verpolung ist auszuschließen.
 \ \
 #figure(
-fimage("/Bilder/Ladestation.png", width: 50%),
+fimage("/Bilder/Ladestation.png", width: 70%),
 caption: [Schaltplan Ladestation],
 )
 \
