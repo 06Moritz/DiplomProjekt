@@ -94,8 +94,8 @@
 #let fimage(path, ..args) = {
   rect(
     stroke: 0.5pt + gray.darken(0%),
-    inset: 5pt,
-    radius: 2pt,
+    inset: 0pt,
+    radius: 0pt,
     image(path, ..args),
   )
 }

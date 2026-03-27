@@ -3,16 +3,16 @@
 #aktueller_autor.update([#author1, #klasse]) // Melanie
 
 = 3D <sec_bahn-3d>
-*!* Das Hauptmodul nimmt die Leiterplatte, das Display sowie die Schienen auf. Ein kompaktes Design hält alle Komponenten sicher zusammen und ermöglicht eine einfache Montage.
+*!* Das 3D-Modell des Hauptmoduls nimmt die Leiterplatte, das Display sowie die Schienen auf. Ein kompaktes Design hält alle Komponenten sicher zusammen und ermöglicht eine einfache Montage.
 
 == Anforderungen
 - platzsparende und sichere Unterbringung von Leiterplatte und Display
-- Zugängigkeit von @usbc\-Eingang (12V Versorgung) und @usbc\-Ladeausgang für die Ladestation
+- @usbc\-Eingang (12V Versorgung) und @usbc\-Ladeausgang für die Ladestation sollen leicht zugänglich sein.
 - Positionierung der @nfc\-Module flexibel unter den Schienen möglich
 
 == Grundstruktur
-Das Gehäuse besteht aus drei separat gedruckten Teilen, die ohne zusätzlichem Werkzeug zusammengefügt werden:
-- Bahn: Hauptteil, das die Leiterplatte, die beiden Fahrspuren sowie die schräge Displayhalterung trägt
+Das Gehäuse besteht aus drei separaten Teilen:
+- Bahn: besteht aus der Leiterplatte, den beiden Fahrspuren sowie der schrägen Displayhalterung
 - Einschub: schließt hinter dem Display die Rückseite des Gehäuses ab
 - Fixierung: Klemmelement, das Bahn und Einschub zusammenhält
 
@@ -43,7 +43,7 @@ Das Gehäuse besteht aus drei separat gedruckten Teilen, die ohne zusätzlichem 
 
 == Bahn
 // ! RICHTIGES REFERENZIEREN !
-Das Hauptmodul ist 30cm lang und 11,4cm breit. Die Steckverbindungen und Maße sind so gewählt, dass das Schienenteil mit handelsüblichen Carrera-GO!-Schienen kompatibel ist. Die Metallschienen werden in die gedruckten Führungen eingesteckt und sind dadurch leicht austauschbar. Die Schienen sind so ausgeführt, dass Fahrzeuge über Schleifkontakte die anliegende Spannung von 12V abgreifen können (siehe @sec_auto-spgversorgung).
+Das Hauptmodul ist 30cm lang und 11,4cm breit. Die Steckverbindungen und Maße sind so gewählt, dass sie den Standard-Modellbahnschienen entsprechen. Die Metallschienen werden in die gedruckten Führungen eingesteckt und sind dadurch leicht montierbar. Die Schienen sind so ausgeführt, dass Fahrzeuge über Schleifkontakte die anliegende Spannung von 12V abgreifen können (siehe @sec_auto-spgversorgung).
 
 Unter jeder Fahrspur befindet sich eine Aussparung für je ein @nfc\-Modul (siehe @sec_bahn-nfc). Durch die Kabelverbindung zur Leiterplatte können die Module unabhängig vom Gehäuse exakt unter den Schienen positioniert werden.
 
@@ -65,7 +65,7 @@ Die Displayhalterung ist direkt mit dem Schienenteil verbunden und vor den Schie
 )
 
 == Einschub
-Der Einschub wird von rechts in die Bahn eingeschoben und bildet den hinteren Abschluss des Gehäuses. Er verdeckt die Leiterplatte sowie die Rückseite des Displays. Auf der rechten Seite befindet sich eine Aussparung für den @usbc\-Eingang der Spannungsversorgung.
+Der Einschub bildet den Abschluss des Gehäuses. Er verdeckt die Leiterplatte sowie die Rückseite des Displays. Auf der rechten Seite befindet sich eine Aussparung für den @usbc\-Eingang der Spannungsversorgung.
 
 #figure(
   grid(
@@ -80,7 +80,7 @@ Der Einschub wird von rechts in die Bahn eingeschoben und bildet den hinteren Ab
 )
 
 == Fixierung
-Die Fixierung wird auf der linken Seite aufgesteckt und hält die Displayhalterung und den Einschub durch eine Press-fit Verbindung zusammen. Auf dieser Seite befindet sich außerdem die Aussparung für den @usbc\-Ladeausgang zur Versorgung der Ladestation mit 5V (siehe @sec_bahn-ladeausgang).
+Die Fixierung wird auf der linken Seite aufgesteckt und hält die Displayhalterung und den Einschub durch eine Press-fit Verbindung zusammen. Auf dieser Seite befindet sich die Aussparung für den @usbc\-Ladeausgang zur Versorgung der Ladestation mit 5V (siehe @sec_bahn-ladeausgang).
 
 #figure(
   grid(
@@ -95,4 +95,4 @@ Die Fixierung wird auf der linken Seite aufgesteckt und hält die Displayhalteru
 )
 
 == 3D-Druck
-Alle Teile sind in Autodesk Fusion 360 modelliert und aus schwarzem ABS gedruckt. Die Wandstärken sind so dimensioniert, dass nötige Verbindungen stabil zusammenhalten. Toleranzen für die Schienenführungen sowie die Display- und @nfc\-Aussparungen sind durch Testdrucke angepasst.
+Die 3D-Modelle sind in @fusion360:long modelliert und aus schwarzem @abs gedruckt. Toleranzen für die Schienenführungen sowie die Display- und @nfc\-Aussparungen sind durch Testdrucke angepasst.

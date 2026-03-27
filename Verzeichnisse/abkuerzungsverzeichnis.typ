@@ -4,6 +4,12 @@
 #let eintraege = (
   pcb: (short: "PCB", long: "Printed Circuit Board", description: "Leiterplatte, auf der elektronische Bauteile montiert werden"),
 
+  tmos: (short: "TMOS", long: "Task Management Operating System", description: "Echtzeitbetriebssystem, das von WCH für die Verwaltung von Aufgaben und Ressourcen in ihren Bluetooth-Chips verwendet wird"),
+
+  led: (short: "LED", long: "Light Emitting Diode", description: "Halbleiterbauelement, das Licht emittiert, wenn Strom durch es fließt"),
+
+  riscv: (short: "RISC-V", long: "Reduced Instruction Set Computer - Five", description: "Offene Befehlssatzarchitektur für Mikroprozessoren"),
+
   ble: (short: "BLE", long: "Bluetooth Low Energy", description: "Energiesparende Funktechnologie für die drahtlose Kommunikation"),
 
   pwm: (short: "PWM", long: "Pulsweitenmodulation", description: "Verfahren zur Steuerung der Leistung von elektrischen Geräten"),
@@ -66,11 +72,17 @@
 
   gnd: (short: "GND", long: "Ground", description: "Masse, Bezugspotential für elektrische Schaltungen"),
 
+  m2: (short: "M2", long: "Metric 2mm", description: "Standardgröße für Schrauben, die in der Elektronik und Mechanik verwendet wird"),
+
   en: (short: "EN", long: "Enable", description: "Aktivierungssignal, das verwendet wird, um ein Gerät oder eine Funktion zu aktivieren oder zu deaktivieren"),
 
   io0: (short: "IO0", long: "Input/Output Pin 0", description: "Allzweck-Ein-/Ausgangspin, der für verschiedene Funktionen konfiguriert werden kann, z.B. als Boot-Pin oder zur Steuerung von Peripheriegeräten"),
 
+  pi: (short: "PI", long: "Proportional-Integral", description: "Regelalgorithmus, der in der Regelungstechnik verwendet wird, um die Leistung eines Systems zu steuern"),
+
   sda: (short: "SDA", long: "Serial Data Line", description: "Datenleitung für die I²C-Kommunikation, über die Daten zwischen Geräten übertragen werden"),
+
+  clk: (short: "CLK", long: "Clock", description: "Systemtakt, der die Geschwindigkeit der Datenverarbeitung und -übertragung in elektronischen Geräten bestimmt"),
 
   scl: (short: "SCL", long: "Serial Clock Line", description: "Taktleitung für die I²C-Kommunikation, die den Takt für die Datenübertragung vorgibt"),
 

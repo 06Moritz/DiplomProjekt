@@ -4,43 +4,29 @@
 
 = Software
 == @ble:both
-Die Basis der Implementierung bildet der @ble Beispielcode von WCH. Dieser Framework stellt die notwendigen Low-Level-Funktionen für den Bluetooth-Stack und das TMOS (Task Management Operating System) zur Verfügung.
-Das Auto ist als @ble BLE-Master (Central-Device) konfiguriert. Es sucht aktiv nach Geräten zum Verbinden und und empfängt Geschwindigkeitswerte. 
-- *Überschrift?* Es wird er der interne niederfrequente 32kHz Quarz verwendet, der im setup Kalibriert werden muss. Für @ble ist eine genaue Frequenz erforderlich.
+Die Basis der Implementierung bildet der @ble Beispielcode von WCH. Dieser Code stellt die notwendigen Low-Level-Funktionen für den Bluetooth-Stack und das @tmos zur Verfügung.
+Das Auto ist als @ble\-Master (Central-Device) konfiguriert. Es sucht aktiv nach Geräten zum Verbinden und empfängt Geschwindigkeitswerte.
 
-#figure(
-  table(
-    columns: (1fr),
-    rows: (auto),
-    [
+=== @clk:long\-Initialisierung
+Es wird der interne niederfrequente 32kHz Quarz verwendet, der im _setup_ Kalibriert werden muss. Für @ble ist eine genaue Frequenz erforderlich.
+
 ```c
-    HSECFG_Capacitance(HSECap_18p); //Kondensatoren für Quarz einstellen
-    SetSysClock(SYSCLK_FREQ); //Systemfrequenz einstellen
-    SysTick->CTLR |= 0x05; //SysTick Timer auf Clock Frequenz einstellen
-    Calibration_LSI(Level_64); //Clock kalibrieren
+HSECFG_Capacitance(HSECap_18p); //Kondensatoren für Quarz einstellen
+SetSysClock(SYSCLK_FREQ); //Systemfrequenz einstellen
+SysTick->CTLR |= 0x05; //SysTick Timer auf Clock Frequenz einstellen
+Calibration_LSI(Level_64); //Clock kalibrieren
 
-    ```
-    ],
-  ),
-  caption: [CLK-init]
-  )
+```
 
-- Es wird aktiv nach der eingestellen MAC-Adresse des Controllers gesucht; diese kann über NFC eingestellt werden. (siehe @sec-pairing).
+- Es wird aktiv nach der eingestellen MAC-Adresse des Controllers gesucht, diese kann über @nfc eingestellt werden (siehe @sec-pairing).
 
-- Das Auto ist als Client konfiguriert, das bedeutet er empfängt Daten die vom Controller gesendet werden. Die Daten werden als notifications gesendet (siehe /*@sec-BLE*/) 
+- Das Auto ist als Client konfiguriert, das bedeutet er empfängt Daten die vom Controller gesendet werden. Die Daten werden als _notifications_ gesendet (siehe @sec_ble).
 
-- Die empfangen Motorleistungsdaten werden direkt gespeichert und von der Motorregelung verarbeitet. 
+- Die empfangen Motorleistungsdaten werden direkt gespeichert und von der Motorregelung verarbeitet.
 
-== Motorregelung 
-Die Drehzahl wird über den Drehzahlsensor eingelesen. Der Sensor geht einmal in der Umdrehung auf low. Auf den Input-pin ist ein Interrupt gesetzt, die Zeit zwischen den Interrupts wird gemessen. 
-\ \
+== Motorregelung
+Die Drehzahl wird über den Drehzahlsensor eingelesen. Der Sensor gibt einmal in der Umdrehung ein Low-Signal. Auf dem Input-Pin ist ein Interrupt gesetzt. Die Zeit zwischen den Interrupts wird gemessen, um die Drehzahl festzustellen. Die Berechnung der Motorleistung erfolgt über einen @pi:short\-Regler, der die Abweichung von der gewünschten Drehzahl berechnet und entsprechend die Leistung anpasst.
 
-
-#figure(
-  table(
-    columns: (1fr),
-    rows: (auto),
-    [
 ```c
 __attribute__((interrupt("WCH-Interrupt-fast")))
 void GPIOA_IRQHandler(void) {
@@ -52,24 +38,12 @@ void GPIOA_IRQHandler(void) {
         GPIOA_ClearITFlagBit(GPIO_Pin_4);
 
     }
-} 
+}
 ```
-    ],
-  ),
-  caption: [Interrupt-Service-Routine]
-  )
-
-
-\ \
-Für den PI-Regler ist ein periodischer Ablauf nötig. Die Motorleistung wird alle 10 Millisekunden berechnet. Es wird ein Timer-Interrupt gesetzt. Der Integralteil wird durch kontinuierliches summieren des Fehlers berechnet.
+\ 
+Für den @pi:short\-Regler ist ein periodischer Ablauf nötig. Die Motorleistung wird alle 10 Millisekunden berechnet. Es wird ein Timer-Interrupt gesetzt. Der Integralteil wird durch kontinuierliches Summieren des Fehlers berechnet.
 \ \
 
-
-#figure(
-  table(
-    columns: (1fr),
-    rows: (auto),
-    [
 ```c
 int x = per_norm - soll; //Abweichung vom Sollwert
 i_sum += (float)x * 0.1f; //summieren für Integralteil
@@ -79,18 +53,13 @@ if(i_sum > 1500) i_sum = 1500;
 if(i_sum < 0)    i_sum = 0;
 
 //Berechnung des PI-Reglers
-int p = (int)((0.5f * (float)x) + (0.12f * i_sum)); 
-if(p < 0) p = 0; 
+int p = (int)((0.5f * (float)x) + (0.12f * i_sum));
+if(p < 0) p = 0;
 if(p > 255) p = 255; //Wertbegrenzung auf 0-255
 ```
-    ],
-  ),
-  caption: [Implementierung des PI-Reglers in C]
-  )
-
 
 == @nfc:both
-Die @nfc 
+Die @nfc ...
 
 
 == Pairing mode <sec-pairing>
