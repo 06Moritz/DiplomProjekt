@@ -14,5 +14,4 @@
   blaetter: "3"
 )
 
-= Ladestation Layout TOP
 //#image("/Bilder/anhang/ladestation-layout-top.png", width: 80%)

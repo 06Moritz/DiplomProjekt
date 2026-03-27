@@ -94,7 +94,6 @@ In dieser Abbildung sieht man den Strom- und Spannungsverlauf eines Mikrocontrol
 In dieser Abbildung sieht man den Strom- und Spannungsverlauf eines Mikrocontrollers mit einem Stützkondensator. Es ist deutlich zu erkennen, dass die Spannung stabil bleibt, auch während der Stromspitzen.
 
 
-\ \
 == @adc:both
 Die analogen Signale vom Potentiometer und vom Schieberegler werden über den @adc von dem CH32V003 eingelesen. Der Chip wandelt die analogen Signale in digitale Werte um, sie werden über UART an den CH572 gesendet. 
 Bauteile die zum auslesen einen @adc brauchen: 
@@ -146,7 +145,7 @@ Dadurch wird verhindert, dass hochfrequente Signale in benachbarte Leiterbahnen 
 == Leiterplatte
 
 #figure(
-fimage("/Bilder/controllerUberblick.svg", width: 100%),
+image("/Bilder/controllerUberblick.png", width: 100%),
 caption: [Leiterplatte des Controllers],
 )
 

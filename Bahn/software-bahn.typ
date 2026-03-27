@@ -1,6 +1,6 @@
 #import "../config.typ": *
 #pagebreak()
-#aktueller_autor.update([#author3, #klasse])
+#aktueller_autor.update([#author2, #klasse])
 
 = Software <sec_bahn-software>
 
@@ -95,28 +95,5 @@ Mit der @tcp programmierung wird sichergestellt, dass Signale von der APP und de
 ```
 Der Codeausschnitt beschreibt die Verarbeitung von @tcp Befehlen auf dem Hauptmodul Display. Es wird überprüft, ob die App  verbunden ist. Je nach Befehl wird der Modus geändert oder das Rennen gestartet.
 
-== Display
-Das Display des hauptmoduls ist ein TFT-Display, verfügt über I2C-Touch und hat eine Auflösung von 320*480 Pixeln. Es werden Spieler, Modis und Bestenliste angezeigt. 
 
-- TFT_eSPI Library: Es wird die TFT_eSPI Library verwendet, um die grafische Benutzeroberfläche auf dem Display zu erstellen. Diese Bibliothek bietet Funktionen zum Zeichnen von Text, Formen und Bildern.
-
-- I2C_Touch: Das Display verfügt über I2C. Dadurch können Touch Events erkannt und verarbeitet werden. Auf dem Display können der Modus geändert, Spieler hinzugefügt und Rennen gestartet/gestoppt werden.
-
-```c
-bool startIsPressed = (btnStart && btnStart->isPressed());
-bool modusIsPressed = (btnModus && btnModus->isPressed());
-```
-Hier wird überprüft, ob der Start- oder Modus-Button gedrückt wurde.
-
-#figure(
-  image("/Bilder/display.png", width: 80%),
-  caption: [Display des Hauptmoduls]
-)
-
-
-== Echtzeitverhalten
-Bei der Softwareimplementierung wurde besonders auf ein nicht-blockierendes Design geachtet. Da das Hauptmodul gleichzeitig den Touchscreen abfragen und das Display aktualisieren muss, darf der Netzwerkcode den Prozessor nicht aufhalten.\ Die Abfrage von eingehenden Daten erfolgt daher in jedem Programmdurchlauf, ohne den restlichen Ablauf zu verzögern.
-\
-Sollte die Verbindung zwischenzeitlich unterbrochen werden, verfügt die App über eine automatische Reconnect-Logik.\ Diese erkennt die unterbrochene Verbindung durch einen Timeout und versucht eigenständig, den Socket neu zu initialisieren, um die Verbindung wiederherzustellen. Während der Reconnect-Phase zeigt die App eine entsprechende Meldung an. Sobald die Verbindung wiederhergestellt ist, werden alle zuvor gesendeten Befehle erneut übertragen, um sicherzustellen, dass das Display den aktuellen Status korrekt anzeigt. 
-\ \ 
 

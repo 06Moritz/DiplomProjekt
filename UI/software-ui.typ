@@ -1,9 +1,8 @@
 #import "../config.typ": *
 #aktueller_autor.update([#author3, #klasse])
 
-Die App dient zum Einstellen. Sie ermöglicht es die Sprache, den Modus, die Rundenzahl und Spielernamen einzustellen, sowie die Verbindung zum Hauptmodul  herzustellen.\
-= Software
-??Die Software besteht aus drei Modulen:
+
+Das @ui:long  besteht aus drei Modulen:
 - App
 - Hauptmodul Display
 - Controller Display
@@ -11,19 +10,18 @@ Die App dient zum Einstellen. Sie ermöglicht es die Sprache, den Modus, die Run
 Die Software ist in Kotlin für die App und in PlatformIO für die Displays programmiert.\
 Die Kommunikation zwischen der App und dem Hauptmodul Display erfolgt über das @tcp Protokoll, während die Kommunikation zwischen dem Hauptmodul Display und dem Controller Display über BLE erfolgt.
 
-
+= App
 == App Programmierung
-
+Die App dient zum Einstellen. Sie ermöglicht es die Sprache, den Modus, die Rundenzahl und Spielernamen einzustellen, sowie die Verbindung zum Hauptmodul  herzustellen.\
 
 #figure(
   image("/Bilder/App/Appscreen.png", width: 50%),
   caption: [Startbildschirm der App],
 )
 
-
-
 Es gibt verschiedene Modi, die unterschiedliche Schwierigkeitsgrade bieten. Je nach Modus variiert die Anzahl der Runden und die Schwierigkeit der Steuerung. Unter Schwierigkeit der Steuerung versteht man mit welcher Motorleistung die Autos fahren.
-\ \
+
+#pagebreak()
 Modi Initialisierung:
 ```c
   // Spielmodi Definition
@@ -42,7 +40,7 @@ enum class GameMode(
 - speedFactor: Hier wird die Motorleistung eingestellt. Zum Beispiel: 0.5f bedeutet, dass die Autos mit halber Leistung fahren.
 
 \
-Beim Start des Rennens zeigt die App die Dauer (mit einer Timer Methode) und den Rundenfortschritt der Spieler. Nach dem Beenden des Rennens werden die Spieler des aktuellen Rennens nach der Bestzeit sortiert und angezeigt. In diesem Menü hat man die Wahl wieder zum Hauptmenü zu gelangen oder sich das gesamte Ranking aller Rennen anzusehen. Diese werden nach folgenden Kriterien sortiert:
+Beim Start des Rennens zeigt die App die Dauer (mit einer Timer Methode) und den Rundenfortschritt der Spieler an. Nach dem Beenden des Rennens werden die Spieler des aktuellen Rennens nach der Bestzeit sortiert und angezeigt. In diesem Menü hat man die Wahl wieder zum Hauptmenü zu gelangen oder sich das gesamte Ranking aller Rennen anzusehen. Diese werden nach folgenden Kriterien sortiert:
 - Tag
 - Woche
 - Monat
@@ -60,6 +58,9 @@ Beim Start des Rennens zeigt die App die Dauer (mit einer Timer Methode) und den
   gap: 1em,
 )
 
+- Rennen: Rennendauer mit Spieleranzeige
+- Platzierung: Spieler werden nach schnellster Zeit sortiert. Der Spieler mit der schnellsten Runde auf Platz 1, rot markiert und Rennzeit angezeigt.
+
 #figure(
   grid(
     columns: 1fr,
@@ -70,6 +71,7 @@ Beim Start des Rennens zeigt die App die Dauer (mit einer Timer Methode) und den
   caption: [Leaderboard],
   gap: 1em,
 )
+- Leaderboard: Alle Spieler werden am @esp32:short mit ihrer Bestzeit gespeichert. In diesem Menü werden die Spieler nach Tag, Woche, Monat und Gesamt sortiert und angezeigt.
 
 == Hauptmodul Display
 Das Display MSP4030 verfügt über einen Kapazitiven Touchscreen, welcher einfache Einstellungen über das Display ermöglicht.
@@ -237,3 +239,27 @@ An dem @esp32:short wird ein Server Socket erstellt, der auf Port 8080 auf verbi
 Um sicherzustellen, dass beide Geräte immer den gleichen Systemstatus anzeigen, wurde ein zeilenbasiertes Protokoll entwickelt.\ Jede Nachricht wird mit einem Newline-Zeichen (\n) abgeschlossen, damit der Empfänger das Ende eines Befehls eindeutig erkennt. Dies ist notwendig, da @tcp die Daten als kontinuierlichen Strom versendet.\ Sobald in der App ein Parameter wie der Spielmodus oder die Rundenzahl geändert wird, sendet die App sofort ein entsprechendes Datenpaket an das Display. Ein Befehl wie MODUS: Schwer bewirkt am Display eine sofortige Aktualisierung der Variable und einen Redraw der Benutzeroberfläche. Dieser Prozess funktioniert auch in die umgekehrte Richtung: Wird am Display der "Start"- oder "Modus"-Button gedrückt, erhält die App das Signal zum Starten des Renn-Timers beziehungsweise das ändern des Moduses.
 \ \
 
+== Controller Display
+Das Display des hauptmoduls ist ein TFT-Display, verfügt über I2C-Touch und hat eine Auflösung von 320*480 Pixeln. Es werden Spieler, Modis und Bestenliste angezeigt. 
+
+- TFT_eSPI Library: Es wird die TFT_eSPI Library verwendet, um die grafische Benutzeroberfläche auf dem Display zu erstellen. Diese Bibliothek bietet Funktionen zum Zeichnen von Text, Formen und Bildern.
+
+- @i2c: Das Display verfügt über @i2c. Durch die @i2c\-Schnittstelle werden XY Koordinaten übertragen, wodurch Touch Events erkannt und verarbeitet werden können. Durch Toucheingaben können der Modus geändert, Spieler hinzugefügt und das Rennen gestartet/gestoppt werden. @sourcei2c
+
+```c
+bool startIsPressed = (btnStart && btnStart->isPressed());
+bool modusIsPressed = (btnModus && btnModus->isPressed());
+```
+Hier wird überprüft, ob der Start- oder Modus-Button gedrückt wurde.
+
+#figure(
+  image("/Bilder/display.png", width: 80%),
+  caption: [Display des Hauptmoduls]
+)
+
+
+== Echtzeitverhalten
+Bei der Softwareimplementierung wurde besonders auf ein nicht-blockierendes Design geachtet. Da das Hauptmodul gleichzeitig den Touchscreen abfragen und das Display aktualisieren muss, darf der Netzwerkcode den Prozessor nicht aufhalten.\ Die Abfrage von eingehenden Daten erfolgt daher in jedem Programmdurchlauf, ohne den restlichen Ablauf zu verzögern.
+\
+Sollte die Verbindung zwischenzeitlich unterbrochen werden, verfügt die App über eine automatische Reconnect-Logik.\ Diese erkennt die unterbrochene Verbindung durch einen Timeout und versucht eigenständig, den Socket neu zu initialisieren, um die Verbindung wiederherzustellen. Während der Reconnect-Phase zeigt die App eine entsprechende Meldung an. Sobald die Verbindung wiederhergestellt ist, werden alle zuvor gesendeten Befehle erneut übertragen, um sicherzustellen, dass das Display den aktuellen Status korrekt anzeigt. 
+\ \ 
