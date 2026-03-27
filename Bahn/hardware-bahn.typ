@@ -153,11 +153,11 @@ Der ESP32 wertet diesen Spannungsabfall aus und gibt die 5V-Versorgung über den
 Die Leiterplatte wurde mit @easyeda:short entworfen und als zweiseitige @pcb gefertigt. Der vollständige Schaltplan sowie das @pcb\-Layout (Top/Bottom) sind im Anhang zu finden. // (siehe @anhang_bahn-sch, @anhang_bahn-pcb).
 
 #figure(
-  image("/Bilder/pcb-bahn.svg", width: 100%),
+  fimage("/Bilder/pcb-bahn.svg", width: 100%),
   caption: [3D Modell Leiterplatte Bahn],
 )
 
 Relevante Designentscheidungen:
 - Leiterbahnbreite: \ 12V, 5V und 3,3V Pfade sind entsprechend der jeweiligen Strombelastung breiter geführt als die Signalleitungen.
 - Abmessungen: \ Das @pcb orientiert sich in der Breite an den Maßen des Displays, da beide im Gehäuse übereinander verbaut sind (siehe @sec_bahn-3d).
-- Steckerplazierung: \ @usbc Eingang und Ausgang befinden sich bewusst auf gegenüberliegenden Seiten, um eine einfache Zugänglichkeit zu ermöglichen.
+- Steckerplatzierung: \ @usbc Eingang und Ausgang befinden sich bewusst auf gegenüberliegenden Seiten, um eine einfache Zugänglichkeit zu ermöglichen.

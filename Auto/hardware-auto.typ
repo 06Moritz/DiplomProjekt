@@ -184,6 +184,6 @@ $ C_2 approx 1/(\u{03C9}^2*L_"pa"/2)-1/(\u{03C9}*sqrt((R_"tr"*R_"pa")/4))-2*C_"p
 == Leiterplatte
 
 #figure(
-image("/Bilder/autoueberblick.svg", width: 100%),
-caption: [Ersatzschaltbild der NFC-Antenne],
+  fimage("/Bilder/auto-pcb.svg", width: 100%),
+  caption: [Ersatzschaltbild der NFC-Antenne],
 )
