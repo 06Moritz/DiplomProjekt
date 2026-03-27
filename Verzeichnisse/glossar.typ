@@ -1,148 +1,142 @@
 #import "@preview/glossy:0.9.0": glossary
 // https://typst.app/universe/package/glossy/
-
 #let eintraege = (
-  pcb: (short: "PCB", long: "Printed Circuit Board", description: "Leiterplatte, auf der elektronische Bauteile montiert werden"),
+  abs: (short: "ABS", long: "Acrylonitrile Butadiene Styrene", description: "Schlagzäher Thermoplast mit hoher Temperaturbeständigkeit, häufig im 3D-Druck verwendet"),
 
-  tmos: (short: "TMOS", long: "Task Management Operating System", description: "Echtzeitbetriebssystem, das von WCH für die Verwaltung von Aufgaben und Ressourcen in ihren Bluetooth-Chips verwendet wird"),
+  adc: (short: "ADC", long: "Analog-Digital-Wandler", description: "Wandelt analoge Spannungssignale in digitale Zahlenwerte um"),
 
-  led: (short: "LED", long: "Light Emitting Diode", description: "Halbleiterbauelement, das Licht emittiert, wenn Strom durch es fließt"),
+  ask: (short: "ASK", long: "Amplitude Shift Keying", description: "Digitales Modulationsverfahren, bei dem Daten durch Variation der Trägeramplitude übertragen werden"),
 
-  riscv: (short: "RISC-V", long: "Reduced Instruction Set Computer - Five", description: "Offene Befehlssatzarchitektur für Mikroprozessoren"),
+  ble: (short: "BLE", long: "Bluetooth Low Energy", description: "Energiesparendes Funkprotokoll im 2,4-GHz-Band für die drahtlose Kommunikation über kurze Distanzen"),
 
-  ble: (short: "BLE", long: "Bluetooth Low Energy", description: "Energiesparende Funktechnologie für die drahtlose Kommunikation"),
+  bootloader: (short: "Bootloader", long: "Bootloader", description: "Programm, das beim Gerätestart die Applikations-Firmware lädt oder eine Aktualisierung ermöglicht"),
 
-  pwm: (short: "PWM", long: "Pulsweitenmodulation", description: "Verfahren zur Steuerung der Leistung von elektrischen Geräten"),
+  buck: (short: "Buck-Converter", long: "Abwärtswandler", description: "Getakteter Gleichspannungswandler, der eine höhere Eingangsspannung effizient auf eine niedrigere Ausgangsspannung regelt"),
 
-  deepsleep:(short: "deep-sleep", long:"deepsleep", description: "Tiefschlafmodus von Mikrocontrollern in dem sie wenig Strom verbrauchen"),
-  
-  mac:(short: "MAC", long:"Media-Access-Control", description: "Eindeutige Kennung, die einem Netzwerkgerät zugewiesen wird, um es in einem Netzwerk zu identifizieren"),
+  cc: (short: "CC", long: "Configuration Channel", description: "Leitungen im USB-C-Stecker zur Aushandlung von Stromrichtung und Power-Delivery-Parametern"),
 
-  picc:(short: "PICC", long:"Proximity Integrated Circuit Card", description: "NFC modus in dem der IC als passiver Transponder fungiert und von einem aktiven NFC-Lesegerät ausgelesen wird"),
-  
-  lookup:(short: "Lookup-Table", long: "Lookup-Table",description: "Datenstruktur, die verwendet wird, um Werte schnell nachzuschlagen, z.B. zur Umwandlung von Sensorwerten in physikalische Größen"),
+  ccv: (short: "CH32V003", long: "Cost-optimized 32-bit RISC-V MCU", description: "Kostengünstiger 32-Bit-RISC-V-Mikrocontroller von WCH mit integriertem ADC"),
 
-  pcd:(short: "PCD", long:"Proximity Coupling Device", description:"NFC modus in dem der IC als aktiver Sender fungiert und mit einem passiven NFC-Transponder kommuniziert"),
+  clk: (short: "CLK", long: "Clock", description: "Taktsignal zur zeitlichen Synchronisation von Datenübertragungen in digitalen Schaltungen"),
 
-  uuid: (short: "UUID", long: "Universally Unique Identifier", description: "Eindeutige Kennung, die zur Identifikation von Objekten oder Entitäten verwendet wird"),
+  cs: (short: "CS", long: "Chip Select", description: "Aktives SPI-Steuersignal zur Auswahl eines bestimmten Slave-Geräts am Bus"),
 
-  ldo: (short: "LDO", long: "Low Dropout Regulator", description: "Spannungsregler, der auch bei geringer Eingangsspannung stabil arbeitet"),
+  deepsleep: (short: "deep-sleep", long: "Deep Sleep", description: "Energiesparmodus, in dem der Mikrocontroller alle nicht benötigten Einheiten abschaltet"),
 
-  nfc: (short: "NFC", long: "Near Field Communication", description: "Technologie für die drahtlose Kommunikation über kurze Distanzen"),
+  dir: (short: "DIR", long: "Direction", description: "Steuerpin eines bidirektionalen Level Shifters zur Festlegung der Signalübertragungsrichtung"),
 
-  adc: (short: "ADC", long: "Analog-Digital-Wandler", description: "Bauteil, das analoge Signale in digitale Werte umwandelt"),
+  easyeda: (short: "EasyEDA", long: "Easy Electronic Design Automation", description: "Browserbasiertes EDA-Tool zur Erstellung von Schaltplänen und Leiterplattenlayouts"),
 
-  tcp: (short: "TCP", long: "Transmission Control Protocol", description: "Protokoll für die zuverlässige Übertragung von Daten über Netzwerke"),
-  
-  pd: (short: "PD", long: "Power Delivery", description: "Standard für die Stromversorgung über USB, ermöglicht höhere Leistungen und flexible Spannungsversorgung"),
+  en: (short: "EN", long: "Enable", description: "Aktivierungspin zum Ein- oder Ausschalten eines ICs oder einer Funktion"),
 
-  ic: (short: "IC", long: "Integrated Circuit", description: "Integrierter Schaltkreis, ein elektronisches Bauteil, das viele Funktionen auf einem kleinen Chip vereint"),
+  esp32: (short: "ESP32", long: "Espressif Systems 32-bit Microcontroller", description: "32-Bit-Mikrocontroller mit integriertem WLAN und Bluetooth von Espressif"),
 
-  mosfet: (short: "MOSFET", long: "Metal-Oxide-Semiconductor Field-Effect Transistor", description: "Transistor, der als elektronischer Schalter oder Verstärker in Schaltungen verwendet wird"),
+  fb: (short: "FB", long: "Feedback", description: "Rückkopplungssignal in Regelkreisen zur Ausregelung von Abweichungen vom Sollwert"),
 
-  buck: (short: "Buck-Converter", long: "Abwärtswandler", description: "Schaltregler, der eine höhere Eingangsspannung in eine niedrigere Ausgangsspannung umwandelt"),
+  firmware: (short: "Firmware", long: "Firmware", description: "In Hardware eingebettete Software, die grundlegende Steuerungslogik und Peripheriefunktionen bereitstellt"),
 
-  fb: (short: "FB", long: "Feedback", description: "Rückkopplung, ein Signal, das zur Regelung von Systemen verwendet wird, um die gewünschte Leistung zu erreichen"),
+  fusion360: (short: "Fusion 360", long: "Autodesk Fusion 360", description: "CAD/CAM-Software von Autodesk zur parametrischen 3D-Modellierung und Fertigungsvorbereitung"),
 
-  spi: (short: "SPI", long: "Serial Peripheral Interface", description: "Schnittstelle für die serielle Kommunikation zwischen Mikrocontrollern und Peripheriegeräten"),
+  gpio: (short: "GPIO", long: "General Purpose Input/Output", description: "Frei konfigurierbarer digitaler Ein-/Ausgangspin eines Mikrocontrollers"),
 
-  poti: (short: "Poti", long: "Potentiometer", description: "Drehbarer Widerstand, der zur Einstellung von Spannung oder Strom in einem Stromkreis verwendet wird"),
+  gnd: (short: "GND", long: "Ground", description: "Bezugspotential einer elektrischen Schaltung, Nullpunkt aller Spannungsmessungen"),
 
-  levelshifter: (short: "Level Shifter", long: "Pegelwandler", description: "Schaltung, die Signale von einem Spannungspegel auf einen anderen übersetzt, um die Kompatibilität zwischen verschiedenen Komponenten zu gewährleisten"),
+  hvga: (short: "HVGA", long: "Half Video Graphics Array", description: "Displayauflösung von 320 × 480 Pixeln"),
 
-  cc: (short: "CC", long: "Configuration Channel", description: "Kanal für die Konfiguration von USB Power Delivery, über den die Stromversorgung und andere Parameter ausgehandelt werden"),
+  i2c: (short: "I²C", long: "Inter-Integrated Circuit", description: "Synchrones serielles Zwei-Draht-Protokoll zur Kommunikation zwischen Mikrocontroller und Peripherie"),
 
-  ask: (short: "ASK", long: "Amplitude Shift Keying", description: "Modulationsverfahren, bei dem die Amplitude eines Trägersignals zur Übertragung von Daten variiert wird"),
+  ic: (short: "IC", long: "Integrated Circuit", description: "Elektronisches Bauteil, das mehrere Schaltungsfunktionen miniaturisiert auf einem Halbleiterchip vereint"),
 
-  via: (short: "Via", long: "Durchkontaktierung", description: "Leiterbahnverbindung zwischen verschiedenen Lagen einer Leiterplatte"),
-  
-  ti: (short: "TI", long: "Texas Instruments", description: "Amerikanisches Unternehmen, das Halbleiter und integrierte Schaltkreise herstellt"),
+  id: (short: "ID", long: "Identifier", description: "Eindeutige Kennung zur Identifikation eines Objekts oder Geräts innerhalb eines Systems"),
 
-  usb: (short: "USB", long: "Universal Serial Bus", description: "Standard für die Verbindung von Peripheriegeräten mit Computern und anderen Geräten"),
+  io0: (short: "IO0", long: "Input/Output Pin 0", description: "GPIO-Pin des ESP32, der im Low-Zustand beim Reset den UART-Bootloader-Modus aktiviert"),
 
-  usbc: (short: "USB-C", long: "USB Type-C", description: "Reversible USB-Steckverbindung, die höhere Datenübertragungsraten und Stromversorgung ermöglicht"),
+  lcd: (short: "LCD", long: "Liquid Crystal Display", description: "Anzeigetechnologie, bei der Flüssigkristalle durch elektrische Felder die Lichtdurchlässigkeit der Pixel steuern"),
 
-  ripple: (short: "Ripple", long: "Spannungswelligkeit", description: "Unerwünschte Schwankungen in der Ausgangsspannung von Netzteilen oder Spannungsreglern"),
-  
-  rf: (short: "RF", long: "Radio Frequency", description: "Funkfrequenz, ein Bereich elektromagnetischer Wellen, der für die drahtlose Kommunikation verwendet wird"),
+  ldo: (short: "LDO", long: "Low Dropout Regulator", description: "Linearer Spannungsregler mit geringer minimaler Eingangs-Ausgangs-Spannungsdifferenz"),
 
-  rfid: (short: "RFID", long: "Radio Frequency Identification", description: "Technologie zur drahtlosen Identifikation von Objekten mittels elektromagnetischer Felder"),
+  led: (short: "LED", long: "Light Emitting Diode", description: "Halbleiterbauelement, das beim Stromfluss in Durchlassrichtung Licht emittiert"),
 
-  easyeda: (short: "EasyEDA", long: "Easy Electronic Design Automation", description: "Software für die Erstellung von Schaltplänen und Leiterplattenlayouts"),
+  levelshifter: (short: "Level Shifter", long: "Pegelwandler", description: "Schaltung zur Pegelanpassung von Signalen zwischen Komponenten unterschiedlicher Versorgungsspannungen"),
 
-  wifi: (short: "WiFi", long: "Wireless Fidelity", description: "Technologie für die drahtlose Vernetzung von Geräten über Funkwellen"),
+  lipo: (short: "LiPo", long: "Lithium-Polymer-Akku", description: "Wiederaufladbarer Lithium-Akku mit Polymer-Elektrolyt und hoher Energiedichte bei flexiblem Formfaktor"),
 
-  i2c: (short: "I²C", long: "Inter-Integrated Circuit", description: "Schnittstelle für die serielle Kommunikation zwischen Mikrocontrollern und Peripheriegeräten, die nur zwei Leitungen verwendet"),
+  m2: (short: "M2", long: "Metric 2mm", description: "Metrische Schraubengröße mit 2 mm Nenndurchmesser"),
 
-  uart: (short: "UART", long: "Universal Asynchronous Receiver-Transmitter", description: "Schnittstelle für die serielle Kommunikation, die asynchron arbeitet und häufig für die Kommunikation zwischen Mikrocontrollern und Computern verwendet wird"),
+  mac: (short: "MAC", long: "Media-Access-Control", description: "Weltweit eindeutige 48-Bit-Hardware-Adresse eines Netzwerkgeräts auf Sicherungsschicht"),
 
-  rx: (short: "RX", long: "Receive", description: "Empfangsleitung für die serielle Kommunikation"),
+  miso: (short: "MISO", long: "Master In Slave Out", description: "SPI-Datenleitung für die Übertragung vom Slave zum Master"),
 
-  tx: (short: "TX", long: "Transmit", description: "Sendeleitung für die serielle Kommunikation"),
+  mosfet: (short: "MOSFET", long: "Metal-Oxide-Semiconductor Field-Effect Transistor", description: "Spannungsgesteuerter Feldeffekttransistor, eingesetzt als elektronischer Schalter oder Verstärker"),
 
-  gnd: (short: "GND", long: "Ground", description: "Masse, Bezugspotential für elektrische Schaltungen"),
+  mosi: (short: "MOSI", long: "Master Out Slave In", description: "SPI-Datenleitung für die Übertragung vom Master zum Slave"),
 
-  m2: (short: "M2", long: "Metric 2mm", description: "Standardgröße für Schrauben, die in der Elektronik und Mechanik verwendet wird"),
+  nfc: (short: "NFC", long: "Near Field Communication", description: "Kontaktloser Übertragungsstandard auf Basis von RFID bei 13,56 MHz mit einer Reichweite von bis zu 10 cm"),
 
-  en: (short: "EN", long: "Enable", description: "Aktivierungssignal, das verwendet wird, um ein Gerät oder eine Funktion zu aktivieren oder zu deaktivieren"),
+  pcd: (short: "PCD", long: "Proximity Coupling Device", description: "NFC-Betriebsmodus, in dem der IC als aktives Lesegerät passive Transponder ausliest"),
 
-  io0: (short: "IO0", long: "Input/Output Pin 0", description: "Allzweck-Ein-/Ausgangspin, der für verschiedene Funktionen konfiguriert werden kann, z.B. als Boot-Pin oder zur Steuerung von Peripheriegeräten"),
+  pcb: (short: "PCB", long: "Printed Circuit Board", description: "Trägerplatte aus isolierendem Material mit aufgedruckten Leiterbahnen zur Verbindung elektronischer Bauteile"),
 
-  pi: (short: "PI", long: "Proportional-Integral", description: "Regelalgorithmus, der in der Regelungstechnik verwendet wird, um die Leistung eines Systems zu steuern"),
+  pd: (short: "PD", long: "Power Delivery", description: "USB-Protokoll zur dynamischen Aushandlung von Spannung und Strom, unterstützt bis zu 240 W"),
 
-  sda: (short: "SDA", long: "Serial Data Line", description: "Datenleitung für die I²C-Kommunikation, über die Daten zwischen Geräten übertragen werden"),
+  pi: (short: "PI", long: "Proportional-Integral", description: "Reglertyp mit proportionalem und integralem Anteil zur Eliminierung stationärer Regelabweichungen"),
 
-  clk: (short: "CLK", long: "Clock", description: "Systemtakt, der die Geschwindigkeit der Datenverarbeitung und -übertragung in elektronischen Geräten bestimmt"),
+  picc: (short: "PICC", long: "Proximity Integrated Circuit Card", description: "NFC-Betriebsmodus, in dem der IC einen passiven Transponder emuliert"),
 
-  scl: (short: "SCL", long: "Serial Clock Line", description: "Taktleitung für die I²C-Kommunikation, die den Takt für die Datenübertragung vorgibt"),
+  pla: (short: "PLA", long: "Polylactic Acid", description: "Biologisch abbaubarer Thermoplast auf Basis nachwachsender Rohstoffe, verbreitet im 3D-Druck"),
 
-  esp32: (short: "ESP32", long: "Espressif Systems 32-bit Microcontroller", description: "Mikrocontroller mit integrierter Wi-Fi- und Bluetooth-Funktionalität, der in vielen IoT-Projekten verwendet wird"),
+  poti: (short: "Poti", long: "Potentiometer", description: "Verstellbarer Spannungsteiler zur stufenlosen Einstellung einer Ausgangsspannung"),
 
-  ram: (short: "RAM", long: "Random Access Memory", description: "Arbeitsspeicher, der es ermöglicht, Daten schnell zu lesen und zu schreiben, während ein Gerät in Betrieb ist"),
+  psram: (short: "PSRAM", long: "Pseudo Static RAM", description: "DRAM mit integrierter Auffrischlogik, der sich nach außen wie SRAM verhält"),
 
-  psram: (short: "PSRAM", long: "Pseudo Static RAM", description: "Arbeitsspeicher, der die Vorteile von statischem und dynamischem RAM kombiniert, um eine kostengünstige und energieeffiziente Lösung zu bieten"),
+  pwm: (short: "PWM", long: "Pulsweitenmodulation", description: "Verfahren zur Leistungssteuerung durch Variation des Tastverhältnisses eines digitalen Signals"),
 
-  id: (short: "ID", long: "Identifier", description: "Eindeutige Kennung, die verwendet wird, um ein Objekt oder eine Entität zu identifizieren, z.B. eine NFC-Karte oder ein Gerät in einem Netzwerk"),
+  ram: (short: "RAM", long: "Random Access Memory", description: "Flüchtiger Schreib-Lese-Speicher für temporäre Daten während des Betriebs"),
 
-  gpio: (short: "GPIO", long: "General Purpose Input/Output", description: "Allzweck-Ein-/Ausgang, der von Mikrocontrollern zur Steuerung von Peripheriegeräten verwendet wird"),
+  rf: (short: "RF", long: "Radio Frequency", description: "Elektromagnetische Wellen im Bereich 3 kHz bis 300 GHz, genutzt für drahtlose Übertragung"),
 
-  firmware: (short: "Firmware", long: "Firmware", description: "Software, die in Hardware eingebettet ist und grundlegende Funktionen steuert, z.B. die Steuerungslogik eines Mikrocontrollers"),
+  rfid: (short: "RFID", long: "Radio Frequency Identification", description: "Kontaktlose Identifikationstechnologie mittels elektromagnetischer Felder, Basis der NFC-Technologie"),
 
-  bootloader: (short: "Bootloader", long: "Bootloader", description: "Spezielle Software, die beim Starten eines Geräts ausgeführt wird und dafür verantwortlich ist, die Hauptfirmware zu laden und auszuführen"),
+  ripple: (short: "Ripple", long: "Spannungswelligkeit", description: "Periodische Schwankung der Ausgangsspannung eines Schaltnetzteils durch den Schaltvorgang"),
 
-  mosi: (short: "MOSI", long: "Master Out Slave In", description: "Datenleitung für die SPI-Kommunikation, über die der Master Daten an den Slave sendet"),
+  riscv: (short: "RISC-V", long: "Reduced Instruction Set Computer - Five", description: "Offene und lizenzfreie Befehlssatzarchitektur für Mikroprozessoren"),
 
-  miso: (short: "MISO", long: "Master In Slave Out", description: "Datenleitung für die SPI-Kommunikation, über die der Slave Daten an den Master sendet"),
+  rx: (short: "RX", long: "Receive", description: "Empfangsleitung einer seriellen Schnittstelle"),
 
-  sck: (short: "SCK", long: "Serial Clock", description: "Taktleitung für die SPI-Kommunikation, die den Takt für die Datenübertragung vorgibt"),
+  sck: (short: "SCK", long: "Serial Clock", description: "Vom Master erzeugte Taktleitung des SPI-Busses"),
 
-  cs: (short: "CS", long: "Chip Select", description: "Steuerleitung für die SPI-Kommunikation, die verwendet wird, um ein bestimmtes Slave-Gerät auszuwählen und zu aktivieren"),
+  scl: (short: "SCL", long: "Serial Clock Line", description: "Vom Master erzeugte Taktleitung des I²C-Busses"),
 
-  tft: (short: "TFT", long: "Thin-Film Transistor", description: "Technologie für die Herstellung von Displays, die eine hohe Bildqualität und schnelle Reaktionszeiten bietet"),
+  sd: (short: "SD", long: "Secure Digital", description: "Standard für Flash-Speicherkarten zur nichtflüchtigen Datenspeicherung"),
 
-  sd: (short: "SD", long: "Secure Digital", description: "Standard für Speicherkarten, die in vielen elektronischen Geräten verwendet werden, um Daten zu speichern"),
+  sda: (short: "SDA", long: "Serial Data Line", description: "Bidirektionale Datenleitung des I²C-Busses"),
 
-  pla: (short: "PLA", long: "Polylactic Acid", description: "Biologisch abbaubarer Kunststoff, der häufig im 3D-Druck verwendet wird, da er einfach zu verarbeiten ist und eine gute Oberflächenqualität bietet"),
+  spi: (short: "SPI", long: "Serial Peripheral Interface", description: "Synchrones serielles Vier-Draht-Protokoll zur schnellen Kommunikation zwischen Mikrocontroller und Peripherie"),
 
-  fusion360: (short: "Fusion 360", long: "Autodesk Fusion 360", description: "CAD-Software für die 3D-Modellierung, Simulation und Fertigung von Produkten"),
+  tcp: (short: "TCP", long: "Transmission Control Protocol", description: "Verbindungsorientiertes Transportprotokoll mit garantierter, geordneter Datenübertragung"),
 
-  lcd: (short: "LCD", long: "Liquid Crystal Display", description: "Flüssigkristallbildschirm, eine Art von Display, das Flüssigkristalle verwendet, um Bilder anzuzeigen"),
+  tft: (short: "TFT", long: "Thin-Film Transistor", description: "LCD-Variante, bei der jeder Pixel durch einen eigenen Dünnschichttransistor angesteuert wird"),
 
-  hvga: (short: "HVGA", long: "Half Video Graphics Array", description: "Displayauflösung von 320 x 480 Pixeln, die häufig in kleinen Displays verwendet wird"),
+  ti: (short: "TI", long: "Texas Instruments", description: "Amerikanischer Halbleiterhersteller, bekannt für Mikrocontroller, Analog-ICs und Leistungselektronik"),
 
-  dir: (short: "DIR", long: "Direction", description: "Richtungssignal, das bei bidirektionalen Level Shiftern verwendet wird, um die Richtung der Signalübertragung festzulegen"),
+  tmos: (short: "TMOS", long: "Task Management Operating System", description: "Echtzeitbetriebssystem von WCH zur Aufgaben- und Ressourcenverwaltung in Bluetooth-Chips"),
 
-  lipo: (short: "LiPo", long: "Lithium-Polymer-Akku", description: "Wiederaufladbarer Akku, der eine hohe Energiedichte und flexible Formfaktoren bietet, häufig in tragbaren elektronischen Geräten verwendet wird"),
+  tx: (short: "TX", long: "Transmit", description: "Sendeleitung einer seriellen Schnittstelle"),
 
-  abs: (short: "ABS", long: "Acrylonitrile Butadiene Styrene", description: "Thermoplastischer Kunststoff, der für seine Festigkeit, Schlagzähigkeit und Hitzebeständigkeit bekannt ist, häufig im 3D-Druck verwendet wird"),
+  uart: (short: "UART", long: "Universal Asynchronous Receiver-Transmitter", description: "Asynchrone serielle Schnittstelle zur Vollduplex-Datenübertragung ohne gemeinsames Taktsignal"),
 
-  ui: (short: "UI", long: "User Interface", description: "Benutzeroberfläche, die es Benutzern ermöglicht, mit einem System oder einer Software zu interagieren"),
+  ui: (short: "UI", long: "User Interface", description: "Gesamtheit aller Bedien- und Anzeigeelemente zur Interaktion zwischen Benutzer und System"),
 
-  ccv: (short: "CC/CV", long: "Constant Current/Constant Voltage", description: "Lademodus für Lithium-Polymer-Akkus, bei dem zuerst ein konstanter Strom und dann eine konstante Spannung bereitgestellt wird, um den Akku sicher und effizient zu laden")
+  usb: (short: "USB", long: "Universal Serial Bus", description: "Serieller Busstandard zur Datenübertragung und Stromversorgung zwischen Geräten"),
 
+  usbc: (short: "USB-C", long: "USB Type-C", description: "Symmetrischer USB-Steckverbinder mit Power Delivery und hohen Datenraten, steckrichtungsunabhängig"),
 
+  uuid: (short: "UUID", long: "Universally Unique Identifier", description: "128-Bit-Kennung zur global eindeutigen Identifikation von Objekten in verteilten Systemen"),
+
+  via: (short: "Via", long: "Durchkontaktierung", description: "Metallisierte Bohrung in einer Leiterplatte zur elektrischen Verbindung verschiedener Kupferlagen"),
+
+  wifi: (short: "WiFi", long: "Wireless Fidelity", description: "Drahtloser Netzwerkstandard nach IEEE 802.11 zur lokalen Vernetzung über Funkwellen"),
 )
-
 
 #let my-theme = (
   section: (title, body) => {
