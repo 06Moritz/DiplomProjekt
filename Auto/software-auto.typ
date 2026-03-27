@@ -3,7 +3,7 @@
 #aktueller_autor.update([#author2, #klasse])
 
 = Software
-== @ble:both
+== @ble:both <sec-bleSoftware>
 Die Basis der Implementierung bildet der @ble Beispielcode von WCH. Dieser Code stellt die notwendigen Low-Level-Funktionen für den Bluetooth-Stack und das @tmos zur Verfügung.
 Das Auto ist als @ble\-Master (Central-Device) konfiguriert. Es sucht aktiv nach Geräten zum Verbinden und empfängt Geschwindigkeitswerte.
 

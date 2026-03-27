@@ -15,7 +15,7 @@
   pwm: (short: "PWM", long: "Pulsweitenmodulation", description: "Verfahren zur Steuerung der Leistung von elektrischen Geräten"),
 
   deepsleep:(short: "deep-sleep", long:"deepsleep", description: "Tiefschlafmodus von Mikrocontrollern in dem sie wenig Strom verbrauchen"),
-  
+  lookup:(short: "Lookup-Table", long: "Lookup-Table"),
   mac:(short: "MAC", long:"Media-Access-Control", description:"!!!"),
 
   picc:(short: "PICC", long:"Proximity Integrated Circuit Card", description: "NFC modus in dem der IC einen passiven NFC-Transpoder emuliert"),

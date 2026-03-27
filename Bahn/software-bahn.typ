@@ -9,8 +9,8 @@ Die Software des Hauptmoduls dient zum Rundenzeit messen mittels NFC, erkennen v
 
 
 == @nfc:long
-Die Rundenzeit wird über NFC gemessen. Jedes Auto hat eine eingebaute NFC Spule. Sobald ein Auto über den NFC-Tag fährt, wird ein Signal an den ESP geschickt, welcher die Werte auswertet und die Rundenzeit über BLE an die App, den Hauptmodul Display und den Controller sendet.
-\ I2C, zeitmessung genauer, @uuid, library, -> technischer
+Die Rundenzeit wird über NFC gemessen. Jedes Auto hat eine eingebaute NFC Spule. Sobald ein Auto über den NFC-Tag fährt, wird die @id:short des Fahrzeugs über @i2c an den @esp32:short geschickt. Die Rundenzeit wird berechnet und am Display dargestellt.
+\
 \
 ```c
 success = nfc.readPassiveTargetID(
@@ -27,7 +27,7 @@ success = nfc.readPassiveTargetID(
           unsigned long lapTime = currentTime - lastLapTimes[i];
           lastLapTimes[i] = currentTime;
 
-          // Rundenzeit über BLE senden
+          // Rundenzeit über TCP senden
           sendLapTime(i, lapTime);
           }
         }
@@ -36,10 +36,8 @@ success = nfc.readPassiveTargetID(
      vTaskDelay(10 / portTICK_PERIOD_MS); }
   }
 ```
-auskommentieren, ausschreiben
-vergleicht array und sucht spieler raus
-
-zwei prozesse aufteilt
+Der @esp32 verfügt über 2 Kerne, um genaue Zeiten zu messen wird ein Kern für die Zeitmessung reserviert.
+Wenn ein Auto erkannt wird, rechnet der Prozess die Zeit für die Runde aus und sendet sie an die APP.
 
 == @ble:long
 Die @wifi Zugangsdaten werden über @ble durch die App eingestellt.
@@ -67,16 +65,16 @@ std::string strData = "";
   // Start Advertising
   pAdvertising->start();
 ```
-Die Daten werden in einen String umgewandelt und gesendet.
+Es werden Auto spezifische Werte wie Rundenzeit oder Startnummer übertragen. Die Daten werden in einen String umgewandelt und gesendet.
 \ \
 
 
 == @tcp:long
 @tcp ist ein Netzwerk Protokoll, das benutzt wird, um Daten vom Hauptmodul an die App zu senden. Dafür ist eine @wifi verbindung notwendig.
-Wenn keine WLAN Verbindung besteht, verbindet sich die App über Bluetooth und der Nutzer kann die Zugangsdaten über die App eingeben.
-Sobald sich der ESP über @wifi verbunden hat,
+Wenn keine Netzwerk Verbindung besteht, verbindet sich die App über Bluetooth und der Nutzer kann die Zugangsdaten über die App eingeben.
+Sobald sich der ESP über @wifi verbunden hat, nimmt er verbindung mit der App übber @tcp auf.
 
-Mit der @tcp programmierung wird sichergestellt, dass Signale von der APP und dem Display in beide Richtungen übertragen werden können.
+Mit dem @tcp\-Protokoll wird sichergestellt, dass Signale von der App und dem Display in beide Richtungen übertragen werden können.
 \
 ```c
     if (!client.connected()) {
