@@ -138,7 +138,7 @@ Es gibt drei Zustände:
 - Podium
 Je nachdem welcher Button gedrückt wird, ändert sich der Zustand.
 
-
+#pagebreak()
 == Transmission Control Protocol (TCP) Programmierung
 Um eine Verbindung zwischen der App und dem Hauptmodul Display herzustellen, wird das @tcp Protokoll verwendet. Dieses ermöglicht eine Bidirektionale Kommunikation zwischen den beiden Geräten. Das dient dazu, dass Änderungen, wie das Einstellen der Modi oder Spielernamen, auf das Display übertragen werden können.\
 
@@ -164,7 +164,7 @@ Terminal Ausgabe:
 \
 Als nächsten schritt wurde der @esp32:short als Sender und die App als Empfänger konfiguriert, um die Datenübertragung zu testen.
 Im Serial Terminal werden Befehle eingegeben. In der App wird dann die entsprechende Variable aktualisiert.
-\ \
+#pagebreak()
 In das Terminal wurden folgende Parameter eingegeben:\
 
 ```c
@@ -225,7 +225,7 @@ fun handleMessage(msg: String) {
   image("../Bilder/App/testTCP.png", width: 50%),
   caption: [App Menü],
 )
-\ \
+
 Die App und der @esp32:short als Sender und Empfänger initialisiert.
 \
 @tcp Kotlin: @sourceTCPApp
@@ -266,7 +266,7 @@ Die App und der @esp32:short als Sender und Empfänger initialisiert.
 - `catch (Exception)`: Fehlerbehandlung zur Vermeidung von Abstürzen
 \
 In dem Code der App wird ein Client Socket erstellt, der sich mit der IP-Adresse des @esp32:short und dem Port 8080 verbindet und eine Verbindungsanfrage an den @esp32:short sendet.
-\ \ \
+\ \
 
 @tcp @esp32:short: @sourceTCPESP
 
@@ -310,7 +310,7 @@ Um sicherzustellen, dass beide Geräte immer den gleichen Systemstatus anzeigen,
 == Echtzeitverhalten
 Bei der Softwareimplementierung wurde besonders auf ein nicht-blockierendes Design geachtet. Da das Hauptmodul gleichzeitig den Touchscreen abfragen und das Display aktualisieren muss, darf der Netzwerkcode den Prozessor nicht aufhalten.\ Die Abfrage von eingehenden Daten erfolgt daher in jedem Programmdurchlauf, ohne den restlichen Ablauf zu verzögern.
 \
-Sollte die Verbindung zwischenzeitlich unterbrochen werden, verfügt die App über eine automatische Reconnect-Logik.\ Diese erkennt die unterbrochene Verbindung durch einen Timeout und versucht eigenständig, den Socket neu zu initialisieren, um die Verbindung wiederherzustellen. Während der Reconnect-Phase zeigt die App eine entsprechende Meldung an. Sobald die Verbindung wiederhergestellt ist, werden alle zuvor gesendeten Befehle erneut übertragen, um sicherzustellen, dass das Display den aktuellen Status korrekt anzeigt. 
+Sollte die Verbindung zwischenzeitlich unterbrochen werden, verfügt die App über eine automatische Reconnect-Logik. Diese erkennt die unterbrochene Verbindung durch einen Timeout und versucht eigenständig, den Socket neu zu initialisieren, um die Verbindung wiederherzustellen. Während der Reconnect-Phase zeigt die App eine entsprechende Meldung an. Sobald die Verbindung wiederhergestellt ist, werden alle zuvor gesendeten Befehle erneut übertragen, um sicherzustellen, dass das Display den aktuellen Status korrekt anzeigt. 
 \ \ 
 
 
@@ -325,7 +325,7 @@ Das Controller Display GC9A01 zeigt folgende funktionen an:
 - Zugewiesenes Auto
 - Runden anzahl z.B.: 2/5 Runden // in dem fall leichter modus
 
-Das Display dient dazu, wichtige Informationen während des Rennens anzuzeigen. Es zeigt die aktuelle Motorleistung an, die über die PWM gesteuert wird, sowie einen Timer, der die Dauer des Rennens anzeigt. In der mitte des Displays wird die Durchschnittsgescchwindigkeit angezeigt, welche mithilfe der Drehzahl des Motors berechnet wird. Darunter wird die schnellste Runde angezeigt, sowie die Abweichung. 
+Das Display dient dazu, wichtige Informationen während des Rennens anzuzeigen. Es zeigt die aktuelle Motorleistung an, die über die @pwm gesteuert wird, sowie einen Timer, der die Dauer des Rennens anzeigt. In der mitte des Displays wird die Durchschnittsgescchwindigkeit angezeigt, welche mithilfe der Drehzahl des Motors berechnet wird. Darunter wird die schnellste Runde angezeigt, sowie die Abweichung. 
 \
 $ v = (n*π*d)/60 $
 
@@ -351,3 +351,5 @@ Der Spielername und das zugewiesene Auto werden ebenfalls auf dem Display angezi
  Die aktuellen Auto Informationen
   - Motorleistung 
  werden über @ble übertragen, da diese Informationen sehr schnell aktualisiert werden müssen und eine stabile Verbindung erfordern. 
+
+

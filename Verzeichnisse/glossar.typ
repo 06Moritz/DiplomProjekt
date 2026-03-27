@@ -132,8 +132,9 @@
 
   abs: (short: "ABS", long: "Acrylonitrile Butadiene Styrene", description: "Thermoplastischer Kunststoff, der für seine Festigkeit, Schlagzähigkeit und Hitzebeständigkeit bekannt ist, häufig im 3D-Druck verwendet wird"),
 
-  ui: (short: "UI", long: "User Interface", description: "Benutzeroberfläche, die es Benutzern ermöglicht, mit einem System oder einer Software zu interagieren")
+  ui: (short: "UI", long: "User Interface", description: "Benutzeroberfläche, die es Benutzern ermöglicht, mit einem System oder einer Software zu interagieren"),
 
+  ccv: (short: "CC/CV", long: "Constant Current/Constant Voltage", description: "Lademodus für Lithium-Polymer-Akkus, bei dem zuerst ein konstanter Strom und dann eine konstante Spannung bereitgestellt wird, um den Akku sicher und effizient zu laden")
 
 )
 
