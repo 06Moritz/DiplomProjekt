@@ -123,7 +123,9 @@
 
   lipo: (short: "LiPo", long: "Lithium-Polymer-Akku", description: "Wiederaufladbarer Akku, der eine hohe Energiedichte und flexible Formfaktoren bietet, häufig in tragbaren elektronischen Geräten verwendet wird"),
 
-  abs: (short: "ABS", long: "Acrylonitrile Butadiene Styrene", description: "Thermoplastischer Kunststoff, der für seine Festigkeit, Schlagzähigkeit und Hitzebeständigkeit bekannt ist, häufig im 3D-Druck verwendet wird")
+  abs: (short: "ABS", long: "Acrylonitrile Butadiene Styrene", description: "Thermoplastischer Kunststoff, der für seine Festigkeit, Schlagzähigkeit und Hitzebeständigkeit bekannt ist, häufig im 3D-Druck verwendet wird"),
+
+  ui: (short: "UI", long: "User Interface", description: "Benutzeroberfläche, die es Benutzern ermöglicht, mit einem System oder einer Software zu interagieren")
 
 
 )

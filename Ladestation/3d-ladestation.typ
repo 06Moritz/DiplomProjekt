@@ -1,24 +1,21 @@
 #import "../config.typ": *
 #aktueller_autor.update([#author3, \ #author1, #klasse])
 
-// Geschwindigkeitsregelung und Joystick noch schreiben
+
 
 = 3D <sec_lade-3d>
-*!* Die Ladestation nimmt bis zu vier Controller gleichzeitig auf und lädt diese über Pogo Pins. Sie ist direkt mit dem Hauptmodul verbindbar.
+Die Ladestation nimmt bis zu vier Controller gleichzeitig auf und lädt diese über Federkontakte. Sie kann direkt an das Hauptmodul angeschlossen werden.
 
 == Anforderungen
-- einfache Aufnahme von vier Controllern gleichzeitig
-- zuverlässige Kontaktierung der Controller über Pogo Pins
+- gleichzeitige Aufnahme von vier Controllern 
+- zuverlässige Ladeverbindung der Controller über    Federkontakte
 - Anbindung an das Hauptmodul über @usbc
 
-== Grundstrukutr
-/* Das Gehäuse der Ladestation lässt sich in drei Teile aufteilen:
-- Grundplatte: Einsatz durch Press-fit in der Grundplatte eingebaut. Einkerbung für Platine. Enthält Befestigungspunkte für den Deckel. Auschnitt für die USB-C Buchse.
-- Einsatz: Einkerbungen für die Pogo Pins auf der Platine. //für stabilität?
-- Deckel: Vertiefungen für die Controller und Einkerbungen für die Magnete */
+== Grundstruktur
 
+Das Gehäuse der Ladestation lässt sich in drei Teile aufteilen:
 - Grundplatte: bildet die Basis der Ladestation. Sie enthält eine Einkerbung für die Leiterplatte, einen Ausschnitt für die @usbc\-Buchse sowie Befestigungspunkte für den Deckel.
-- Einsatz: wird durch Press-fit in die Grundplatte eingesetzt und enthält Einkerbungen für die Pogo Pins der Leiterplatte
+- Einsatz: wird durch Press-fit in die Grundplatte eingesetzt und enthält Einkerbungen für die Federkontakte der Leiterplatte
 - Deckel: enthält die vier Vertiefungen zur Aufnahme der Controller und Einkerbungen für die Magnete
 
 #figure(
@@ -46,20 +43,10 @@
   gap: 1em,
 )
 
-/*Gesamt:
-- 234,4mm Lang
-- 48,99mm breit
-- Grundplatte: 12,39mm hoch
-- Deckel: 14,93mm hoch
 
-Einsatz:
-- 227,9mm lang
-- 16,67mm breit
-- 6,5mm hoch
-*/
 
 \
-Die Ladestation hat eine Gesamtlänge von 234,4mm und eine Breite von 49mm. Im Querschnitt ist der Aufbau der drei Teile sowie die Lage der Pogo Pins und der Controller-Vertiefung deutlich zu sehen. Im Längsschnitt sind die vier Pogo-Pin-Positionen und die @usbc\-Ausnehmung erkennbar.
+Die Ladestation hat eine Gesamtlänge von 234,4mm und eine Breite von 49mm. Im Querschnitt ist der Aufbau der drei Teile sowie die Lage der Federkontakte und der Controller-Vertiefung deutlich zu sehen. Im Längsschnitt sind die vier Federkontakt-Positionen und die @usbc\-Ausnehmung erkennbar.
 
 #figure(
   grid(
@@ -75,11 +62,11 @@ Die Ladestation hat eine Gesamtlänge von 234,4mm und eine Breite von 49mm. Im Q
   caption: [Quer- und Längsschnitt der Ladestation],
 )
 
-== Pogo Pins
-Die Pogo Pins sind zwischen Grundplatte und Deckel in den Einsatz eingesetzt und stehen nach oben hin durch die Löcher im Deckel. Beim Einlegen eines Controllers drücken die Federkontakte gegen die Ladekontakte an der Unterseite des Controllers und stellen so die elektrische Verbindung zur Leiterplatte her. // (siehe @sec_ladestation-hw).
+== Federkontakte
+Die Federkontakte sind zwischen Grundplatte und Deckel in den Einsatz eingesetzt und stehen nach oben hin durch die Ausnehmungen im Deckel. Beim Einlegen eines Controllers drücken die Federkontakte gegen die Ladekontakte an der Unterseite des Controllers und stellen so die elektrische Verbindung zur Leiterplatte her. // (siehe @sec_ladestation-hw).
 
 == Controller-Aufnahmen
-Der Deckel enthält vier Vertiefungen, in die die Controller hineingestellt werden. In jeder Vertiefung sind Magnete verbaut, die den Controller in die richtige Position ausrichten und so einen zuverlässigen Kontakt zu den Pogo Pins sicherstellen. Eine Verpolung ist durch die Anordnung der Magnete und der Form der Senken am Deckel nicht möglich (siehe @sec_ladestation-hw).
+Der Deckel hat vier Vertiefungen, in die die Controller hineingestellt werden. In jeder Vertiefung sind Magnete verbaut, die den Controller in die richtige Position ausrichten und so einen zuverlässigen Kontakt zu den Federkontaktensicherstellen. Eine Verpolung ist durch die Anordnung der Magnete und der Form der Senken am Deckel nicht möglich (siehe @sec_ladestation-hw).
 
 // muss nicht sein ... wenn dann mit so Controller drinnen vllt
 #figure(
@@ -91,20 +78,8 @@ Der Deckel enthält vier Vertiefungen, in die die Controller hineingestellt werd
 Die Ladestation wird über einen kurzen @usbc zu @usbc Adapter mit dem Ladeausgang des Hauptmoduls verbunden und mit 5V versorgt (siehe @sec_bahn-ladeausgang). Eine mechanische Verbindung zwischen Ladestation und Hauptmodul ist nicht vorgesehen, da die Ladestation nebem dem Hauptmodul platziert und versorgt oder extern angeschlossen werden kann.
 
 == 3D-Druck
-Alle Teile sind aus schwarzem @abs gedruckt. Es bietet eine hohe Festigkeit, Schlagzähigkeit und Hitzebeständigkeit, was für die Langlebigkeit der Ladestation vorteilhaft ist.
+Alle Teile sind aus schwarzem @abs gedruckt. Da @abs ein Kunststoff ist, der Chemisch geglättet werden kann.
 
-Da @abs ein Hitzebeständiger Kunststoff ist, kann die Oberfläche der gedruckten Teile durch Bedampfen mit Aceton geglättet werden, ohne dass die Form darunter leidet.
-
-Für ein zuverlässiges Zusammenfügen von Grundplatte und Deckel sind die Press-fit Verbindungen um 2° abgeschrägt. // um 2° nach außen abgeschrägt. // um 2° vom Hauptmodul weg abgeschrägt
+Für ein zuverlässiges Zusammenfügen von Grundplatte und Deckel sind die Press-fit Verbindungen um 2° abgeschrägt. 
 
 Toleranzen für die Pogo-Pin-Aussparungen, die Controller-Vertiefungen und die Einkerbung für die Leiterplatte sind im Design beachtet und durch Testdrucke angepasst.
-
-/* 
-Der 3D Druck wird aus @abs gedruckt, da dieses Material eine hohe Festigkeit, Schlagzähigkeit und Hitzebeständigkeit bietet, was für die Funktionalität und Langlebigkeit der Ladestation beiträgt.
-
-Da @abs ein Hitzebeständiger Kunststoff ist, kann man ihn  mit Aceton bedampfen, ohne dass die Form des 3D Drucks darunter leidet. Durch das Bedampfen wird die Oberfläche der gedruckten Teile geglättet.
-
-Toleranzen für die Pogo Pin Aussparungen, der Controller-Vertiefungen und für die Platine-Auskerbung sind im Design beachtet und durch Testdrucke angepasst.
-
-Für ein besseres Zusammenfügen der Grundplatte und des Deckels, wurden die Press-fit Verbindungen so angepasst, dass sie von dem Hauptdruck weg 2 Grad abgeschrägt sind.
- */
