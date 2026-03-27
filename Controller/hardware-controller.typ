@@ -7,14 +7,6 @@
 
 Der Controller ist für die Steuerung des Autos verantwortlich. Er empfängt die Signale von den Sensoren, verarbeitet sie und sendet die entsprechenden Befehle an das Auto. Die Energieversorgung des Controllers erfolgt über einen Lithium-Polymer-Akku, welcher über eine Ladestation aufgeladen wird. 
 Der Controller besteht aus folgenden Komponenten:
-- Mikrocontroller
-- Laderegler
-- Akku
-- @adc
-- Potentiometer
-- Vibrationsmotor
-- Button
-- Schieberegler
 
 #figure(
 image("/Bilder/Blockschaltbild-HW-Controller.svg", width: 70%),
@@ -22,7 +14,8 @@ caption: [Blockschaltbild Hardware Controller],
 )
 
 
-#pagebreak()
+//#pagebreak()
+\
 == Spannungsversorgung
 Die Versorgung des Controllers erfolgt über einen @lipo, dessen Betriebsspannung zwischen 3.2 V und 4.2 V liegt. Der Akku wird über Federkontakte an einer Ladestation aufgeladen. (siehe @sec_ladestation-hw)
 \ \
@@ -52,27 +45,24 @@ fimage("/Bilder/Ladevorgang.png", width: 100%),
 caption: [Ladevorgang],
 ) \ \
 
-Das Aufnehmen der Ladekurve werden Strom und Spannung des Akkus gemessen. Mit einem Spannungsteiler an einem Pin wird die Ladespannung gemessen, der Ladestrom wird auf dem anderen Pin über einen Shunt-Widerstand gemessen.\ \
+Beim Aufnehmen der Ladekurve werden Strom und Spannung des Akkus gemessen. Mit einem Spannungsteiler an einem Pin wird die Ladespannung gemessen, der Ladestrom wird auf dem anderen Pin über einen Shunt-Widerstand gemessen.\ \
+//englisch auf deutsch cc-cv
 
 #figure(
 fimage("/Bilder/LadekSch.png", width: 100%),
 caption: [Schaltplan für die Ladekurve aufnehmen],
 )
 \ 
-!!! Schaltung und messvorgang beschreiben
-Der Spannungsverlauf beim Laden wird über den Spannungsteiler gemessen. 
 
-
-
+Der Spannungsverlauf beim Laden wird über den Spannungsteiler gemessen, damit ein kleinerer Messbereich am Messgereit eingestellt werden kann, da die Auflösung genauer wird. 
+\
 
 Der ladestrom wird über den Shuntwiderstand gemessen. Durch den Spannungsabfall am Shunt, kann der Ladestrom berechnet werden. $U=I*R$
-Auf grund einer niedrigen Spannung am Shunt, wird ein OPV als Verstärker verwendet, da der ESP eine Spannung von 0.1V nicht richtig messen kann. Der OPV verstärkt die Spannung am Shunt um den Faktor 19, damit der ESP die Spannung messen kann.
+Der kleine Spannungsabfall am Shunt wird mit einer OPV-Schaltung verstärkt, um gemessen werden zu können.
 
 \ \
 
-- DW01 Schutzschaltung\ Um das Tiefentladen und Überladen des Akkus zu verhindern, wird der DW01 (U2) verwendet. Dieser Schutzschaltkreis überwacht den Stromfluss des Akkus und schaltet diesen ab, wenn die Spannung über einen speziellen Schwellenwert() steigt beziehungsweise fällt. Das ist notwenig um den Akku nicht zu zerstörren. Mit dem FS8205A MOSFETs (Q1 und Q2) wird der Stromfluss bei bedarf unterbrochen. \ \
-
-
+- Schutzschaltung\ Um das Tiefentladen und Überladen des Akkus zu verhindern, wird der DW01 (U2) verwendet. Dieser Schutzschaltkreis überwacht den Stromfluss des Akkus und schaltet diesen mittels FS8205A MOSFETs (Q1 und Q2) ab, wenn die Spannung über einen speziellen Schwellenwert  steigt(4.25V), beziehungsweise fällt(2.4V). Das ist notwenig um den Akku nicht zu zerstörren.  \ \
 
 
 Der Schaltplan des Ladereglers musste überarbeitet werden, da ein Verbindungsfehler zwischen dem Akku und dem FS8205A an dem Pin G2 vorlag. Dieser Fehler führte dazu, dass die Schutzschaltung für den Akku, den Akku nicht schützt. Der Fehler ist behoben worden, indem die Leiterbahn zwischen Akku und den Mosfets vom GND getrennt und im Schaltplan geändert wurde.  
@@ -82,11 +72,11 @@ Der Schaltplan des Ladereglers musste überarbeitet werden, da ein Verbindungsfe
 == Mikrocontroller
 Die Steuerung des Systems erfolgt über den CH572. Der Mikrocontroller verarbeitet die Daten und sendet sie über  @ble an das Fahrzeug. Zu beachten ist, dass der CH572 keine integrierten @adc hat, weshalb der CH32V003 als kosteneffizienter externer @adc verwendet wird.  
 \ \
-- CH572\ Der CH572 ist ein 32-Bit-Mikrocontroller, der auf der RISC-V-Architektur basiert. Er ist klein, verfügt über integrietes @ble. Der CH572 ist für die Hauptsteuerung des Systems verantwortlich und verarbeitet die Daten.
+- CH572\ Der CH572 ist ein 32-Bit-Mikrocontroller, der auf der @riscv basiert. Er ist klein, verfügt über integrietes @ble Perepherie. Der CH572 ist für die Hauptsteuerung des Systems verantwortlich und verarbeitet die Daten.
 \ \
-- CH32V003\ Er verfügt über integrierten @adc, die es möglich machen, die analogen Signale der Sensoren zu verarbeiten. Da er günsiger als ein externer @adc ist, wurde er als  kosteneffiziente Lösung ausgewählt. \ \
+- CH32V003\ Der CH32V003 verfügt über integrierten @adc, der es möglich macht, die analogen Signale der Komponenten zu verarbeiten. Da er günsiger als ein externer @adc ist, wurde er als  kosteneffiziente Lösung ausgewählt. \ \
 
-Bei der Entwicklung der Controller Platine wurde darauf geachtet, dass ein Quarz für eine stabile Taktfrequenz, die für @ble notwenig ist, vorhanden ist. Da der interne RC-Oszillator des CH572 nicht ausreicht, ist ein externer Quarz mit einer Frequenz von 32 MHz an die Pins XO und XI angeschlossen.  
+Bei der Entwicklung der Controller Platine wurde darauf geachtet, dass ein Quarz für eine stabile Taktfrequenz, die für @ble notwenig ist, vorhanden ist. Da der interne RC-Oszillator des CH572 zu instabil ist, ist ein externer Quarz mit einer Frequenz von 32 MHz an die Pins XO und XI angeschlossen.  
 
 === Stützkondensator
 Da Mikrocontroller kurzzeitig erhöhte Ströme aufnehmen können, entstehen Stromspitzen auf der Versorgungsspannung. Diese können zu kurzzeitigen Spannungsausfall führen. Aus diesem Grund wurde ein Stützkondensator in der Nähe des Mikrocontrollers platziert. Dieser fängt die Stromspitzen ab und sorgt für eine stabile Versorgung während der @ble -Kommunikation bei.\ \
@@ -106,26 +96,26 @@ In dieser Abbildung sieht man den Strom- und Spannungsverlauf eines Mikrocontrol
 
 \ \
 == @adc:both
-Die analogen Signale vom Potentiometer und vom Schieberegler werden über den @adc von dem CH32V003 eingelesen. Der Chip wandelt die analogen Signale in digitale Werte um, sie werden über UART an den Ch572 gesendet. 
-Bauteile die zum auslesen @adc brauchen: 
+Die analogen Signale vom Potentiometer und vom Schieberegler werden über den @adc von dem CH32V003 eingelesen. Der Chip wandelt die analogen Signale in digitale Werte um, sie werden über UART an den CH572 gesendet. 
+Bauteile die zum auslesen einen @adc brauchen: 
 - Potentiometer
 - Schieberegler
 
 \
 == Steuerung
-Die genannten Bauteile werden für die Steuerung des Autos verwendet. Sie ermöglichen es dem Spieler, die Geschwindigkeit zu steuern, Spezialeffekte auszulösen und haptisches Feedback zu erhalten. 
+Die genannten Bauteile werden für die Steuerung des Autos verwendet. Sie ermöglichen es dem Spieler, die Geschwindigkeit zu steuern, die Hupe zu betätigen und ein haptisches Feedback zu erhalten. 
 
-- Potentiometer: An dem Potentiometer wird die Geschwindigkeit des Autos eingestellt. Das Potentiometer sendet ein analoges Signal an den @adc, welcher es dann in digitale werte umwandelt und an den Ch572 sendet. Der Mikrokontroller verarbeitet die Daten und sendet die Befehle über @ble an das Auto.
+- Potentiometer: An dem Potentiometer wird die Geschwindigkeit des Autos eingelesen. Der @adc liest das Signal vom Potentiometer ein. Der Mikrokontroller verarbeitet die Daten und sendet die Befehle über @ble an das Auto.
 
-- Schieberegler: Der Schieberegler dient als Spezialeffekt. Wird dieser betätigt, sendet er ein Signal über den @adc und dem CH572 an das Auto, welches dann den Buzzer aktiviert und die Hupe auslöst.
+- Schieberegler: Der Schieberegler wird vom @adc eingelesen, wenn dieser einen bestimmten Schwellenwert überschreitet, wird ein Signal an das Auto gesendet, um die Hupe zu betätigen.
 
-- Vibrationsmotor: Der Vibrationsmotor wird für haptisches Feedback verwendet. Er wird über den CH572 gesteuert und aktiviert, wenn bestimmte Ereignisse im Spiel auftreten, wie z.B. bei Kollisionen oder das Erreichen einer bestimmten Geschwindigkeit.
+- Vibrationsmotor: Der Vibrationsmotor wird für haptisches Feedback verwendet. Er wird über den CH572 gesteuert. Bei bestimmten Ereignissen im Spiel, wie z.B. beim Erreichen der maximalen Geschwindigkeit, wird der Vibrationsmotor aktiviert, um dem Spieler ein haptisches Feedback zu geben.
 \
 == Antenne
 
-Die Antenne ist auf 50 Ω angepasst, um eine optionale Verbindung über @ble zwischen dem Controller und dem Auto zu ermöglichen. Damit die Anpassung erhalten bleibt, wurde die Leiterbahn zwischen Antenne und dem CH572 entsprechend dimensioniert. Die Platine des Controllers ist relativ dünn, wodurch die benötigte Leiterbahnbreite für den 50 Ohm Wellenwiderstand dünner wird. \ 
+Die Zuleitung ist auf 50 Ω angepasst, damit die Antenne optimal abstrahlt und eine optionale Verbindung über @ble zwischen dem Controller und dem Auto ermöglicht. Damit die Anpassung erhalten bleibt, wurde die Leiterbahn zwischen Antenne und dem CH572 entsprechend dimensioniert. Die Platine des Controllers ist 0.6mm dünn, wodurch die benötigte Leiterbahnbreite für den 50 Ohm Wellenwiderstand 0.8mm beträgt. \ 
 
-Für eine möglichst geringe Störanfälligkeit wird die Leiterbahn zwischen Antenne und CH572 möglichst kurz gehalten. Längere Leiterbahnen erhöhen die parasitäre Induktivität und können bei der @ble Kommunikation zu Signalverzerrungen führen. Zusätzlich wurden entlang der Leiterbahn mehrere Ground-Vias platziert, um einen stabilen Rückstrompfad zu gewährleisten und hochfrequente Störungen zu reduzieren.
+Für eine möglichst geringe Störanfälligkeit wird die Leiterbahn zwischen Antenne und CH572 möglichst kurz gehalten. Längere Leiterbahnen erhöhen die parasitäre Induktivität und können bei der Übertragung zu Signalverzerrungen führen. Zusätzlich wurden entlang der Leiterbahn viele Ground-Vias platziert, um einen stabilen Rückstrompfad zu gewährleisten und hochfrequente Störungen zu reduzieren.
 
 #figure(
 fimage("/Bilder/Cantenne.png", width: 50%),
@@ -160,7 +150,7 @@ fimage("/Bilder/controllerUberblick.svg", width: 100%),
 caption: [Leiterplatte des Controllers],
 )
 
-Zum Programmieren der Mikrocontrollers ist auf der Bottomseite der Leiterplatte ein Überlötjumper platziert (CH572-Data-CH32). Durch das Umlöten der Pads, wird Platz auf der Topseite eingespart.
+Zum Programmieren der Mikrocontrollers ist auf der Unterseite der Leiterplatte ein Überlötjumper platziert (CH572-Data-CH32). Durch das Umlöten der Pads, wird Platz auf der Oberseite eingespart, da ein programmier Pin doppelt belegt werden kann.
 
 #pagebreak()
 
