@@ -49,7 +49,7 @@ caption: [Ladevorgang],
 Beim Aufnehmen der Ladekurve werden Strom und Spannung des Akkus gemessen. Mit einem Spannungsteiler wird die Ladespannung gemessen, der Ladestrom wird über einen Shunt-Widerstand gemessen.\ \
 //englisch auf deutsch cc-cv
 
-Das Aufladen eines Lithium-Polymer-Akkus erfolgt über @ccv. Der Akku wird mit einem konstanten Strom geladen, bis die Spannung des @lipo 4.2V erreicht. Ist diese Spannung erreicht, wird der Ladestrom reduziert, damit die Spannung konstant bleibt. Fällt der Strom unter einen bestimmten Schwellenwert, ist der Akku vollständig geladen.
+Das Aufladen eines Lithium-Polymer-Akkus erfolgt über @ccv. Der Akku wird mit einem konstanten Strom geladen, bis die Spannung des @lipo 4.2V erreicht. Ist diese Spannung erreicht, wird der Ladestrom reduziert, damit die Spannung konstant bleibt. Fällt der Strom unter einen bestimmten Schwellenwert, ist der Akku vollständig geladen. @sourceCCV
 
 #figure(
 fimage("/Bilder/LadekSch.png", width: 100%),
@@ -65,7 +65,7 @@ Der kleine Spannungsabfall am Shunt wird mit einer OPV-Schaltung verstärkt, um 
 
 \ \
 
-- Schutzschaltung\ Um das Tiefentladen und Überladen des Akkus zu verhindern, wird der DW01 (U2) verwendet. Dieser Schutzschaltkreis überwacht den Stromfluss des Akkus und schaltet diesen mittels FS8205A MOSFETs (Q1 und Q2) ab, wenn die Spannung über einen speziellen Schwellenwert  steigt(4.25V), beziehungsweise fällt(2.4V). Das ist notwenig um den Akku nicht zu zerstörren.  \ \
+- Schutzschaltung\ Um das Tiefentladen und Überladen des Akkus zu verhindern, wird der DW01 (U2) verwendet. Dieser Schutzschaltkreis überwacht den Stromfluss des Akkus und schaltet diesen mittels FS8205A MOSFETs (Q1 und Q2) ab, wenn die Spannung über einen speziellen Schwellenwert  steigt(4.25V), beziehungsweise fällt(2.4V). Das ist notwenig um den Akku nicht zu zerstörren.@sourceDW01  \ \
 
 
 Der Schaltplan des Ladereglers musste überarbeitet werden, da ein Verbindungsfehler zwischen dem Akku und dem FS8205A an dem Pin G2 vorlag. Dieser Fehler führte dazu, dass die Schutzschaltung für den Akku, den Akku nicht schützt. Der Fehler ist behoben worden, indem die Leiterbahn zwischen Akku und den Mosfets vom GND getrennt und im Schaltplan geändert wurde.  
@@ -75,12 +75,12 @@ Der Schaltplan des Ladereglers musste überarbeitet werden, da ein Verbindungsfe
 == Mikrocontroller
 Die Steuerung des Systems erfolgt über den CH572. Der Mikrocontroller verarbeitet die Daten und sendet sie über  @ble an das Fahrzeug. Zu beachten ist, dass der CH572 keine integrierten @adc hat, weshalb der CH32V003 als kosteneffizienter externer @adc verwendet wird.  
 \ \
-- CH572\ Der CH572 ist ein 32-Bit-Mikrocontroller, der auf der @riscv basiert. Er ist klein, verfügt über integrietes @ble Perepherie. Der CH572 ist für die Hauptsteuerung des Systems verantwortlich und verarbeitet die Daten.
-\ \
-- CH32V003\ Der CH32V003 verfügt über integrierten @adc, der es möglich macht, die analogen Signale der Komponenten zu verarbeiten. Da er günsiger als ein externer @adc ist, wurde er als  kosteneffiziente Lösung ausgewählt. \ \
+- CH572\ Der CH572 ist ein 32-Bit-Mikrocontroller, der auf der @riscv basiert. Er ist klein, verfügt über integrietes @ble Perepherie. Der CH572 ist für die Hauptsteuerung des Systems verantwortlich und verarbeitet die Daten. @sourceCH572
+\ 
+- CH32V003\ Der CH32V003 verfügt über integrierten @adc, der es möglich macht, die analogen Signale der Komponenten zu verarbeiten. Da er günsiger als ein externer @adc ist, wurde er als  kosteneffiziente Lösung ausgewählt. @sourceCH32 \ \
 
 Bei der Entwicklung der Controller Platine wurde darauf geachtet, dass ein Quarz für eine stabile Taktfrequenz, die für @ble notwenig ist, vorhanden ist. Da der interne RC-Oszillator des CH572 zu instabil ist, ist ein externer Quarz mit einer Frequenz von 32 MHz an die Pins XO und XI angeschlossen.  
-
+\ \
 === Stützkondensator
 Da Mikrocontroller kurzzeitig erhöhte Ströme aufnehmen können, entstehen Stromspitzen auf der Versorgungsspannung. Diese können zu kurzzeitigen Spannungsausfall führen. Aus diesem Grund wurde ein Stützkondensator in der Nähe des Mikrocontrollers platziert. Dieser fängt die Stromspitzen ab und sorgt für eine stabile Versorgung während der @ble -Kommunikation bei.\ \
 

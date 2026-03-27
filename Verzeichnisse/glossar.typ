@@ -136,6 +136,7 @@
 
   ccv: (short: "CC/CV", long: "Constant Current/Constant Voltage", description: "Lademodus für Lithium-Polymer-Akkus, bei dem zuerst ein konstanter Strom und dann eine konstante Spannung bereitgestellt wird, um den Akku sicher und effizient zu laden")
 
+
 )
 
 
