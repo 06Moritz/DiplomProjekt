@@ -41,6 +41,8 @@
   )
 
 
+   show heading.where(level: 4): set heading(numbering: none, outlined: false)
+   
   show heading: it => {
     if it.level == 1 {
       v(1.5cm, weak: true)
