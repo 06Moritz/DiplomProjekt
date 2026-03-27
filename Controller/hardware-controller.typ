@@ -31,7 +31,7 @@ Die Spannungsregelung ist in drei Teile gegliedert:
 == Laderegler <sec-charger>
 
 #figure(
-fimage("/Bilder/Laderegler.png", width: 100%),
+fimage("/Bilder/laderegler.png", width: 100%),
 caption: [Laderegler],
 ) 
 
