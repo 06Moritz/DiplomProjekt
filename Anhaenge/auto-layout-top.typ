@@ -9,7 +9,7 @@
   projekt: "Fahrzeug",
   //beschreibung: "",
   status: "Prototyp",
-  datum: "08.03.2026",
+  datum: "20.03.2026",
   blatt: "2",
   blaetter: "3"
 )

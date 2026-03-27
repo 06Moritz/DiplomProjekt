@@ -1,7 +1,7 @@
 ﻿#import "Templates/seitenlayout.typ": aktueller_autor, page_layout
 #import "Templates/startlayout.typ": start_layout
 #import "@preview/glossy:0.9.0": glossary, init-glossary
-#import "Verzeichnisse/abkuerzungsverzeichnis.typ": eintraege
+#import "Verzeichnisse/glossar.typ": eintraege
 #import "@preview/muchpdf:0.1.2": muchpdf
 
 

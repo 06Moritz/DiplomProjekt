@@ -14,4 +14,4 @@
   blaetter: "3"
 )
 
-#image("/Bilder/anhang/sch_joy.png", width: 100%)
+#image("/Bilder/anhang/sch_joy.png", width: 40%)

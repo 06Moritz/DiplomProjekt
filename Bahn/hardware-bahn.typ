@@ -119,8 +119,8 @@ Die Displayansteuerung erfolgt über das @spi:long. @spi ist ein synchrones seri
 - @cs
 Es ermöglicht höhere Übertragungsraten als @i2c:short und ist damit für die Übertragung von Bilddaten geeignet. Der kapazitive Touch-Controller kommuniziert separat über @i2c, wobei der erste @i2c:short\-BUS des @esp32:short verwendet wird./*  Das Modul verfügt zusätzlich über einen @sd:short\-Karten-Steckplatz, der aktuell jedoch nicht genutzt wird. */
 
-== @levelshifter:both <sec_bahn-levelshifter>
-Der SN74LVC1T45DCKR ist ein bidirektionaler @levelshifter, der Signale zwischen zwei unterschiedlichen Spannungsebenen anpasst. Er wird verwendet um das 3,3V Steuersignal des ESP32 auf 5V anzuheben, da der nachgeschaltete @mosfet:short eine 5V-kompatible Ansteuerung erwartet. Die Richtung der Signalübertragung wird über den @dir:short\-Pin festgelegt. // oder @mosfet:short
+== Pegelwandler (Level Shifter)<sec_bahn-levelshifter>
+Der SN74LVC1T45DCKR ist ein bidirektionaler @levelshifter:short, der Signale zwischen zwei unterschiedlichen Spannungsebenen anpasst. Er wird verwendet um das 3,3V Steuersignal des ESP32 auf 5V anzuheben, da der nachgeschaltete @mosfet:short eine 5V-kompatible Ansteuerung erwartet. Die Richtung der Signalübertragung wird über den @dir:short\-Pin festgelegt.
 
 #pagebreak()
 == Ladeausgang <sec_bahn-ladeausgang>

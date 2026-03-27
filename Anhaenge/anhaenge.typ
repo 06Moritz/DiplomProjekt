@@ -45,3 +45,7 @@
 #include "joystick-schaltplan.typ"
 #include "joystick-layout-top.typ"
 #include "joystick-layout-bottom.typ"
+
+= Wellenaufhängung // Beilage 6
+#include "wellenaufhaengung1.typ"
+#include "wellenaufhaengung2.typ"

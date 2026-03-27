@@ -60,7 +60,7 @@ Beim Start des Rennens zeigt die App die Dauer (mit einer Timer Methode) und den
 
 - Rennen: Rennendauer mit Spieleranzeige
 - Platzierung: Spieler werden nach schnellster Zeit sortiert. Der Spieler mit der schnellsten Runde auf Platz 1, rot markiert und Rennzeit angezeigt.
-
+\
 #figure(
   grid(
     columns: 1fr,
@@ -84,6 +84,25 @@ Durch Polymorphismus muss nicht jeder Button einzeln erstellt werden. Das ermög
 
 \ \
 Wenn das Display gedrückt sendet es über I2C die XY-Koordinaten des Touch-Events and den Mikrocontroller. Es werden die Koordinaten mit den Positionen der Buttons verglichen. Wenn die Koordinaten innerhalb der Grenzen eines Buttons liegen, wird die Funktion des Buttons ausgeführt.
+
+\
+Das Display des Hauptmoduls ist ein @tft:short\-Display, verfügt über I2C-Touch und hat eine Auflösung von 320*480 Pixeln. Es werden Spieler, Modis und Bestenliste angezeigt. 
+
+- TFT_eSPI Library: Es wird die TFT_eSPI Library verwendet, um die grafische Benutzeroberfläche auf dem Display zu erstellen. Diese Bibliothek bietet Funktionen zum Zeichnen von Text, Formen und Bildern.
+
+- @i2c: Das Display verfügt über @i2c. Durch die @i2c\-Schnittstelle werden XY Koordinaten übertragen, wodurch Touch Events erkannt und verarbeitet werden können. Durch Toucheingaben können der Modus geändert, Spieler hinzugefügt und das Rennen gestartet/gestoppt werden. @sourcei2c
+
+```c
+bool startIsPressed = (btnStart && btnStart->isPressed());
+bool modusIsPressed = (btnModus && btnModus->isPressed());
+```
+Hier wird überprüft, ob der Start- oder Modus-Button gedrückt wurde.
+\ \
+#figure(
+  image("/Bilder/display.png", width: 80%),
+  caption: [Display des Hauptmoduls]
+)
+
 
 
 ```c
@@ -110,12 +129,16 @@ unsigned long now = millis();
     startWasPressed = startIsPressed;
 
 ```
-Zustand wird abgefragt, Buttons werden Entprellt, bei Button klick werden Zustände geändert.
-...
+
+Die Logik des Hauptmodul Displays funktioniert so, dass der Zustand der Buttons abgefragt wird. Der zugehörige Screen wird durch Zustandsautomaten ermittelt. \
+Es gibt drei Zustände:
+- Menü 
+- Rennen
+- Podium
+Je nachdem welcher Button gedrückt wird, wird der Zustand geändert.
 
 
-== @tcp:both Programmierung
-\
+== Transmission Control Protocol (TCP) Programmierung
 Um eine Verbindung zwischen der App und dem Hauptmodul Display herzustellen, wird das @tcp Protokoll verwendet. Dieses ermöglicht eine Bidirektionale Kommunikation zwischen den beiden Geräten. Das dient dazu, dass Änderungen, wie das Einstellen der Modi oder Spielernamen, auf das Display übertragen werden können.\
 
 In dieser Konfiguration zählt der @esp32:short\-S3 als @tcp -Server, der auf einem definierten Port (8080) auf eingehende Verbindungsanfragen der App wartet.\ \
@@ -152,6 +175,48 @@ In das Terminal wurden folgende Parameter eingegeben:\
 
 /*
 In der App wurden die eingegebenen Parameter aktualisiert. Spieler1 wurde als Spielername angezeigt, der Modus auf leicht gestellt und die Rundenzahl auf drei.*/
+Senden der Daten vom @esp32:short:
+```c 
+ if (Serial.available()) {
+    String input = Serial.readStringUntil('\n');
+    input.trim();
+
+    if (client && client.connected()) {
+      client.println(input);   
+     }
+  }
+```
+- `Serial.available()`: Überprüft, ob Daten im Serial Buffer verfügbar sind.
+- `client.println(input)`: Sendet die eingelesenen Daten über die TCP-Verbindung an die App.
+\ \
+Empfangen der Daten in der App:
+```kotlin
+fun handleMessage(msg: String) {
+
+    when {
+        msg.startsWith("Modus:") -> {
+            val value = msg.substringAfter("Modus:").trim()
+            modeText.text = "Modus: $value"
+        }
+
+        msg.startsWith("Spieler:") -> {
+            val value = msg.substringAfter("Spieler:").trim()
+            playerText.text = "Spieler: $value"
+        }
+
+        msg.startsWith("Rundenzahl:") -> {
+            val value = msg.substringAfter("Rundenzahl:").trim()
+            lapsText.text = "Runden: $value"
+        }
+    }
+}
+```
+- `msg.startsWith("Modus:")`: Überprüft, ob die empfangene Nachricht mit "Modus:" beginnt.
+- `substringAfter("Modus:")`: Extrahiert den Wert nach "Modus:" und aktualisiert die entsprechende TextView in der App.
+- `msg.startsWith("Spieler:")`: Überprüft, ob die empfangene Nachricht mit "Spieler:" beginnt.
+- `substringAfter("Spieler:")`: Extrahiert den Wert nach "Spieler:" und aktualisiert die entsprechende TextView in der App.
+- `msg.startsWith("Rundenzahl:")`: Überprüft, ob die empfangene Nachricht mit "Rundenzahl:" beginnt.
+- `substringAfter("Rundenzahl:")`: Extrahiert den Wert nach "Rundenzahl:" und aktualisiert die entsprechende TextView in der App.
 
 \ \
 #figure(
@@ -163,16 +228,18 @@ Die App und der @esp32:short als Sender und Empfänger initialisiert.
 \
 @tcp Kotlin:
 
-```c
+```kotlin
  suspend fun connect(): BufferedReader? {
      return withContext(Dispatchers.IO) {
          try {
-             if (socket == null || socket!!.isClosed || !socket!!.isConnected)
+             if (socket == null || socket!!.isClosed ||
+              !socket!!.isConnected)
              {
                  socket = Socket(ESP_IP, ESP_PORT)
                  socket!!.tcpNoDelay = true
                  socket!!.soTimeout = 5000
-                 writer = PrintWriter(socket!!.getOutputStream(), true)
+                 writer = PrintWriter(
+                  socket!!.getOutputStream(),true)
                  reader = BufferedReader
                  (InputStreamReader(socket!!.getInputStream()))
              }
@@ -237,29 +304,48 @@ An dem @esp32:short wird ein Server Socket erstellt, der auf Port 8080 auf verbi
 
 === Synchronisation
 Um sicherzustellen, dass beide Geräte immer den gleichen Systemstatus anzeigen, wurde ein zeilenbasiertes Protokoll entwickelt.\ Jede Nachricht wird mit einem Newline-Zeichen (\n) abgeschlossen, damit der Empfänger das Ende eines Befehls eindeutig erkennt. Dies ist notwendig, da @tcp die Daten als kontinuierlichen Strom versendet.\ Sobald in der App ein Parameter wie der Spielmodus oder die Rundenzahl geändert wird, sendet die App sofort ein entsprechendes Datenpaket an das Display. Ein Befehl wie MODUS: Schwer bewirkt am Display eine sofortige Aktualisierung der Variable und einen Redraw der Benutzeroberfläche. Dieser Prozess funktioniert auch in die umgekehrte Richtung: Wird am Display der "Start"- oder "Modus"-Button gedrückt, erhält die App das Signal zum Starten des Renn-Timers beziehungsweise das ändern des Moduses.
-\ \
-
-== Controller Display
-Das Display des hauptmoduls ist ein TFT-Display, verfügt über I2C-Touch und hat eine Auflösung von 320*480 Pixeln. Es werden Spieler, Modis und Bestenliste angezeigt. 
-
-- TFT_eSPI Library: Es wird die TFT_eSPI Library verwendet, um die grafische Benutzeroberfläche auf dem Display zu erstellen. Diese Bibliothek bietet Funktionen zum Zeichnen von Text, Formen und Bildern.
-
-- @i2c: Das Display verfügt über @i2c. Durch die @i2c\-Schnittstelle werden XY Koordinaten übertragen, wodurch Touch Events erkannt und verarbeitet werden können. Durch Toucheingaben können der Modus geändert, Spieler hinzugefügt und das Rennen gestartet/gestoppt werden. @sourcei2c
-
-```c
-bool startIsPressed = (btnStart && btnStart->isPressed());
-bool modusIsPressed = (btnModus && btnModus->isPressed());
-```
-Hier wird überprüft, ob der Start- oder Modus-Button gedrückt wurde.
-
-#figure(
-  image("/Bilder/display.png", width: 80%),
-  caption: [Display des Hauptmoduls]
-)
-
 
 == Echtzeitverhalten
 Bei der Softwareimplementierung wurde besonders auf ein nicht-blockierendes Design geachtet. Da das Hauptmodul gleichzeitig den Touchscreen abfragen und das Display aktualisieren muss, darf der Netzwerkcode den Prozessor nicht aufhalten.\ Die Abfrage von eingehenden Daten erfolgt daher in jedem Programmdurchlauf, ohne den restlichen Ablauf zu verzögern.
 \
 Sollte die Verbindung zwischenzeitlich unterbrochen werden, verfügt die App über eine automatische Reconnect-Logik.\ Diese erkennt die unterbrochene Verbindung durch einen Timeout und versucht eigenständig, den Socket neu zu initialisieren, um die Verbindung wiederherzustellen. Während der Reconnect-Phase zeigt die App eine entsprechende Meldung an. Sobald die Verbindung wiederhergestellt ist, werden alle zuvor gesendeten Befehle erneut übertragen, um sicherzustellen, dass das Display den aktuellen Status korrekt anzeigt. 
 \ \ 
+
+
+== Controler Display
+Das Controller Display XY zeigt folgende funktionen an:
+- aktuelle Motorleistung (PWM)
+- Timer
+- Durchschnittsgeschwindigkeit
+- beste Rundendauer
+- abweichung zur besten
+- Spielername
+- Zugewiesenes Auto
+- Runden anzahl z.B.: 2/5 Runden // in dem fall leichter modus
+
+Das Display dient dazu, wichtige Informationen während des Rennens anzuzeigen. Es zeigt die aktuelle Motorleistung an, die über die PWM gesteuert wird, sowie einen Timer, der die Dauer des Rennens anzeigt. In der mitte des Displays wird die Durchschnittsgescchwindigkeit angezeigt, welche mithilfe der Drehzahl des Motors berechnet wird. Darunter wird die schnellste Runde angezeigt, sowie die Abweichung. 
+\
+$ v = (n*π*d)/60 $
+
+- v: Geschwindigkeit in m/s
+- n: Drehzahl in U/min
+- d: Durchmesser des Rades in m 
+Damit man auf dem Display die Geschwindigkeit in Meter pro Sekunde angezeigt bekommt, wird die Drehzahl durch 60 dividiert, um auf Umdrehung pro Sekunde zu kommen. \ \
+
+#figure(
+  image("/Bilder/controllerScreen.png", width: 50%),
+  caption: [Controller Display],
+)
+
+Der Spielername und das zugewiesene Auto werden ebenfalls auf dem Display angeziegt, um verwechslungen zu vermeiden. Zudem wird die aktuelle Rundenanzahl angezeigt, um den Spieler zu informieren, in welcher Runde er sich befindet.
+
+- Das Display wird mit dem CH572 verbunden, welcher die Daten empfängt und verarbeitet. Die Informationen werden in Echzeit übertragen.
+- Auf dem Display werden Spiel Informationen
+ - Spielername
+ - Autoname
+ - Rundenanzahl
+ über die SPI Schnittstelle vom CH572 übertragen.
+
+ Die aktuellen Auto Informationen
+  - Motorleistung (PWM)
+ werden über @ble übertragen, da diese Informationen sehr schnell aktualisiert werden müssen und eine stabile Verbindung erfordern. 

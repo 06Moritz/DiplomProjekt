@@ -1,8 +1,7 @@
 #import "../config.typ": *
 #aktueller_autor.update([#author1, #klasse])
 
-= @buck:both <sec_buck>
-
+= Abwärtswandler (Buck-Converter) <sec_buck>
 Ein @buck:long ist ein Gleichspannungswandler, der eine Eingangsspannung in eine niedrigere Ausgangsspannung wandelt. 
 Im Gegensatz zu Linearreglern wird die Spannungsdifferenz nicht in Wärme umgewandelt, sondern durch ein getaktetes Prinzip umgesetzt. Dies ermöglicht: 
 

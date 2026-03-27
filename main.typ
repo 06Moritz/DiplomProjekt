@@ -54,7 +54,7 @@
 
 //#include "Alle/begleitprotokolle.typ"
 
-#include "Verzeichnisse/abkuerzungsverzeichnis.typ"
+#include "Verzeichnisse/glossar.typ"
 
 #include "Verzeichnisse/abbildungsverzeichnis.typ"
 #include "Verzeichnisse/literaturverzeichnis.typ"
