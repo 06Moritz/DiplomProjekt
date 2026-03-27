@@ -1,8 +1,8 @@
 #import "../config.typ": *
 #aktueller_autor.update([#author2, #klasse])
-Das Fahrzeug ist ein Modellauto das auf der Bahn fährt. Es wird über den Controller gesteuert, über @nfc sendet es eine eindeutige Fahrzeugkennung and die Bahn.
+Das Fahrzeug fährt auf der Bahn, wird vom Controller gesteuert und übermittelt seine Fahrzeugkennung zur Rundenzeitmessung an die Bahn. 
 = Hardware
-Das Fahrzeug hat eine 2.4GHz Antenne, eine NFC-Spule auf der Leiterplatte. Motortreiber und Drehzahlsensor für Drehzahlmessung. Für die Spannungsregelung hat es einen @buck. Für akustische Signale ist ein buzzer verbaut.\
+Das Fahrzeug hat eine 2.4GHz Antenne, eine NFC-Spule auf der Leiterplatte. Motortreiber und Drehzahlsensor für Drehzahlmessung. Für die Spannungsregelung hat es einen @buck. Für akustische Signale ist ein Buzzer verbaut.\
 \
 
 
@@ -42,7 +42,7 @@ Der Motor muss unter Belastung eine Mindestdrehzahl von 10200 $upright("U") / up
 == H-Brückenschaltung<sec-hbridge>
 
 #figure(
-  fimage("/Bilder/HBrueke.png", width: 50%),
+  fimage("/Bilder/HBrueke.png", width: 55%),
   caption: [H-Brückenschaltung],
 )
 
@@ -60,9 +60,8 @@ Beim Entwickeln der Antenne sind einige Punkte zu beachten:
 - Antennen-Masse mittels vielen @via:long\en (@via:short:pl) mit @gnd:short\-Polygon verbinden
 - keine @gnd Fläche unter der Antenne
 - hinter der Antenne @gnd mit vielen @via:short:pl setzen
+(siehe Abbildung 21) @antennaSource
 
-(siehe @fig-bleantenna) @antennaSource
-\ \
 Berechnung der Leiterbahndicke für 50\u{03A9}  Wellenwiderstand: @Wellenwiderstand
 
 $ w=((5.98*h)/(e^(((sqrt(e_r+ 1.41)*Z_0)/87)))-t)*1/0.8 $
@@ -75,25 +74,30 @@ Z#sub("0") = 50 \u{03A9} (Wellenwiderstand)
 $ w=((5.98*1.5)/(e^(((sqrt(4.5+ 1.41)*50)/87)))-0.035)*1/0.8 = underline(underline(2.73"mm" => 106"mil")) $
 \
 
-#figure(
-  fimage("/Bilder/antenna.png", width: 70%),
-  caption: [BLE Antennendesign],
-)<fig-bleantenna>
 
 
-#figure(
-  fimage("/Bilder/stromverteilungAuto.png", width: 70%),
-  caption: [Stromverteilung auf der Antenne],
+#grid(
+  columns: (1fr, auto),
+  figure(
+    fimage("/Bilder/stromverteilungAuto.png", height: 120pt), caption: [Stromverteilung auf der Antenne]
+  ),
+  figure(
+    fimage("/Bilder/antenna.png", height: 120pt), caption: [Antennendesign]
+  ) 
 )
 
 
+
+
 #figure(
-  fimage("/Bilder/Autocart.png", width: 70%),
+  image("/Bilder/Autocart.png", width: 60%),
   caption: [Bodediagramm des Reflexionsfaktors],
 )
 
+
+
 // :)
-Erklärung: Die Stromverteilung auf der Antenne zeigt, dass die Stromdichte an der Spitze der Antenne am höchsten ist, was typisch für eine Inverted-F-Antenne ist. Dies liegt daran, dass die Spitze der Antenne den größten Beitrag zur Strahlung leistet. Die Stromdichte nimmt entlang der Antenne ab, was zu einer effektiven Strahlung führt.
+
 
 
 == Drehzahlsensor
@@ -102,13 +106,13 @@ Die Drehzahl wird optisch mit einem VCNT2020 gemessen. Der Sensor besteht aus ei
 Messwerte:
 - helle Seite: 2.24V
 - dunkle Seite: 0.64V
-
+\
 #figure(
   fimage("/Bilder/speedsensor.png", width: 90%),
   caption: [VCNT2020 und Komperator Schaltung],
 )
 
-
+#pagebreak()
 
 
 == NFC Antenne
@@ -118,12 +122,12 @@ Die @nfc:short\-Antenne ist eine Spule direkt auf der Leiterplatte. Die Schaltun
   fimage("/Bilder/NFC.png", width: 90%),
   caption: [NFC Antenne],
 )
-
+\
 #figure(
-  fimage("/Bilder/nfcCoil.png", width: 60%),
+  image("/Bilder/nfcCoil.png", width: 80%),
   caption: [NFC Antenne auf der Leiterplatte],
 )
-
+#pagebreak()
 === Ersatzschaltung
 
 #figure(
@@ -137,7 +141,7 @@ Die Spule kann mit der Ersatzschaltung dargestellt werden. Optimal ist ein Güte
 Die Spule hat folgende Werte:
 - Induktivität L#sub[a] = 555nH
 - Widerstand R#sub[a] = 0.333\u{03A9}
-Kapazität wurde nicht bestimmt, da die parastitären Kapazitäten der Messung höher sind als die Eigenkapazität der Spule.
+Kapazität wurde nicht bestimmt, da die parastitären Kapazitäten der Messung höher sind als die Eigenkapazität der Spule. \ \
 
 $ Q = (\u{03C9} * L_a)/R_a = underline(underline(142)) $
 
@@ -145,6 +149,7 @@ $ R_Q = 0.5 * ((\u{03C9}*L_a)/35-R_a) = underline(underline(0.5\u{03A9})) $
 
 $ R_"pa" = (\u{03C9} * L_a)^2/(R_a+2*R_Q) = underline(underline(1.68k\u{03A9})) $
 
+#pagebreak()
 === EMV-Filter
 
 #figure(
@@ -170,7 +175,7 @@ $ R_"tr" = R_"match" /((1-\u{03C9}^2*L_0*C_0)^2 +(\u{03C9}*R_"match"/2*C_0)^2 )=
 $
   X_"tr" = (L_0*(1-\u{03C9}^2*L_0*C_0)-\u{03C9}^2/4*C_0) /((1-\u{03C9}^2*L_0*C_0)^2 +(\u{03C9}*R_"match"/2*C_0)^2 ) = underline(underline(-152.22j\u{03A9}))
 $
-
+#pagebreak()
 === Anpassungsnetzwerk
 $ C_1 approx 1/(\u{03C9}* (sqrt((R_"tr"*R_"pa")/4)+X_"tr"/2)) = underline(underline(32"pF")) $
 $ C_2 approx 1/(\u{03C9}^2*L_"pa"/2)-1/(\u{03C9}*sqrt((R_"tr"*R_"pa")/4))-2*C_"pa" = underline(underline(390"pF")) $

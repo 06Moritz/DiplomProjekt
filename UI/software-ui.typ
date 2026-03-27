@@ -142,7 +142,7 @@ Je nachdem welcher Button gedrückt wird, ändert sich der Zustand.
 == Transmission Control Protocol (TCP) Programmierung
 Um eine Verbindung zwischen der App und dem Hauptmodul Display herzustellen, wird das @tcp Protokoll verwendet. Dieses ermöglicht eine Bidirektionale Kommunikation zwischen den beiden Geräten. Das dient dazu, dass Änderungen, wie das Einstellen der Modi oder Spielernamen, auf das Display übertragen werden können.\
 
-In dieser Konfiguration zählt der @esp32:short\-S3 als @tcp -Server, der auf einem definierten Port (8080) auf eingehende Verbindungsanfragen der App wartet.\ \
+In dieser Konfiguration zählt der @esp32:short\-S3 als @tcp -Server, der auf einem definierten Port (8080) auf eingehende Verbindungsanfragen der App wartet.\ 
 
 === Prototyp TCP Verbindung @sourceTCP
 Vor der Verbindung der App mit dem Display wurde ein Test-Code geschrieben, um das Signal auszuschreiben, das von der App an den @esp32:short gesendet und im Terminal ausgeschrieben wird. \ \
@@ -190,7 +190,7 @@ Senden der Daten vom @esp32:short:
 ```
 - `Serial.available()`: Überprüft, ob Daten im Serial Buffer verfügbar sind.
 - `client.println(input)`: Sendet die eingelesenen Daten über die TCP-Verbindung an die App.
-\ \
+\ 
 Empfangen der Daten in der App:
 ```kotlin
 fun handleMessage(msg: String) {
@@ -264,7 +264,7 @@ Die App und der @esp32:short als Sender und Empfänger initialisiert.
 - `PrintWriter(...)`: Senden von Daten an den Mikrocontroller
 - `BufferedReader(...)`: Empfangen von Daten vom Mikrocontroller
 - `catch (Exception)`: Fehlerbehandlung zur Vermeidung von Abstürzen
-\
+
 In dem Code der App wird ein Client Socket erstellt, der sich mit der IP-Adresse des @esp32:short und dem Port 8080 verbindet und eine Verbindungsanfrage an den @esp32:short sendet.
 \ \
 
@@ -301,8 +301,7 @@ In dem Code der App wird ein Client Socket erstellt, der sich mit der IP-Adresse
 
 ```
 An dem @esp32:short wird ein Server Socket erstellt, der auf Port 8080 auf verbindungsanfragen von der Appwartet. Ist eine Verbindung hergestellt, können Daten in beide Richtungen gesendet und empfangen werden.
-\ \
-
+\ 
 
 === Synchronisation
 Um sicherzustellen, dass beide Geräte immer den gleichen Systemstatus anzeigen, wurde ein zeilenbasiertes Protokoll entwickelt.\ Jede Nachricht wird mit einem Newline-Zeichen (\n) abgeschlossen, damit der Empfänger das Ende eines Befehls eindeutig erkennt. Dies ist notwendig, da @tcp die Daten als kontinuierlichen Strom versendet.\ Sobald in der App ein Parameter wie der Spielmodus oder die Rundenzahl geändert wird, sendet die App sofort ein entsprechendes Datenpaket an das Display. Ein Befehl wie MODUS: Schwer bewirkt am Display eine sofortige Aktualisierung der Variable und einen Redraw der Benutzeroberfläche. Dieser Prozess funktioniert auch in die umgekehrte Richtung: Wird am Display der "Start"- oder "Modus"-Button gedrückt, erhält die App das Signal zum Starten des Renn-Timers beziehungsweise das ändern des Moduses.
@@ -314,7 +313,7 @@ Sollte die Verbindung zwischenzeitlich unterbrochen werden, verfügt die App üb
 \ \ 
 
 
-== Controler Display
+== Controler Display <sec-controllerui>
 Das Controller Display GC9A01 zeigt folgende funktionen an:
 - aktuelle Motorleistung 
 - Timer

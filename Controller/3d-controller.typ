@@ -49,7 +49,7 @@ Der Controller ist als Einhand-Controller konzipiert und als Pistolengriff ausge
     image("/Bilder/3d/con-sicht1.png", height: 300pt), 
     image("/Bilder/3d/con-sicht2.png", height: 300pt),
   ),
-  caption: [3D Modell Controller],
+  caption: [3D-Modell Controller],
   gap: 1em,
 )
 

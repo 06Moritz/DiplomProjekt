@@ -22,7 +22,7 @@ Damit das Gehäuse nicht abrutscht, sind Klippselemente konstruiert.
 \
 #figure(
   image("/Bilder/3d/auto-gesamt.png", width: 100%),
-  caption: [3D Auto Design],
+  caption: [3D-Modell Auto],
   gap: 1em
 )\
 
