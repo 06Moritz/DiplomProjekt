@@ -8,7 +8,7 @@ Die Basis der Implementierung bildet der @ble Beispielcode von WCH. Dieser Code 
 Das Auto ist als @ble\-Master (Central-Device) konfiguriert. Es sucht aktiv nach Geräten zum Verbinden und empfängt Geschwindigkeitswerte.
 
 === Clock-Initialisierung
-Es wird der interne niederfrequente 32kHz Quarz verwendet, der im _setup_ Kalibriert werden muss. Für @ble ist eine genaue Frequenz erforderlich.
+Es wird der interne niederfrequente 32kHz Quarz verwendet, der im _setup_ kalibriert werden muss. Für @ble ist eine genaue Frequenz erforderlich.
 
 ```c
 HSECFG_Capacitance(HSECap_18p); //Kondensatoren für Quarz einstellen
@@ -28,7 +28,7 @@ Calibration_LSI(Level_64); //Clock kalibrieren
 ```c
     else if(pMsg->method == ATT_HANDLE_VALUE_NOTI)
     {
-        //Byte auslesen (0-255)
+        // Byte auslesen (0-255)
         uint8_t num = pMsg->msg.handleValueNoti.pValue[0];
         // Sollwert updaten
         soll = num;
@@ -87,7 +87,7 @@ nfca_picc_start();
 
 
 == Pairing mode <sec-pairing>
-Der _pairing-mode_ wird genutzt um das Auto mit einem Controller zu verbinden. Um zu ermitteln ob der IC über die Bahn oder mit dem Superkondensator versorgt wird wird die Eingangsspannung über den @adc gemessen. Die Spannung vom Kondensator niedriger ist als die vom @ldo. Wenn das erkannt wird wechselt der @nfc Modus zu @pcd um als Reader zu agieren. Es wird die @mac Adresse des Controllers von einem @nfc\-Tag gelesen und gespeichert. 
+Der _pairing-mode_ wird genutzt um das Auto mit einem Controller zu verbinden. Um zu ermitteln ob der IC über die Bahn oder mit dem Superkondensator versorgt wird, wird die Eingangsspannung über den @adc gemessen. Die Spannung vom Kondensator niedriger ist als die vom @ldo. Wenn das erkannt wird wechselt der @nfc Modus zu @pcd um als Reader zu agieren. Es wird die @mac Adresse des Controllers von einem @nfc\-Tag gelesen und gespeichert. 
 
 ```c
     readADC();

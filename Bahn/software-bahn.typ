@@ -37,13 +37,10 @@ Bei der Zeitmessung wird nach der @id des Autos gesucht und die Zeit berechnet.
 
 == Bluetooth Low Energy <sec-ble_bahn>
 Die @wifi Zugangsdaten werden über @ble durch die App eingestellt.
-Es werden kleine Datenpakete vom Hauptmodul an die Controler mit @ble Advertising gesendet.
+Es werden Informationen vom Hauptmodul an die Controller mit @ble Advertising gesendet.
 \
 @ble Advertising ermöglicht es, kleine Datenpakete vom Hauptmodul an den Controller zu senden, ohne sich zu verbinden. Dies ist besonders nützlich für die Übertragung von Informationen wie Rundenzeiten oder Statusupdates, da es eine schnelle und effiziente Kommunikation ermöglicht, ohne den Overhead einer vollständigen Verbindung aufzubauen.
 \
-
-//einkasteln
-
 
 ```c
 std::string strData = "";
@@ -66,9 +63,9 @@ Es werden Auto spezifische Werte wie Rundenzeit oder Startnummer übertragen. Di
 
 
 == Transmission Control Protocol
-@tcp ist ein Netzwerk Protokoll, das benutzt wird, um Daten vom Hauptmodul an die App zu senden. Dafür ist eine @wifi verbindung notwendig.
-Wenn keine Netzwerk Verbindung besteht, verbindet sich die App über Bluetooth (siehe @sec-ble_bahn).
-Sobald sich der @esp32 über @wifi verbunden hat, nimmt er verbindung mit der App übber @tcp auf.
+@tcp ist ein Netzwerk Protokoll, das benutzt wird, um Daten vom Hauptmodul an die App zu senden. Dafür ist eine @wifi:short\-Verbindung notwendig.
+Wenn keine Netzwerkverbindung besteht, verbindet sich die App über Bluetooth (siehe @sec-ble_bahn).
+Sobald sich der @esp32:short über @wifi verbunden hat, nimmt er Verbindung mit der App über @tcp auf.
 
 Mit dem @tcp\-Protokoll wird sichergestellt, dass Signale von der App und dem Display in beide Richtungen übertragen werden können.
 \

@@ -31,7 +31,7 @@ Der Motor hat folgende technische Daten:
 
 Aufgrund folgender Kriterien wurde der Motor ausgewählt:
 - Hohe Spannung (12V) für ausreichend Leistung
-- Drehzahl gewählt um eine Geschwindigkeit von ca. 8$upright("m") / upright("s")$ erreichen bei einem Raddurchmesser von 15mm .
+- Drehzahl gewählt um eine Geschwindigkeit von ca. 8$upright("m") / upright("s")$ zu erreichen bei einem Raddurchmesser von 15mm .
 
 $ U = 0.015 upright("m") *pi=0.0471 upright("m") $
 $ (8 upright("m") / upright("s") )/(0.0471 upright("m") ) *60 upright("s") = 10191 upright("U") / upright("min") $
@@ -49,7 +49,7 @@ Der Motor muss unter Belastung eine Mindestdrehzahl von 10200 $upright("U") / up
 Eine H-Brücke ist eine Schaltung mit der Motoren (hier: RL) angesteuert werden. Die Drehrichtung kann durch die Ansteuerung der Transistoren geändert werden. Die Schaltung ermöglicht es, Motoren mit niedrigem Signalpegel zu steuern. @hbrueke
 
 == WCH CH585
-Der CH585 ist ein @riscv:short Mikrocontroller von WCH. Er hat direkte Peripherie für @ble:both und @nfc:both. @sourceCH585
+Der CH585 ist ein @riscv:short Mikrocontroller von WCH. Er hat direkte Peripherieunterstützung für @ble:both und @nfc:both. @sourceCH585
 // fertig schreiben
 
 == Antennendesign – BLE

@@ -9,7 +9,7 @@
 #aktueller_autor.update([#author3, #klasse])
 
 
-== Controler Display
+== Controller Display
 Der CH572 wird in C programmiert. Auf dem Display werden Renndaten wie Rundenzeit und Spielername angezeigt (siehe @sec-controllerui). Das Display wird direkt über @spi\-Befehle angesprochen.
 
 ```c
@@ -61,7 +61,7 @@ static void performPeriodicTask(void)
 
 == Analog-Digital-Wandler (ADC)
 Potentiometer, Schieberegler und Akkuspannung werden mit dem CH32v003 gemessen. Die Messwerte werden in periodischen Abständen über @uart an den Hauptcontroller CH572 gesendet.
-Die Analogwerte werden verarbeitet oder über @ble gesendet. Die Akkuspannung wird gemessen um den Ladestand des Akkus zu berechnen und anzuzeigen. Der Ladestand wird aus einer @lookup:short abgelesen.
+Die Analogwerte werden verarbeitet oder über @ble gesendet. Die Akkuspannung wird gemessen um den Ladestand des Akkus zu berechnen und anzuzeigen. Der Ladestand wird aus einer @lut:long abgelesen.
 
 ```c
     u_bat = bat_val * (3.3f/4096) * 2; //Akkuspannung berechnen
