@@ -46,8 +46,11 @@
 }
 
 // Inhaltsverzeichnis
-#outline(title: "Inhaltsverzeichnis", indent: 1em,
-target: heading.where(outlined: true).before(<anhang_start>)
+#outline(
+  title: "Inhaltsverzeichnis", 
+  indent: 1em,
+  depth: 3, // Zeige bis zu 3 Ebenen an
+  target: heading.where(outlined: true).before(<anhang_start>)
 )
 
 #metadata("end-iv")

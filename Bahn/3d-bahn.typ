@@ -1,9 +1,9 @@
 #import "../config.typ": *
 #pagebreak()
-#aktueller_autor.update([#author1, #klasse]) // Melanie
+#aktueller_autor.update([#author1, #klasse])
 
 = 3D <sec_bahn-3d>
-*!* Das 3D-Modell des Hauptmoduls nimmt die Leiterplatte, das Display sowie die Schienen auf. Ein kompaktes Design hält alle Komponenten sicher zusammen und ermöglicht eine einfache Montage.
+Das 3D-Modell des Hauptmoduls nimmt die Leiterplatte, das Display sowie die Schienen auf. Ein kompaktes Design hält alle Komponenten sicher zusammen und ermöglicht eine einfache Montage.
 
 == Anforderungen
 - platzsparende und sichere Unterbringung von Leiterplatte und Display

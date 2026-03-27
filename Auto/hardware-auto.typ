@@ -9,7 +9,8 @@ Das Fahrzeug hat eine 2.4GHz Antenne, eine NFC-Spule auf der Leiterplatte. Motor
 // noch neues blockschaltbild
 #figure(
   image("/Bilder/Blockschaltbild-HW-Auto.svg", width: 85%),
-  caption: [Blockschaltbild Hardware Auto],
+  caption: [Blockschaltbild Hardware Fahrzeug],
+  gap: 1em
 )
 
 == Spannungsversorgung <sec_auto-spgversorgung>
@@ -17,7 +18,7 @@ Die Schleifkontakte, an der Unterseite des Fahrzeugs, greifen 12V von der Schien
 
 #figure(
   fimage("/Bilder/buckLay.png", width: 85%),
-  caption: [Layout des @buck],
+  caption: [Layout @buck Fahrzeug],
 )
 
 == Motor
@@ -181,5 +182,5 @@ In das 3.3V Netz ist ein 10F Superkondensator eingebaut der durch Knopfdruck ein
 
 #figure(
   fimage("/Bilder/auto-pcb.svg", width: 100%),
-  caption: [Ersatzschaltbild der NFC-Antenne],
+  caption: [Leiterplatte Fahrzeug],
 )

@@ -17,7 +17,7 @@
 
 <anhang_start>
 #show heading: none
-#set heading(numbering: none)
+#set heading(outlined: true, numbering: none, bookmarked: false)
 #set page(margin: 0cm, header: none, footer: none)
 
 = Hauptmodul // Beilage 1
