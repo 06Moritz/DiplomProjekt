@@ -186,6 +186,6 @@ In das 3.3V Netz ist ein 10F Superkondensator eingebaut der durch Knopfdruck ein
 == Leiterplatte
 
 #figure(
-  fimage("/Bilder/auto-pcb.svg", width: 100%),
+  image("/Bilder/auto-pcb.svg", width: 100%),
   caption: [Leiterplatte Fahrzeug],
 )
