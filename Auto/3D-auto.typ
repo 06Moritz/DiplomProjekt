@@ -3,7 +3,7 @@
 #aktueller_autor.update([#author3, #klasse])
 
 = 3D-Druck <sec_auto-3d>
-Das Auto ist so Designt, dass die Auto-Platine fest im Auto sitzt und die Schienen mit den Schleifkontakten, sowie für NFC lesen gut erreichbar ist. 
+Das Auto ist so designt, dass die Auto-Platine fest im Auto sitzt und die Schienen mit den Schleifkontakten, sowie für NFC lesen gut erreichbar ist. 
  == Anforderungen
 - sichere Unterbringung der Leiterplatte
 - gute Erreichbarkeit der Schienen mit den Schleifkontakten
@@ -17,6 +17,6 @@ Das Auto ist so Designt, dass die Auto-Platine fest im Auto sitzt und die Schien
 \
 #figure(
   fimage("/Bilder/3d/auto-gesamt.png", width: 100%),
-  caption: [3d Auto Design]
+  caption: [3D Auto Design]
 )\
 
