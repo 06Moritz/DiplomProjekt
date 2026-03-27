@@ -20,7 +20,7 @@
 
   picc:(short: "PICC", long:"Proximity Integrated Circuit Card", description: "NFC modus in dem der IC als passiver Transponder fungiert und von einem aktiven NFC-Lesegerät ausgelesen wird"),
   
-  lookup:(short: "Lookup-Table", long: "Lookup-Table"),description: "Datenstruktur, die verwendet wird, um Werte schnell nachzuschlagen, z.B. zur Umwandlung von Sensorwerten in physikalische Größen"),
+  lookup:(short: "Lookup-Table", long: "Lookup-Table",description: "Datenstruktur, die verwendet wird, um Werte schnell nachzuschlagen, z.B. zur Umwandlung von Sensorwerten in physikalische Größen"),
 
   pcd:(short: "PCD", long:"Proximity Coupling Device", description:"NFC modus in dem der IC als aktiver Sender fungiert und mit einem passiven NFC-Transponder kommuniziert"),
 
