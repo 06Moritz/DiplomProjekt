@@ -36,8 +36,8 @@ enum class GameMode(
 }
 ```
 
-- DefaultLaps: Hier werden die Rundenanzahl standardisiert.
-- speedFactor: Hier wird die Motorleistung eingestellt. Zum Beispiel: 0.5f bedeutet, dass die Autos mit halber Leistung fahren.
+- DefaultLaps: Jedem Modus ist eine Standardanzahl von Runden zugeordnet.
+- speedFactor: Die Motorleistung werden eingestellt. Zum Beispiel: 0.5f bedeutet, dass die Autos mit halber Leistung fahren.
 
 \
 Beim Start des Rennens zeigt die App die Dauer (mit einer Timer Methode) und den Rundenfortschritt der Spieler an. Nach dem Beenden des Rennens werden die Spieler des aktuellen Rennens nach der Bestzeit sortiert und angezeigt. In diesem Menü hat man die Wahl wieder zum Hauptmenü zu gelangen oder sich das gesamte Ranking aller Rennen anzusehen. Diese werden nach folgenden Kriterien sortiert:
@@ -106,7 +106,7 @@ bool modusIsPressed = (btnModus && btnModus->isPressed());
 Hier wird überprüft, ob der Start- oder Modus-Button gedrückt wurde.
 
 #pagebreak()
-```c
+/*```c
 unsigned long now = millis();
     bool startIsPressed = (btnStart && btnStart->isPressed());
     bool modusIsPressed = (btnModus && btnModus->isPressed());
@@ -129,7 +129,7 @@ unsigned long now = millis();
     }
     startWasPressed = startIsPressed;
 
-```
+```*/
 
 Die Logik des Hauptmodul Displays funktioniert so, dass der Zustand der Buttons abgefragt wird. Der zugehörige Screen wird durch Zustandsautomaten ermittelt. \
 Es gibt drei Zustände:
@@ -138,7 +138,7 @@ Es gibt drei Zustände:
 - Podium
 Je nachdem welcher Button gedrückt wird, ändert sich der Zustand.
 
-#pagebreak()
+
 == Transmission Control Protocol (TCP) Programmierung
 Um eine Verbindung zwischen der App und dem Hauptmodul Display herzustellen, wird das @tcp Protokoll verwendet. Dieses ermöglicht eine Bidirektionale Kommunikation zwischen den beiden Geräten. Das dient dazu, dass Änderungen, wie das Einstellen der Modi oder Spielernamen, auf das Display übertragen werden können.\
 

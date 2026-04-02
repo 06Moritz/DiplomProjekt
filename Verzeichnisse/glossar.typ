@@ -131,13 +131,13 @@
 
   lipo: (short: "LiPo", long: "Lithium-Polymer-Akku", description: "Wiederaufladbarer Lithium-Akku mit Polymer-Elektrolyt, der eine hohe Energiedichte bei flexiblem Formfaktor bietet"),
 
-  ccv: (short: "CH32V003", long: "Cost-optimized 32-bit RISC-V MCU", description: "Kostengünstiger 32-Bit-RISC-V-Mikrocontroller von WCH mit integriertem ADC"),
+  //ccv: (short: "CH32V003", long: "Cost-optimized 32-bit RISC-V MCU", description: "Kostengünstiger 32-Bit-RISC-V-Mikrocontroller von WCH mit integriertem ADC"),
 
   abs: (short: "ABS", long: "Acrylonitrile Butadiene Styrene", description: "Schlagzäher thermoplastischer Kunststoff mit guter Temperaturbeständigkeit, der häufig für technische 3D-Druckteile verwendet wird"),
 
   ui: (short: "UI", long: "User Interface", description: "Gesamtheit aller Bedienelemente und Anzeigekomponenten, über die ein Benutzer mit einem System interagiert"),
 
-  lut: (short: "LUT", long: "Look-Up Table", description: "Datenstruktur, die vorgefertigte Werte für bestimmte Eingaben enthält, um Berechnungen zu beschleunigen oder komplexe Funktionen zu implementieren")
+  lut: (short: "LUT", long: "Look-Up Table", description: "Datenstruktur, die vorgefertigte Werte für bestimmte Eingaben enthält, um Berechnungen zu beschleunigen oder komplexe Funktionen zu implementieren"),
 
   cccv: (short: "CC-CV", long: "Constant Current Constant Voltage", description: "Ladeverfahren, bei dem zunächst mit konstantem Strom geladen wird und nach Erreichen einer bestimmten Spannung auf konstante Spannung umgeschaltet wird, um die Batterie schonend zu laden")
 )

@@ -5,7 +5,8 @@
 
 
 
-Der Controller ist für die Steuerung des Autos verantwortlich. Er empfängt die Signale von den Sensoren, verarbeitet sie und sendet die entsprechenden Befehle an das Auto. Die Energieversorgung des Controllers erfolgt über einen Lithium-Polymer-Akku, welcher über eine Ladestation aufgeladen wird. 
+Der Controller ist für die Steuerung des Autos verantwortlich. Er empfängt die Signale von den Sensoren, verarbeitet sie und sendet die entsprechenden Befehle an das Auto. 
+Die Energieversorgung des Controllers erfolgt über einen Lithium-Polymer-Akku, welcher über eine Ladestation aufgeladen wird. 
 Der Controller besteht aus folgenden Komponenten:
 
 #figure(
@@ -13,6 +14,17 @@ image("/Bilder/Blockschaltbild-HW-Controller.svg", width: 75%),
 caption: [Blockschaltbild Hardware Controller],
 gap: 1em
 )
+
+
+- Empfangene Daten: \ aktuelle Drehzahl des Fahrzeugs \ Spielername vom Hauptmodul
+
+- Datenprotokoll: \ serielle bidirektionale Kommunikation (z. B. UART) \ zyklischer Datenaustausch zwischen Controller und Hauptmodul
+
+- Gesendete Daten: \ ADC-Wert des Potentiometers zur Vorgabe der Geschwindigkeit \ Status des Schiebereglers 
+
+- Sende- und Empfangsrate: \ ADC-Wert: zyklisch, z. B. alle 20 ms (50 Hz) \ Drehzahl: zyklisch, z. B. alle 100 ms (10 Hz) \ Spielername: beim Start oder bei Änderung \ Vibrationssignal: ereignisbasiert bei maximaler Geschwindigkeit
+
+- Zusätzliche Funktion: \ Ansteuerung des Vibrationsmotors für haptisches Feedback bei Maximaltempo
 
 
 //#pagebreak()
@@ -36,7 +48,7 @@ caption: [Laderegler],
 ) 
 
 - TP4056 Laderegler\ Die Laderegelung erfolgt über den TP4056. Der TP4056 (U1) übernimmt die Spannungsreduzierung von 5 V Eingangsspannung auf die Betriebsspannung des Akkus.
-Der Chip schützt den Akku durch eine geregelte Ladung. Er überwacht die Spannung und den Strom während des Ladevorgangs, um eine Überladung zu verhindern. Sobald der Akku vollständig geladen ist, schaltet der TP4056 automatisch in den Erhaltungsmodus.
+Der TP4056 schützt den Akku durch eine geregelte Ladung. Er überwacht die Spannung und den Strom während des Ladevorgangs, um eine Überladung zu verhindern. Sobald der Akku vollständig geladen ist, schaltet der TP4056 automatisch in den Erhaltungsmodus.
 
 Um einen Ladestrom von 1A einzustellen, wird ein 1.2kΩ Widerstand an PIN2 des TP4056 angeschlossen. @sourceLipo
 
@@ -44,12 +56,13 @@ Um einen Ladestrom von 1A einzustellen, wird ein 1.2kΩ Widerstand an PIN2 des T
 #figure(
 fimage("/Bilder/Ladevorgang.png", width: 100%),
 caption: [Ladevorgang],
-) \ \
+) 
 
-Beim Aufnehmen der Ladekurve werden Strom und Spannung des Akkus gemessen. Mit einem Spannungsteiler wird die Ladespannung gemessen, der Ladestrom wird über einen Shunt-Widerstand gemessen.\ \
+Beim Aufnehmen der Ladekurve werden Strom und Spannung des Akkus gemessen. Die Ladespannung mittels einem Spannungsteiler, der Lade Ladestrom über einen Shunt-Widerstand.
+//Mit einem Spannungsteiler wird die Ladespannung gemessen, der Ladestrom wird über einen Shunt-Widerstand gemessen.\ \
 //englisch auf deutsch cc-cv
-
-Das Aufladen eines Lithium-Polymer-Akkus erfolgt über den TP4056 mittels @cccv. Der Akku wird mit einem konstanten Strom geladen, bis die Spannung des @lipo 4.2V erreicht. Ist diese Spannung erreicht, wird der Ladestrom reduziert, damit die Spannung konstant bleibt. Fällt der Strom unter einen bestimmten Schwellenwert, ist der Akku vollständig geladen. @sourceCCV
+\ \
+Das Aufladen eines Lithium-Polymer-Akkus erfolgt über den TP4056 mittels @cccv Prinzip. Der Akku wird mit einem konstanten Strom geladen, bis die Spannung des @lipo 4.2V erreicht. Ist diese Spannung erreicht, wird der Ladestrom reduziert, damit die Spannung konstant bleibt. Fällt der Strom unter einen bestimmten Schwellenwert, ist der Akku vollständig geladen. @sourceCCCV
 
 #figure(
 fimage("/Bilder/LadekSch.png", width: 100%),
@@ -62,7 +75,7 @@ Der Spannungsverlauf beim Laden wird über den Spannungsteiler gemessen, damit e
 
 Der Ladestrom wird über den Shuntwiderstand gemessen. Durch den Spannungsabfall am Shunt, kann der Ladestrom berechnet werden. $U=I*R$
 Der kleine Spannungsabfall am Shunt wird mit einer OPV-Schaltung verstärkt, um gemessen werden zu können.
-
+\ \
 - Schutzschaltung\ Um das Tiefentladen und Überladen des Akkus zu verhindern, wird der DW01 (U2) verwendet. Dieser Schutzschaltkreis überwacht den Stromfluss des Akkus und schaltet diesen mittels FS8205A MOSFETs (Q1 und Q2) ab, wenn die Spannung über einen speziellen Schwellenwert  steigt (4.25V), beziehungsweise fällt (2.4V). Das ist notwendig um den Akku nicht zu zerstören. @sourceDW01  \
 
 Der Schaltplan des Ladereglers musste überarbeitet werden, da ein Verbindungsfehler zwischen dem Akku und dem FS8205A an dem Pin G2 vorlag. Dieser Fehler führte dazu, dass die Schutzschaltung für den Akku, den Akku nicht schützt. Der Fehler ist behoben worden, indem die Leiterbahn zwischen Akku und den @mosfet:short vom GND getrennt und im Schaltplan geändert wurde.  
@@ -70,15 +83,18 @@ Der Schaltplan des Ladereglers musste überarbeitet werden, da ein Verbindungsfe
 == Mikrocontroller
 Die Steuerung des Systems erfolgt über den CH572. Der Mikrocontroller verarbeitet die Daten und sendet sie über  @ble an das Fahrzeug. Zu beachten ist, dass der CH572 keine integrierten @adc hat, weshalb der CH32V003 als kosteneffizienter externer @adc verwendet wird.  
 \ \
-- CH572\ Der CH572 ist ein 32-Bit-Mikrocontroller, der auf der @riscv basiert. Er ist klein, verfügt über integrierte @ble Peripherie. Der CH572 ist für die Hauptsteuerung des Systems verantwortlich und verarbeitet die Daten. @sourceCH572
+- CH572\ Der CH572 ist ein 32-Bit-Mikrocontroller, der auf RISC-V basiert. Er ist klein, verfügt über integrierte @ble Peripherie. Der CH572 ist für die Hauptsteuerung des Systems verantwortlich und verarbeitet die Daten. @sourceCH572
 
-- CH32V003\ Der CH32V003 verfügt über integrierten @adc, der es möglich macht, die analogen Signale der Komponenten zu verarbeiten. Da er kostengünstiger als ein externer @adc ist, wurde er ausgewählt. @sourceCH32 \ \
+- CH32V003\ Der CH32V003 verfügt über integrierten @adc, der es möglich macht, die Analogen Signale der Steuereinheiten zu verarbeiten.
+//die analogen Signale der Komponenten zu verarbeiten. 
+Da er kostengünstiger als ein externer @adc ist, wurde er ausgewählt. @sourceCH32 \ \
 
 Bei der Entwicklung der Controller Platine wurde darauf geachtet, dass ein Quarz für eine stabile Taktfrequenz, die für @ble notwendig ist, vorhanden ist. Da der interne RC-Oszillator des CH572 zu instabil ist, ist ein externer Quarz mit einer Frequenz von 32 MHz an die Pins XO und XI angeschlossen.  
 \ \
 === Stützkondensator
 Da Mikrocontroller kurzzeitig erhöhte Ströme aufnehmen können, entstehen Stromspitzen auf der Versorgungsspannung. Diese können zu kurzzeitigen Spannungsausfall führen. Aus diesem Grund wurde ein Stützkondensator in der Nähe des Mikrocontrollers platziert. Dieser fängt die Stromspitzen ab und sorgt für eine stabile Versorgung während der @ble -Kommunikation bei.\ \
 
+In LT-Spice ist dies Simuliert worden, um die Auswirkung eines Stützkondensators zu zeigen.
 #figure(
   fimage("/Bilder/ChipStrom.png", width: 100%),
   caption: [ohne Kondensator]
@@ -98,7 +114,7 @@ Bauteile die zum auslesen einen @adc brauchen:
 - Schieberegler
 
 == Steuerung
-Die genannten Bauteile werden für die Steuerung des Autos verwendet. Sie ermöglichen es dem Spieler, die Geschwindigkeit zu steuern, die Hupe zu betätigen und ein haptisches Feedback zu erhalten. 
+Die Bauteile (Potentiometer, Schieberegler, Vibrationsmotor) werden für die Steuerung des Autos verwendet. Sie ermöglichen es dem Spieler, die Geschwindigkeit zu steuern, die Hupe zu betätigen und ein haptisches Feedback zu erhalten. 
 
 - Potentiometer: An dem Potentiometer wird die Geschwindigkeit des Autos eingelesen. Der @adc liest das Signal vom Potentiometer ein. Der Mikrokontroller verarbeitet die Daten und sendet die Befehle über @ble an das Auto.
 
