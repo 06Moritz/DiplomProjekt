@@ -136,6 +136,8 @@
   abs: (short: "ABS", long: "Acrylonitrile Butadiene Styrene", description: "Schlagzäher thermoplastischer Kunststoff mit guter Temperaturbeständigkeit, der häufig für technische 3D-Druckteile verwendet wird"),
 
   ui: (short: "UI", long: "User Interface", description: "Gesamtheit aller Bedienelemente und Anzeigekomponenten, über die ein Benutzer mit einem System interagiert"),
+
+  cccv: (short: "CC-CV", long: "Constant Current Constant Voltage", description: "Ladeverfahren, bei dem zunächst mit konstantem Strom geladen wird und nach Erreichen einer bestimmten Spannung auf konstante Spannung umgeschaltet wird, um die Batterie schonend zu laden")
 )
 
 #let my-theme = (

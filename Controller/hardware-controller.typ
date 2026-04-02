@@ -49,7 +49,7 @@ caption: [Ladevorgang],
 Beim Aufnehmen der Ladekurve werden Strom und Spannung des Akkus gemessen. Mit einem Spannungsteiler wird die Ladespannung gemessen, der Ladestrom wird über einen Shunt-Widerstand gemessen.\ \
 //englisch auf deutsch cc-cv
 
-Das Aufladen eines Lithium-Polymer-Akkus erfolgt über @ccv. Der Akku wird mit einem konstanten Strom geladen, bis die Spannung des @lipo 4.2V erreicht. Ist diese Spannung erreicht, wird der Ladestrom reduziert, damit die Spannung konstant bleibt. Fällt der Strom unter einen bestimmten Schwellenwert, ist der Akku vollständig geladen. @sourceCCV
+Das Aufladen eines Lithium-Polymer-Akkus erfolgt über den TP4056 mittels @cccv. Der Akku wird mit einem konstanten Strom geladen, bis die Spannung des @lipo 4.2V erreicht. Ist diese Spannung erreicht, wird der Ladestrom reduziert, damit die Spannung konstant bleibt. Fällt der Strom unter einen bestimmten Schwellenwert, ist der Akku vollständig geladen. @sourceCCV
 
 #figure(
 fimage("/Bilder/LadekSch.png", width: 100%),
