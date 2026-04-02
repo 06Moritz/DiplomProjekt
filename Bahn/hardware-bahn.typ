@@ -18,7 +18,7 @@ Die Versorgung der Hardware erfolgt über einen @usbc Eingang mit @pd, der eine 
 
 @usbc @pd:long wird aus folgenden Gründen verwendet:
 - Standardisierung: \ @usbc @pd ist weit verbreitet und ermöglicht die Nutzung von handelsüblichen Netzteilen ohne eigene Steckerlösung.
-- Leistung: \ Der USB-C PD Standard unterstützt bis zu 240W Leistung, was weitaus größer als die Leistungsaufnahme der bahn mit etwa 70W ist.
+- Leistung: \ Der USB-C PD Standard unterstützt bis zu 240W Leistung, was weitaus größer als die Leistungsaufnahme der Bahn mit etwa 70W ist.
 - Bauweise: \ @usbc ist kompakt, robust und ermöglicht reversibles Einstecken.
 - Spannungsaushandlung: \ Über den @pd\-Handshake wird die benötigte Spannung von 12V aktiv zwischen Netzteil und Hardware vereinbart, wodurch nur kompatible Netzteile die erhöhte Spannung liefern.
 
@@ -89,10 +89,10 @@ Zwei separate Module sind notwendig, da jede Fahrspur ein eigens Lesemodul benö
 )
 */
 #figure(
-  image("/Bilder/pn532-esp.svg", width: 50%),
+  image("/Bilder/pn532-esp.svg", width: 45%),
   caption: [NFC-Modul PN532],
 )
-
+=== I²C
 Die Kommunikation zwischen ESP32 und den @nfc:short\-Modulen erfolgt über das @i2c:short\-Protokoll. @i2c ist ein serielles Zwei-Draht-Protokoll bestehend aus einer Datenleitung (@sda:short) und einer Taktleitung (@scl:short), das die Anbindung mehrerer Geräte über einen gemeinsamen Bus ermöglicht.
 
 Beide PN532-Module haben dieselbe fest eingestellte @i2c:short\-Adresse und können somit nicht ohne Multiplexer auf einem Bus betrieben werden. Da eine eindeutige Adressierung nicht möglich ist, wird für jedes Modul ein eigener @i2c:short\-Bus des ESP32 verwendet:
@@ -147,7 +147,7 @@ Der ESP32 wertet diesen Spannungsabfall aus und gibt die 5V-Versorgung über den
 Die Leiterplatte wurde mit @easyeda:short entworfen und als zweiseitige Leiterplatte gefertigt. Der vollständige Schaltplan sowie das Layout (Top/Bottom) sind im Anhang zu finden. // (siehe @anhang_bahn-sch, @anhang_bahn-pcb).
 
 #figure(
-  fimage("/Bilder/bahn-pcb.svg", width: 100%),
+  image("/Bilder/bahn-pcb.svg", width: 100%),
   caption: [Leiterplatte Hauptmodul],
 )
 

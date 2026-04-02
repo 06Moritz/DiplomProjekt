@@ -35,8 +35,8 @@ fimage("/Bilder/laderegler.png", width: 100%),
 caption: [Laderegler],
 ) 
 
-- TP4056 Laderegler\ Die Laderegelung erfolgt über den TP4056. Der TP4056 (U1) , die zur Spannungsreduzierung von 5V Eingangsspannung auf die Betriebsspannung des Akkus führt. 
-Der Chip bietet eine angepasste Laderegelung, die den Akku schonend lädt. Er überwacht die Spannung und den Strom während des Ladevorgangs, um eine Überladung zu verhindern. Sobald der Akku vollständig geladen ist, schaltet der TP4056 automatisch in den Erhaltungsmodus.
+- TP4056 Laderegler\ Die Laderegelung erfolgt über den TP4056. Der TP4056 (U1) übernimmt die Spannungsreduzierung von 5 V Eingangsspannung auf die Betriebsspannung des Akkus.
+Der Chip schützt den Akku durch eine geregelte Ladung. Er überwacht die Spannung und den Strom während des Ladevorgangs, um eine Überladung zu verhindern. Sobald der Akku vollständig geladen ist, schaltet der TP4056 automatisch in den Erhaltungsmodus.
 
 Um einen Ladestrom von 1A einzustellen, wird ein 1.2kΩ Widerstand an PIN2 des TP4056 angeschlossen. @sourceLipo
 
@@ -57,27 +57,24 @@ caption: [Schaltplan für die Ladekurve aufnehmen],
 )
 \ 
 
-Der Spannungsverlauf beim Laden wird über den Spannungsteiler gemessen, damit ein kleinerer Messbereich am Messgereit eingestellt werden kann, da die Auflösung genauer wird. 
+Der Spannungsverlauf beim Laden wird über den Spannungsteiler gemessen, damit ein kleinerer Messbereich am Messgerät eingestellt werden kann, da die Auflösung genauer wird. 
 \
 
-Der ladestrom wird über den Shuntwiderstand gemessen. Durch den Spannungsabfall am Shunt, kann der Ladestrom berechnet werden. $U=I*R$
+Der Ladestrom wird über den Shuntwiderstand gemessen. Durch den Spannungsabfall am Shunt, kann der Ladestrom berechnet werden. $U=I*R$
 Der kleine Spannungsabfall am Shunt wird mit einer OPV-Schaltung verstärkt, um gemessen werden zu können.
 
-\ \
-
-- Schutzschaltung\ Um das Tiefentladen und Überladen des Akkus zu verhindern, wird der DW01 (U2) verwendet. Dieser Schutzschaltkreis überwacht den Stromfluss des Akkus und schaltet diesen mittels FS8205A MOSFETs (Q1 und Q2) ab, wenn die Spannung über einen speziellen Schwellenwert  steigt(4.25V), beziehungsweise fällt(2.4V). Das ist notwendig um den Akku nicht zu zerstörren.@sourceDW01  \ \
-
+- Schutzschaltung\ Um das Tiefentladen und Überladen des Akkus zu verhindern, wird der DW01 (U2) verwendet. Dieser Schutzschaltkreis überwacht den Stromfluss des Akkus und schaltet diesen mittels FS8205A MOSFETs (Q1 und Q2) ab, wenn die Spannung über einen speziellen Schwellenwert  steigt (4.25V), beziehungsweise fällt (2.4V). Das ist notwendig um den Akku nicht zu zerstören. @sourceDW01  \
 
 Der Schaltplan des Ladereglers musste überarbeitet werden, da ein Verbindungsfehler zwischen dem Akku und dem FS8205A an dem Pin G2 vorlag. Dieser Fehler führte dazu, dass die Schutzschaltung für den Akku, den Akku nicht schützt. Der Fehler ist behoben worden, indem die Leiterbahn zwischen Akku und den @mosfet:short vom GND getrennt und im Schaltplan geändert wurde.  
 
 == Mikrocontroller
 Die Steuerung des Systems erfolgt über den CH572. Der Mikrocontroller verarbeitet die Daten und sendet sie über  @ble an das Fahrzeug. Zu beachten ist, dass der CH572 keine integrierten @adc hat, weshalb der CH32V003 als kosteneffizienter externer @adc verwendet wird.  
 \ \
-- CH572\ Der CH572 ist ein 32-Bit-Mikrocontroller, der auf der @riscv basiert. Er ist klein, verfügt über integrietes @ble Perepherie. Der CH572 ist für die Hauptsteuerung des Systems verantwortlich und verarbeitet die Daten. @sourceCH572
+- CH572\ Der CH572 ist ein 32-Bit-Mikrocontroller, der auf der @riscv basiert. Er ist klein, verfügt über integrierte @ble Peripherie. Der CH572 ist für die Hauptsteuerung des Systems verantwortlich und verarbeitet die Daten. @sourceCH572
 
-- CH32V003\ Der CH32V003 verfügt über integrierten @adc, der es möglich macht, die analogen Signale der Komponenten zu verarbeiten. Da er günstiger als ein externer @adc ist, wurde er als  kosteneffiziente Lösung ausgewählt. @sourceCH32 \ \
+- CH32V003\ Der CH32V003 verfügt über integrierten @adc, der es möglich macht, die analogen Signale der Komponenten zu verarbeiten. Da er kostengünstiger als ein externer @adc ist, wurde er ausgewählt. @sourceCH32 \ \
 
-Bei der Entwicklung der Controller Platine wurde darauf geachtet, dass ein Quarz für eine stabile Taktfrequenz, die für @ble notwenig ist, vorhanden ist. Da der interne RC-Oszillator des CH572 zu instabil ist, ist ein externer Quarz mit einer Frequenz von 32 MHz an die Pins XO und XI angeschlossen.  
+Bei der Entwicklung der Controller Platine wurde darauf geachtet, dass ein Quarz für eine stabile Taktfrequenz, die für @ble notwendig ist, vorhanden ist. Da der interne RC-Oszillator des CH572 zu instabil ist, ist ein externer Quarz mit einer Frequenz von 32 MHz an die Pins XO und XI angeschlossen.  
 \ \
 === Stützkondensator
 Da Mikrocontroller kurzzeitig erhöhte Ströme aufnehmen können, entstehen Stromspitzen auf der Versorgungsspannung. Diese können zu kurzzeitigen Spannungsausfall führen. Aus diesem Grund wurde ein Stützkondensator in der Nähe des Mikrocontrollers platziert. Dieser fängt die Stromspitzen ab und sorgt für eine stabile Versorgung während der @ble -Kommunikation bei.\ \
@@ -107,7 +104,7 @@ Die genannten Bauteile werden für die Steuerung des Autos verwendet. Sie ermög
 
 - Schieberegler: Der Schieberegler wird vom @adc eingelesen, wenn dieser einen bestimmten Schwellenwert überschreitet, wird ein Signal an das Auto gesendet, um die Hupe zu betätigen.
 
-- Vibrationsmotor: Der Vibrationsmotor wird für haptisches Feedback verwendet. Er wird über den CH572 gesteuert. Bei bestimmten Ereignissen im Spiel, wie z.B. beim Erreichen der maximalen Geschwindigkeit, wird der Vibrationsmotor aktiviert, um dem Spieler ein haptisches Feedback zu geben.
+- Vibrationsmotor: Der Vibrationsmotor wird für haptisches Feedback verwendet. Er wird über den CH572 gesteuert. Bei bestimmten Ereignissen im Spiel, wie z.B. beim Erreichen der maximalen Geschwindigkeit, wird der Vibrationsmotor aktiviert, um den Spielenden ein haptisches Feedback zu geben.
 
 == Antenne
 

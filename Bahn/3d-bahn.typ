@@ -37,7 +37,7 @@ Das Gehäuse besteht aus drei separaten Teilen:
       text(size: 0.9em)[Fixierung]
     ), 
   ),
-  caption: [Übersicht 3D-Teile der Bahn],
+  caption: [Übersicht 3D-Teile des Hauptmoduls],
   gap: 1em
 )
 
@@ -61,7 +61,7 @@ Die Displayhalterung ist direkt mit dem Schienenteil verbunden und vor den Schie
 
 #figure(
   image("/Bilder/3d/bahn-3d-mitdisplay.png", width: 80%),
-  caption: [Bahn und Displayhalterung],
+  caption: [3D-Modell Hauptmodul],
 )
 
 == Einschub

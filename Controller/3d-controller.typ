@@ -38,7 +38,7 @@ Die beiden Hälften werden über drei sechseckige Stifte zusammengesteckt. Die s
 Die Leiterplatte mit dem Joystick sowie die Federkontakte werden zwischen die beiden Hälften geklemmt und so an der Position gehalten.
 
 == Ergonomie <sec_con-ergonomie>
-Der Controller ist als Einhand-Controller konzipiert und als Pistolengriff ausgeführt. Die Gesamtgröße beträgt in etwa 110x55mm und liegt somit gut in der Hand. Der Zeigefinger steuert die Geschwindigkeitsregelung, während der Daumen den Joystick auf der Oberseite des Gehäuses bedient.
+Der Controller ist als Einhand-Controller konzipiert und als Pistolengriff ausgeführt. Die Gesamtgröße beträgt in etwa 110 × 55 mm und liegt somit gut in der Hand. Der Zeigefinger steuert die Geschwindigkeitsregelung, während der Daumen den Joystick auf der Oberseite des Gehäuses bedient.
 
 \
 #figure(
@@ -49,7 +49,7 @@ Der Controller ist als Einhand-Controller konzipiert und als Pistolengriff ausge
     image("/Bilder/3d/con-sicht1.png", height: 300pt), 
     image("/Bilder/3d/con-sicht2.png", height: 300pt),
   ),
-  caption: [3D Modell Controller],
+  caption: [3D-Modell Controller],
   gap: 1em,
 )
 

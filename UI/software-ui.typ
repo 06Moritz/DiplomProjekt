@@ -12,7 +12,7 @@ Die Kommunikation zwischen der App und dem Hauptmodul Display erfolgt über das 
 
 = App
 == App Programmierung
-Die App dient zum Einstellen. Sie ermöglicht es die Sprache, den Modus, die Rundenzahl und Spielernamen einzustellen, sowie die Verbindung zum Hauptmodul  herzustellen.\
+Die App dient zum Einstellen. Sie ermöglicht es die Sprache, den Modus, die Rundenzahl und Spielernamen einzustellen, sowie die Verbindung zum Hauptmodul herzustellen.\
 
 #figure(
   image("/Bilder/App/Appscreen.png", width: 50%),
@@ -58,7 +58,7 @@ Beim Start des Rennens zeigt die App die Dauer (mit einer Timer Methode) und den
   gap: 1em,
 )
 
-- Rennen: Rennendauer mit Spieleranzeige
+- Rennen: Renndauer mit Spieleranzeige
 - Platzierung: Spieler werden nach schnellster Zeit sortiert. Der Spieler mit der schnellsten Runde auf Platz 1, rot markiert und Rennzeit angezeigt.
 \
 #figure(
@@ -74,9 +74,9 @@ Beim Start des Rennens zeigt die App die Dauer (mit einer Timer Methode) und den
 - Leaderboard: Alle Spieler werden am @esp32:short mit ihrer Bestzeit gespeichert. In diesem Menü werden die Spieler nach Tag, Woche, Monat und Gesamt sortiert und angezeigt.
 
 == Hauptmodul Display
-Das Display MSP4030 verfügt über einen Kapazitiven Touchscreen, welcher einfache Einstellungen über das Display ermöglicht.
+Das Display MSP4031 verfügt über einen Kapazitiven Touchscreen, welcher einfache Einstellungen über das Display ermöglicht.
 - Modi (einstellbar)
-- Spieler anzahl
+- Spieleranzahl
 - Start/Stop
 - Podium
 Um das @ui Design zu erleichtern, wurde eine Button Klasse erstellt, welche die Logik für das Drücken der Buttons enthält. Es wird überprüft, ob der Button gedrückt wurde, trifft das zu, wird die entsprechende Funktion ausgeführt.
@@ -142,7 +142,7 @@ Je nachdem welcher Button gedrückt wird, ändert sich der Zustand.
 == Transmission Control Protocol (TCP) Programmierung
 Um eine Verbindung zwischen der App und dem Hauptmodul Display herzustellen, wird das @tcp Protokoll verwendet. Dieses ermöglicht eine Bidirektionale Kommunikation zwischen den beiden Geräten. Das dient dazu, dass Änderungen, wie das Einstellen der Modi oder Spielernamen, auf das Display übertragen werden können.\
 
-In dieser Konfiguration zählt der @esp32:short\-S3 als @tcp -Server, der auf einem definierten Port (8080) auf eingehende Verbindungsanfragen der App wartet.\ \
+In dieser Konfiguration zählt der @esp32:short\-S3 als @tcp -Server, der auf einem definierten Port (8080) auf eingehende Verbindungsanfragen der App wartet.\ 
 
 === Prototyp TCP Verbindung @sourceTCP
 Vor der Verbindung der App mit dem Display wurde ein Test-Code geschrieben, um das Signal auszuschreiben, das von der App an den @esp32:short gesendet und im Terminal ausgeschrieben wird. \ \
@@ -190,7 +190,7 @@ Senden der Daten vom @esp32:short:
 ```
 - `Serial.available()`: Überprüft, ob Daten im Serial Buffer verfügbar sind.
 - `client.println(input)`: Sendet die eingelesenen Daten über die TCP-Verbindung an die App.
-\ \
+\ 
 Empfangen der Daten in der App:
 ```kotlin
 fun handleMessage(msg: String) {
@@ -264,7 +264,7 @@ Die App und der @esp32:short als Sender und Empfänger initialisiert.
 - `PrintWriter(...)`: Senden von Daten an den Mikrocontroller
 - `BufferedReader(...)`: Empfangen von Daten vom Mikrocontroller
 - `catch (Exception)`: Fehlerbehandlung zur Vermeidung von Abstürzen
-\
+
 In dem Code der App wird ein Client Socket erstellt, der sich mit der IP-Adresse des @esp32:short und dem Port 8080 verbindet und eine Verbindungsanfrage an den @esp32:short sendet.
 \ \
 
@@ -301,31 +301,30 @@ In dem Code der App wird ein Client Socket erstellt, der sich mit der IP-Adresse
 
 ```
 An dem @esp32:short wird ein Server Socket erstellt, der auf Port 8080 auf verbindungsanfragen von der Appwartet. Ist eine Verbindung hergestellt, können Daten in beide Richtungen gesendet und empfangen werden.
-\ \
-
+\ 
 
 === Synchronisation
-Um sicherzustellen, dass beide Geräte immer den gleichen Systemstatus anzeigen, wurde ein zeilenbasiertes Protokoll entwickelt.\ Jede Nachricht wird mit einem Newline-Zeichen (\n) abgeschlossen, damit der Empfänger das Ende eines Befehls eindeutig erkennt. Dies ist notwendig, da @tcp die Daten als kontinuierlichen Strom versendet.\ Sobald in der App ein Parameter wie der Spielmodus oder die Rundenzahl geändert wird, sendet die App sofort ein entsprechendes Datenpaket an das Display. Ein Befehl wie MODUS: Schwer bewirkt am Display eine sofortige Aktualisierung der Variable und einen Redraw der Benutzeroberfläche. Dieser Prozess funktioniert auch in die umgekehrte Richtung: Wird am Display der "Start"- oder "Modus"-Button gedrückt, erhält die App das Signal zum Starten des Renn-Timers beziehungsweise das ändern des Moduses.
+Um sicherzustellen, dass beide Geräte immer den gleichen Systemstatus anzeigen, wurde ein zeilenbasiertes Protokoll entwickelt.\ Jede Nachricht wird mit einem Newline-Zeichen (\\n) abgeschlossen, damit der Empfänger das Ende eines Befehls eindeutig erkennt. Dies ist notwendig, da @tcp die Daten als kontinuierlichen Strom versendet.\ Sobald in der App ein Parameter wie der Spielmodus oder die Rundenzahl geändert wird, sendet die App sofort ein entsprechendes Datenpaket an das Display. Ein Befehl wie MODUS: Schwer bewirkt am Display eine sofortige Aktualisierung der Variable und einen Redraw der Benutzeroberfläche. Dieser Prozess funktioniert auch in die umgekehrte Richtung: Wird am Display der "Start"- oder "Modus"-Button gedrückt, erhält die App das Signal zum Starten des Renn-Timers beziehungsweise das ändern des Moduses.
 
 == Echtzeitverhalten
-Bei der Softwareimplementierung wurde besonders auf ein nicht-blockierendes Design geachtet. Da das Hauptmodul gleichzeitig den Touchscreen abfragen und das Display aktualisieren muss, darf der Netzwerkcode den Prozessor nicht aufhalten.\ Die Abfrage von eingehenden Daten erfolgt daher in jedem Programmdurchlauf, ohne den restlichen Ablauf zu verzögern.
+Bei der Softwareimplementierung wurde besonders auf ein nicht blockierendes Design geachtet. Da das Hauptmodul gleichzeitig den Touchscreen abfragen und das Display aktualisieren muss, darf der Netzwerkcode den Prozessor nicht aufhalten.\ Die Abfrage von eingehenden Daten erfolgt daher in jedem Programmdurchlauf, ohne den restlichen Ablauf zu verzögern.
 \
 Sollte die Verbindung zwischenzeitlich unterbrochen werden, verfügt die App über eine automatische Reconnect-Logik. Diese erkennt die unterbrochene Verbindung durch einen Timeout und versucht eigenständig, den Socket neu zu initialisieren, um die Verbindung wiederherzustellen. Während der Reconnect-Phase zeigt die App eine entsprechende Meldung an. Sobald die Verbindung wiederhergestellt ist, werden alle zuvor gesendeten Befehle erneut übertragen, um sicherzustellen, dass das Display den aktuellen Status korrekt anzeigt. 
 \ \ 
 
 
-== Controler Display
-Das Controller Display GC9A01 zeigt folgende funktionen an:
+== Controller Display <sec-controllerui>
+Das Controller Display GC9A01 zeigt folgende Funktionen an:
 - aktuelle Motorleistung 
 - Timer
 - Durchschnittsgeschwindigkeit
 - beste Rundendauer
-- abweichung zur besten
+- Abweichung zum Besten
 - Spielername
 - Zugewiesenes Auto
-- Runden anzahl z.B.: 2/5 Runden // in dem fall leichter modus
+- Rundenanzahl z.B.: 2/5 Runden // in dem fall leichter modus
 
-Das Display dient dazu, wichtige Informationen während des Rennens anzuzeigen. Es zeigt die aktuelle Motorleistung an, die über die @pwm gesteuert wird, sowie einen Timer, der die Dauer des Rennens anzeigt. In der mitte des Displays wird die Durchschnittsgescchwindigkeit angezeigt, welche mithilfe der Drehzahl des Motors berechnet wird. Darunter wird die schnellste Runde angezeigt, sowie die Abweichung. 
+Das Display dient dazu, wichtige Informationen während des Rennens anzuzeigen. Es zeigt die aktuelle Motorleistung an, die über die @pwm gesteuert wird, sowie einen Timer, der die Dauer des Rennens anzeigt. In der Mitte des Displays wird die Durchschnittsgeschwindigkeit angezeigt, welche mithilfe der Drehzahl des Motors berechnet wird. Darunter wird die schnellste Runde sowie die Abweichung angezeigt.
 \
 $ v = (n*π*d)/60 $
 
@@ -339,9 +338,9 @@ Damit man auf dem Display die Geschwindigkeit in Meter pro Sekunde angezeigt bek
   caption: [Controller Display],
 )
 
-Der Spielername und das zugewiesene Auto werden ebenfalls auf dem Display angeziegt, um verwechslungen zu vermeiden. Zudem wird die aktuelle Rundenanzahl angezeigt, um den Spieler zu informieren, in welcher Runde er sich befindet.
+Der Spielername und das zugewiesene Auto werden ebenfalls auf dem Display angezeigt, um Verwechslungen zu vermeiden. Zudem wird die aktuelle Rundenanzahl angezeigt, um Aufschluss über die aktuelle Runde zu geben.
 
-- Das Display wird mit dem CH572 verbunden, welcher die Daten empfängt und verarbeitet. Die Informationen werden in Echzeit übertragen.
+- Das Display wird mit dem CH572 verbunden, welcher die Daten empfängt und verarbeitet. Die Informationen werden in Echtzeit übertragen.
 - Auf dem Display werden Spiel Informationen
  - Spielername
  - Autoname
