@@ -2,8 +2,8 @@
 #pagebreak()
 #aktueller_autor.update([#author1, #klasse])
 
-= 3D <sec_bahn-3d>
-Das 3D-Modell des Hauptmoduls nimmt die Leiterplatte, das Display sowie die Schienen auf. Ein kompaktes Design hält alle Komponenten sicher zusammen und ermöglicht eine einfache Montage.
+= 3D-Modell <sec_bahn-3d>
+Das 3D-Modell des Basismoduls nimmt die Leiterplatte, das Display sowie die Schienen auf. Ein kompaktes Design hält alle Komponenten sicher zusammen und ermöglicht eine einfache Montage.
 
 == Anforderungen
 - platzsparende und sichere Unterbringung von Leiterplatte und Display
@@ -37,13 +37,13 @@ Das Gehäuse besteht aus drei separaten Teilen:
       text(size: 0.9em)[Fixierung]
     ), 
   ),
-  caption: [Übersicht 3D-Teile des Hauptmoduls],
+  caption: [Übersicht 3D-Teile des Basismoduls],
   gap: 1em
 )
 
 == Bahn
 // ! RICHTIGES REFERENZIEREN !
-Das Hauptmodul ist 30cm lang und 11,4cm breit. Die Steckverbindungen und Maße sind so gewählt, dass sie den Standard-Modellbahnschienen entsprechen. Die Metallschienen werden in die gedruckten Führungen eingesteckt und sind dadurch leicht montierbar. Die Schienen sind so ausgeführt, dass Fahrzeuge über Schleifkontakte die anliegende Spannung von 12V abgreifen können (siehe @sec_auto-spgversorgung).
+Das Basismodul ist 30cm lang und 11,4cm breit. Die Steckverbindungen und Maße sind so gewählt, dass sie den Standard-Modellbahnschienen entsprechen. Die Metallschienen werden in die gedruckten Führungen eingesteckt und sind dadurch leicht montierbar. Die Schienen sind so ausgeführt, dass Fahrzeuge über Schleifkontakte die anliegende Spannung von 12V abgreifen können (siehe @sec_auto-spgversorgung).
 
 Unter jeder Fahrspur befindet sich eine Aussparung für je ein @nfc\-Modul (siehe @sec_bahn-nfc). Durch die Kabelverbindung zur Leiterplatte können die Module unabhängig vom Gehäuse exakt unter den Schienen positioniert werden.
 
@@ -61,7 +61,7 @@ Die Displayhalterung ist direkt mit dem Schienenteil verbunden und vor den Schie
 
 #figure(
   image("/Bilder/3d/bahn-3d-mitdisplay.png", width: 80%),
-  caption: [3D-Modell Hauptmodul],
+  caption: [3D-Modell Basismodul],
 )
 
 == Einschub

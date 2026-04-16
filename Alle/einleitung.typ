@@ -32,7 +32,7 @@ Das Ziel dieser Diplomarbeit ist die Entwicklung einer modernen, funkgesteuerten
 - Jugendliche sowie Erwachsene mit technischem Interesse
 
 == Umsetzung
-Es wird ein Hauptmodul, ein Controller, ein Auto und eine Ladestation entwickelt. Das Hauptmodul misst die Rundenzeit durch @nfc:short, zeigt am Display und in der App die Renninformationen an. Die Autos haben eine @nfc:short\-Antenne mit der sie eine einzigartige Fahrzeugkennung an die Bahn senden, damit die Rundenzeiten zugeordnet werden können. Der Controller ist über @ble:short mit dem Fahrzeug verbunden und ermöglicht die Steuerung der Geschwindigkeit. Aufladbar sind die Controller über die Ladestation.
+Es wird ein Basismodul, ein Controller, ein Auto und eine Ladestation entwickelt. Das Basismodul misst die Rundenzeit durch @nfc:short, zeigt am Display und in der App die Renninformationen an. Die Autos haben eine @nfc:short\-Antenne mit der sie eine einzigartige Fahrzeugkennung an die Bahn senden, damit die Rundenzeiten zugeordnet werden können. Der Controller ist über @ble:short mit dem Fahrzeug verbunden und ermöglicht die Steuerung der Geschwindigkeit. Aufladbar sind die Controller über die Ladestation.
 
 #figure(
   image("/Bilder/BlockschaltbildProjekt.svg", width: 100%),
