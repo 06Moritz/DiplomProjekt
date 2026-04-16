@@ -91,21 +91,7 @@ Da er kostengünstiger als ein externer @adc ist, wurde er ausgewählt. @sourceC
 
 Bei der Entwicklung der Controller Platine wurde darauf geachtet, dass ein Quarz für eine stabile Taktfrequenz, die für @ble notwendig ist, vorhanden ist. Da der interne RC-Oszillator des CH572 zu instabil ist, ist ein externer Quarz mit einer Frequenz von 32 MHz an die Pins XO und XI angeschlossen.  
 \ \
-=== Stützkondensator
-Da Mikrocontroller kurzzeitig erhöhte Ströme aufnehmen können, entstehen Stromspitzen auf der Versorgungsspannung. Diese können zu kurzzeitigen Spannungsausfall führen. Aus diesem Grund wurde ein Stützkondensator in der Nähe des Mikrocontrollers platziert. Dieser fängt die Stromspitzen ab und sorgt für eine stabile Versorgung während der @ble -Kommunikation bei.\ \
 
-In LT-Spice ist dies Simuliert worden, um die Auswirkung eines Stützkondensators zu zeigen.
-#figure(
-  fimage("/Bilder/ChipStrom.png", width: 100%),
-  caption: [ohne Kondensator]
-)\
-In dieser Abbildung sieht man den Strom- und Spannungsverlauf eines Mikrocontrollers ohne Stützkondensator. Es ist deutlich zu erkennen, dass die Spannung während der Stromspitzen kurzzeitig abfällt.
-\ \
-#figure(
-  fimage("/Bilder/ChipStromC.png", width: 100%),
-  caption: [mit Kondensator]
-)\
-In dieser Abbildung sieht man den Strom- und Spannungsverlauf eines Mikrocontrollers mit einem Stützkondensator. Es ist deutlich zu erkennen, dass die Spannung stabil bleibt, auch während der Stromspitzen.
 
 == Analog-Digital-Wandler (ADC)
 Die analogen Signale vom Potentiometer und vom Schieberegler werden über den @adc von dem CH32V003 eingelesen. Der Chip wandelt die analogen Signale in digitale Werte um, sie werden über UART an den CH572 gesendet. 
