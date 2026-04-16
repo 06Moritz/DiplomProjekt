@@ -16,9 +16,9 @@ gap: 1em
 )
 
 
-- Empfangene Daten: \ aktuelle Drehzahl des Fahrzeugs \ Spielername vom Hauptmodul
+- Empfangene Daten: \ aktuelle Drehzahl des Fahrzeugs \ Spielername vom Basismodul
 
-- Datenprotokoll: \ serielle bidirektionale Kommunikation (z. B. UART) \ zyklischer Datenaustausch zwischen Controller und Hauptmodul
+- Datenprotokoll: \ serielle bidirektionale Kommunikation (z. B. UART) \ zyklischer Datenaustausch zwischen Controller und Basismodul
 
 - Gesendete Daten: \ ADC-Wert des Potentiometers zur Vorgabe der Geschwindigkeit \ Status des Schiebereglers 
 
