@@ -4,12 +4,12 @@
 
 
 = 3D <sec_lade-3d>
-Die Ladestation nimmt bis zu vier Controller gleichzeitig auf und lädt diese über Federkontakte. Sie kann direkt an das Hauptmodul angeschlossen werden.
+Die Ladestation nimmt bis zu vier Controller gleichzeitig auf und lädt diese über Federkontakte. Sie kann direkt an das Basismodul angeschlossen werden.
 
 == Anforderungen
 - gleichzeitige Aufnahme von vier Controllern 
 - zuverlässige Ladeverbindung der Controller über    Federkontakte
-- Anbindung an das Hauptmodul über @usbc
+- Anbindung an das Basismodul über @usbc
 
 == Grundstruktur
 
@@ -70,7 +70,7 @@ Der Deckel hat vier Vertiefungen, in die die Controller hineingestellt werden. I
 )
 
 == Ladeanschluss
-Die Ladestation wird über einen kurzen @usbc zu @usbc Adapter mit dem Ladeausgang des Hauptmoduls verbunden und mit 5V versorgt (siehe @sec_bahn-ladeausgang). Eine mechanische Verbindung zwischen Ladestation und Hauptmodul ist nicht vorgesehen, da die Ladestation neben dem Hauptmodul platziert und versorgt oder extern angeschlossen werden kann.
+Die Ladestation wird über einen kurzen @usbc zu @usbc Adapter mit dem Ladeausgang des Basismoduls verbunden und mit 5V versorgt (siehe @sec_bahn-ladeausgang). Eine mechanische Verbindung zwischen Ladestation und Basismodul ist nicht vorgesehen, da die Ladestation neben dem Basismodul platziert und versorgt oder extern angeschlossen werden kann.
 
 == 3D-Druck
 Alle Teile sind aus schwarzem @abs gedruckt. Da @abs ein Kunststoff ist, der Chemisch geglättet werden kann.

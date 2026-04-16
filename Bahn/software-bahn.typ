@@ -4,7 +4,7 @@
 
 = Software <sec_bahn-software>
 
-Die Software des Hauptmoduls dient zum Rundenzeit messen mittels NFC, erkennen von Autos, sowie zum Anzeigen von Informationen auf einem Display.
+Die Software des Basismoduls dient zum Rundenzeit messen mittels NFC, erkennen von Autos, sowie zum Anzeigen von Informationen auf einem Display.
 
 
 
@@ -37,9 +37,9 @@ Bei der Zeitmessung wird nach der @id des Autos gesucht und die Zeit berechnet.
 
 == Bluetooth Low Energy <sec-ble_bahn>
 Die @wifi Zugangsdaten werden über @ble durch die App eingestellt.
-Es werden Informationen vom Hauptmodul an die Controller mit @ble Advertising gesendet.
+Es werden Informationen vom Basismodul an die Controller mit @ble Advertising gesendet.
 \
-@ble Advertising ermöglicht es, kleine Datenpakete vom Hauptmodul an den Controller zu senden, ohne sich zu verbinden. Dies ist besonders nützlich für die Übertragung von Informationen wie Rundenzeiten oder Statusupdates, da es eine schnelle und effiziente Kommunikation ermöglicht, ohne den Overhead einer vollständigen Verbindung aufzubauen.
+@ble Advertising ermöglicht es, kleine Datenpakete vom Basismodul an den Controller zu senden, ohne sich zu verbinden. Dies ist besonders nützlich für die Übertragung von Informationen wie Rundenzeiten oder Statusupdates, da es eine schnelle und effiziente Kommunikation ermöglicht, ohne den Overhead einer vollständigen Verbindung aufzubauen.
 \
 
 ```c
@@ -63,7 +63,7 @@ Es werden Auto spezifische Werte wie Rundenzeit oder Startnummer übertragen. Di
 
 
 == Transmission Control Protocol
-@tcp ist ein Netzwerk Protokoll, das benutzt wird, um Daten vom Hauptmodul an die App zu senden. Dafür ist eine @wifi:short\-Verbindung notwendig.
+@tcp ist ein Netzwerk Protokoll, das benutzt wird, um Daten vom Basismodul an die App zu senden. Dafür ist eine @wifi:short\-Verbindung notwendig.
 Wenn keine Netzwerkverbindung besteht, verbindet sich die App über Bluetooth (siehe @sec-ble_bahn).
 Sobald sich der @esp32:short über @wifi verbunden hat, nimmt er Verbindung mit der App über @tcp auf.
 
@@ -84,7 +84,7 @@ Mit dem @tcp\-Protokoll wird sichergestellt, dass Signale von der App und dem Di
         }
 
 ```
-Der Codeausschnitt beschreibt die Verarbeitung von @tcp Befehlen auf dem Hauptmodul Display. Es wird überprüft, ob die App  verbunden ist. Je nach Befehl wird der Modus geändert oder das Rennen gestartet.
+Der Codeausschnitt beschreibt die Verarbeitung von @tcp Befehlen auf dem Display des Basismoduls. Es wird überprüft, ob die App  verbunden ist. Je nach Befehl wird der Modus geändert oder das Rennen gestartet.
 
 
 

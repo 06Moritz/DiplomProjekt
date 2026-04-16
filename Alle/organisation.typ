@@ -11,13 +11,13 @@
 == Individuelle Aufgabenstellung
 
 === #author1
-Der Aufgabenbereich umfasst die Entwicklung der Leiterplatte und des Gehäuses für das Hauptmodul sowie die Entwicklung des Controller-Gehäuses.
+Der Aufgabenbereich umfasst die Entwicklung der Leiterplatte und des Gehäuses für das Basismodul sowie die Entwicklung des Controller-Gehäuses.
 
 === #author2
 Der Aufgabenbereich umfasst die Entwicklung des Autos inklusive Leiterplatte und Mechanik sowie die Software für Controller und Fahrzeugsteuerung.
 
 === #author3
-Der Aufgabenbereich umfasst die Entwicklung der Leiterplatte für den Controller und die Ladestation sowie die Entwicklung der Software für Hauptmodul und Appverbindung.
+Der Aufgabenbereich umfasst die Entwicklung der Leiterplatte für den Controller und die Ladestation sowie die Entwicklung der Software für Basismodul und Appverbindung.
 
 #pagebreak()
 == Projektplanung
