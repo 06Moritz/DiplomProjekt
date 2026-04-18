@@ -28,7 +28,6 @@ Der Aufgabenbereich umfasst die Entwicklung der Leiterplatte für den Controller
   #rotate(-90deg, reflow: true, image("/Bilder/gantt-kocm_cr.png", width: 94.4%))
 ]
 
-// Gantt-Diagramm von Moritz ist nicht vollständig
 === #author2
 #v(-2em)
 #align(center)[
