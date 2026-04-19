@@ -99,10 +99,7 @@ Das Display des Basismoduls ist ein @tft:short\-Display, verfügt über @i2c\-To
 
 - @i2c: Das Display verfügt über @i2c. Durch die @i2c\-Schnittstelle werden XY Koordinaten übertragen, wodurch Touch Events erkannt und verarbeitet werden können. Durch Toucheingaben können der Modus geändert, Spieler hinzugefügt und das Rennen gestartet/gestoppt werden. @sourcei2c
 
-```c
-bool startIsPressed = (btnStart && btnStart->isPressed());
-bool modusIsPressed = (btnModus && btnModus->isPressed());
-```
+
 Hier wird überprüft, ob der Start- oder Modus-Button gedrückt wurde.
 
 #pagebreak()
@@ -133,10 +130,15 @@ unsigned long now = millis();
 
 Die Logik des Basismodul Displays funktioniert so, dass der Zustand der Buttons abgefragt wird. Der zugehörige Screen wird durch Zustandsautomaten ermittelt. \
 Es gibt drei Zustände:
-- Menü 
+- Hauptmenü 
 - Rennen
-- Podium
+- Spielergebnis
 Je nachdem welcher Button gedrückt wird, ändert sich der Zustand.
+
+#figure(
+  image("/Bilder/App/Blockdiagramm.png", width: 100%),
+  caption: [Blockdiagramm der UI des Basismoduls],
+)
 
 
 == Transmission Control Protocol (TCP) Programmierung
@@ -164,7 +166,7 @@ Terminal Ausgabe:
 \
 Als nächsten schritt wurde der @esp32:short als Sender und die App als Empfänger konfiguriert, um die Datenübertragung zu testen.
 Im Serial Terminal werden Befehle eingegeben. In der App wird dann die entsprechende Variable aktualisiert.
-#pagebreak()
+\ \
 In das Terminal wurden folgende Parameter eingegeben:\
 
 ```c
@@ -177,7 +179,7 @@ In das Terminal wurden folgende Parameter eingegeben:\
 /*
 In der App wurden die eingegebenen Parameter aktualisiert. Spieler1 wurde als Spielername angezeigt, der Modus auf leicht gestellt und die Rundenzahl auf drei.*/
 
-Senden der Daten vom @esp32:short:
+\ Senden der Daten vom @esp32:short an die App:
 ```c 
  if (Serial.available()) {
     String input = Serial.readStringUntil('\n');
@@ -191,8 +193,45 @@ Senden der Daten vom @esp32:short:
 - `Serial.available()`: Überprüft, ob Daten im Serial Buffer verfügbar sind.
 - `client.println(input)`: Sendet die eingelesenen Daten über die TCP-Verbindung an die App.
 \ 
-Empfangen der Daten in der App:
-```kotlin
+
+#figure(
+  image("../Bilder/App/testTCP.png", width: 50%),
+  caption: [Geänderte Parameter im Menü der App],
+)
+\
+Datenübertragung:
+
+#figure(
+  image("/Bilder/App/Datenverb.png", width: 80%),
+  caption: [Datenübertragung],
+)
+Die Daten werden Packetiert übertragen. Jedes Paket enthält einen Hexadezimalen Code, der den Typ des Pakets angibt. Der Längen Indicator gibt an, wie viele Bytes das Paket enthält.  
+#pagebreak()
+Übersicht Packettypen:
+#figure(
+  align(center)[
+    #set text(size: 12pt)
+    #table(
+      columns: (120pt, 120pt),
+      inset: 5pt,
+      stroke: 0.3pt + black,
+      align: center,
+
+      [*Hex*], [*Pakettyp*],
+      [0x00], [Einstellungen],
+      [0x01], [Spielername],
+      [0x02], [Modus],
+      [0x03], [Rundenzahl],
+      [0x04], [Start],
+      [0x05], [Stop],
+      [0x06], [Leaderboard],
+      [0x07], [\- \- -],
+    )
+  ],
+  caption: [Daten],
+) <fig-tmc5160driveroverview>
+
+/*```kotlin
 fun handleMessage(msg: String) {
 
     when {
@@ -218,13 +257,11 @@ fun handleMessage(msg: String) {
 - `msg.startsWith("Spieler:")`: Überprüft, ob die empfangene Nachricht mit "Spieler:" beginnt.
 - `substringAfter("Spieler:")`: Extrahiert den Wert nach "Spieler:" und aktualisiert die entsprechende TextView in der App.
 - `msg.startsWith("Rundenzahl:")`: Überprüft, ob die empfangene Nachricht mit "Rundenzahl:" beginnt.
-- `substringAfter("Rundenzahl:")`: Extrahiert den Wert nach "Rundenzahl:" und aktualisiert die entsprechende TextView in der App.
+- `substringAfter("Rundenzahl:")`: Extrahiert den Wert nach "Rundenzahl:" und aktualisiert die entsprechende TextView in der App.*/
 
 \ \
-#figure(
-  image("../Bilder/App/testTCP.png", width: 50%),
-  caption: [App Menü],
-)
+
+
 
 Die App und der @esp32:short als Sender und Empfänger initialisiert.
 \
