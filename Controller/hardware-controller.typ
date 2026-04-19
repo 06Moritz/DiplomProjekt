@@ -31,14 +31,14 @@ gap: 1em
 
 == Spannungsversorgung
 Die Versorgung des Controllers erfolgt über einen @lipo, dessen Betriebsspannung zwischen 3.2 V und 4.2 V liegt. Der Akku wird über Federkontakte an einer Ladestation aufgeladen. (siehe @sec_ladestation-hw)
-\ \
+\ 
 Die Spannungsregelung ist in drei Teile gegliedert:
 - Laderegelung:\ Sicherstellung eines geregelten Ladens des Akkus durch Überwachung von Spannung und Stromstärke während des Ladevorgangs. 
 
-- Schutzschaltung:\ Verwendung eines Schutzschaltkreises zur Verhinderung von Überladung und Tiefentladung. 
+- Schutzschaltung:\ Verwendung eines Schutzschaltkreises zur verhinderung von Überladung und Tiefentladung. 
 
 - @ldo:both: \ Regelt von Variabler Akkuspannung (3.2-4.2V) auf 3.3V für die Versorgung der Mikrocontroller und anderer Komponenten.  Für die geringe Spannungsdifferenz zwischen Akku und Versorgungsspannung der Komponenten ist ein @ldo:long nötig. 
-\ \
+
 
 == Laderegler <sec-charger>
 
@@ -70,15 +70,16 @@ caption: [Schaltplan für die Ladekurve aufnehmen],
 )
 \ 
 
-Der Spannungsverlauf beim Laden wird über den Spannungsteiler gemessen, damit ein kleinerer Messbereich am Messgerät eingestellt werden kann, da die Auflösung genauer wird. 
+Der Spannungsverlauf beim Laden wird über den Spannungsteiler gemessen, damit ein kleinerer Messbereich am Messgereit eingestellt werden kann, da die Auflösung genauer wird. 
 \
 
-Der Ladestrom wird über den Shuntwiderstand gemessen. Durch den Spannungsabfall am Shunt, kann der Ladestrom berechnet werden. $U=I*R$
+Der ladestrom wird über den Shuntwiderstand gemessen. Durch den Spannungsabfall am Shunt, kann der Ladestrom berechnet werden. $U=I*R$
 Der kleine Spannungsabfall am Shunt wird mit einer OPV-Schaltung verstärkt, um gemessen werden zu können.
 \ \
 - Schutzschaltung\ Um das Tiefentladen und Überladen des Akkus zu verhindern, wird der DW01 (U2) verwendet. Dieser Schutzschaltkreis überwacht den Stromfluss des Akkus und schaltet diesen mittels FS8205A MOSFETs (Q1 und Q2) ab, wenn die Spannung über einen speziellen Schwellenwert  steigt (4.25V), beziehungsweise fällt (2.4V). Das ist notwendig um den Akku nicht zu zerstören. @sourceDW01  \
 
-Der Schaltplan des Ladereglers musste überarbeitet werden, da ein Verbindungsfehler zwischen dem Akku und dem FS8205A an dem Pin G2 vorlag. Dieser Fehler führte dazu, dass die Schutzschaltung für den Akku, den Akku nicht schützt. Der Fehler ist behoben worden, indem die Leiterbahn zwischen Akku und den @mosfet:short vom GND getrennt und im Schaltplan geändert wurde.  
+Der Schaltplan des Ladereglers musste überarbeitet werden, da ein Verbindungsfehler zwischen dem Akku und dem FS8205A an dem Pin G2 vorlag. Dieser Fehler führte dazu, dass die Schutzschaltung für den Akku, den Akku nicht schützt. Der Fehler ist behoben worden, indem die Leiterbahn zwischen Akku und den Mosfets vom GND getrennt und im Schaltplan geändert wurde.  
+
 
 == Mikrocontroller
 Die Steuerung des Systems erfolgt über den CH572. Der Mikrocontroller verarbeitet die Daten und sendet sie über  @ble an das Fahrzeug. Zu beachten ist, dass der CH572 keine integrierten @adc hat, weshalb der CH32V003 als kosteneffizienter externer @adc verwendet wird.  
@@ -106,7 +107,7 @@ Die Bauteile (Potentiometer, Schieberegler, Vibrationsmotor) werden für die Ste
 
 - Schieberegler: Der Schieberegler wird vom @adc eingelesen, wenn dieser einen bestimmten Schwellenwert überschreitet, wird ein Signal an das Auto gesendet, um die Hupe zu betätigen.
 
-- Vibrationsmotor: Der Vibrationsmotor wird für haptisches Feedback verwendet. Er wird über den CH572 gesteuert. Bei bestimmten Ereignissen im Spiel, wie z.B. beim Erreichen der maximalen Geschwindigkeit, wird der Vibrationsmotor aktiviert, um den Spielenden ein haptisches Feedback zu geben.
+- Vibrationsmotor: Der Vibrationsmotor wird für haptisches Feedback verwendet. Er wird über den CH572 gesteuert. Bei bestimmten Ereignissen im Spiel, wie z.B. beim Erreichen der maximalen Geschwindigkeit, wird der Vibrationsmotor aktiviert, um dem Spieler ein haptisches Feedback zu geben.
 
 == Antenne
 
@@ -115,7 +116,7 @@ Die Zuleitung ist auf 50 Ω angepasst, damit die Antenne optimal abstrahlt und e
 Für eine möglichst geringe Störanfälligkeit wird die Leiterbahn zwischen Antenne und CH572 möglichst kurz gehalten. Längere Leiterbahnen erhöhen die parasitäre Induktivität und können bei der Übertragung zu Signalverzerrungen führen. Zusätzlich wurden entlang der Leiterbahn viele Ground-Vias platziert, um einen stabilen Rückstrompfad zu gewährleisten und hochfrequente Störungen zu reduzieren.
 
 #figure(
-fimage("/Bilder/Cantenne.png", width: 50%),
+fimage("/Bilder/Cantenne.png", width: 60%),
 caption: [@ble Antennendesign],
 )
 \
@@ -134,9 +135,7 @@ caption: [Stromverteilung der Antenne],
 \
 In der Abbildung ist die Stromverteilung entlang der Antennenleiterbahn dargestellt. Die Stromdichte variiert entlang der Leiterbahn, mit einem Maximum in der Nähe des Speisepunkts.
 //In diesem Diagramm ist die Stromverteilung auf der Antenne dargestellt. Es ist zu erkennen, dass die Stromdichte entlang der Leiterbahn variiert, mit einem Maximum in der Nähe des Speisepunkts. Dies ist typisch für eine Antenne und zeigt, dass die Energie effizient in den Raum abgestrahlt wird.
-
-
-\
+ 
 Um Störungen durch andere Signale auf der Platine zu vermeiden, sind keine Bauteile in der Nähe der Antenne und Leiterbahn platziert. 
 Dadurch wird verhindert, dass hochfrequente Signale in benachbarte Leiterbahnen einkoppeln und die @ble -Kommunikation beeinflussen.@antennaSource\ \ 
 
