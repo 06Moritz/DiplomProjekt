@@ -6,7 +6,7 @@
   gez: "KocM",
   geprueft: "ProM",
   dokumentart: "Layout TOP",
-  projekt: "Hauptmodul",
+  projekt: "Basismodul",
   //beschreibung: "",
   status: "Prototyp",
   datum: "20.03.2026",

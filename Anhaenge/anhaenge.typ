@@ -20,7 +20,7 @@
 #set heading(outlined: true, numbering: none, bookmarked: false)
 #set page(margin: 0cm, header: none, footer: none)
 
-= Hauptmodul // Beilage 1
+= Basismodul // Beilage 1
 #include "bahn-schaltplan-p1.typ"
 #include "bahn-schaltplan-p2.typ"
 #include "bahn-layout-top.typ"

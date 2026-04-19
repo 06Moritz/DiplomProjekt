@@ -6,7 +6,7 @@
   gez: "ReiM",
   geprueft: "ProM",
   dokumentart: "Schaltplan",
-  projekt: "Joystick",
+  projekt: "Ladestation",
   //beschreibung: "",
   status: "Prototyp",
   datum: "20.03.2026",

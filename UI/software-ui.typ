@@ -4,15 +4,15 @@
 
 Das @ui:long  besteht aus drei Modulen:
 - App
-- Hauptmodul Display
+- Basismodul Display
 - Controller Display
 \
 Die Software ist in Kotlin für die App und in PlatformIO für die Displays programmiert.\
-Die Kommunikation zwischen der App und dem Hauptmodul Display erfolgt über das @tcp Protokoll, während die Kommunikation zwischen dem Hauptmodul Display und dem Controller Display über @ble erfolgt. 
+Die Kommunikation zwischen der App und dem Basismodul Display erfolgt über das @tcp Protokoll, während die Kommunikation zwischen dem Basismodul Display und dem Controller Display über @ble erfolgt. 
 
 = App
 == App Programmierung
-Die App dient zum Einstellen. Sie ermöglicht es die Sprache, den Modus, die Rundenzahl und Spielernamen einzustellen, sowie die Verbindung zum Hauptmodul herzustellen.\
+Die App dient zum Einstellen. Sie ermöglicht es die Sprache, den Modus, die Rundenzahl und Spielernamen einzustellen, sowie die Verbindung zum Basismodul herzustellen.\
 
 #figure(
   image("/Bilder/App/Appscreen.png", width: 50%),
@@ -36,8 +36,8 @@ enum class GameMode(
 }
 ```
 
-- DefaultLaps: Hier werden die Rundenanzahl standardisiert.
-- speedFactor: Hier wird die Motorleistung eingestellt. Zum Beispiel: 0.5f bedeutet, dass die Autos mit halber Leistung fahren.
+- DefaultLaps: Jedem Modus ist eine Standardanzahl von Runden zugeordnet.
+- speedFactor: Die Motorleistung werden eingestellt. Zum Beispiel: 0.5f bedeutet, dass die Autos mit halber Leistung fahren.
 
 \
 Beim Start des Rennens zeigt die App die Dauer (mit einer Timer Methode) und den Rundenfortschritt der Spieler an. Nach dem Beenden des Rennens werden die Spieler des aktuellen Rennens nach der Bestzeit sortiert und angezeigt. In diesem Menü hat man die Wahl wieder zum Hauptmenü zu gelangen oder sich das gesamte Ranking aller Rennen anzusehen. Diese werden nach folgenden Kriterien sortiert:
@@ -73,7 +73,7 @@ Beim Start des Rennens zeigt die App die Dauer (mit einer Timer Methode) und den
 )
 - Leaderboard: Alle Spieler werden am @esp32:short mit ihrer Bestzeit gespeichert. In diesem Menü werden die Spieler nach Tag, Woche, Monat und Gesamt sortiert und angezeigt.
 
-== Hauptmodul Display
+== Basismodul Display
 Das Display MSP4031 verfügt über einen Kapazitiven Touchscreen, welcher einfache Einstellungen über das Display ermöglicht.
 - Modi (einstellbar)
 - Spieleranzahl
@@ -88,12 +88,12 @@ Wenn das Display gedrückt sendet es über @i2c die XY-Koordinaten des Touch-Eve
 \
 #figure(
   image("/Bilder/display.png", width: 80%),
-  caption: [Display des Hauptmoduls]
+  caption: [Display des Basismoduls]
 )
 
 
 \
-Das Display des Hauptmoduls ist ein @tft:short\-Display, verfügt über @i2c\-Touch und hat eine Auflösung von 320*480 Pixeln. Es werden Spieler, Modis und Bestenliste angezeigt. 
+Das Display des Basismoduls ist ein @tft:short\-Display, verfügt über @i2c\-Touch und hat eine Auflösung von 320*480 Pixeln. Es werden Spieler, Modis und Bestenliste angezeigt. 
 
 - TFT_eSPI Library: Es wird die TFT_eSPI Library verwendet, um die grafische Benutzeroberfläche auf dem Display zu erstellen. Diese Bibliothek bietet Funktionen zum Zeichnen von Text, Formen und Bildern.
 
@@ -106,7 +106,7 @@ bool modusIsPressed = (btnModus && btnModus->isPressed());
 Hier wird überprüft, ob der Start- oder Modus-Button gedrückt wurde.
 
 #pagebreak()
-```c
+/*```c
 unsigned long now = millis();
     bool startIsPressed = (btnStart && btnStart->isPressed());
     bool modusIsPressed = (btnModus && btnModus->isPressed());
@@ -129,18 +129,18 @@ unsigned long now = millis();
     }
     startWasPressed = startIsPressed;
 
-```
+```*/
 
-Die Logik des Hauptmodul Displays funktioniert so, dass der Zustand der Buttons abgefragt wird. Der zugehörige Screen wird durch Zustandsautomaten ermittelt. \
+Die Logik des Basismodul Displays funktioniert so, dass der Zustand der Buttons abgefragt wird. Der zugehörige Screen wird durch Zustandsautomaten ermittelt. \
 Es gibt drei Zustände:
 - Menü 
 - Rennen
 - Podium
 Je nachdem welcher Button gedrückt wird, ändert sich der Zustand.
 
-#pagebreak()
+
 == Transmission Control Protocol (TCP) Programmierung
-Um eine Verbindung zwischen der App und dem Hauptmodul Display herzustellen, wird das @tcp Protokoll verwendet. Dieses ermöglicht eine Bidirektionale Kommunikation zwischen den beiden Geräten. Das dient dazu, dass Änderungen, wie das Einstellen der Modi oder Spielernamen, auf das Display übertragen werden können.\
+Um eine Verbindung zwischen der App und dem Basismodul Display herzustellen, wird das @tcp Protokoll verwendet. Dieses ermöglicht eine Bidirektionale Kommunikation zwischen den beiden Geräten. Das dient dazu, dass Änderungen, wie das Einstellen der Modi oder Spielernamen, auf das Display übertragen werden können.\
 
 In dieser Konfiguration zählt der @esp32:short\-S3 als @tcp -Server, der auf einem definierten Port (8080) auf eingehende Verbindungsanfragen der App wartet.\ 
 
@@ -307,7 +307,7 @@ An dem @esp32:short wird ein Server Socket erstellt, der auf Port 8080 auf verbi
 Um sicherzustellen, dass beide Geräte immer den gleichen Systemstatus anzeigen, wurde ein zeilenbasiertes Protokoll entwickelt.\ Jede Nachricht wird mit einem Newline-Zeichen (\\n) abgeschlossen, damit der Empfänger das Ende eines Befehls eindeutig erkennt. Dies ist notwendig, da @tcp die Daten als kontinuierlichen Strom versendet.\ Sobald in der App ein Parameter wie der Spielmodus oder die Rundenzahl geändert wird, sendet die App sofort ein entsprechendes Datenpaket an das Display. Ein Befehl wie MODUS: Schwer bewirkt am Display eine sofortige Aktualisierung der Variable und einen Redraw der Benutzeroberfläche. Dieser Prozess funktioniert auch in die umgekehrte Richtung: Wird am Display der "Start"- oder "Modus"-Button gedrückt, erhält die App das Signal zum Starten des Renn-Timers beziehungsweise das ändern des Moduses.
 
 == Echtzeitverhalten
-Bei der Softwareimplementierung wurde besonders auf ein nicht blockierendes Design geachtet. Da das Hauptmodul gleichzeitig den Touchscreen abfragen und das Display aktualisieren muss, darf der Netzwerkcode den Prozessor nicht aufhalten.\ Die Abfrage von eingehenden Daten erfolgt daher in jedem Programmdurchlauf, ohne den restlichen Ablauf zu verzögern.
+Bei der Softwareimplementierung wurde besonders auf ein nicht blockierendes Design geachtet. Da das Basismodul gleichzeitig den Touchscreen abfragen und das Display aktualisieren muss, darf der Netzwerkcode den Prozessor nicht aufhalten.\ Die Abfrage von eingehenden Daten erfolgt daher in jedem Programmdurchlauf, ohne den restlichen Ablauf zu verzögern.
 \
 Sollte die Verbindung zwischenzeitlich unterbrochen werden, verfügt die App über eine automatische Reconnect-Logik. Diese erkennt die unterbrochene Verbindung durch einen Timeout und versucht eigenständig, den Socket neu zu initialisieren, um die Verbindung wiederherzustellen. Während der Reconnect-Phase zeigt die App eine entsprechende Meldung an. Sobald die Verbindung wiederhergestellt ist, werden alle zuvor gesendeten Befehle erneut übertragen, um sicherzustellen, dass das Display den aktuellen Status korrekt anzeigt. 
 \ \ 

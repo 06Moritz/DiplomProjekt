@@ -2,14 +2,14 @@
 #aktueller_autor.update([#author1, #klasse])
 
 = Hardware <sec_bahn-hardware>
-Die Hardware des Hauptmoduls übernimmt die Zeitmessung beider Fahrspuren über @nfc, stellt Renninformationen auf einem Touchdisplay dar und kommuniziert drahtlos mit der App. Zusätzlich gibt es einen @usbc:short\-Ausgang für die Controller-Ladestation.
+Die Hardware des Basismoduls übernimmt die Zeitmessung beider Fahrspuren über @nfc, stellt Renninformationen auf einem Touchdisplay dar und kommuniziert drahtlos mit der App. Zusätzlich gibt es einen @usbc:short\-Ausgang für die Controller-Ladestation.
 
 Das Blockschaltbild
 gibt einen Überblick über die Komponenten und deren Zusammenspiel.
 
 #figure(
   image("/Bilder/Blockschaltbild-HW-Bahn.svg", width: 100%),
-  caption: [Blockschaltbild Hardware Hauptmodul],
+  caption: [Blockschaltbild Hardware Basismodul],
   gap: 1em
 )
 
@@ -19,7 +19,7 @@ Die Versorgung der Hardware erfolgt über einen @usbc Eingang mit @pd, der eine 
 @usbc @pd:long wird aus folgenden Gründen verwendet:
 - Standardisierung: \ @usbc @pd ist weit verbreitet und ermöglicht die Nutzung von handelsüblichen Netzteilen ohne eigene Steckerlösung.
 - Leistung: \ Der USB-C PD Standard unterstützt bis zu 240W Leistung, was weitaus größer als die Leistungsaufnahme der Bahn mit etwa 70W ist.
-- Bauweise: \ @usbc ist kompakt, robust und ermöglicht reversibles Einstecken.
+- Bauweise: \ @usbc ermöglicht reversibles Einstecken.
 - Spannungsaushandlung: \ Über den @pd\-Handshake wird die benötigte Spannung von 12V aktiv zwischen Netzteil und Hardware vereinbart, wodurch nur kompatible Netzteile die erhöhte Spannung liefern.
 
 Von den 12V werden zwei geregelte Spannungsebenen erzeugt:
@@ -40,8 +40,13 @@ Die Dimensionierung der Schaltung erfolgte mit dem @ti WEBENCH Power Designer @w
 Am Eingang und Ausgang befinden sind Stützkondensatoren, um die Ausgangsspannung zu stabilisieren und Spannungseinbrüche bei Lastsprüngen zu minimieren.
 
 #figure(
+  fimage("/Bilder/bahn-sch-buck.png", width: 100%),
+  caption: [Schaltplan @buck Basismodul],
+)
+
+#figure(
   fimage("/Bilder/bahn-layout-buck.png", width: 80%),
-  caption: [Layout @buck Hauptmodul],
+  caption: [Layout @buck Basismodul],
 )
 
 == Spannungsregler - LDO <sec_bahn-ldo>
@@ -56,7 +61,7 @@ Der ESP32-S3-WROOM-1-N16R8 von Espressif ist ein kompaktes Mikrocontroller-Modul
 
 Für dieses Projekt ausschlaggebende Eigenschaften des verwendeten ESPs:
 - Dual-Core (240 MHz): \ Zwei unabhängige Prozessorkerne ermöglichen die parallele Verarbeitung der Kommunikation (@wifi:short) und Steuerlogik (Zeitmessung).
-- @psram:short: \ Der zusätzliche Arbeitsspeicher wird für die Darstellung der Displayinhalte benötigt.
+- interner @psram:short: \ Der zusätzliche Arbeitsspeicher wird für die Darstellung der Displayinhalte benötigt.
 - zwei @i2c:short\-Busse: \ Ermöglichung des gleichzeitigen Betriebs beider @nfc\-Module, da sie dieselbe @i2c:short\-Adresse verwenden. (siehe @sec_bahn-nfc).
 - integrierte Antenne: \ Durch die im Modul integrierte Antenne entfällt eine externe @rf:short\-Beschaltung.
 - @wifi:short und @ble:short: \ Drahtlose Kommunikation mit der App unter Verwendung des @tcp:short\-Protokolls. // (siehe @sec_app-kommunikation)
@@ -128,7 +133,7 @@ Der @usbc Ladeausgang versorgt die Ladestation der Controller mit 5V. Die Spannu
 
 #figure(
   fimage("/Bilder/sch-bahn-ausgang.png", width: 100%),
-  caption: [Schaltung Ladeausgang Hauptmodul],
+  caption: [Schaltung Ladeausgang Basismodul],
 ) <img_sch-bahn-ausgang>
 
 Die Ladefunktion ist über einen CJ2305 P-Kanal @mosfet:short schaltbar, der vom ESP32 über den @levelshifter angesteuert wird (siehe @sec_bahn-levelshifter).
@@ -148,7 +153,7 @@ Die Leiterplatte wurde mit @easyeda:short entworfen und als zweiseitige Leiterpl
 
 #figure(
   image("/Bilder/bahn-pcb.svg", width: 100%),
-  caption: [Leiterplatte Hauptmodul],
+  caption: [Leiterplatte Basismodul],
 )
 
 Relevante Designentscheidungen:
