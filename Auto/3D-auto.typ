@@ -16,9 +16,11 @@ Die Bodenfreiheit ist ideal für NFC und für die Schleifkontakte.
 
 
  == Grundstruktur
-Das Auto besteht aus einem Körper. 
-Innen ist platz für die Bauteile auf dem Auto und für den Motor.
-Damit das Gehäuse nicht abrutscht, sind Klippselemente konstruiert.
+Das Gehäuse des Autos besteht aus einem Körper. 
+Die Karosserie überdeckt die gesamte Platine inkulsive Motor und Mechanik.
+Das Gefäuse schützt die Elektronischen Bauteile und die Mechanik vor Verschmutzungen und Staub.
+Die Platine des Autos wird mit Klippverbindungen an der Karosserie befestigt.
+
 
 \
 #figure(

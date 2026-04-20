@@ -91,7 +91,7 @@ Die Steuerung des Systems erfolgt über den CH572. Der Mikrocontroller verarbeit
 \ \
 - CH572\ Der CH572 ist ein 32-Bit-Mikrocontroller, der auf RISC-V basiert. Er ist klein, verfügt über integrierte @ble Peripherie. Der CH572 ist für die Hauptsteuerung des Systems verantwortlich und verarbeitet die Daten. @sourceCH572
 
-- CH32V003\ Der CH32V003 verfügt über integrierten @adc, der es möglich macht, die Analogen Signale der Steuereinheiten zu verarbeiten. Da er kostengünstiger als ein externer @adc ist, wurde er ausgewählt. @sourceCH32 //die analogen Signale der Komponenten zu verarbeiten.
+- CH32V003\ Der CH32V003 verfügt über einen integrierten @adc, der es möglich macht, die Analogen Signale der Peripherie Geräte zu verarbeiten. Da er kostengünstiger als ein externer @adc ist, wurde er ausgewählt. @sourceCH32 //die analogen Signale der Komponenten zu verarbeiten.
 \ \
 
 Bei der Entwicklung der Controller Platine wurde darauf geachtet, dass ein Quarz für eine stabile Taktfrequenz, die für @ble notwendig ist, vorhanden ist. Da der interne RC-Oszillator des CH572 zu instabil ist, ist ein externer Quarz mit einer Frequenz von 32 MHz an die Pins XO und XI angeschlossen.  
@@ -107,11 +107,11 @@ Bauteile die zum auslesen einen @adc brauchen:
 == Steuerung
 Die Bauteile (Potentiometer, Schieberegler, Vibrationsmotor) werden für die Steuerung des Autos verwendet. Sie ermöglichen es dem Spieler, die Geschwindigkeit zu steuern, die Hupe zu betätigen und ein haptisches Feedback zu erhalten. 
 
-- Potentiometer: An dem Potentiometer wird die Geschwindigkeit des Autos eingelesen. Der @adc liest das Signal vom Potentiometer ein. Der Mikrokontroller verarbeitet die Daten und sendet die Befehle über @ble an das Auto.
+- *Potentiometer*: Das Potentiometer ist mit dem Gashebel verbunden. Die Stellung des Potentiometers wird über den @adc eingelesen und in ein digitales Signal umgewandelt, das an das Auto gesendet wird, um die Geschwindigkeit zu steuern. 
 
-- Schieberegler: Der Schieberegler wird vom @adc eingelesen, wenn dieser einen bestimmten Schwellenwert überschreitet, wird ein Signal an das Auto gesendet, um die Hupe zu betätigen.
+- *Schieberegler*: Der Schieberegler wird vom @adc eingelesen, wenn dieser einen bestimmten Schwellenwert überschreitet, wird ein Signal an das Auto gesendet, um die Hupe zu betätigen.
 
-- Vibrationsmotor: Der Vibrationsmotor wird für haptisches Feedback verwendet. Er wird über den CH572 gesteuert. Bei bestimmten Ereignissen im Spiel, wie z.B. beim Erreichen der maximalen Geschwindigkeit, wird der Vibrationsmotor aktiviert, um dem Spieler ein haptisches Feedback zu geben.
+- *Vibrationsmotor*: Der Vibrationsmotor wird für haptisches Feedback verwendet. Er wird über den CH572 gesteuert. Bei bestimmten Ereignissen im Spiel, wie z.B. beim Erreichen der maximalen Geschwindigkeit, wird der Vibrationsmotor aktiviert, um dem Spieler ein haptisches Feedback zu geben.
 
 == Antenne
 
