@@ -2,7 +2,7 @@
 #pagebreak()
 #aktueller_autor.update([#author1, #klasse])
 
-= 3D-Modell <sec_bahn-3d>
+= Gehäuse <sec_bahn-3d>
 Das 3D-Modell des Basismoduls nimmt die Leiterplatte, das Display sowie die Schienen auf. Ein kompaktes Design hält alle Komponenten sicher zusammen und ermöglicht eine einfache Montage.
 
 == Anforderungen
@@ -48,12 +48,13 @@ Das Basismodul ist 30cm lang und 11,4cm breit. Die Steckverbindungen und Maße s
 Unter jeder Fahrspur befindet sich eine Aussparung für je ein @nfc\-Modul (siehe @sec_bahn-nfc). Durch die Kabelverbindung zur Leiterplatte können die Module unabhängig vom Gehäuse exakt unter den Schienen positioniert werden.
 
 #figure(
-  stack(
-    spacing: 1em,      // Abstand zwischen den beiden Bildern
-    image("/Bilder/3d/bahn-3d-schienen-schnitt.png", width: 70%),
-    image("/Bilder/3d/bahn-3d-schienen-schnitt-nfc.png", width: 70%),
-  ),
-  caption: [Querschnittvergleich bei NFC],
+  image("/Bilder/3d/bahn-3d-schienen-schnitt.png", width: 70%),
+  caption: [Querschnitt ohne NFC-Leser-Aussparung],
+)
+
+#figure(
+  image("/Bilder/3d/bahn-3d-schienen-schnitt-nfc.png", width: 70%),
+  caption: [Querschnitt mit NFC-Leser-Aussparung],
 )
 
 == Displayhalterung

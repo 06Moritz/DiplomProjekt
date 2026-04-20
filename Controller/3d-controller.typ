@@ -4,7 +4,7 @@
 
 // DREHREGLER????????
 
-= 3D <sec_con-3d>
+= Gehäuse <sec_con-3d>
 Im Gehäuse des Controllers sind alle elektronischen Komponenten verbaut. Die Form ermöglicht eine ergonomische Handhabung. Der Controller ist so gestaltet, dass er sowohl die Funktionalität als auch die Ästhetik berücksichtigt.
 
 == Anforderungen <sec_con-anforderungen>
@@ -56,7 +56,7 @@ Der Controller ist als Einhand-Controller konzipiert und als Pistolengriff ausge
 #pagebreak()
 
 == Display <sec_con-display>
-Das Display wird oben am Gehäuse verbaut und liegt auf zwei Balken auf, die eine gerade Ausrichtung sicherstellen und ein Verrutschen verhindern. Es ist so positioniert, dass es während des Spielens gut ablesbar ist, ohne die Handhabung zu beeinträchtigen. Die Gehäuseöffnung ist an die Form der Displayplatine angepasst, sodass ausschließlich die aktive Displayfläche sichtbar ist.
+Das Display wird oben am Gehäuse angebracht und liegt auf zwei Balken auf, die eine gerade Ausrichtung sicherstellen und ein Verrutschen verhindern. Es ist so positioniert, dass es während des Spielens gut ablesbar ist, ohne die Handhabung zu beeinträchtigen. Die Gehäuseöffnung ist an die Form der Displayplatine angepasst, sodass ausschließlich die aktive Displayfläche sichtbar ist.
 
 #grid(
   columns: (1fr, 1fr),

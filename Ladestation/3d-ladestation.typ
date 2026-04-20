@@ -3,7 +3,7 @@
 
 
 
-= 3D <sec_lade-3d>
+= Gehäuse <sec_lade-3d>
 Die Ladestation nimmt bis zu vier Controller gleichzeitig auf und lädt diese über Federkontakte. Sie kann direkt an das Basismodul angeschlossen werden.
 
 == Anforderungen

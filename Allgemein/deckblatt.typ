@@ -9,7 +9,10 @@
   DIPLOMARBEIT \
   #set text(size: 20pt, fill: rgb("#565656"))
   #projekt \
-  #v(1cm)
+  #v(-1cm)
+  #set text(size: 12pt, fill: rgb("#565656"))
+  Entwicklung einer Modellautorennbahn
+  #v(2cm)
   #image("../Bilder/logofinal.svg", width: 70%)
 ]
  

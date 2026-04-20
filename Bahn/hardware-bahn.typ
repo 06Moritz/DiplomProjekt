@@ -20,11 +20,11 @@ Die Versorgung der Hardware erfolgt über einen @usbc Eingang mit @pd, der eine 
 - Standardisierung: \ @usbc @pd ist weit verbreitet und ermöglicht die Nutzung von handelsüblichen Netzteilen ohne eigene Steckerlösung.
 - Leistung: \ Der USB-C PD Standard unterstützt bis zu 240W Leistung, was weitaus größer als die Leistungsaufnahme der Bahn mit etwa 70W ist.
 - Bauweise: \ @usbc ermöglicht reversibles Einstecken.
-- Spannungsaushandlung: \ Über den @pd\-Handshake wird die benötigte Spannung von 12V aktiv zwischen Netzteil und Hardware vereinbart, wodurch nur kompatible Netzteile die erhöhte Spannung liefern.
+- Spannungsaushandlung: \ Über den @pd\-Handshake wird die benötigte Spannung von 12V aktiv zwischen Netzteil und Hardware vereinbart, wodurch nur kompatible Netzteile die erhöhte Spannung liefern. @usbcpd 
 
 Von den 12V werden zwei geregelte Spannungsebenen erzeugt:
-- 5V über einen @buck (siehe @sec_bahn-buck)
-- 3.3V über einen nachgeschalteten @ldo:short\-Spannungsregler (siehe @sec_bahn-ldo).
+- 5V über einen @buck für die Ladestation 
+- 3.3V über einen nachgeschalteten @ldo:short\-Spannungsregler für @nfc:short\-Module, @esp32:short und Display
 Die stufenweise Regelung dient dazu, eine sauberere Ausgangsspannung mit geringem @ripple:short zu erhalten, da der @ldo als Linearregler hochfrequente Störungen des @buck:short\s zusätzlich unterdrückt.
 
 == Spannungsregler - Buck <sec_bahn-buck>
@@ -82,7 +82,7 @@ Folgende Signale sind herausgeführt:
 - @en
 - Versorgungsspannung (3.3V)
 
-Durch Ziehen des @io0\-Pins auf @gnd wird der @bootloader:short\-Modus aktiviert und die @firmware:short über den @uart:short\-Adapter übertragen. Im normalen Betrieb bleibt @io0 unbeschaltet und der ESP32 startet die Applikation.
+Durch Ziehen des @io0\-Pins auf @gnd wird der @bootloader:short\-Modus aktiviert und die @firmware:short über den @uart:short\-Adapter übertragen. Im operativen Betrieb bleibt @io0 unbeschaltet und der ESP32 startet die Applikation.
 
 == Zeitnehmung - NFC <sec_bahn-nfc>
 Zur Rundenzeitmessung werden zwei PN532 @nfc\-Lesemodule eingesetzt. Der PN532 ist als fertiges Breakout-Board erhältlich, das @uart:short, @i2c:short und @spi:short direkt unterstützt und einfach anzubinden ist. Fährt ein Auto über eines dieser Reader-Module, wird die @uuid:short des @nfc\-Tags im Fahrzeug ausgelesen und an den ESP32 übermittelt. Anhand der Tag-@id:short und dem Zeitstempel der Erkennung wird die Rundenzeit berechnet.
@@ -93,10 +93,11 @@ Zwei separate Module sind notwendig, da jede Fahrspur ein eigens Lesemodul benö
   caption: [NFC-Modul PN532],
 )
 */
-#figure(
+/* #figure(
   image("/Bilder/pn532-esp.svg", width: 45%),
   caption: [NFC-Modul PN532],
-)
+) */
+
 === I²C
 Die Kommunikation zwischen ESP32 und den @nfc:short\-Modulen erfolgt über das @i2c:short\-Protokoll. @i2c ist ein serielles Zwei-Draht-Protokoll bestehend aus einer Datenleitung (@sda:short) und einer Taktleitung (@scl:short), das die Anbindung mehrerer Geräte über einen gemeinsamen Bus ermöglicht.
 
@@ -104,8 +105,14 @@ Beide PN532-Module haben dieselbe fest eingestellte @i2c:short\-Adresse und kön
 
 - @i2c Bus 1: @sda:short 1 / @scl:short 1 → @nfc:short\-Modul 1 (Fahrspur 1)
 - @i2c Bus 2: @sda:short 2 / @scl:short 2 → @nfc:short\-Modul 2 (Fahrspur 2)
+Gewählte Pull-up-Widerstände für @sda:short und @scl:short: 10kΩ 
 
-An den jeweiligen Übertragungsleitungen sind 10kΩ Pull-up-Widerstände auf 3.3V verbaut, da @i2c im Open-Drain-Betrieb ohne Pull-up-Widerstände keinen definierten High Pegel sicherstellen kann. Jedes Modul wird über Drähte angeschlossen (@sda:short, @scl:short, @gnd:short und 3.3V). Das ermöglicht die flexible Positionierung der @nfc:short\-Antennen unter den Schienen der Bahn.
+Jedes Modul wird über Drähte angeschlossen (@sda:short, @scl:short, @gnd:short und 3.3V). Das ermöglicht die flexible Positionierung der @nfc:short\-Antennen unter den Schienen der Bahn.
+
+#figure(
+  image("/Bilder/bahn_nfc-verbindung.svg", width: 100%),
+  caption: [@i2c:short\-Verbindung zwischen @nfc:short\-Modulen und Leiterplatte],
+)
 
 == Display <sec_bahn-display>
 Als Anzeige für Renneinstellungen wird das MSP4031 Display-Modul verwendet, das über ein Flachbandkabel an der Platine angeschlossen ist.
@@ -125,9 +132,9 @@ Die Displayansteuerung erfolgt über das @spi:long. @spi ist ein synchrones seri
 Es ermöglicht höhere Übertragungsraten als @i2c:short und ist damit für die Übertragung von Bilddaten geeignet. Der kapazitive Touch-Controller kommuniziert separat über @i2c, wobei der erste @i2c:short\-BUS des @esp32:short verwendet wird./*  Das Modul verfügt zusätzlich über einen @sd:short\-Karten-Steckplatz, der aktuell jedoch nicht genutzt wird. */
 
 == Pegelwandler (Level Shifter)<sec_bahn-levelshifter>
-Der SN74LVC1T45DCKR ist ein bidirektionaler @levelshifter:short, der Signale zwischen zwei unterschiedlichen Spannungsebenen anpasst. Er wird verwendet um das 3,3V Steuersignal des ESP32 auf 5V anzuheben, da der nachgeschaltete @mosfet:short eine 5V-kompatible Ansteuerung erwartet. Die Richtung der Signalübertragung wird über den @dir:short\-Pin festgelegt.
+Der SN74LVC1T45DCKR ist ein bidirektionaler @levelshifter:short, der Signale mit unterschiedlichen Spannungspegel verbindet. Er wird verwendet um das 3,3V Steuersignal des ESP32 auf 5V anzuheben, da der nachgeschaltete @mosfet:short eine 5V-kompatible Ansteuerung erwartet. Die Richtung der Signalübertragung wird über den @dir:short\-Pin festgelegt.
 
-#pagebreak()
+//#pagebreak()
 == Ladeausgang <sec_bahn-ladeausgang>
 Der @usbc Ladeausgang versorgt die Ladestation der Controller mit 5V. Die Spannung wird direkt vom @buck bereitgestellt.
 
@@ -140,6 +147,7 @@ Die Ladefunktion ist über einen CJ2305 P-Kanal @mosfet:short schaltbar, der vom
 
 Ein P-Kanal @mosfet:short wird verwendet, da High-Seite geschaltet wird. Das Gate des @mosfet:short wird auf 5V gezogen, um den Stromfluss zu blockieren und auf 0V, um ihn zu ermöglichen.
 
+// VERBAUT -> FÜR ...
 An den @cc:short\-Leitungen des Steckverbinders sind je ein 5.1kΩ Pull-up Widerstand gegen 3.3V verbaut. Wird ein Gerät angesteckt, bildet dessen interner Pull-down Widerstand $R_d$ (5.1kΩ gemäß @usbc\-Spezifikation /*@usbc-spez*/) mit $R_1$ bzw. $R_2$ einen Spannungsteiler. Der Pegel $U_(A D C)$ an ADC1 bzw. ADC2 fällt dadurch von 3.3V auf ca. 1.65V.
 $
   U_(A D C) = 3.3 upright("V") dot R_d / (R_d + R_1) = 3.3 upright("V") dot (5.1 upright("k")Omega) / (5.1 upright("k")Omega + 5.1 upright("k")Omega) = 1.65 upright("V")

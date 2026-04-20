@@ -2,7 +2,7 @@
 #pagebreak()
 #aktueller_autor.update([#author3, #klasse])
 
-= 3D-Druck <sec_auto-3d>
+= Gehäuse <sec_auto-3d>
 Die Karosserie ist so designt, dass sie mit dem Auto fest verbunden ist. 
 Die Bodenfreiheit ist ideal für NFC und für die Schleifkontakte.
 
