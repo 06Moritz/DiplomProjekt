@@ -7,6 +7,7 @@
 #show: start_layout
 
 #include "Allgemein/deckblatt.typ"
+#page(header: none, footer: none)[]
 #include "Allgemein/eidesstattliche-erklaerung.typ"
 #include "Allgemein/vorwort.typ"
 #include "Allgemein/danksagung.typ"
@@ -14,7 +15,7 @@
 #include "Allgemein/abstract-en.typ"
 
 
-
+#page(header: none, footer: none)[]
 #include "Verzeichnisse/inhaltsverzeichnis.typ"
 
 #show: page_layout.with(

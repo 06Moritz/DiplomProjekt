@@ -11,27 +11,7 @@ Die Software des Basismoduls dient zum Rundenzeit messen mittels NFC, erkennen v
 == Near Field Communication
 Die Rundenzeit wird über NFC gemessen. Jedes Auto hat eine eingebaute NFC Spule. Sobald ein Auto über den NFC-Tag fährt, wird über @i2c die @id des Fahrzeugs gesendet. Es wird die Rundenzeit berechnet und am Display angezeigt. 
 \
-```c
-success = nfc.readPassiveTargetID(
-                    PN532_MIFARE_ISO14443A,uuid,&uuidLength,50);
 
-    if (success) {
-      for(int i=0; i<players; i++){
-        if (memcmp(uuid, playeruuid[i], uuidLength) == 0) {
-          // Rundenzeit berechnen
-          unsigned long currentTime = millis();
-          unsigned long lapTime = currentTime - lastLapTimes[i];
-          lastLapTimes[i] = currentTime;
-
-          // Rundenzeit über TCP senden
-          sendLapTime(i, lapTime);
-          }
-        }
-      }
-    }
-     vTaskDelay(10 / portTICK_PERIOD_MS); }
-  }
-```
 Der @esp32:short hat zwei Kerne (siehe @sec_bahn-esp). Ein Kern ist für die Zeitmessung reserviert um präzise zu messen ohne unterbrochen zu werden.
 Bei der Zeitmessung wird nach der @id des Autos gesucht und die Zeit berechnet.
 

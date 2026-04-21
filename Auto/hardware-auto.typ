@@ -94,7 +94,7 @@ Z#sub("0") = 50 \u{03A9} (Wellenwiderstand)
 $ w=((5.98*1.5)/(e^(((sqrt(4.5+ 1.41)*50)/87)))-0.035)*1/0.8 = underline(underline(2.73"mm" => 106"mil")) $
 \
 
-Die  Simulation der Antenne zeigt, dass der Reflexionsfaktor bei 2.4GHz ca. -7.5dB beträgt. 
+Die Simulation des Antennendesigns liefert einen Reflexionsfaktor (S#sub("11"))​ von ca. -7,5 dB bei der Betriebsfrequenz von 2,4 GHz (siehe Abbildung 28). Dies entspricht einer ausreichenden Leistungsübertragung für die Kommunikation auf kurze Distanz. In Abbildung 26 ist die Stromdichteverteilung zum Resonanzzeitpunkt dargestellt. \ \
 
 #grid(
   columns: (1fr, auto),

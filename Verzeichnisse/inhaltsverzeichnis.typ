@@ -20,18 +20,33 @@
   },
 
   // Fußzeile
-    footer: context {
+ footer: context {
       set text(size: 9pt, weight: "light")
       line(length: 100%, stroke: 0.5pt)
-      //v(0.5em)
+      
       let seite = counter(page).at(here()).first()
       let gesamt_iv = counter(page).at(<ende_iv>).first()
-      grid(
-        columns: (1fr, 1fr),
-        align: (left, right),
-        [#schule], 
-        [#counter(page).display("I") / #numbering("I", gesamt_iv)]
-      )
+      
+      // Variable für die Seitenzahlanzeige erstellen, um Code-Duplikate zu vermeiden
+      let seiten_anzeige = [#counter(page).display("I") / #numbering("I", gesamt_iv)]
+
+      if calc.odd(seite) {
+        // Ungerade Seite (Rechts): Schule links, Seite rechts
+        grid(
+          columns: (1fr, 1fr),
+          align: (left, right),
+          [#schule], 
+          [#seiten_anzeige]
+        )
+      } else {
+        // Gerade Seite (Links): Seite links, Schule rechts
+        grid(
+          columns: (1fr, 1fr),
+          align: (left, right),
+          [#seiten_anzeige],
+          [#schule]
+        )
+      }
     }
 )
 

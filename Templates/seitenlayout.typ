@@ -33,18 +33,29 @@
     },
 
     // Fußzeile
-    footer: context {
+ footer: context {
       set text(size: 9pt, weight: "light")
       line(length: 100%, stroke: 0.5pt)
-      //v(0.5em)
+      
       let name = aktueller_autor.at(here())      
       let seite = counter(page).at(here()).first()
       let gesamt = counter(page).at(<ende_arbeit>).first()
-      grid(
-        columns: (1fr, 1fr, 1fr),
-        align: (left, center, right),
-        [#name], [#schule], [#seite/#gesamt]
-      )
+      
+      if calc.odd(seite) {
+        // Ungerade Seite (Rechts): Name links, Schule mitte, Seite rechts
+        grid(
+          columns: (1fr, 1fr, 1fr),
+          align: (left, center, right),
+          [#name], [#schule], [#seite / #gesamt]
+        )
+      } else {
+        // Gerade Seite (Links): Seite links, Schule mitte, Name rechts
+        grid(
+          columns: (1fr, 1fr, 1fr),
+          align: (left, center, right),
+          [#seite / #gesamt], [#schule], [#name]
+        )
+      }
     }
   )
   body
