@@ -12,7 +12,7 @@ Im Gegensatz zu Linearreglern wird die Spannungsdifferenz nicht in Wärme umgewa
 
 Der @buck nutzt eine Induktivität zur zeitgesteuerten Energiespeicherung. Ein @mosfet:short zerlegt die Eingangsspannung durch hochfrequentes Schalten in Pulse, wobei das Tastverhältnis der @pwm das Spannungsniveau am Ausgang definiert. Ein nachgeschalteter LC-Filter glättet die Pulse schließlich zu einer stabilen Gleichspannung für den Lastkreis. @buckSource
 
-#figure(
+/* #figure(
   fimage("/Bilder/buckconverter.png", width: 100%),
   caption: [@buck Schaltungsprinzip],
-)
+) */
