@@ -2,7 +2,7 @@
 #aktueller_autor.update([#author2, #klasse])
 Das Fahrzeug fährt auf der Bahn, wird vom Controller gesteuert und übermittelt seine Fahrzeugkennung zur Rundenzeitmessung an die Bahn. 
 = Hardware
-Das Fahrzeug hat eine 2.4GHz Antenne, eine NFC-Spule auf der Leiterplatte. Motortreiber und Drehzahlsensor für Drehzahlmessung. Für die Spannungsregelung hat es einen @buck. Für akustische Signale ist ein Buzzer verbaut.\
+Das Fahrzeug hat eine 2.4GHz Antenne und eine NFC-Spule auf der Leiterplatte. Motortreiber und Drehzahlsensor für Drehzahlmessung. Für die Spannungsregelung hat es einen @buck. Ein Buzzer dient als akustische Signalgeber.ddd\
 \
 
 
@@ -17,9 +17,29 @@ Das Fahrzeug hat eine 2.4GHz Antenne, eine NFC-Spule auf der Leiterplatte. Motor
 Die Schleifkontakte, an der Unterseite des Fahrzeugs, greifen 12V von der Schiene ab. Die Eingangspannung wird mit einem @buck auf 5V geregelt. Mit einem Linearregler wird auf 3.3V geregelt. Die stufenweise Regelung sorgt für eine geringe Restwelligkeit, da Mikrocontroller eine stabile Versorgungsspannung benötigen (siehe @sec_bahn-spannungsversorgung).
 
 #figure(
-  fimage("/Bilder/buckLay.png", width: 85%),
+  image("/Bilder/buck-auto-sch.png", width: 110%),
+  caption: [Schaltplan der Spannungsversorgung],
+)
+
+
+#figure(
+  image("/Bilder/buckLay.png", width: 85%),
   caption: [Layout @buck Fahrzeug],
 )
+
+Layout der Spannungsversorgung:
+
+- Einspeisung der 12V mittels der Schleifkontakte über M2 Schrauben
+- Gleichrichten der Spannung mit Gleichrichter (N5) für Verpolungsschutz und Möglichkeit der Fahrtrichtungsänderung.
+- Der @buck ist auf 5V Ausgangsspannung eingestellt über das Widerstandsverhältnis R2 zu R6.
+- Es ist zu beachten die Eingangskondensatoren (C6,C7) nahe an dem @buck\-@ic:short zu platzieren.
+- Die Ausgangskondensatoren (C8,C9) sollten nahe an der Last (3.3V Netz) platziert werden, um die Restwelligkeit zu minimieren.
+- Alle Verbindungen sind mit Polygonen ausgeführt, um die Leitungsinduktivität zu reduzieren und die Wärmeableitung zu verbessern.
+- Die Spule L1 ist nahe am @buck platziert, und mit vielen @via:short:pl verbunden.
+- Die Spannung wird für den Microkontroller auf 3.3V geregelt, mit dem Linearregler (U1).
+
+
+
 
 == Motor
 Als Motor wird ein 12V Gleichstrommotor verwendet, der über eine H-Brücke gesteuert wird. Die H-Brücke ermöglicht es, die Drehrichtung des Motors zu ändern und die Geschwindigkeit über @pwm zu steuern (siehe @sec-hbridge).
@@ -46,9 +66,9 @@ Der Motor muss unter Belastung eine Mindestdrehzahl von 10200 $upright("U") / up
   caption: [H-Brückenschaltung],
 )
 
-Eine H-Brücke ist eine Schaltung mit der Motoren (hier: RL) angesteuert werden. Die Drehrichtung kann durch die Ansteuerung der Transistoren geändert werden. Die Schaltung ermöglicht es, Motoren mit niedrigem Signalpegel zu steuern. @hbrueke
+Eine H-Brücke ist eine Schaltung mit der Motoren (hier: RL) angesteuert werden. Die Drehrichtung kann durch die Ansteuerung der Transistoren geändert werden. Die Schaltung ermöglicht es, Motoren mit niedrigem Signalpegel zu geregelt. @hbrueke
 
-== WCH CH585
+== Mikrocontroller
 Der CH585 ist ein @riscv:short Mikrocontroller von WCH. Er hat direkte Peripherieunterstützung für @ble:both und @nfc:both. @sourceCH585
 // fertig schreiben
 
@@ -68,7 +88,7 @@ $ w=((5.98*h)/(e^(((sqrt(e_r+ 1.41)*Z_0)/87)))-t)*1/0.8 $
 
 t = 0.035mm (Kupferdicke)\
 h = 1.5mm (Dicke des Dielektrikums)\
-e#sub("r") = 4.5 (Dielektrizitätskonstante)\
+e#sub("r") = 4.5 (Dielektrizitätskonstante von FR4 Material laut Hersteller) \
 Z#sub("0") = 50 \u{03A9} (Wellenwiderstand)
 
 $ w=((5.98*1.5)/(e^(((sqrt(4.5+ 1.41)*50)/87)))-0.035)*1/0.8 = underline(underline(2.73"mm" => 106"mil")) $
@@ -101,7 +121,7 @@ $ w=((5.98*1.5)/(e^(((sqrt(4.5+ 1.41)*50)/87)))-0.035)*1/0.8 = underline(underli
 
 
 == Drehzahlsensor
-Die Drehzahl wird optisch mit einem VCNT2020 gemessen. Der Sensor besteht aus einer Infrarot @led:short und einem Fototransistor. Auf der Antriebsachse ist das Zahnrad zur Hälfte schwarz bemalt. Wenn sich die Achse dreht ändert sich die Lichtintensität, die der Sensor empfängt, dadurch kann die Drehzahl berechnet werden. Das Ausgangssignal des Sensors wird mit einem Komparator aufbereitet, damit es vom Controller verarbeitet werden kann. Refernzspannung (IN-) wird so eingestellt, dass die Schaltschwelle zwischen dem Spannungswert bei heller und dunkler Seite liegt.
+Die Drehzahl wird optisch mit einem VCNT2020 gemessen. Der Sensor besteht aus einer Infrarot @led:short und einem Fototransistor. Auf der Antriebsachse ist das Zahnrad zur Hälfte schwarz angestrichen. Wenn sich die Achse dreht ändert sich die Lichtintensität, die der Sensor empfängt, dadurch kann die Drehzahl berechnet werden. Das Ausgangssignal des Sensors wird mit einem Komparator aufbereitet, damit es vom Controller verarbeitet werden kann. Refernzspannung (IN-) wird so eingestellt, dass die Schaltschwelle zwischen dem Spannungswert bei heller und dunkler Seite liegt.
 
 Messwerte:
 - helle Seite: 2.24V
