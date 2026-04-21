@@ -94,7 +94,7 @@ Z#sub("0") = 50 \u{03A9} (Wellenwiderstand)
 $ w=((5.98*1.5)/(e^(((sqrt(4.5+ 1.41)*50)/87)))-0.035)*1/0.8 = underline(underline(2.73"mm" => 106"mil")) $
 \
 
-
+Die  Simulation der Antenne zeigt, dass der Reflexionsfaktor bei 2.4GHz ca. -7.5dB beträgt. 
 
 #grid(
   columns: (1fr, auto),
@@ -105,9 +105,6 @@ $ w=((5.98*1.5)/(e^(((sqrt(4.5+ 1.41)*50)/87)))-0.035)*1/0.8 = underline(underli
     fimage("/Bilder/antenna.png", height: 120pt), caption: [Antennendesign]
   ) 
 )
-
-
-
 
 #figure(
   image("/Bilder/Autocart.png", width: 60%),
@@ -121,7 +118,7 @@ $ w=((5.98*1.5)/(e^(((sqrt(4.5+ 1.41)*50)/87)))-0.035)*1/0.8 = underline(underli
 
 
 == Drehzahlsensor
-Die Drehzahl wird optisch mit einem VCNT2020 gemessen. Der Sensor besteht aus einer Infrarot @led:short und einem Fototransistor. Auf der Antriebsachse ist das Zahnrad zur Hälfte schwarz angestrichen. Wenn sich die Achse dreht ändert sich die Lichtintensität, die der Sensor empfängt, dadurch kann die Drehzahl berechnet werden. Das Ausgangssignal des Sensors wird mit einem Komparator aufbereitet, damit es vom Controller verarbeitet werden kann. Refernzspannung (IN-) wird so eingestellt, dass die Schaltschwelle zwischen dem Spannungswert bei heller und dunkler Seite liegt.
+Die Drehzahl wird optisch mit einem VCNT2020 gemessen. Der Sensor besteht aus einer Infrarot @led:short und einem Fototransistor. Auf der Antriebsachse ist das Zahnrad zur Hälfte schwarz angestrichen. Wenn sich die Achse dreht ändert sich die Lichtintensität, die der Sensor empfängt, dadurch kann die Drehzahl berechnet werden. Das Ausgangssignal des Sensors wird mittels Kompertorschaltung in ein steilflankiges Digitales Signal umgewandelt, damit es vom Controller fehlerfrei eingelesen werden kann. Refernzspannung (IN-) wird so eingestellt, dass die Schaltschwelle zwischen dem Spannungswert bei heller und dunkler Seite liegt.
 
 Messwerte:
 - helle Seite: 2.24V
@@ -140,9 +137,14 @@ Die @nfc:short\-Antenne ist eine Spule direkt auf der Leiterplatte. Die Schaltun
 \ \
 #figure(
   fimage("/Bilder/NFC.png", width: 90%),
-  caption: [NFC Antenne],
+  caption: [Schaltung der NFC-Antenne],
 )
 \
+- NFC_N: NFC analog output N-terminal
+- NFC_P: NFC analog output P-terminal
+- NFCA_N: NFC analog input
+- NFCA_P: NFC analog input
+- NFC_CTR: NFC tune pin
 #figure(
   image("/Bilder/nfcCoil.png", width: 80%),
   caption: [NFC Antenne auf der Leiterplatte],
@@ -156,7 +158,7 @@ Die @nfc:short\-Antenne ist eine Spule direkt auf der Leiterplatte. Die Schaltun
 )
 <fig-nfcantenna>
 
-Die Spule kann mit der Ersatzschaltung dargestellt werden. Optimal ist ein Gütefaktor von 35, damit die Antenne effizient arbeitet. Zu hohe Güten werden mit einem Dämpfungswiderstand R#sub("Q") ausgeglichen. Die Antennenwerte wurden durch Messung mit einer RCL-Messbrücke ermittelt. 
+Die Spule kann mit der Ersatzschaltung dargestellt werden. Optimal ist ein Gütefaktor von 35 laut der Applicationnote, damit die Antenne effizient arbeitet. Zu hohe Güten werden mit einem Dämpfungswiderstand R#sub("Q") ausgeglichen. Die Antennenwerte wurden durch Messung mit einer RCL-Messbrücke ermittelt. 
 
 Die Spule hat folgende Werte:
 - Induktivität L#sub[a] = 555nH
@@ -201,7 +203,7 @@ $ C_1 approx 1/(\u{03C9}* (sqrt((R_"tr"*R_"pa")/4)+X_"tr"/2)) = underline(underl
 $ C_2 approx 1/(\u{03C9}^2*L_"pa"/2)-1/(\u{03C9}*sqrt((R_"tr"*R_"pa")/4))-2*C_"pa" = underline(underline(390"pF")) $
 
 == Temporäre Spannungsversorgung
-In das 3.3V Netz ist ein 10F Superkondensator eingebaut der durch Knopfdruck eingeschaltet werden kann um das Auto kurzfristig mit 3.3V zu versorgen. Dadurch kann das Auto durch NFC mit dem Controller Daten wie die MAC-Adresse austauschen.
+In das 3.3V Netz ist ein 10F Superkondensator eingebaut der durch Knopfdruck eingeschaltet werden kann um das Auto kurzfristig mit 3.3V zu versorgen. Dadurch kann das Auto hochgehoben durch die NFC-Funktion mit dem Controller Daten wie die MAC-Adresse austauschen.
 
 == Leiterplatte
 

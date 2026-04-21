@@ -8,15 +8,14 @@ Die Basis der Implementierung bildet der @ble Beispielcode von WCH. Dieser Code 
 Das Auto ist als @ble\-Master (Central-Device) konfiguriert. Es sucht aktiv nach Geräten zum Verbinden und empfängt Geschwindigkeitswerte.
 
 === Clock-Initialisierung
+
+#figure(
+  image("/Bilder/flowchart-ble.png", width: 80%),
+  caption: [Blockschaltbild BLE Clock Initialisierung]
+)
+\
 Es wird der interne niederfrequente 32kHz Quarz verwendet, der im _setup_ kalibriert werden muss. Für @ble ist eine genaue Frequenz erforderlich.
 
-```c
-HSECFG_Capacitance(HSECap_18p); //Kondensatoren für Quarz einstellen
-SetSysClock(SYSCLK_FREQ); //Systemfrequenz einstellen
-SysTick->CTLR |= 0x05; //SysTick Timer auf Clock Frequenz einstellen
-Calibration_LSI(Level_64); //Clock kalibrieren
-
-```
 === Verbindung
 - Es wird aktiv nach der eingestellen MAC-Adresse des Controllers gesucht, diese kann über @nfc eingestellt werden (siehe @sec-pairing).
 
@@ -25,18 +24,15 @@ Calibration_LSI(Level_64); //Clock kalibrieren
 
 === Verarbeitung der Daten
 - Die empfangen Motorleistungsdaten werden direkt gespeichert und von der Motorregelung verarbeitet.
-```c
-    else if(pMsg->method == ATT_HANDLE_VALUE_NOTI)
-    {
-        // Byte auslesen (0-255)
-        uint8_t num = pMsg->msg.handleValueNoti.pValue[0];
-        // Sollwert updaten
-        soll = num;
-    }
-```
+
 
 == Motorregelung
 Die Drehzahl wird über den Drehzahlsensor eingelesen. Der Sensor gibt einmal in der Umdrehung ein Low-Signal. Auf dem Input-Pin ist ein Interrupt gesetzt. Die Zeit zwischen den Interrupts wird gemessen, um die Drehzahl festzustellen. Die Berechnung der Motorleistung erfolgt über einen @pi:short\-Regler, der die Abweichung von der gewünschten Drehzahl berechnet und entsprechend die Leistung anpasst.
+
+#figure(
+  image("/Bilder/flowchart-regler.png", width: 80%),
+  caption: [Blockschaltbild Motorregelung]
+)
 
 ```c
 __attribute__((interrupt("WCH-Interrupt-fast")))
@@ -53,7 +49,6 @@ void GPIOA_IRQHandler(void) {
 ```
 \ 
 Für den @pi:short\-Regler ist ein periodischer Ablauf nötig. Die Motorleistung wird alle 10 Millisekunden berechnet. Es wird ein Timer-Interrupt gesetzt. Der Integralteil wird durch kontinuierliches Summieren des Fehlers berechnet.
-\ \
 
 ```c
 int x = per_norm - soll; //Abweichung vom Sollwert
@@ -87,7 +82,7 @@ nfca_picc_start();
 
 
 == Pairing mode <sec-pairing>
-Der _pairing-mode_ wird genutzt um das Auto mit einem Controller zu verbinden. Um zu ermitteln ob der IC über die Bahn oder mit dem Superkondensator versorgt wird, wird die Eingangsspannung über den @adc gemessen. Die Spannung vom Kondensator niedriger ist als die vom @ldo. Wenn das erkannt wird wechselt der @nfc Modus zu @pcd um als Reader zu agieren. Es wird die @mac Adresse des Controllers von einem @nfc\-Tag gelesen und gespeichert. 
+Der _pairing-mode_ wird genutzt um das Auto mit einem Controller zu verbinden.  Um zu ermitteln ob der IC über die Bahn oder mit dem Superkondensator versorgt wird, wird die Eingangsspannung über den @adc gemessen, da die Spannung vom Kondensator 100mV niedriger ist als die vom @ldo. Wenn das erkannt wird wechselt der @nfc Modus zu @pcd um als Reader zu agieren. Es wird die @mac Adresse des Controllers von einem @nfc\-Tag gelesen und gespeichert. Das Auto kann sich dann mit dem Controller verbinden. 
 
 ```c
     readADC();

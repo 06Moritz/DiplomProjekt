@@ -36,28 +36,17 @@ Der @esp32:short hat zwei Kerne (siehe @sec_bahn-esp). Ein Kern ist für die Zei
 Bei der Zeitmessung wird nach der @id des Autos gesucht und die Zeit berechnet.
 
 == Bluetooth Low Energy <sec-ble_bahn>
+
+#figure(
+  image("/Bilder/flowchart-hmble.png", width: 80%),
+  caption: [Blockschaltbild BLE Kommunikation Bahn]
+)\
 Die @wifi Zugangsdaten werden über @ble durch die App eingestellt.
 Es werden Informationen vom Basismodul an die Controller mit @ble Advertising gesendet.
 \
 @ble Advertising ermöglicht es, kleine Datenpakete vom Basismodul an den Controller zu senden, ohne sich zu verbinden. Dies ist besonders nützlich für die Übertragung von Informationen wie Rundenzeiten oder Statusupdates, da es eine schnelle und effiziente Kommunikation ermöglicht, ohne den Overhead einer vollständigen Verbindung aufzubauen.
+
 \
-
-```c
-std::string strData = "";
-  strData += (char)MANUFACTURER_ID & 0xFF;
-  strData += (char)(MANUFACTURER_ID >> 8) & 0xFF;
-  for(int i=0; i<3; i++) {
-    strData += (char)myData[i];
-  }
-
-  oAdvertisementData.setManufacturerData(strData);
-
-  pAdvertising->setAdvertisementData(oAdvertisementData);
-  pAdvertising->setScanResponse(false); // Scan Response ist hier nicht nötig
-
-  // Start Advertising
-  pAdvertising->start();
-```
 Es werden Auto spezifische Werte wie Rundenzeit oder Startnummer übertragen. Die Daten werden in einen String umgewandelt und gesendet.
 \
 
