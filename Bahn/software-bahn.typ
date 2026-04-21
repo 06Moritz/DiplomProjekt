@@ -27,8 +27,34 @@ Es werden Informationen vom Basismodul an die Controller mit @ble Advertising ge
 @ble Advertising ermöglicht es, kleine Datenpakete vom Basismodul an den Controller zu senden, ohne sich zu verbinden. Dies ist besonders nützlich für die Übertragung von Informationen wie Rundenzeiten oder Statusupdates, da es eine schnelle und effiziente Kommunikation ermöglicht, ohne den Overhead einer vollständigen Verbindung aufzubauen.
 
 \
-Es werden Auto spezifische Werte wie Rundenzeit oder Startnummer übertragen. Die Daten werden in einen String umgewandelt und gesendet.
+Es werden Auto spezifische Werte wie Rundenzeit oder Spielername übertragen. Die Daten werden in einen String umgewandelt und gesendet.
 \
+
+
+Übersicht Packettypen:
+#figure(
+  align(center)[
+    #set text(size: 12pt)
+    #table(
+      columns: (120pt, 240pt),
+      inset: 5pt,
+      stroke: 0.3pt + black,
+      align: center,
+
+      [*Hex*], [*Pakettyp*],
+      [0x00], [Spielername],
+      [0x01], [Autonummer],
+      [0x02], [schnellste Runde],
+      [0x03], [abweichung zur schnellsten Runde],
+      [0x04], [Modus],
+      [0x05], [Zeitstempel],
+      [0x06], [Rundenanzahl],
+      [0x07], [Durchschnitsgeschwindigkeit],
+    )
+  ],
+  caption: [Daten],
+) <fig-tmc5160driveroverview>
+
 
 
 == Transmission Control Protocol

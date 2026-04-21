@@ -206,6 +206,7 @@ Datenübertragung:
   caption: [Datenübertragung],
 )
 Die Daten werden Packetiert übertragen. Jedes Paket enthält einen Hexadezimalen Code, der den Typ des Pakets angibt. Der Längen Indicator gibt an, wie viele Bytes das Paket enthält.  
+
 #pagebreak()
 Übersicht Packettypen:
 #figure(
