@@ -2,7 +2,7 @@
 #set heading(offset: 1)
 #figure(
   image("/Bilder/3d/bahn-3d-mitdisplay.png", width: 75%),
-  caption: [3D-Modell Basismodul],
+  caption: [Basismodul],
 )
 #include "hardware-bahn.typ"
 #include "software-bahn.typ"

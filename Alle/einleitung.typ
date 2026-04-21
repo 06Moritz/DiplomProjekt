@@ -1,3 +1,4 @@
+#import "../config.typ": *
 = Einleitung
 
 == Problemstellung
@@ -37,6 +38,13 @@ Es wird ein Basismodul, ein Controller, ein Auto und eine Ladestation entwickelt
 #figure(
   image("/Bilder/BlockschaltbildProjekt.svg", width: 100%),
   caption: [Blockschaltbild der Systemarchitektur],
+)
+
+// NAME? 
+// Optionen: Spielnetzwerk, Projektübersicht, Gesamtprojekt, ...
+#figure(
+  fimage("/Bilder/projekt-alles.png", width: 100%),
+  caption: [Gesamtprojekt Übersicht],
 )
 
 #pagebreak()
