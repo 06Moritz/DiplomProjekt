@@ -262,8 +262,7 @@ fun handleMessage(msg: String) {
 \ \
 
 
-
-Die App und der @esp32:short als Sender und Empfänger initialisiert.
+Initialisierung der Bidirektionalen Kommunikaation zwischen der App und dem @esp32:short
 \
 @tcp Kotlin: @sourceTCPApp
 
