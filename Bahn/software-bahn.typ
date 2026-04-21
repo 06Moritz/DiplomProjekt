@@ -30,6 +30,10 @@ Es werden Informationen vom Basismodul an die Controller mit @ble Advertising ge
 Es werden Auto spezifische Werte wie Rundenzeit oder Spielername übertragen. Die Daten werden in einen String umgewandelt und gesendet.
 \
 
+#figure(
+  image("/Bilder/App/Datenverb.png", width: 80%),
+  caption: [Blockschaltbild TCP Kommunikation Bahn]
+)\
 
 Übersicht Packettypen:
 #figure(
@@ -49,7 +53,7 @@ Es werden Auto spezifische Werte wie Rundenzeit oder Spielername übertragen. Di
       [0x04], [Modus],
       [0x05], [Zeitstempel],
       [0x06], [Rundenanzahl],
-      [0x07], [Durchschnitsgeschwindigkeit],
+      [0x07], [Durchschnittsgeschwindigkeit],
     )
   ],
   caption: [Daten],
