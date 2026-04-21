@@ -20,7 +20,7 @@ Die Versorgung der Hardware erfolgt über einen @usbc Eingang mit @pd, der eine 
 - Standardisierung: \ @usbc @pd ist weit verbreitet und ermöglicht die Nutzung von handelsüblichen Netzteilen ohne eigene Steckerlösung.
 - Leistung: \ Der USB-C PD Standard unterstützt bis zu 240W Leistung, was weitaus größer als die Leistungsaufnahme der Bahn mit etwa 70W ist.
 - Bauweise: \ @usbc ermöglicht reversibles Einstecken.
-- Spannungsaushandlung: \ Über den @pd\-Handshake wird die benötigte Spannung von 12V aktiv zwischen Netzteil und Hardware vereinbart, wodurch nur kompatible Netzteile die erhöhte Spannung liefern. @usbcpd 
+- Spannungsaushandlung: \ Über den @pd\-Handshake wird die benötigte Spannung von 12V aktiv zwischen Netzteil und Hardware vereinbart, wodurch nur kompatible Netzteile die erhöhte Spannung liefern. @usbc @pd 
 
 Von den 12V werden zwei geregelte Spannungsebenen erzeugt:
 - 5V über einen @buck für die Ladestation 

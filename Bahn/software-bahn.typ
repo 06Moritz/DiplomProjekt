@@ -69,21 +69,14 @@ Sobald sich der @esp32:short über @wifi verbunden hat, nimmt er Verbindung mit 
 
 Mit dem @tcp\-Protokoll wird sichergestellt, dass Signale von der App und dem Display in beide Richtungen übertragen werden können.
 \
-```c
-    if (!client.connected()) {
-        client = server.available();
-    } else if (client.available()) {
-        String cmd = client.readStringUntil('\n');
-        cmd.trim();
-        if (cmd.startsWith("MODUS:")) {
-            currentMode = cmd.substring(6);
-            if (gameState == MENU) drawMenu();
-        } else if (cmd.equals("Start")) {
-            gameState = RACE;
-            drawRace();
-        }
 
-```
+#figure(
+  image("/Bilder/BlockdiagrammTCP.png", width: 100%),
+  caption: [Blockschaltbild TCP Kommunikation],
+)
+
+
+
 Der Codeausschnitt beschreibt die Verarbeitung von @tcp Befehlen auf dem Display des Basismoduls. Es wird überprüft, ob die App  verbunden ist. Je nach Befehl wird der Modus geändert oder das Rennen gestartet.
 
 
