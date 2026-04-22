@@ -27,7 +27,7 @@ Es werden Informationen vom Basismodul an die Controller mit @ble Advertising ge
 @ble Advertising ermöglicht es, kleine Datenpakete vom Basismodul an den Controller zu senden, ohne sich zu verbinden. Dies ist besonders nützlich für die Übertragung von Informationen wie Rundenzeiten oder Statusupdates, da es eine schnelle und effiziente Kommunikation ermöglicht, ohne den Overhead einer vollständigen Verbindung aufzubauen.
 
 \
-Es werden Auto spezifische Werte wie Rundenzeit oder Spielername übertragen. Die Daten werden in einen String umgewandelt und gesendet.
+Es werden Auto spezifische Werte wie Rundenzeit oder Spielername übertragen. Die Daten werden packetiert und gesendet.
 \
 
 
