@@ -205,10 +205,10 @@ Datenübertragung:
   image("/Bilder/App/Datenverb.png", width: 80%),
   caption: [Blockschaltbild TCP Kommunikation],
 )
-Die Daten werden Packetiert übertragen. Jedes Paket enthält einen Hexadezimalen Code, der den Typ des Pakets angibt. Der Längen Indicator gibt an, wie viele Bytes das Paket enthält.  
+Die Daten werden Paketiert übertragen. Jedes Paket enthält einen Hexadezimalen Code, der den Typ des Pakets angibt. Der Längen Indicator gibt an, wie viele Bytes das Paket enthält.  
 
 #pagebreak()
-Übersicht Packettypen:
+Übersicht Pakettypen:
 #figure(
   align(center)[
     #set text(size: 12pt)
