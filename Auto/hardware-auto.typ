@@ -132,7 +132,7 @@ Messwerte:
 #pagebreak()
 
 
-== NFC Antenne
+== NFC Antenne <sec_auto-nfcantenne>
 Die @nfc:short\-Antenne ist eine Spule direkt auf der Leiterplatte. Die Schaltung besteht aus drei Teilen: EMV-Filter, Anpassungsnetzwerk und Antenne.
 \ \
 #figure(

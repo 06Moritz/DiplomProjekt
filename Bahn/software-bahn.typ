@@ -8,7 +8,7 @@ Die Software des Basismoduls dient zum Rundenzeit messen mittels NFC, erkennen v
 
 
 
-== Near Field Communication
+== Near Field Communication <sec_nfc-bahn-sw>
 Die Rundenzeit wird über NFC gemessen. Jedes Auto hat eine eingebaute NFC Spule. Sobald ein Auto über den NFC-Tag fährt, wird über @i2c die @id des Fahrzeugs gesendet. Es wird die Rundenzeit berechnet und am Display angezeigt. 
 \
 
@@ -30,6 +30,10 @@ Es werden Informationen vom Basismodul an die Controller mit @ble Advertising ge
 Es werden Auto spezifische Werte wie Rundenzeit oder Spielername übertragen. Die Daten werden packetiert und gesendet.
 \
 
+#figure(
+  image("/Bilder/App/Datenverb.png", width: 80%),
+  caption: [Blockschaltbild TCP Kommunikation Bahn]
+)\
 
 Übersicht Packettypen:
 #figure(
@@ -49,7 +53,7 @@ Es werden Auto spezifische Werte wie Rundenzeit oder Spielername übertragen. Di
       [0x04], [Modus],
       [0x05], [Zeitstempel],
       [0x06], [Rundenanzahl],
-      [0x07], [Durchschnitsgeschwindigkeit],
+      [0x07], [Durchschnittsgeschwindigkeit],
     )
   ],
   caption: [Daten],

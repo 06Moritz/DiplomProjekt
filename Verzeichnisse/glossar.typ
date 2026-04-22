@@ -35,6 +35,8 @@
 
   ic: (short: "IC", long: "Integrated Circuit", description: "Elektronisches Bauteil, das viele Schaltungsfunktionen miniaturisiert auf einem einzigen Halbleiterchip vereint"),
 
+  fet: (short: "FET", long: "Field-Effect Transistor", description: "Transistor, der durch ein elektrisches Feld gesteuert wird und als Schalter oder Verstärker in elektronischen Schaltungen dient"),
+
   mosfet: (short: "MOSFET", long: "Metal-Oxide-Semiconductor Field-Effect Transistor", description: "Feldeffekttransistor, der als spannungsgesteuerter elektronischer Schalter oder Verstärker eingesetzt wird"),
 
   buck: (short: "Buck-Converter", long: "Abwärtswandler", description: "Schaltregler, der eine höhere Eingangsspannung durch getaktetes Schalten effizient in eine niedrigere Ausgangsspannung umwandelt"),

@@ -16,6 +16,26 @@
       [#schuljahr]
     )
     //v(-0.5em)
+
+    // Falls Kopfzeile auch gespiegelt:
+    /* if calc.odd(seite) {
+      // Ungerade Seite (Rechts): Projekt links, Schuljahr rechts
+      grid(
+        columns: (1fr, 1fr),
+        align: (left, right),
+        [#projekt], 
+        [#schuljahr]
+      )
+    } else {
+      // Gerade Seite (Links): Schuljahr links, Projekt rechts
+      grid(
+        columns: (1fr, 1fr),
+        align: (left, right),
+        [#schuljahr],
+        [#projekt]
+      ) 
+    }*/
+
     line(length: 100%, stroke: 0.5pt)
   },
 

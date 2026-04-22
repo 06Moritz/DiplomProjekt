@@ -12,7 +12,7 @@
 == Controller Display
 Der CH572 wird in C programmiert. Auf dem Display werden Renndaten wie Rundenzeit und Spielername angezeigt (siehe @sec-controllerui). Das Display wird direkt über @spi\-Befehle angesprochen.
 
-== Bluetooth Low Energy (BLE)
+== Bluetooth Low Energy (BLE) <sec_controller-ble>
 Die Basis der Implementierung bildet der @ble Beispielcode von WCH. Dieser Code stellt die notwendigen Low-Level-Funktionen für den Bluetooth-Stack und das @tmos zur Verfügung.
 Das Auto ist als Peripheral-Device konfiguriert. Es advertised und wartet bis das Auto sich damit verbindet.
 Der Controller sendet periodisch die aktuellen Analogwerte die er vom @adc über @uart einliest. Die Daten werden als notify gesendet da keine Antwort notwendig ist.

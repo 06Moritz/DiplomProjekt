@@ -2,9 +2,18 @@
 #aktueller_autor.update([#author1, #klasse])
 
 = Low Dropout Regulator (LDO) <sec_ldo>
-Ein @ldo:long ist ein linearer Spannungsregler, der eine Eingangsspannung in eine niedrigere, stabile Ausgangsspannung wandelt. Die Regelung erfolgt dabei nicht durch getaktetes Schalten wie beim @buck (siehe @sec_buck), sondern durch einen kontinuierlich gesteuerten Transistor, der die überschüssige Spannung als Wärme abgibt. Aufgrund der geringen benötigten Differenz zwischen Ein- und Ausgangsspannung (Low-Dropout-Spannung) ist der @ldo passend für Anwendungen, bei denen der Eingangswert nur knapp über dem gewünschten Ausgangswert liegt.
+/* Ein @ldo:long ist ein linearer Spannungsregler, der eine Eingangsspannung in eine niedrigere, stabile Ausgangsspannung wandelt. Im Gegensatz zum @buck (siehe @sec_buck) erfolgt die Regelung über einen kontinuierlich gesteuerten Transistor, der die überschüssige Spannung als Wärme abgibt. Der @ldo eignet sich besonders als nachgeschaltete Stufe eines @buck:short\s, da er dessen hochfrequente Schaltstörungen unterdrückt und so eine rauscharme Versorgungsspannung für empfindliche Bauteile bereitstellt. @sourceLDO */
 
-Eigenschaften eines @ldo's:
+
+Ein @ldo:long ist ein linearer Spannungsregler, der eine Eingangsspannung in eine niedrigere, stabile Ausgangsspannung wandelt.
+
+Die Differenzspannung zum Eingang fällt dabei nicht wie bei Schaltnetzteilen an einer Induktivität ab, sondern an der Kollektor-Emitter-Strecke oder der Drain-Source-Strecke beim @fet:short. 
+
+ /* Die Regelung erfolgt dabei nicht durch getaktetes Schalten wie beim @buck (siehe @sec_buck), sondern durch einen kontinuierlich gesteuerten Transistor, der die überschüssige Spannung als Wärme abgibt. */ 
+ 
+ Aufgrund der geringen benötigten Differenz zwischen Ein- und Ausgangsspannung (Low-Dropout-Spannung) ist der @ldo passend für Anwendungen, bei denen der Eingangswert nur knapp über dem gewünschten Ausgangswert liegt.
+
+Eigenschaften eines @ldo:short\-Reglers:
 - einfache Beschaltung mit wenigen externen Bauteilen
 - sehr geringes Ausgangsrauschen sowie minimale @ripple
 - keine elektromagnetischen Störungen durch Schaltfrequenzen
@@ -18,4 +27,11 @@ In diesem Projekt kommen @ldo\s zum Einsatz um die Betriebsspannung von Mikrocon
   fimage("/Bilder/ldo-block-prinzip.png", width: 75%),
   caption: [@ldo Schaltungsprinzip],
 ) */
+
+\
+Verwendung im Projekt:
+- Basismodul: \ 5V auf 3.3V für @esp32:short, Display und @nfc:short\-Module (siehe @sec_bahn-ldo)
+- Fahrzeug: \ 5V auf 3.3V für den Mikrocontroller (siehe @sec_auto-spgversorgung)
+- Controller: \ @lipo:short\-Spannung auf 3.3V für den Mikrocontroller (siehe @sec_controller-spgversorgung)
+
 #pagebreak()
