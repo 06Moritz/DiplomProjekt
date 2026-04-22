@@ -65,7 +65,6 @@ Die Displayhalterung ist direkt mit dem Schienenteil verbunden und vor den Schie
   caption: [3D-Modell Basismodul],
 )
 
-
 == Einschub
 Der Einschub bildet den Abschluss des Gehäuses. Er verdeckt die Leiterplatte sowie die Rückseite des Displays. Auf der rechten Seite befindet sich eine Aussparung für den @usbc\-Eingang der Spannungsversorgung.
 
