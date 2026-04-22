@@ -48,7 +48,7 @@ Die Spannungsregelung ist in drei Teile gegliedert:
 
 #figure(
 fimage("/Bilder/laderegler.png", width: 100%),
-caption: [Spannungsregler],
+caption: [Schaltplan Spannungsregler],
 ) 
 
 == Laderegler <sec-charger>
@@ -63,7 +63,7 @@ Um einen Ladestrom von 1A einzustellen, wird ein 1.2kΩ Widerstand an PIN2 des T
 Beim Aufnehmen der Ladekurve werden Strom und Spannung des Akkus gemessen. Die Ladespannung mittels einem Spannungsteiler, der Lade Ladestrom über einen Shunt-Widerstand.
 #figure(
 fimage("/Bilder/Ladevorgang.png", width: 100%),
-caption: [Ladevorgang],
+caption: [Kennlinie Ladevorgang],
 ) 
 
 
@@ -150,7 +150,7 @@ Dadurch wird verhindert, dass hochfrequente Signale in benachbarte Leiterbahnen 
 
 #figure(
 image("/Bilder/controllerUberblick.png", width: 100%),
-caption: [Leiterplatte des Controllers],
+caption: [Leiterplatte Controller],
 )
 
 Zum Programmieren der Mikrocontrollers ist auf der Unterseite der Leiterplatte ein Überlötjumper platziert (CH572-Data-CH32). Durch das Umlöten der Pads, wird Platz auf der Oberseite eingespart, da ein programmier Pin doppelt belegt werden kann.

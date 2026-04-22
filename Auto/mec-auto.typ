@@ -7,7 +7,7 @@ Die mechanische Komponente des Autos ist möglichst einfach gehalten. Die Leiter
 
 #figure(
   image("/Bilder/3d-car.png", width: 85%),
-  caption: [3D Modell des Autos],
+  caption: [3D-Ansicht des Autos],
 )
 
 == Getriebe
