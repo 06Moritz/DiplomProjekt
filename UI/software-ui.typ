@@ -88,7 +88,7 @@ Wenn das Display gedrückt sendet es über @i2c die XY-Koordinaten des Touch-Eve
 \
 #figure(
   image("/Bilder/display.png", width: 80%),
-  caption: [Display des Basismoduls]
+  caption: [Display Basismodul]
 )
 
 
@@ -372,7 +372,7 @@ Damit man auf dem Display die Geschwindigkeit in Meter pro Sekunde angezeigt bek
 
 #figure(
   image("/Bilder/controllerScreen.png", width: 50%),
-  caption: [Controller Display],
+  caption: [Display Controller],
 )
 
 Der Spielername und das zugewiesene Auto werden ebenfalls auf dem Display angezeigt, um Verwechslungen zu vermeiden. Zudem wird die aktuelle Rundenanzahl angezeigt, um Aufschluss über die aktuelle Runde zu geben.

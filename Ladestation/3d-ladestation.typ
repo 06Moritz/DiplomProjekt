@@ -66,7 +66,7 @@ Der Deckel hat vier Vertiefungen, in die die Controller hineingestellt werden. I
 
 #figure(
   image("/Bilder/3d/ladestation+controller.png", width: 100%),
-  caption: [3D Modell Ladestation],
+  caption: [3D-Modell Ladestation],
 )
 
 == Ladeanschluss
