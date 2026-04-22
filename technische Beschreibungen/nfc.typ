@@ -20,7 +20,9 @@ Die Datenübertragung erfolgt mittels induktiver Kopplung zweier Antennenspulen.
 
 Der Verbindungsaufbau erfolgt ohne Pairing-Prozess, wobei die induktive Energieübertragung einen passiven Betrieb des Transponders ermöglicht und die geringe Reichweite das Abhören erschwert. @NfcSource2
 
-Die Datenübertragung wird mittels induktiver Kopplung zweier Antennenspulen umgesetzt. Der Transponder beeinflusst das Magnetfeld des Lesegeräts durch gezielte Laständerungen (Lastmodulation), um Daten zurückzusenden. Im Projekt kommen zwei Betriebsarten zum Einsatz:
+Die Datenübertragung wird mittels induktiver Kopplung zweier Antennenspulen umgesetzt. Der Transponder beeinflusst das Magnetfeld des Lesegeräts durch gezielte Laständerungen (Lastmodulation), um Daten zurückzusenden.
+
+ Im Projekt kommen zwei Betriebsarten zum Einsatz:
 - Reader/Writer-Modus: \ Das aktive Gerät liest Daten von einem passiven @nfc:short\-Tag aus.
 - Card-Emulation-Modus: \ Das Gerät verhält sich wie ein passiver @nfc:short\-Tag.
 
