@@ -2,7 +2,7 @@
 #aktueller_autor.update([#author2, #klasse])
  
 = Hardware
-Das Fahrzeug hat eine 2.4GHz Antenne und eine NFC-Spule auf der Leiterplatte. Motortreiber und Drehzahlsensor für Drehzahlmessung. Für die Spannungsregelung hat es einen @buck. Ein Buzzer dient als akustische Signalgeber.ddd\
+Das Fahrzeug hat eine 2.4GHz Antenne und eine NFC-Spule auf der Leiterplatte. Motortreiber und Drehzahlsensor für Drehzahlmessung. Für die Spannungsregelung hat es einen @buck. Ein Buzzer dient als akustische Signalgeber.\
 \
 
 
@@ -119,7 +119,7 @@ Die Simulation des Antennendesigns liefert einen Reflexionsfaktor (S#sub("11"))�
 
 
 == Drehzahlsensor
-Die Drehzahl wird optisch mit einem VCNT2020 gemessen. Der Sensor besteht aus einer Infrarot @led:short und einem Fototransistor. Auf der Antriebsachse ist das Zahnrad zur Hälfte schwarz angestrichen. Wenn sich die Achse dreht ändert sich die Lichtintensität, die der Sensor empfängt, dadurch kann die Drehzahl berechnet werden. Das Ausgangssignal des Sensors wird mittels Kompertorschaltung in ein steilflankiges Digitales Signal umgewandelt, damit es vom Controller fehlerfrei eingelesen werden kann. Refernzspannung (IN-) wird so eingestellt, dass die Schaltschwelle zwischen dem Spannungswert bei heller und dunkler Seite liegt.
+Die Drehzahl wird optisch mit einem VCNT2020 gemessen. Der Sensor besteht aus einer Infrarot @led:short und einem Fototransistor. Auf der Antriebsachse ist das Zahnrad zur Hälfte schwarz angestrichen. Wenn sich die Achse dreht ändert sich die Lichtintensität, die der Sensor empfängt, dadurch kann die Drehzahl berechnet werden. Das Ausgangssignal des Sensors wird mittels Kompertorschaltung in ein steilflankiges Digitales Signal umgewandelt, damit es vom Controller fehlerfrei eingelesen werden kann. Referenzspannung (IN-) wird so eingestellt, dass die Schaltschwelle zwischen dem Spannungswert bei heller und dunkler Seite liegt.
 
 Messwerte:
 - helle Seite: 2.24V

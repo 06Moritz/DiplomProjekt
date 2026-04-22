@@ -41,7 +41,7 @@ Die Versorgung des Controllers erfolgt über einen @lipo, dessen Betriebsspannun
 Die Spannungsregelung ist in drei Teile gegliedert:
 - Laderegelung:\ Sicherstellung eines geregelten Ladens des Akkus durch Überwachung von Spannung und Stromstärke während des Ladevorgangs. 
 
-- Schutzschaltung:\ Verwendung eines Schutzschaltkreises zur verhinderung von Überladung und Tiefentladung. 
+- Schutzschaltung:\ Verwendung eines Schutzschaltkreises zur Verhinderung von Überladung und Tiefentladung. 
 
 - @ldo:both: \ Regelt von Variabler Akkuspannung (3.2-4.2V) auf 3.3V für die Versorgung der Mikrocontroller und anderer Komponenten.  Für die geringe Spannungsdifferenz zwischen Akku und Versorgungsspannung der Komponenten ist ein @ldo:long nötig. 
 
