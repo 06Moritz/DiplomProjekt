@@ -83,19 +83,3 @@ nfca_picc_start();
 
 == Pairing mode <sec-pairing>
 Der _pairing-mode_ wird genutzt um das Auto mit einem Controller zu verbinden.  Um zu ermitteln ob der IC über die Bahn oder mit dem Superkondensator versorgt wird, wird die Eingangsspannung über den @adc gemessen, da die Spannung vom Kondensator 100mV niedriger ist als die vom @ldo. Wenn das erkannt wird wechselt der @nfc Modus zu @pcd um als Reader zu agieren. Es wird die @mac Adresse des Controllers von einem @nfc\-Tag gelesen und gespeichert. Das Auto kann sich dann mit dem Controller verbinden. 
-
-```c
-    readADC();
-    if(readADC()>210 || PAIR == 0)
-    {  //init main mode
-        nfcPiccInit();
-        nfca_picc_start();
-
-        Main_Circulation();
-    }
-
-    else {
-        //init PCD mode
-        nfcPCDInit();
-    }
-```

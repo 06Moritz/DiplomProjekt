@@ -32,7 +32,7 @@ Es werden Auto spezifische Werte wie Rundenzeit oder Spielername übertragen. Di
 
 #figure(
   image("/Bilder/App/Datenverb.png", width: 80%),
-  caption: [Blockschaltbild TCP Kommunikation Bahn]
+  caption: [Blockschaltbild BLE Kommunikation Bahn]
 )\
 
 Übersicht Packettypen:
@@ -74,9 +74,5 @@ Mit dem @tcp\-Protokoll wird sichergestellt, dass Signale von der App und dem Di
   caption: [Blockschaltbild TCP Kommunikation],
 )
 
-
-
-Der Codeausschnitt beschreibt die Verarbeitung von @tcp Befehlen auf dem Display des Basismoduls. Es wird überprüft, ob die App  verbunden ist. Je nach Befehl wird der Modus geändert oder das Rennen gestartet.
-
-
+Das Blockschaltbild zeigt den Ablauf einer TCP Verbindung zwischen der App und dem Basismodul. Nach dem Verbindungsaufbau werden Daten in beide Richtungen übertragen, um Informationen wie Rundenzeiten oder Modusänderungen zu kommunizieren. (siehe @sec-app-tcp)  
 

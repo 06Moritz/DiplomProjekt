@@ -1,6 +1,6 @@
 #import "../config.typ": *
 #aktueller_autor.update([#author2, #klasse])
-Das Fahrzeug fährt auf der Bahn, wird vom Controller gesteuert und übermittelt seine Fahrzeugkennung zur Rundenzeitmessung an die Bahn. 
+ 
 = Hardware
 Das Fahrzeug hat eine 2.4GHz Antenne und eine NFC-Spule auf der Leiterplatte. Motortreiber und Drehzahlsensor für Drehzahlmessung. Für die Spannungsregelung hat es einen @buck. Ein Buzzer dient als akustische Signalgeber.ddd\
 \
@@ -14,7 +14,7 @@ Das Fahrzeug hat eine 2.4GHz Antenne und eine NFC-Spule auf der Leiterplatte. Mo
 )
 
 == Spannungsversorgung <sec_auto-spgversorgung>
-Die Schleifkontakte, an der Unterseite des Fahrzeugs, greifen 12V von der Schiene ab. Die Eingangspannung wird mit einem @buck auf 5V geregelt. Mit einem Linearregler wird auf 3.3V geregelt. Die stufenweise Regelung sorgt für eine geringe Restwelligkeit, da Mikrocontroller eine stabile Versorgungsspannung benötigen (siehe @sec_bahn-spannungsversorgung).
+Die Schleifkontakte, an der Unterseite des Fahrzeugs, greifen 12V von der Schiene ab. Die Eingangspannung wird mit einem @buck auf 5V geregelt. Mit einem Linearregler wird auf 3.3V reduziert. Die stufenweise Regelung sorgt für eine geringe Restwelligkeit, da Mikrocontroller eine stabile Versorgungsspannung benötigen (siehe @sec_bahn-spannungsversorgung).
 
 #figure(
   image("/Bilder/buck-auto-sch.png", width: 110%),
@@ -36,7 +36,7 @@ Layout der Spannungsversorgung:
 - Die Ausgangskondensatoren (C8,C9) sollten nahe an der Last (3.3V Netz) platziert werden, um die Restwelligkeit zu minimieren.
 - Alle Verbindungen sind mit Polygonen ausgeführt, um die Leitungsinduktivität zu reduzieren und die Wärmeableitung zu verbessern.
 - Die Spule L1 ist nahe am @buck platziert, und mit vielen @via:short:pl verbunden.
-- Die Spannung wird für den Microkontroller auf 3.3V geregelt, mit dem Linearregler (U1).
+- Mit dem Linearregler (U1) wird die Spannung für den Microkontroller auf 3.3V geregelt.
 
 
 
@@ -66,11 +66,12 @@ Der Motor muss unter Belastung eine Mindestdrehzahl von 10200 $upright("U") / up
   caption: [H-Brückenschaltung],
 )
 
-Eine H-Brücke ist eine Schaltung mit der Motoren (hier: RL) angesteuert werden. Die Drehrichtung kann durch die Ansteuerung der Transistoren geändert werden. Die Schaltung ermöglicht es, Motoren mit niedrigem Signalpegel zu geregelt. @hbrueke
+Eine H-Brücke ist eine Schaltung mit der Motoren (hier: RL) angesteuert werden. Die Drehrichtung kann durch die Ansteuerung der Transistoren geändert werden. Die Schaltung ermöglicht es, Motoren mit niedrigem Signalpegel zu regeln. @hbrueke
 
 == Mikrocontroller
 Der CH585 ist ein @riscv:short Mikrocontroller von WCH. Er hat direkte Peripherieunterstützung für @ble:both und @nfc:both. @sourceCH585
 // fertig schreiben
+
 
 == Antennendesign – BLE
 @ble hat eine Frequenz von 2.4GHz, dafür eignet sich am besten eine "Inverted-F-Antenne". Sie ist einfach zu Designen und hat eine gute Leitungsfähigkeit für ihre kleine Bauform.
@@ -93,7 +94,7 @@ Z#sub("0") = 50 \u{03A9} (Wellenwiderstand)
 
 $ w=((5.98*1.5)/(e^(((sqrt(4.5+ 1.41)*50)/87)))-0.035)*1/0.8 = underline(underline(2.73"mm" => 106"mil")) $
 \
-
+#pagebreak()
 Die Simulation des Antennendesigns liefert einen Reflexionsfaktor (S#sub("11"))​ von ca. -7,5 dB bei der Betriebsfrequenz von 2,4 GHz (siehe Abbildung 28). Dies entspricht einer ausreichenden Leistungsübertragung für die Kommunikation auf kurze Distanz. In Abbildung 26 ist die Stromdichteverteilung zum Resonanzzeitpunkt dargestellt. \ \
 
 #grid(
@@ -125,7 +126,7 @@ Messwerte:
 - dunkle Seite: 0.64V
 \
 #figure(
-  fimage("/Bilder/speedsensor.png", width: 90%),
+  image("/Bilder/speedsensor.png", width: 90%),
   caption: [VCNT2020 und Komperator Schaltung],
 )
 
@@ -136,7 +137,7 @@ Messwerte:
 Die @nfc:short\-Antenne ist eine Spule direkt auf der Leiterplatte. Die Schaltung besteht aus drei Teilen: EMV-Filter, Anpassungsnetzwerk und Antenne.
 \ \
 #figure(
-  fimage("/Bilder/NFC.png", width: 90%),
+  image("/Bilder/NFC.png", width: 90%),
   caption: [Schaltung der NFC-Antenne],
 )
 \
@@ -165,7 +166,7 @@ Die Spule hat folgende Werte:
 - Widerstand R#sub[a] = 0.333\u{03A9}
 Kapazität wurde nicht bestimmt, da die parastitären Kapazitäten der Messung höher sind als die Eigenkapazität der Spule. \ \
 
-$ Q = (\u{03C9} * L_a)/R_a = underline(underline(142)) $
+$ Q_"gemessen" = (\u{03C9} * L_a)/R_a = underline(underline(142)) $
 
 $ R_Q = 0.5 * ((\u{03C9}*L_a)/35-R_a) = underline(underline(0.5\u{03A9})) $
 

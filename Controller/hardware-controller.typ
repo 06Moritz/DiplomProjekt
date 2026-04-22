@@ -31,6 +31,12 @@ gap: 1em
 
 == Spannungsversorgung <sec_controller-spgversorgung>
 Die Versorgung des Controllers erfolgt über einen @lipo, dessen Betriebsspannung zwischen 3.2 V und 4.2 V liegt. Der Akku wird über Federkontakte an einer Ladestation aufgeladen. (siehe @sec_ladestation-hw)
+
+#figure(
+  image("/Bilder/LadeB.png", width: 85%),
+  caption: [Blockschaltbild Laderegler],
+
+  )
 \ 
 Die Spannungsregelung ist in drei Teile gegliedert:
 - Laderegelung:\ Sicherstellung eines geregelten Ladens des Akkus durch Überwachung von Spannung und Stromstärke während des Ladevorgangs. 
@@ -40,23 +46,20 @@ Die Spannungsregelung ist in drei Teile gegliedert:
 - @ldo:both: \ Regelt von Variabler Akkuspannung (3.2-4.2V) auf 3.3V für die Versorgung der Mikrocontroller und anderer Komponenten.  Für die geringe Spannungsdifferenz zwischen Akku und Versorgungsspannung der Komponenten ist ein @ldo:long nötig. 
 
 
+#figure(
+fimage("/Bilder/laderegler.png", width: 100%),
+caption: [Spannungsregler],
+) 
+
 == Laderegler <sec-charger>
 
-#figure(
-  image("/Bilder/LadeB.png", width: 85%),
-  caption: [Blockschaltbild Laderegler],
-
-  )
 - TP4056 Laderegler\ Die Laderegelung erfolgt über den TP4056. Der TP4056 (U1) übernimmt die Spannungsreduzierung von 5 V Eingangsspannung auf die Betriebsspannung des Akkus.
 Der TP4056 schützt den Akku durch eine geregelte Ladung. Er überwacht die Spannung und den Strom während des Ladevorgangs, um eine Überladung zu verhindern. Sobald der Akku vollständig geladen ist, schaltet der TP4056 automatisch in den Erhaltungsmodus.
 
 Um einen Ladestrom von 1A einzustellen, wird ein 1.2kΩ Widerstand an PIN2 des TP4056 angeschlossen. @sourceLipo
 
 
-#figure(
-fimage("/Bilder/laderegler.png", width: 100%),
-caption: [Laderegler],
-) 
+
 Beim Aufnehmen der Ladekurve werden Strom und Spannung des Akkus gemessen. Die Ladespannung mittels einem Spannungsteiler, der Lade Ladestrom über einen Shunt-Widerstand.
 #figure(
 fimage("/Bilder/Ladevorgang.png", width: 100%),
@@ -129,7 +132,7 @@ fimage("/Bilder/AntBode.png", width: 100%),
 caption: [Bodediagramm der Antenne],
 )
 \
-In dem angegebenen Bodediagramm ist der Reflexionsfaktor S11 aufgetragen. Zu erkennen ist, dass die Antenne im Bereich von 2.34GHz die beste Dämpfung hat. Da @ble im 2.4GHz Bereich arbeitet, ist die Antenne nicht ideal. Dennoch ist sie mit einer Dämpfung von -15dB ausreichend für die Kommunikation.
+In dem angegebenen Bodediagramm der Antennensimulation ist der Reflexionsfaktor S11 aufgetragen. Zu erkennen ist, dass die Antenne im Bereich von 2.34GHz die beste Dämpfung hat. Da @ble im 2.4GHz Bereich arbeitet, ist die Antenne nicht ideal. Dennoch ist sie mit einer Dämpfung von -15dB ausreichend für die Kommunikation.
 //Dämpfung?
 
 #figure(

@@ -7,14 +7,14 @@ Modellautorennbahnen sind ein beliebtes Hobby, jedoch sind die Produkte, die den
 Daher ist eine einstellbare Benutzeroberfläche mit konfigurierbaren Rennmodi vorgesehen. Um ein gutes Spielerlebnis zu ermöglichen, werden leistungsfähige Prozessoren und eine drahtlose Kommunikation benötigt.
 
 == Zielsetzung
-Das Ziel dieser Diplomarbeit ist die Entwicklung einer funkgesteuerten Modellautorennstrecke mit erweiterbaren Funktionen. Die Rennbahn soll neben klassischen Elementen eine App zur Steuerung und Anpassung des Fahrbetriebs bieten.
+Das Ziel dieser Diplomarbeit ist die Entwicklung einer funkgesteuerten Modellautorennbahn mit erweiterbaren Funktionen. Die Rennbahn soll neben klassischen Elementen eine App zur Steuerung und Anpassung des Fahrbetriebs bieten.
 
 *Musskriterien:*
 - eigenständig fahrfähige Autos
 - zuverlässige Funkverbindung zwischen Fahrzeug und Steuereinheit
 
 *Wunschkriterien:*
-- Anzeige der Rundenzeiten innerhalb der App
+- Anzeige der Rundenzeiten in der App und auf dem Display
 - konfigurierbare Fahrzeugeinstellungen über die App
 
 *Abgrenzungskriterien*
@@ -40,7 +40,7 @@ Es wird ein Basismodul, ein Controller, ein Auto und eine Ladestation entwickelt
 // 
 = Projektübersicht
 #figure(
-  fimage("/Bilder/projekt-alles.png", width: 100%),
+  image("/Bilder/projekt-alles.png", width: 100%),
   caption: [Gesamtprojekt Übersicht],
 )
 

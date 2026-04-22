@@ -11,7 +11,7 @@ Die Software ist in Kotlin für die App und in PlatformIO für die Displays prog
 Die Kommunikation zwischen der App und dem Basismodul Display erfolgt über das @tcp Protokoll, während die Kommunikation zwischen dem Basismodul Display und dem Controller Display über @ble erfolgt. 
 
 = App
-== App Programmierung
+== App Entwicklung
 Die App dient zum Einstellen. Sie ermöglicht es die Sprache, den Modus, die Rundenzahl und Spielernamen einzustellen, sowie die Verbindung zum Basismodul herzustellen.\
 
 #figure(
@@ -141,7 +141,7 @@ Je nachdem welcher Button gedrückt wird, ändert sich der Zustand.
 )
 
 
-== Transmission Control Protocol (TCP) Programmierung
+== Transmission Control Protocol (TCP) Programmierung <sec-app-tcp>
 Um eine Verbindung zwischen der App und dem Basismodul Display herzustellen, wird das @tcp Protokoll verwendet. Dieses ermöglicht eine Bidirektionale Kommunikation zwischen den beiden Geräten. Das dient dazu, dass Änderungen, wie das Einstellen der Modi oder Spielernamen, auf das Display übertragen werden können.\
 
 In dieser Konfiguration zählt der @esp32:short\-S3 als @tcp -Server, der auf einem definierten Port (8080) auf eingehende Verbindungsanfragen der App wartet.\ 
@@ -199,7 +199,7 @@ In der App wurden die eingegebenen Parameter aktualisiert. Spieler1 wurde als Sp
   caption: [Geänderte Parameter im Menü der App],
 )
 \
-Datenübertragung:
+Datenübertragung: 
 
 #figure(
   image("/Bilder/App/Datenverb.png", width: 80%),
