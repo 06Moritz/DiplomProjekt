@@ -23,6 +23,7 @@
         "Inhalt"
       }
       set text(size: 9pt, weight: "light")
+
       grid(
         columns: (1fr, 1fr, 1fr),
         align: (left, center, right),

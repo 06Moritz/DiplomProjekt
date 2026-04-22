@@ -29,7 +29,7 @@ gap: 1em
 
 //#pagebreak()
 
-== Spannungsversorgung
+== Spannungsversorgung <sec_controller-spgversorgung>
 Die Versorgung des Controllers erfolgt über einen @lipo, dessen Betriebsspannung zwischen 3.2 V und 4.2 V liegt. Der Akku wird über Federkontakte an einer Ladestation aufgeladen. (siehe @sec_ladestation-hw)
 \ 
 Die Spannungsregelung ist in drei Teile gegliedert:
