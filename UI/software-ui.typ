@@ -205,10 +205,10 @@ Datenübertragung:
   image("/Bilder/App/Datenverb.png", width: 80%),
   caption: [Blockschaltbild TCP Kommunikation],
 )
-Die Daten werden Packetiert übertragen. Jedes Paket enthält einen Hexadezimalen Code, der den Typ des Pakets angibt. Der Längen Indicator gibt an, wie viele Bytes das Paket enthält.  
+Die Daten werden Paketiert übertragen. Jedes Paket enthält einen Hexadezimalen Code, der den Typ des Pakets angibt. Der Längen Indicator gibt an, wie viele Bytes das Paket enthält.  
 
 #pagebreak()
-Übersicht Packettypen:
+Übersicht Pakettypen:
 #figure(
   align(center)[
     #set text(size: 12pt)
@@ -263,7 +263,7 @@ fun handleMessage(msg: String) {
 \ \
 
 
-Initialisierung der Bidirektionalen Kommunikaation zwischen der App und dem @esp32:short
+Initialisierung der Bidirektionalen Kommunikation zwischen der App und dem @esp32:short
 \
 @tcp Kotlin: @sourceTCPApp
 
@@ -337,19 +337,18 @@ In dem Code der App wird ein Client Socket erstellt, der sich mit der IP-Adresse
   }
 
 ```
-An dem @esp32:short wird ein Server Socket erstellt, der auf Port 8080 auf verbindungsanfragen von der Appwartet. Ist eine Verbindung hergestellt, können Daten in beide Richtungen gesendet und empfangen werden.
+An dem @esp32:short wird ein Server Socket erstellt, der auf Port 8080 auf verbindungsanfragen von der App wartet. Ist eine Verbindung hergestellt, können Daten in beide Richtungen gesendet und empfangen werden.
 \ 
 
 === Synchronisation
-Um sicherzustellen, dass beide Geräte immer den gleichen Systemstatus anzeigen, wurde ein zeilenbasiertes Protokoll entwickelt.\ Jede Nachricht wird mit einem Newline-Zeichen (\\n) abgeschlossen, damit der Empfänger das Ende eines Befehls eindeutig erkennt. Dies ist notwendig, da @tcp die Daten als kontinuierlichen Strom versendet.\ Sobald in der App ein Parameter wie der Spielmodus oder die Rundenzahl geändert wird, sendet die App sofort ein entsprechendes Datenpaket an das Display. Ein Befehl wie MODUS: Schwer bewirkt am Display eine sofortige Aktualisierung der Variable und einen Redraw der Benutzeroberfläche. Dieser Prozess funktioniert auch in die umgekehrte Richtung: Wird am Display der "Start"- oder "Modus"-Button gedrückt, erhält die App das Signal zum Starten des Renn-Timers beziehungsweise das ändern des Moduses.
+Um sicherzustellen, dass beide Geräte immer den gleichen Systemstatus anzeigen, wurde ein zeilenbasiertes Protokoll entwickelt.\ Jede Nachricht wird mit einem Newline-Zeichen (\\n) abgeschlossen, damit der Empfänger das Ende eines Befehls eindeutig erkennt. Dies ist notwendig, da @tcp die Daten als kontinuierlichen Strom versendet.\ Sobald in der App ein Parameter wie der Spielmodus oder die Rundenzahl geändert wird, sendet die App sofort ein entsprechendes Datenpaket an das Display. Ein Befehl wie MODUS: Schwer bewirkt am Display eine sofortige Aktualisierung der Variable und einen Redraw der Benutzeroberfläche. Dieser Prozess funktioniert auch in die umgekehrte Richtung: Wird am Display der "Start"- oder "Modus"-Button gedrückt, erhält die App das Signal zum Starten des Renn-Timers beziehungsweise das Ändern des Moduses.
 
 == Echtzeitverhalten
 Bei der Softwareimplementierung wurde besonders auf ein nicht blockierendes Design geachtet. Da das Basismodul gleichzeitig den Touchscreen abfragen und das Display aktualisieren muss, darf der Netzwerkcode den Prozessor nicht aufhalten.\ Die Abfrage von eingehenden Daten erfolgt daher in jedem Programmdurchlauf, ohne den restlichen Ablauf zu verzögern.
 \
 Sollte die Verbindung zwischenzeitlich unterbrochen werden, verfügt die App über eine automatische Reconnect-Logik. Diese erkennt die unterbrochene Verbindung durch einen Timeout und versucht eigenständig, den Socket neu zu initialisieren, um die Verbindung wiederherzustellen. Während der Reconnect-Phase zeigt die App eine entsprechende Meldung an. Sobald die Verbindung wiederhergestellt ist, werden alle zuvor gesendeten Befehle erneut übertragen, um sicherzustellen, dass das Display den aktuellen Status korrekt anzeigt. 
-\ \ 
 
-
+#pagebreak()
 == Controller Display <sec-controllerui>
 Das Controller Display GC9A01 zeigt folgende Funktionen an:
 - aktuelle Motorleistung 
@@ -362,7 +361,7 @@ Das Controller Display GC9A01 zeigt folgende Funktionen an:
 - Rundenanzahl z.B.: 2/5 Runden // in dem fall leichter modus
 
 Das Display dient dazu, wichtige Informationen während des Rennens anzuzeigen. Es zeigt die aktuelle Motorleistung an, die über die @pwm gesteuert wird, sowie einen Timer, der die Dauer des Rennens anzeigt. In der Mitte des Displays wird die Durchschnittsgeschwindigkeit angezeigt, welche mithilfe der Drehzahl des Motors berechnet wird. Darunter wird die schnellste Runde sowie die Abweichung angezeigt.
-\
+\ \
 $ v = (n*π*d)/60 $
 
 - v: Geschwindigkeit in m/s
@@ -384,8 +383,9 @@ Der Spielername und das zugewiesene Auto werden ebenfalls auf dem Display angeze
  - Rundenanzahl
  über die SPI Schnittstelle vom CH572 übertragen.
 
- Die aktuellen Auto Informationen
-  - Motorleistung 
- werden über @ble übertragen, da diese Informationen sehr schnell aktualisiert werden müssen und eine stabile Verbindung erfordern. 
+ Die aktuellen Informationen
+  - Motorleistung des Autos
+  - Ladestand des Controllers 
+  werden über @ble übertragen, da diese Informationen sehr schnell aktualisiert werden müssen und eine stabile Verbindung erfordern. 
 
 

@@ -2,7 +2,7 @@
 #aktueller_autor.update([#author2, #klasse])
  
 = Hardware
-Das Fahrzeug hat eine 2.4GHz Antenne und eine NFC-Spule auf der Leiterplatte. Motortreiber und Drehzahlsensor für Drehzahlmessung. Für die Spannungsregelung hat es einen @buck. Ein Buzzer dient als akustische Signalgeber.ddd\
+Das Fahrzeug hat eine 2.4GHz Antenne und eine NFC-Spule auf der Leiterplatte. Motortreiber und Drehzahlsensor für Drehzahlmessung. Für die Spannungsregelung hat es einen @buck. Ein Buzzer dient als akustische Signalgeber.\
 \
 
 
