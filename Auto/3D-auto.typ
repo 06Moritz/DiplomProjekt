@@ -17,8 +17,8 @@ Die Bodenfreiheit ist ideal für NFC und für die Schleifkontakte.
 
  == Grundstruktur
 Das Gehäuse des Autos besteht aus einem Körper. 
-Die Karosserie überdeckt die gesamte Platine inkulsive Motor und Mechanik.
-Das Gefäuse schützt die Elektronischen Bauteile und die Mechanik vor Verschmutzungen und Staub.
+Die Karosserie überdeckt die gesamte Platine inklusive Motor und Mechanik.
+Das Gehäuse schützt die Elektronischen Bauteile und die Mechanik vor Verschmutzungen und Staub.
 Die Platine des Autos wird mit Klippverbindungen an der Karosserie befestigt.
 
 

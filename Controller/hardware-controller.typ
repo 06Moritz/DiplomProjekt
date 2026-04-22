@@ -41,7 +41,7 @@ Die Versorgung des Controllers erfolgt über einen @lipo, dessen Betriebsspannun
 Die Spannungsregelung ist in drei Teile gegliedert:
 - Laderegelung:\ Sicherstellung eines geregelten Ladens des Akkus durch Überwachung von Spannung und Stromstärke während des Ladevorgangs. 
 
-- Schutzschaltung:\ Verwendung eines Schutzschaltkreises zur verhinderung von Überladung und Tiefentladung. 
+- Schutzschaltung:\ Verwendung eines Schutzschaltkreises zur Verhinderung von Überladung und Tiefentladung. 
 
 - @ldo:both: \ Regelt von Variabler Akkuspannung (3.2-4.2V) auf 3.3V für die Versorgung der Mikrocontroller und anderer Komponenten.  Für die geringe Spannungsdifferenz zwischen Akku und Versorgungsspannung der Komponenten ist ein @ldo:long nötig. 
 
@@ -78,15 +78,15 @@ caption: [Schaltplan für die Ladekurve aufnehmen],
 )
 \ 
 
-Der Spannungsverlauf beim Laden wird über den Spannungsteiler erfasst, damit ein kleinerer Messbereich am Messgereit eingestellt werden kann und dadurch die Auflösung genauer wird. 
+Der Spannungsverlauf beim Laden wird über den Spannungsteiler erfasst, damit ein kleinerer Messbereich am Messgerät eingestellt werden kann und dadurch die Auflösung genauer wird. 
 \
 
 Der ladestrom wird mithilfe des Shuntwiderstands bestimmt. Durch den Spannungsabfall am Shunt, kann der Ladestrom berechnet werden. $U=I*R$
 Der kleine Spannungsabfall am Shunt wird mit einer OPV-Schaltung verstärkt, um gemessen werden zu können.
-\ \
+\ 
 - Schutzschaltung\ Um das Tiefentladen und Überladen des Akkus zu verhindern, wird der DW01 (U2) verwendet. Dieser Schutzschaltkreis überwacht den Stromfluss des Akkus und schaltet diesen mittels FS8205A MOSFETs (Q1 und Q2) ab, wenn die Spannung über einen speziellen Schwellenwert  steigt (4.25V), beziehungsweise fällt (2.4V). Das ist notwendig um den Akku nicht zu zerstören. @sourceDW01  \
 
-Der Schaltplan des Ladereglers musste überarbeitet werden, da ein Verbindungsfehler zwischen dem Akku und dem FS8205A an dem Pin G2 vorlag. Dieser Fehler führte dazu, dass die Schutzschaltung für den Akku, den Akku nicht schützt. Der Fehler ist behoben worden, indem die Leiterbahn zwischen Akku und den Mosfets vom GND getrennt und im Schaltplan geändert wurde.  
+Der Schaltplan des Ladereglers musste überarbeitet werden, da ein Verbindungsfehler zwischen dem Akku und dem FS8205A an dem Pin G2 vorlag. Dieser Fehler führte dazu, dass die Schutzschaltung für den Akku, den Akku nicht schützt. Der Fehler ist behoben worden, indem die Leiterbahn zwischen Akku und den @mosfet:short\s vom @gnd:short getrennt und im Schaltplan geändert wurde.  
 
 
 == Mikrocontroller
@@ -106,7 +106,7 @@ Die analogen Signale vom Potentiometer und vom Schieberegler werden über den @a
 Bauteile die zum auslesen einen @adc brauchen: 
 - Potentiometer
 - Schieberegler
-
+#pagebreak()
 == Steuerung
 Die Bauteile (Potentiometer, Schieberegler, Vibrationsmotor) werden für die Steuerung des Autos verwendet. Sie ermöglichen es dem Spieler, die Geschwindigkeit zu steuern, die Hupe zu betätigen und ein haptisches Feedback zu erhalten. 
 
@@ -153,7 +153,7 @@ image("/Bilder/controllerUberblick.png", width: 100%),
 caption: [Leiterplatte Controller],
 )
 
-Zum Programmieren der Mikrocontrollers ist auf der Unterseite der Leiterplatte ein Überlötjumper platziert (CH572-Data-CH32). Durch das Umlöten der Pads, wird Platz auf der Oberseite eingespart, da ein programmier Pin doppelt belegt werden kann.
+Zum Programmieren der Mikrocontrollers ist auf der Unterseite der Leiterplatte ein Überlötjumper platziert (CH572-Data-CH32). Durch das Umlöten der Pads, wird Platz auf der Oberseite eingespart, da ein Programmierpin doppelt belegt werden kann.
 
 #pagebreak()
 

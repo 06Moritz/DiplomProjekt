@@ -8,7 +8,7 @@ Die Ladestation nimmt bis zu vier Controller gleichzeitig auf und lädt diese ü
 
 == Anforderungen
 - gleichzeitige Aufnahme von vier Controllern 
-- zuverlässige Ladeverbindung der Controller über    Federkontakte
+- zuverlässige Ladeverbindung der Controller über Federkontakte
 - Anbindung an das Basismodul über @usbc
 
 == Grundstruktur

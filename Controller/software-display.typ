@@ -4,17 +4,17 @@
 
 
 == Controler Display
-Das Controller Display XY zeigt folgende funktionen an:
+Das Controller Display XY zeigt folgende Funktionen an:
 - aktuelle Motorleistung (PWM)
 - Timer
 - Durchschnittsgeschwindigkeit
 - beste Rundendauer
-- abweichung zur besten
+- Abweichung zur besten
 - Spielername
 - Zugewiesenes Auto
-- Runden anzahl z.B.: 2/5 Runden // in dem fall leichter modus
+- Rundenanzahl z.B.: 2/5 Runden // in dem fall leichter modus
 
-Das Display dient dazu, wichtige Informationen während des Rennens anzuzeigen. Es zeigt die aktuelle Motorleistung an, die über die PWM gesteuert wird, sowie einen Timer, der die Dauer des Rennens anzeigt. In der mitte des Displays wird die Durchschnittsgescchwindigkeit angezeigt, welche mithilfe der Drehzahl des Motors berechnet wird. Darunter wird die schnellste Runde angezeigt, sowie die Abweichung. 
+Das Display dient dazu, wichtige Informationen während des Rennens anzuzeigen. Es zeigt die aktuelle Motorleistung an, die über die PWM gesteuert wird, sowie einen Timer, der die Dauer des Rennens anzeigt. In der Mitte des Displays wird die Durchschnittsgeschwindigkeit angezeigt, welche mithilfe der Drehzahl des Motors berechnet wird. Darunter wird die schnellste Runde angezeigt, sowie die Abweichung. 
 \
 $ v = (n*π*d)/60 $
 
@@ -22,9 +22,9 @@ $ v = (n*π*d)/60 $
 - n: Drehzahl in U/min
 - d: Durchmesser des Rades in m 
 Damit man auf dem Display die Geschwindigkeit in Meter pro Sekunde angezeigt bekommt, wird die Drehzahl durch 60 dividiert, um auf Umdrehung pro Sekunde zu kommen. \ \
-Der Spielername und das zugewiesene Auto werden ebenfalls auf dem Display angeziegt, um verwechslungen zu vermeiden. Zudem wird die aktuelle Rundenanzahl angezeigt, um den Spieler zu informieren, in welcher Runde er sich befindet.
+Der Spielername und das zugewiesene Auto werden ebenfalls auf dem Display angezeigt, um Verwechslungen zu vermeiden. Zudem wird die aktuelle Rundenanzahl angezeigt, um den Spieler zu informieren, in welcher Runde er sich befindet.
 
-- Das Display wird mit dem CH572 verbunden, welcher die Daten empfängt und verarbeitet. Die Informationen werden in Echzeit übertragen.
+- Das Display wird mit dem CH572 verbunden, welcher die Daten empfängt und verarbeitet. Die Informationen werden in Echtzeit übertragen.
 - Auf dem Display werden Spiel Informationen
  - Spielername
  - Autoname

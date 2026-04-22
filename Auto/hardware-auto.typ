@@ -17,7 +17,7 @@ Das Fahrzeug hat eine 2.4GHz Antenne und eine NFC-Spule auf der Leiterplatte. Mo
 Die Schleifkontakte, an der Unterseite des Fahrzeugs, greifen 12V von der Schiene ab. Die Eingangspannung wird mit einem @buck auf 5V geregelt. Mit einem Linearregler wird auf 3.3V reduziert. Die stufenweise Regelung sorgt für eine geringe Restwelligkeit, da Mikrocontroller eine stabile Versorgungsspannung benötigen (siehe @sec_bahn-spannungsversorgung).
 
 #figure(
-  image("/Bilder/buck-auto-sch.png", width: 110%),
+  fimage("/Bilder/buck-auto-sch.png", width: 110%),
   caption: [Schaltplan der Spannungsversorgung],
 )
 
@@ -36,7 +36,7 @@ Layout der Spannungsversorgung:
 - Die Ausgangskondensatoren (C8,C9) sollten nahe an der Last (3.3V Netz) platziert werden, um die Restwelligkeit zu minimieren.
 - Alle Verbindungen sind mit Polygonen ausgeführt, um die Leitungsinduktivität zu reduzieren und die Wärmeableitung zu verbessern.
 - Die Spule L1 ist nahe am @buck platziert, und mit vielen @via:short:pl verbunden.
-- Mit dem Linearregler (U1) wird die Spannung für den Microkontroller auf 3.3V geregelt.
+- Mit dem Linearregler (U1) wird die Spannung für den Mikrocontroller auf 3.3V geregelt.
 
 
 
@@ -119,14 +119,14 @@ Die Simulation des Antennendesigns liefert einen Reflexionsfaktor (S#sub("11"))�
 
 
 == Drehzahlsensor
-Die Drehzahl wird optisch mit einem VCNT2020 gemessen. Der Sensor besteht aus einer Infrarot @led:short und einem Fototransistor. Auf der Antriebsachse ist das Zahnrad zur Hälfte schwarz angestrichen. Wenn sich die Achse dreht ändert sich die Lichtintensität, die der Sensor empfängt, dadurch kann die Drehzahl berechnet werden. Das Ausgangssignal des Sensors wird mittels Kompertorschaltung in ein steilflankiges Digitales Signal umgewandelt, damit es vom Controller fehlerfrei eingelesen werden kann. Refernzspannung (IN-) wird so eingestellt, dass die Schaltschwelle zwischen dem Spannungswert bei heller und dunkler Seite liegt.
+Die Drehzahl wird optisch mit einem VCNT2020 gemessen. Der Sensor besteht aus einer Infrarot @led:short und einem Fototransistor. Auf der Antriebsachse ist das Zahnrad zur Hälfte schwarz angestrichen. Wenn sich die Achse dreht ändert sich die Lichtintensität, die der Sensor empfängt, dadurch kann die Drehzahl berechnet werden. Das Ausgangssignal des Sensors wird mittels Komperatorschaltung in ein steilflankiges Digitales Signal umgewandelt, damit es vom Controller fehlerfrei eingelesen werden kann. Referenzspannung (IN-) wird so eingestellt, dass die Schaltschwelle zwischen dem Spannungswert bei heller und dunkler Seite liegt.
 
 Messwerte:
 - helle Seite: 2.24V
 - dunkle Seite: 0.64V
 \
 #figure(
-  image("/Bilder/speedsensor.png", width: 90%),
+  fimage("/Bilder/speedsensor.png", width: 90%),
   caption: [VCNT2020 und Komperator Schaltung],
 )
 
@@ -137,7 +137,7 @@ Messwerte:
 Die @nfc:short\-Antenne ist eine Spule direkt auf der Leiterplatte. Die Schaltung besteht aus drei Teilen: EMV-Filter, Anpassungsnetzwerk und Antenne.
 \ \
 #figure(
-  image("/Bilder/NFC.png", width: 90%),
+  fimage("/Bilder/NFC.png", width: 90%),
   caption: [Schaltung der NFC-Antenne],
 )
 \
@@ -164,7 +164,7 @@ Die Spule kann mit der Ersatzschaltung dargestellt werden. Optimal ist ein Güte
 Die Spule hat folgende Werte:
 - Induktivität L#sub[a] = 555nH
 - Widerstand R#sub[a] = 0.333\u{03A9}
-Kapazität wurde nicht bestimmt, da die parastitären Kapazitäten der Messung höher sind als die Eigenkapazität der Spule. \ \
+Kapazität wurde nicht bestimmt, da die parasitären Kapazitäten der Messung höher sind als die Eigenkapazität der Spule. \ \
 
 $ Q_"gemessen" = (\u{03C9} * L_a)/R_a = underline(underline(142)) $
 
